@@ -1,0 +1,5 @@
+app/web/config/WebAppInitializer.class
+app/web/controllers/Main.class
+app/web/config/DataConfig$1.class
+app/web/config/DataConfig.class
+app/web/config/WebConfig.class
