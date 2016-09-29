@@ -22,4 +22,5 @@
 <%-- Controllers --%>
 <script src="resources/scripts/controllers/landing/landing.js"></script>
 <script src="resources/scripts/controllers/forums/forums.js"></script>
+<script src="resources/scripts/controllers/dummy/dummy.js"></script>
 <%-- Controllers --%>
