@@ -8,14 +8,47 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
                 controller: 'LandingCtrl',
                 controllerAs: 'ctrl',
                 resolve:{}
-            }).when('/dummy', {
-                templateUrl: 'resources/scripts/controllers/dummy/dummy.html',
-                controller: 'DummyCtrl',
+            })
+            .when('/home', {
+                templateUrl: 'resources/scripts/controllers/home/home.html',
+                controller: 'HomeCtrl',
                 controllerAs: 'ctrl',
                 resolve:{}
-            }).when('/forums', {
+            })
+            .when('/about', {
+                templateUrl: 'resources/scripts/controllers/about/about.html',
+                controller: 'AboutCtrl',
+                controllerAs: 'ctrl',
+                resolve:{}
+            })
+            .when('/maps', {
+                templateUrl: 'resources/scripts/controllers/maps/maps.html',
+                controller: 'MapsCtrl',
+                controllerAs: 'ctrl',
+                resolve:{}
+            })
+            .when('/rankings', {
+                templateUrl: 'resources/scripts/controllers/rankings/rankings.html',
+                controller: 'RankingsCtrl',
+                controllerAs: 'ctrl',
+                resolve:{}
+            })
+
+            .when('/forums', {
                 templateUrl: 'resources/scripts/controllers/forums/forums.html',
                 controller: 'ForumsCtrl',
+                controllerAs: 'ctrl',
+                resolve:{}
+            })
+            .when('/news', {
+                templateUrl: 'resources/scripts/controllers/news/news.html',
+                controller: 'NewsCtrl',
+                controllerAs: 'ctrl',
+                resolve:{}
+            })
+            .when('/dummy', {
+                templateUrl: 'resources/scripts/controllers/dummy/dummy.html',
+                controller: 'DummyCtrl',
                 controllerAs: 'ctrl',
                 resolve:{}
             });

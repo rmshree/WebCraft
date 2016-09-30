@@ -22,6 +22,13 @@
 
 <%-- Controllers --%>
 <script src="resources/scripts/controllers/landing/landing.js"></script>
+<script src="resources/scripts/controllers/home/home.js"></script>
+<script src="resources/scripts/controllers/about/about.js"></script>
+<script src="resources/scripts/controllers/maps/maps.js"></script>
+<script src="resources/scripts/controllers/rankings/rankings.js"></script>
 <script src="resources/scripts/controllers/forums/forums.js"></script>
+<script src="resources/scripts/controllers/news/news.js"></script>
 <script src="resources/scripts/controllers/dummy/dummy.js"></script>
+
+
 <%-- Controllers --%>
