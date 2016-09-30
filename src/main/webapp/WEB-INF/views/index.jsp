@@ -7,6 +7,7 @@
     <title>Webcraft</title>
 </head>
 <body ng-app="app">
+<div ng-include="'resources/scripts/controllers/nav/nav.html'"></div>
 <main ng-view></main>
 
 </body>
