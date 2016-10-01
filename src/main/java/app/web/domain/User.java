@@ -14,9 +14,13 @@ public class User implements Serializable {
     @JsonProperty
     private Integer id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     @JsonProperty
     private String name;
+
+    @Column(name = "age")
+    @JsonProperty
+    private Integer age;
 
     public Integer getId() {
         return id;
@@ -32,5 +36,13 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

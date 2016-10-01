@@ -7,7 +7,8 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
                 templateUrl: 'resources/scripts/controllers/landing/landing.html',
                 controller: 'LandingCtrl',
                 controllerAs: 'ctrl',
-                resolve:{}
+                resolve:{
+                }
             })
             .when('/home', {
                 templateUrl: 'resources/scripts/controllers/home/home.html',

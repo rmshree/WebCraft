@@ -13,11 +13,11 @@ angular.module('app').controller('LandingCtrl', function (UserService) {
 
     };
 
-    ctrl.clickFirstB = function () {
-        // console.log(ctrl.name);
-        UserService.create({name: ctrl.name}).$promise.then(function (response) {
-            console.log(response);
-        })
+    ctrl.printName = function (name) {
+        console.log(name);
+        // UserService.create({name: ctrl.name}).$promise.then(function (response) {
+        //     console.log(response);
+        // })
     };
 
     ctrl.clickSecondB = function () {
