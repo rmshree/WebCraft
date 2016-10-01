@@ -32,5 +32,9 @@
 
 
 
+<script src="resources/scripts/services/user.service.js"></script>
+
+
+
 
 <%-- Controllers --%>

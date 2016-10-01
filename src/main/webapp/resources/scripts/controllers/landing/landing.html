@@ -1,3 +1,16 @@
-<div class="landing container-fluid" ng-init="ctrl.init()">
+<div class="container-fluid" ng-init="ctrl.init()">
     <h2>{{ctrl.message}}</h2>
+
+
+
+    <a style="text-decoration: double" ng-click="ctrl.clickSecondB()">Second B</a>
+    <br>
+
+    <label>Name</label>
+    <input type="text" ng-model="ctrl.name">
+    <button style="background-color: #00b5e2" ng-click="ctrl.clickFirstB()">First B</button>
+
+    <!--<input type="checkbox">-->
+    <!--<input type="date" ng-model="ctrl.date">-->
+    <!--<button style="background-color: #00b5e2" ng-click="ctrl.clickSecondB()">Date B</button>-->
 </div>
