@@ -15,11 +15,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "create/{name}", method = RequestMethod.GET)
-    public User create(@PathVariable String name){
-        User user = new User();
-        user.setName(name);
-        return userService.save(user);
+    @RequestMapping(value = "check/{name}", method = RequestMethod.GET)
+    public User check(@PathVariable String name){
+        User user = userService.getUserByUser(name);
+        if (user == null) {
+            return null;
+        } else {
+            return user;
+        }
     }
 
 }

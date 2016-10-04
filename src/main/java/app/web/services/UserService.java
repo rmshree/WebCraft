@@ -8,5 +8,5 @@ public interface UserService{
 
     User save(User number);
 
-    List<User> getUsersByAgeAndName(Integer age, String name);
+    User getUserByUsername (String username);
 }
