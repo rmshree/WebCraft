@@ -1,23 +1,21 @@
 <div class="container-fluid" ng-init="ctrl.init()">
+    <h2>{{ctrl.message}}</h2>
 
-    <h2 align="center">{{ctrl.message}}</h2>
 
-    <a style="text-decoration: double" class="fa fa-icon" ng-click="ctrl.clickSecondB()"><i class="fa "></i>Second B</a>
-    <br>
-    <div style="text-align: center">
+
+    <div class="signup containerfluid">
+        <h1>Sign-Up</h1>
+
+        <label>Name</label>
+        <input type="text" ng-model="user.name">
+
         <label>Username</label>
-        <input type="text" ng-model="ctrl.currentUser.name">
-         <button style="background-color: #00b5e2" ng-click="ctrl.printName(ctrl.currentUser.name)">Enter</button>
-    <br>
+        <input type="text" ng-model="user.username">
 
+        <label>Password</label>
+        <input type="password" ng-model="user.password">
 
-        <label align="center">Password</label>
-        <input type="text" ng-model="ctrl.currentUserPassword.name">
-
-        <button style="background-color: #00b5e2" ng-click="ctrl.printName(ctrl.currentUser.name)">Enter</button>
-
+        <button ng-click="ctrl.signUp(user)" ng-disabled="!user.name || !user.username || !user.password"> Submit </button>
     </div>
-    <!--<input type="checkbox">-->
-    <!--<input type="date" ng-model="ctrl.date">-->
-    <!--<button style="background-color: #00b5e2" ng-click="ctrl.clickSecondB()">Date B</button>-->
+
 </div>
