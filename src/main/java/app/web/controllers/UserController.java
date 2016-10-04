@@ -17,7 +17,7 @@ public class UserController {
 
     @RequestMapping(value = "check/{name}", method = RequestMethod.GET)
     public User check(@PathVariable String name){
-        User user = userService.getUserByUser(name);
+        User user = userService.getUserByUsername(name);
         if (user == null) {
             return null;
         } else {
