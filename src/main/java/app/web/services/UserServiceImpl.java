@@ -21,8 +21,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsersByAgeAndName(Integer age, String name){
-        return userRepository.getByAgeAndName(age, name);
+    public User getUserByUser (String username) {
+        return userRepository.getUserbyUser(username);
     }
 
 
