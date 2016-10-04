@@ -14,9 +14,9 @@ angular.module('app').controller('LandingCtrl', function (UserService) {
 
     ctrl.signUp = function (user) {
         console.log(user);
-        // UserService.create({name: ctrl.name}).$promise.then(function (response) {
-        //     console.log(response);
-        // })
+        UserService.createNewUser({name: user.username}, {password: user.password}).$promise.then(function (response) {
+            console.log(response);
+        });
         UserService.getUserByUsername({name: user.username}).$promise.then(function (response) {
             console.log(response)
         });
