@@ -9,7 +9,7 @@ angular.module('app').controller('LandingCtrl', function (UserService) {
         ctrl.name = 'Nitta';
 
         console.log('Called from init method on Landing page.');
-        ctrl.message = 'Welcome to Webcraft';
+        ctrl.message = 'Welcome to Nittacraft a.out Edition';
 
     };
 
