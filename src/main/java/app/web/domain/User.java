@@ -21,7 +21,7 @@ public class User implements Serializable {
     @JsonProperty
     private Integer loss;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     @JsonProperty
     private String name;
 
