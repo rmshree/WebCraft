@@ -10,16 +10,18 @@
 <body ng-app="app">
     <div ng-include="'resources/scripts/controllers/nav/nav.html'"></div>
     <main ng-view></main>
-
 </body>
+
 
 <%-- Angular injects --%>
     <script src="resources/js/angular.min.js"></script>
     <script src="resources/js/angular-route.min.js"></script>
     <script src="resources/js/angular-resource.min.js"></script>
+    <script src="resources/scripts/app.js"></script>
+
 <%-- Angular injects --%>
 
-<script src="resources/scripts/app.js"></script>
+
 
 <%-- Controllers --%>
     <script src="resources/scripts/controllers/landing/landing.js"></script>
