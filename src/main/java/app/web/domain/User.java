@@ -21,9 +21,29 @@ public class User implements Serializable {
     @JsonProperty
     private Integer loss;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "username", unique = true)
     @JsonProperty
-    private String name;
+    private String username;
+
+    @Column(name = "password")
+    @JsonProperty
+    private String password;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Integer getId() {
         return id;
@@ -47,13 +67,5 @@ public class User implements Serializable {
 
     public void setLoss(Integer loss) {
         this.loss = loss;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
