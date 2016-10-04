@@ -8,5 +8,5 @@ public interface UserService{
 
     User save(User number);
 
-    User getUserByUser (String username);
+    User getUserByUsername (String username);
 }
