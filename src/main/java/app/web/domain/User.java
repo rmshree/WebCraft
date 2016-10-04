@@ -8,22 +8,43 @@ import java.io.Serializable;
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty
     private Integer id;
 
+    @Column(name = "win")
+    @JsonProperty
+    private Integer win;
+
+    @Column(name = "loss")
+    @JsonProperty
+    private Integer loss;
+
     @Column(name = "name")
     @JsonProperty
     private String name;
 
-    @Column(name = "age")
-    @JsonProperty
-    private Integer age;
-
     public Integer getId() {
-        return id;
+        return this.id;
+    }
+
+    public void setScore(Integer winScore, Integer lossScore) {
+        this.win += winScore;
+        this.loss += lossScore;
+    }
+
+    public void getScore(Integer winScore, Integer lossScore) {
+        this.win += winScore;
+        this.loss += lossScore;
+    }
+
+    public boolean isDuplicate(Integer id, String username) {
+        if (username.equals(this.name)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void setId(Integer id) {
@@ -31,7 +52,7 @@ public class User implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -39,7 +60,7 @@ public class User implements Serializable {
     }
 
     public Integer getAge() {
-        return age;
+        return this.age;
     }
 
     public void setAge(Integer age) {
