@@ -3,14 +3,19 @@
 
 
 
-    <a style="text-decoration: double" class="fa fa-icon" ng-click="ctrl.clickSecondB()"><i class="fa "></i>Second B</a>
-    <br>
+    <div class="signup containerfluid">
+        <h1>Sign-Up</h1>
 
-    <label>Name</label>
-    <input type="text" ng-model="ctrl.currentUser.name">
-    <button style="background-color: #00b5e2" ng-click="ctrl.printName(ctrl.currentUser.name)">First B</button>
+        <label>Name</label>
+        <input type="text" ng-model="user.name">
 
-    <!--<input type="checkbox">-->
-    <!--<input type="date" ng-model="ctrl.date">-->
-    <!--<button style="background-color: #00b5e2" ng-click="ctrl.clickSecondB()">Date B</button>-->
+        <label>Username</label>
+        <input type="text" ng-model="user.username">
+
+        <label>Password</label>
+        <input type="password" ng-model="user.password">
+
+        <button ng-click="ctrl.signUp(user)" ng-disabled="!user.name || !user.username || !user.password"> Submit </button>
+    </div>
+
 </div>
