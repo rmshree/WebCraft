@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query("select currentUser from User currentUser where currentUser.age = ?1 and currentUser.name = ?2")
-    List<User> getByAgeAndName(Integer age, String name);
+    @Query("select u from User u where u.name = ?1")
+    User getUserbyUser (String username);
 }

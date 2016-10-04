@@ -26,44 +26,34 @@ public class User implements Serializable {
     private String name;
 
     public Integer getId() {
-        return this.id;
-    }
-
-    public void setScore(Integer winScore, Integer lossScore) {
-        this.win += winScore;
-        this.loss += lossScore;
-    }
-
-    public void getScore(Integer winScore, Integer lossScore) {
-        this.win += winScore;
-        this.loss += lossScore;
-    }
-
-    public boolean isDuplicate(Integer id, String username) {
-        if (username.equals(this.name)) {
-            return true;
-        } else {
-            return false;
-        }
+        return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
+    public Integer getWin() {
+        return win;
+    }
+
+    public void setWin(Integer win) {
+        this.win = win;
+    }
+
+    public Integer getLoss() {
+        return loss;
+    }
+
+    public void setLoss(Integer loss) {
+        this.loss = loss;
+    }
+
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getAge() {
-        return this.age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 }
