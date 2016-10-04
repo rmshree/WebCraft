@@ -17,7 +17,9 @@ angular.module('app').controller('LandingCtrl', function (UserService) {
         // UserService.create({name: ctrl.name}).$promise.then(function (response) {
         //     console.log(response);
         // })
-        UserService.getUserByUsername({name: user.username})
+        UserService.getUserByUsername({name: user.username}).$promise.then(function (response) {
+            console.log(response)
+        });
     };
 
 
