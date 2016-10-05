@@ -1,21 +1,22 @@
-<div class="container-fluid" ng-init="ctrl.init()">
-    <h2>{{ctrl.welcomeMessage}}</h2>
+<body>
+    <div class="container-fluid" ng-init="ctrl.init()" align="center">
 
+        <!------- Headers ------->
+            <h1>{{ctrl.message}}</h1>
+            <h1>{{ctrl.message2}}</h1>
+            <br>
+            <h2>Sign-Up</h2>
+            <br>
+        <!------- Headers ------->
 
-
-    <div class="signup containerfluid">
-        <h1>Sign-Up</h1>
+        <div id = "signUpMessage"> </div>
 
         <label>Username</label>
         <input type="text" ng-model="user.username">
-
+        <br>
         <label>Password</label>
         <input type="password" ng-model="user.password">
-
+        <br>
         <button ng-click="ctrl.signUp(user)" ng-disabled="!user.username || !user.password"> Submit </button>
-        <hr>
-        <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
-        <div ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
     </div>
-
-</div>
+</body>
