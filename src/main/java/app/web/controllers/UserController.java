@@ -33,6 +33,7 @@ public class UserController {
         }
     }
 
+    //TODO: replace mock email with 'user.getEmail()' once Front-End is ready.
     @RequestMapping(value = "create/{username}", method = RequestMethod.PUT)
     public User create(@PathVariable String username, @RequestBody User userDetails) {
         User user = userService.getUserByUsername(username);
