@@ -1,5 +1,5 @@
 <div class="container-fluid" ng-init="ctrl.init()">
-    <h2>{{ctrl.message}}</h2>
+    <h2>{{ctrl.welcomeMessage}}</h2>
 
 
 
@@ -13,7 +13,9 @@
         <input type="password" ng-model="user.password">
 
         <button ng-click="ctrl.signUp(user)" ng-disabled="!user.username || !user.password"> Submit </button>
-        <p id = "s1"> </p>
+        <hr>
+        <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+        <div ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
     </div>
 
 </div>
