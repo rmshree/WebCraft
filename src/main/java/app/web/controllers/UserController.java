@@ -39,7 +39,6 @@ public class UserController {
         if (user == null){
             User newUser = new User();
             newUser.setUsername(username);
-            DatatypeConverter.parseBase64Binary(userDetails.getPassword());
             newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
             newUser.setEmail("MockEmail@ECS160.edu");
             newUser.setLoss(0);
