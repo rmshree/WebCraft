@@ -26,11 +26,11 @@ public class User implements Serializable {
     @JsonProperty
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     @JsonProperty
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     @JsonProperty
     private String email;
 
