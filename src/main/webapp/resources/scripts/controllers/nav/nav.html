@@ -10,15 +10,17 @@
 </div> -->
 
 <header>
-    <div class="nav">
-        <ul>
-            <li class="home"><a ng-href="#/home">Home</a></li>
-            <li class="about"><a ng-href="#/about">About</a></li>
-            <li class="maps"><a ng-href="#/maps">Maps</a></li>
-            <li class="rankings"><a ng-href="#/rankings">Rankings</a></li>
-            <li class="forums"><a ng-href="#/forums">Forums</a></li>
-            <li class="news"><a ng-href="#/news">News</a></li>
-        </ul>
+    <div ng-controller="NavCtrl as ctrl">
+        <div class="nav" ng-if="ctrl.inApp">
+            <ul>
+                <li class="home"><a ng-href="#/home">Home</a></li>
+                <li class="about"><a ng-href="#/about">About</a></li>
+                <li class="maps"><a ng-href="#/maps">Maps</a></li>
+                <li class="rankings"><a ng-href="#/rankings">Rankings</a></li>
+                <li class="forums"><a ng-href="#/forums">Forums</a></li>
+                <li class="news"><a ng-href="#/news">News</a></li>
+            </ul>
+        </div>
     </div>
 </header>
 
