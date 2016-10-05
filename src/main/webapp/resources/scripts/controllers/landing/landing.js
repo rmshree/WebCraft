@@ -5,26 +5,32 @@ angular.module('app').controller('LandingCtrl', function (UserService) {
 
     ctrl.init = function () {
 
-        ctrl.message = 'Welcome to Webcraft';
+        ctrl.welcomeMessage = 'Welcome to Webcraft!';
 
     };
 
     ctrl.signUp = function (user) {
-        console.log(user);
+
+        //console.log(user);
+        ctrl.StatusMessage = '';
+        ctrl.statusFlag = true;
 
         UserService.getUserByUsername({username: user.username}).$promise.then(function (response) {
 
             console.log(response);
 
-            //if response is null, create a new user
+            //if response is undefined, create a new user
             if (typeof response.id === "undefined") {
                 UserService.createNewUser({username: user.username}, user).$promise.then(function (response) {
                     console.log(response);
-                    document.getElementById("s1").innerHTML = "The username has been successfully created."
+                    ctrl.statusMessage = 'Sign-up successful!';
                 });
-            }//end if
-            else
-                alert("The User already exist")
+            }
+            else {
+                ctrl.statusFlag = false;
+                ctrl.statusMessage = 'Username already exists. Try Again!';
+            }
+
                 //console.log("User already exists!");
           });
         };
