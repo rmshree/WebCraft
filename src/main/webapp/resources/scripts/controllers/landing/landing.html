@@ -7,9 +7,13 @@
 <body background="/images/land-map.png">
     <div class="container-fluid" ng-init="ctrl.init()" align="center">
 
-        <h1>{{ctrl.welcomeMessage}}</h1>
-        <h1>{{ctrl.welcomeMessage2}}</h1>
-        <h2>Sign-Up</h2>
+        <h1> <b>{{ctrl.welcomeMessage}}</b> </h1>
+        <h2>{{ctrl.welcomeMessage2}}</h2>
+        <br>
+        <br>
+        <h2 style="font-family: 'Californian FB'">Sign-Up</h2>
+
+        <br>
 
         <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
         <div ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
@@ -20,6 +24,7 @@
         <label>Password</label>
         <input type="password" ng-model="user.password">
         <br>
-        <button ng-click="ctrl.signUp(user)" ng-disabled="!user.username || !user.password"> Submit </button>
+        <br>
+        <button ng-click="ctrl.signUp(user)" ng-disabled="!user.username || !user.password" style="align-content: center"> Submit </button>
     </div>
 </body>
