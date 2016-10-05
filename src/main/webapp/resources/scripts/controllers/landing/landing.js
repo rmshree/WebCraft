@@ -20,9 +20,12 @@ angular.module('app').controller('LandingCtrl', function (UserService) {
             if (typeof response.id === "undefined") {
                 UserService.createNewUser({username: user.username}, user).$promise.then(function (response) {
                     console.log(response);
+                    document.getElementById("s1").innerHTML = "The username has been successfully created."
                 });
             }//end if
-            else console.log("User already exists!");
+            else
+                alert("The User already exist")
+                //console.log("User already exists!");
           });
         };
     });
