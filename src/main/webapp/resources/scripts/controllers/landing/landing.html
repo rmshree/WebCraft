@@ -1,15 +1,18 @@
-<body>
+<head>
+    <title> NittaCraft a.out Landing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body background="/images/land-map.png">
     <div class="container-fluid" ng-init="ctrl.init()" align="center">
 
-        <!------- Headers ------->
-            <h1>{{ctrl.message}}</h1>
-            <h1>{{ctrl.message2}}</h1>
-            <br>
-            <h2>Sign-Up</h2>
-            <br>
-        <!------- Headers ------->
+        <h1>{{ctrl.welcomeMessage}}</h1>
+        <h1>{{ctrl.welcomeMessage2}}</h1>
+        <h2>Sign-Up</h2>
 
-        <div id = "signUpMessage"> </div>
+        <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+        <div ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
 
         <label>Username</label>
         <input type="text" ng-model="user.username">
