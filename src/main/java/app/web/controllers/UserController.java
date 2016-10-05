@@ -1,6 +1,5 @@
 package app.web.controllers;
 
-import app.web.data.UserRepository;
 import app.web.domain.User;
 import app.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +12,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "check/{name}", method = RequestMethod.GET)
-    public User check(@PathVariable String name){
-        User user = userService.getUserByUsername(name);
+    @RequestMapping(value = "get/{username}", method = RequestMethod.GET)
+    public User getUserByName(@PathVariable String username){
+        User user = userService.getUserByUsername(username);
         if (user == null) {
             return null;
         } else {
@@ -23,12 +22,12 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "create/{name}", method = RequestMethod.PUT)
-    public User create(@PathVariable String name, @RequestBody User userDetails) {
-        User user = check(name);
+    @RequestMapping(value = "create/{username}", method = RequestMethod.PUT)
+    public User create(@PathVariable String username, @RequestBody User userDetails) {
+        User user = getUserByName(username);
         if (user == null){
             User newUser = new User();
-            newUser.setUsername(name);
+            newUser.setUsername(username);
             newUser.setPassword(userDetails.getPassword());
             newUser.setEmail("MockEmail@ECS160.edu");
             newUser.setLoss(0);

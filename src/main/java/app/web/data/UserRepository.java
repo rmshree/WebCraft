@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("select u from User u where u.username = ?1")
-    User getUserbyUsername (String username);
+    User getUserByUsername (String username);
 
 
 }
