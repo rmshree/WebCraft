@@ -29,7 +29,7 @@
 <script src="resources/scripts/controllers/forums/forums.js"></script>
 <script src="resources/scripts/controllers/news/news.js"></script>
 <script src="resources/scripts/controllers/dummy/dummy.js"></script>
-
+<script src="resources/scripts/controllers/nav/nav.js"></script>
 
 
 <script src="resources/scripts/services/user.service.js"></script>
