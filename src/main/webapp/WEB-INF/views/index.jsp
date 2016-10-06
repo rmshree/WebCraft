@@ -28,7 +28,6 @@
 <script src="resources/scripts/controllers/rankings/rankings.js"></script>
 <script src="resources/scripts/controllers/forums/forums.js"></script>
 <script src="resources/scripts/controllers/news/news.js"></script>
-<script src="resources/scripts/controllers/dummy/dummy.js"></script>
 <script src="resources/scripts/controllers/nav/nav.js"></script>
 
 

@@ -40,9 +40,6 @@ public class UserController {
             User newUser = new User();
             newUser.setUsername(username);
             newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
-            newUser.setEmail("MockEmail@ECS160.edu");
-            newUser.setLoss(0);
-            newUser.setWin(0);
             return userService.save(newUser);
         }
         else {
