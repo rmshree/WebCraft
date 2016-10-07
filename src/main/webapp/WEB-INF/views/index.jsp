@@ -21,6 +21,7 @@
 <script src="resources/scripts/app.js"></script>
 
 <%-- Controllers --%>
+<script src="resources/scripts/controllers/nav/nav.js"></script>
 <script src="resources/scripts/controllers/landing/landing.js"></script>
 <script src="resources/scripts/controllers/home/home.js"></script>
 <script src="resources/scripts/controllers/about/about.js"></script>
@@ -28,13 +29,10 @@
 <script src="resources/scripts/controllers/rankings/rankings.js"></script>
 <script src="resources/scripts/controllers/forums/forums.js"></script>
 <script src="resources/scripts/controllers/profile/profile.js"></script>
-<script src="resources/scripts/controllers/nav/nav.js"></script>
-
-
-<script src="resources/scripts/services/user.service.js"></script>
-<script src="resources/scripts/services/forums.service.js"></script>
-
-
-
-
 <%-- Controllers --%>
+
+<%-- Services --%>
+<script src="resources/scripts/services/user.service.js"></script>
+<script src="resources/scripts/services/login.service.js"></script>
+<script src="resources/scripts/services/forums.service.js"></script>
+<%-- Services --%>

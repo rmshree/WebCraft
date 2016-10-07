@@ -12,26 +12,26 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
             })
             .when('/home', {
                 templateUrl: 'resources/scripts/controllers/home/home.html',
-                // controller: 'HomeCtrl',
-                // controllerAs: 'ctrl',
+                controller: 'HomeCtrl',
+                controllerAs: 'ctrl',
                 resolve:{}
             })
             .when('/about', {
                 templateUrl: 'resources/scripts/controllers/about/about.html',
-                // controller: 'AboutCtrl',
-                // controllerAs: 'ctrl',
+                controller: 'AboutCtrl',
+                controllerAs: 'ctrl',
                 resolve:{}
             })
             .when('/maps', {
                 templateUrl: 'resources/scripts/controllers/maps/maps.html',
-                // controller: 'MapsCtrl',
-                // controllerAs: 'ctrl',
+                controller: 'MapsCtrl',
+                controllerAs: 'ctrl',
                 resolve:{}
             })
             .when('/rankings', {
                 templateUrl: 'resources/scripts/controllers/rankings/rankings.html',
-                // controller: 'RankingsCtrl',
-                // controllerAs: 'ctrl',
+                controller: 'RankingsCtrl',
+                controllerAs: 'ctrl',
                 resolve:{}
             })
 
@@ -43,8 +43,8 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
             })
             .when('/profile', {
                 templateUrl: 'resources/scripts/controllers/profile/profile.html',
-                // controller: 'NewsCtrl',
-                // controllerAs: 'ctrl',
+                controller: 'ProfileCtrl',
+                controllerAs: 'ctrl',
                 resolve:{}
             });
     });

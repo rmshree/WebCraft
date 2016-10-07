@@ -10,12 +10,12 @@
 
             <span style="width: 30%; display: inline-block">
                 <div style="display: inline-block; width: 33%;" class="form-group">
-                    <input type="text" class="form-control" name="username" placeholder="Username" align="left">
+                    <input type="text" class="form-control" name="username" placeholder="Username" align="left" ng-model="username">
                 </div>
                 <div style="display: inline-block; width: 33%;" class="form-group">
-                    <input type="text" class="form-control" name="password" placeholder="Password" align="left">
+                    <input type="text" class="form-control" name="password" placeholder="Password" align="left" ng-model="password">
                 </div>
-                <button type="submit" class="btn btn-default">Sign In</button>
+                <button type="submit" class="btn btn-default" ng-click="ctrl.login(username, password)">Sign In</button>
             </span>
         </ul>
     </div>

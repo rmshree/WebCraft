@@ -1,3 +1,6 @@
-/**
- * Created by Milad on 10/6/16.
- */
+'use strict';
+
+angular.module('app').controller('ProfileCtrl', function () {
+    var ctrl = this;
+
+});

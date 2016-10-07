@@ -1,3 +1,6 @@
-/**
- * Created by DGM on 9/29/16.
- */
+'use strict';
+
+angular.module('app').controller('MapsCtrl', function () {
+    var ctrl = this;
+
+});
