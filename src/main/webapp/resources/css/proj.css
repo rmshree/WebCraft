@@ -1,20 +1,11 @@
 .landing
 {
     height: 100%;
-    background-image: url('../images/land-map.png') !important;
-}
-.landing h2{
-    color: white;
-}
-.landing a{
-    color: greenyellow;
+    background: url('../images/simplelanding.jpg') no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-.signup {
-    text-align: center;
 
-}
-.signup input {
-    margin: 0 auto;
-
-}
