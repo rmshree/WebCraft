@@ -37,8 +37,8 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
 
             .when('/forums', {
                 templateUrl: 'resources/scripts/controllers/forums/forums.html',
-                // controller: 'ForumsCtrl',
-                // controllerAs: 'ctrl',
+                controller: 'ForumsCtrl',
+                controllerAs: 'ctrl',
                 resolve:{}
             })
             .when('/news', {

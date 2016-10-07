@@ -13,49 +13,62 @@ public class Post implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty
-    private Integer postID;
+    private Integer id;
 
     @Column(name = "title", nullable = false)
     @JsonProperty
-    private String postTitle;
+    private String title;
 
-    @Column(name = "poster", nullable = false)
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "user_id", referencedColumnName = "id")
     @JsonProperty
-    private String posterUsername;
+    private User user;
 
     @Column(name = "date", nullable = false)
     @JsonProperty
-    private Date postDate;
+    private Date date = new Date();
+
+    @Column(name = "text", nullable = false, length = 500)
+    @JsonProperty
+    private String text;
 
     public Integer getId() {
-        return postID;
+        return id;
     }
 
-    public void setId(Integer postID) {
-        this.postID = postID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getPostTitle() {
-        return postTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPostTitle(String postTitle) {
-        this.postTitle = postTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getPosterUsername() {
-        return posterUsername;
+    public User getUser() {
+        return user;
     }
 
-    public void setPosterUsername(String posterUsername) {
-        this.posterUsername = posterUsername;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Date getPostDate() {
-        return postDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setPostDate(Date postDate) {
-        this.postDate = postDate;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

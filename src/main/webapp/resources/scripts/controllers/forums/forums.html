@@ -1,5 +1,15 @@
 <div class="container-fluid" ng-init="ctrl.init()">
+
     <h3>Example Forums Page... Under Construction</h3>
-    <a href="/webcraft/#/">Go to landing page</a>    <br>
-  <!--  <a ng-click="ctrl.goToLanding()" href>Another way to get to the landing page</a> -->
+    <button class="btn btn-primary" ng-click="ctrl.post()">Add random post</button>
+    <hr>
+    <div ng-repeat="post in ctrl.posts track by post.id">
+        <h3>{{post.title}}</h3>
+        <br>
+        <p>{{post.text}}</p>
+        <small>by: </small> <span>{{post.user.username}}</span>
+        <p>{{post.date | date: 'short'}}</p>
+        <hr>
+    </div>
+
 </div>

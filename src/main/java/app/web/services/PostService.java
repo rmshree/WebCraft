@@ -10,5 +10,4 @@ public interface PostService {
 
     List<Post> getAllPost();
 
-    Post getPostByPostID(Integer postid);
 }

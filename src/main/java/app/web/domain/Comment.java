@@ -1,5 +1,6 @@
 package app.web.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -13,54 +14,56 @@ public class Comment implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty
-    private Integer commentID;
+    private Integer id;
 
-    @Column(name = "post_ID", nullable = false)
-    @JsonProperty
-    private Integer postID;
+    @JoinColumn(foreignKey = @ForeignKey(name ="FK_Post"), name = "post_id", referencedColumnName = "id")
+    @JsonIgnore
+    @ManyToOne
+    private Post post;
 
-    @Column(name = "commenter", nullable = false)
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "user_id", referencedColumnName = "id")
     @JsonProperty
-    private String commenterUsername;
+    private User user;
 
     @Column(name = "date", nullable = false)
     @JsonProperty
-    private Date commentDate;
+    private Date date;
 
-    @Column(name = "comment", nullable = false)
+    @Column(name = "comment", nullable = false, length = 500)
     @JsonProperty
     private String comment;
 
-    public Integer getCommentID() {
-        return commentID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCommentID(Integer commentID) {
-        this.commentID = commentID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getPostID() {
-        return postID;
+    public Post getPost() {
+        return post;
     }
 
-    public void setPostID(Integer postID) {
-        this.postID = postID;
+    public void setPost(Post post) {
+        this.post = post;
     }
 
-    public String getCommenterUsername() {
-        return commenterUsername;
+    public User getUser() {
+        return user;
     }
 
-    public void setCommenterUsername(String commenterUsername) {
-        this.commenterUsername = commenterUsername;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Date getCommentDate() {
-        return commentDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCommentDate(Date commentDate) {
-        this.commentDate = commentDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getComment() {
