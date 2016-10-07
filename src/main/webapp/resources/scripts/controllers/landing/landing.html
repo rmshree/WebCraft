@@ -1,14 +1,16 @@
 <div class="landing">
-    <div class="container-fluid col-xs-12 text-center" ng-init="ctrl.init()" align="center">
+    <div class="container-fluid col-xs-6 text-center" ng-init="ctrl.init()" align="center">
 
-        <h1 style="color: yellow"><b>{{ctrl.welcomeMessage}}</b></h1>
+        <h1 style="color: darkred; padding-top:40px; font-size: 64px;">{{ctrl.welcomeMessage}}</h1>
+        <!--<h1 style="color: yellow"><b>{{ctrl.welcomeMessage}}</b></h1>
         <h1 style="color: moccasin;"><b>{{ctrl.welcomeMessage2}}</b></h1>
         <br>
-        <h2>Sign-Up</h2>
-
-        <div class="form-group" style="margin: auto; padding: 20px; width: 30%; background-color: cornsilk">
+        <h2>Sign-Up</h2>-->
+        <br><br>
+        <div class="form-group signupContainer">
 
             <form class="form-register">
+                <h3 style="text-align: center">Sign-up</h3>
                 <span class="pull-left">Username: </span>
                 <input type="text" ng-model="user.username" class="form-control" maxlength="15">
                 <span class="pull-left">Password: </span>
@@ -24,4 +26,5 @@
         </div>
 
     </div>
+    <div class="container-fluid col-xs-6></div>
 </div>

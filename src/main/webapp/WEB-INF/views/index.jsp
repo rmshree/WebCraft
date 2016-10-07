@@ -27,13 +27,13 @@
 <script src="resources/scripts/controllers/maps/maps.js"></script>
 <script src="resources/scripts/controllers/rankings/rankings.js"></script>
 <script src="resources/scripts/controllers/forums/forums.js"></script>
-<script src="resources/scripts/controllers/profile/profile.js"></script>
 <script src="resources/scripts/controllers/nav/nav.js"></script>
 
 
 <script src="resources/scripts/services/user.service.js"></script>
 
 
-
+<%-- Google Fonts --%>
+<link href="https://fonts.googleapis.com/css?family=Eagle+Lake" rel="stylesheet">
 
 <%-- Controllers --%>

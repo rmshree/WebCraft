@@ -1,27 +1,49 @@
-main{
-    padding-top: 49px;
+html,body {
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Eagle Lake', cursive;
 }
-
 .landing
 {
+    background: url('../images/simplelanding.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     height: 100%;
-    background-image: url('../images/land-map.png') !important;
 }
-.landing h2{
-    color: white;
-}
-.landing a{
-    color: greenyellow;
+.landing button {
+
+    background-color: darkred;
+    border-color: darkred;
 }
 
-.signup {
-    text-align: center;
-
+.landing button:hover{
+    background-color: firebrick;
+    border-color: firebrick;
 }
-.signup input {
-    margin: 0 auto;
 
+.landing button[disabled], .landing button[disabled]:hover {
+    background-color: grey;
+    border-color: grey;
 }
+
+.form-control:focus {
+    border-color: darkred;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
 main{
     padding-top: 49px;
 }
+
+.signupContainer {
+    margin: auto;
+    padding: 20px;
+    width: 40%;
+    background-color: darkgray;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+

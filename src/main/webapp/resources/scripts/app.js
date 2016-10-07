@@ -41,12 +41,7 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
                 // controllerAs: 'ctrl',
                 resolve:{}
             })
-            .when('/profile', {
-                templateUrl: 'resources/scripts/controllers/profile/profile.html',
-                // controller: 'NewsCtrl',
-                // controllerAs: 'ctrl',
-                resolve:{}
-            });
+
     });
 
 angular.module('app').run(function () {

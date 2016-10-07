@@ -6,7 +6,7 @@
             <li class="maps"><a ng-href="#/maps">Maps</a></li>
             <li class="rankings"><a ng-href="#/rankings">Rankings</a></li>
             <li class="forums"><a ng-href="#/forums">Forums</a></li>
-            <li class="profile"><a ng-href="#/profile">Profile</a></li>
+
 
             <span style="width: 30%; display: inline-block">
                 <div style="display: inline-block; width: 33%;" class="form-group">
@@ -15,7 +15,7 @@
                 <div style="display: inline-block; width: 33%;" class="form-group">
                     <input type="text" class="form-control" name="password" placeholder="Password" align="left">
                 </div>
-                <button type="submit" class="btn btn-default">Sign In</button>
+                <button type="submit" class="btn btn-default">Log In</button>
             </span>
         </ul>
     </div>
@@ -32,7 +32,7 @@
     }
 
     .nav li {
-        font-family: 'Oswald', sans-serif;
+        font-family: 'Eagle Lake', cursive;
         font-size: 1.2em;
         line-height: 40px;
         height: 40px;
@@ -47,7 +47,7 @@
     }
 
     .nav a:hover {
-        background-color: #005f5f;
+        color: darkred;
     }
 
     .nav{
@@ -55,6 +55,11 @@
         width: 100%;
         z-index: 99;
     }
+
+    .nav button:hover {
+        color: darkred;
+    }
+
 
     @media screen and (min-width: 600px) {
         .nav li {
