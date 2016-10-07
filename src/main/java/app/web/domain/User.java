@@ -34,6 +34,10 @@ public class User implements Serializable {
     @JsonProperty
     private String email;
 
+    @Column(name = "avatar_url", unique = true)
+    @JsonProperty
+    private String avatarUrl;
+
     public Integer getId() {
         return id;
     }
@@ -80,5 +84,13 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

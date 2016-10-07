@@ -30,9 +30,9 @@ public class Comment implements Serializable{
     @JsonProperty
     private Date date;
 
-    @Column(name = "comment", nullable = false, length = 500)
+    @Column(name = "text", nullable = false, length = 500)
     @JsonProperty
-    private String comment;
+    private String text;
 
     public Integer getId() {
         return id;
@@ -66,11 +66,11 @@ public class Comment implements Serializable{
         this.date = date;
     }
 
-    public String getComment() {
-        return comment;
+    public String getText() {
+        return text;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setText(String text) {
+        this.text = text;
     }
 }

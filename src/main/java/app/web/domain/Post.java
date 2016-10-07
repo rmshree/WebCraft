@@ -32,6 +32,10 @@ public class Post implements Serializable {
     @JsonProperty
     private String text;
 
+    @Column(name = "comments_length")
+    @JsonProperty
+    private Integer comments_length = 0;
+
     public Integer getId() {
         return id;
     }
@@ -70,5 +74,13 @@ public class Post implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Integer getComments_length() {
+        return comments_length;
+    }
+
+    public void setComments_length(Integer comments_length) {
+        this.comments_length = comments_length;
     }
 }

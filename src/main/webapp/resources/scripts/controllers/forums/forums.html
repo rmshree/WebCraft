@@ -22,12 +22,19 @@
 
     <hr>
     <div ng-repeat="post in ctrl.posts track by post.id">
-        <h3>{{post.title}}</h3>
-        <br>
-        <p>{{post.text}}</p>
-        <small>by: </small> <span>{{post.user.username}}</span>
-        <p>{{post.date | date: 'short'}}</p>
-        <hr>
+        <div class="col-xs-12 panel-body" style="background-color: gainsboro;" ng-init="ctrl.getCommentsForPost(post)">
+            <span class="col-md-3" style="font-size: large">{{post.title}}</span>
+            <span class="col-md-3">{{post.user.username}}</span>
+            <span class="col-md-2">{{post.comments_length}}</span>
+            <span class="col-md-2">{{post.date | date: 'short'}}</span>
+            <a href ng-if="!post.showComments" ng-click="post.showComments = true"><i class="fa fa-chevron-down"></i></a>
+            <a href ng-if="post.showComments" ng-click="post.showComments = false"><i class="fa fa-chevron-up"></i></a>
+        </div>
+
+        <div ng-if="post.showComments && post.comments.length > 0" ng-repeat="comment in post.comments" class="col-xs-12 panel-body" style="background-color: #9d9d9d; height: 50px">
+            <span class="col-md-3">{{comment.user.username}}</span>
+            <span class="col-md-9" style="font-size: large">{{comment.text}}</span>
+        </div>
     </div>
 
 </div>

@@ -21,4 +21,11 @@ angular.module('app').controller('ForumsCtrl', function (ForumsService) {
             });
         }
     };
+
+    ctrl.getCommentsForPost = function (post) {
+
+        ForumsService.getCommentsForPost({id: post.id}).$promise.then(function (response) {
+            post.comments = response;
+        })
+    };
 });
