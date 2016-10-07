@@ -17,7 +17,7 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
                 resolve:{}
             })
             .when('/about', {
-                templateUrl: 'resources/scripts/controllers/about/about.html',
+                templateUrl: 'resources/scripts/controllers/about/profile.html',
                 // controller: 'AboutCtrl',
                 // controllerAs: 'ctrl',
                 resolve:{}
@@ -42,7 +42,7 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
                 resolve:{}
             })
             .when('/news', {
-                templateUrl: 'resources/scripts/controllers/news/news.html',
+                templateUrl: 'resources/scripts/controllers/news/about.html',
                 // controller: 'NewsCtrl',
                 // controllerAs: 'ctrl',
                 resolve:{}
