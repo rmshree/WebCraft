@@ -1,12 +1,22 @@
 <div ng-controller="NavCtrl as ctrl">
-    <div class="nav" ng-if="ctrl.inApp">
+    <div class="nav">
         <ul>
             <li class="home"><a ng-href="#/home">Home</a></li>
             <li class="about"><a ng-href="#/about">About</a></li>
             <li class="maps"><a ng-href="#/maps">Maps</a></li>
             <li class="rankings"><a ng-href="#/rankings">Rankings</a></li>
             <li class="forums"><a ng-href="#/forums">Forums</a></li>
-            <li class="news"><a ng-href="#/news">News</a></li>
+            <li class="profile"><a ng-href="#/profile">Profile</a></li>
+
+            <span style="width: 30%; display: inline-block">
+                <div style="display: inline-block; width: 33%;" class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username" align="left">
+                </div>
+                <div style="display: inline-block; width: 33%;" class="form-group">
+                    <input type="text" class="form-control" name="password" placeholder="Password" align="left">
+                </div>
+                <button type="submit" class="btn btn-default">Sign In</button>
+            </span>
         </ul>
     </div>
 </div>
@@ -20,6 +30,7 @@
         padding: 0;
         margin: 0;
     }
+
     .nav li {
         font-family: 'Oswald', sans-serif;
         font-size: 1.2em;
@@ -39,19 +50,28 @@
         background-color: #005f5f;
     }
 
+    .nav{
+        position: fixed;
+        width: 100%;
+        z-index: 99;
+    }
+
     @media screen and (min-width: 600px) {
         .nav li {
             width: 120px;
             border-bottom: none;
-            height: 50px;
+            height: 60px;
             line-height: 50px;
             font-size: 1.4em;
         }
 
         /* Display Inline */
-        .nav li{
+        .nav li {
             display: inline-block;
+            align-items: center;
             margin-right: -4px;
-        }}
+        }
+    }
+
 
 </style>

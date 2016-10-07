@@ -27,7 +27,7 @@
 <script src="resources/scripts/controllers/maps/maps.js"></script>
 <script src="resources/scripts/controllers/rankings/rankings.js"></script>
 <script src="resources/scripts/controllers/forums/forums.js"></script>
-<script src="resources/scripts/controllers/news/news.js"></script>
+<script src="resources/scripts/controllers/profile/profile.js"></script>
 <script src="resources/scripts/controllers/nav/nav.js"></script>
 
 
