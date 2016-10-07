@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="resources/css/proj.css">
-    <title>Webcraft</title>
+    <title>NittaCraft a.out Edition</title>
 </head>
 <body ng-app="app">
 <div ng-include="'resources/scripts/controllers/nav/nav.html'"></div>
@@ -28,7 +28,6 @@
 <script src="resources/scripts/controllers/rankings/rankings.js"></script>
 <script src="resources/scripts/controllers/forums/forums.js"></script>
 <script src="resources/scripts/controllers/news/news.js"></script>
-<script src="resources/scripts/controllers/dummy/dummy.js"></script>
 <script src="resources/scripts/controllers/nav/nav.js"></script>
 
 

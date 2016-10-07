@@ -33,7 +33,6 @@ public class UserController {
         }
     }
 
-    //TODO: replace mock email with 'user.getEmail()' once Front-End is ready.
     @RequestMapping(value = "create/{username}", method = RequestMethod.PUT)
     public User create(@PathVariable String username, @RequestBody User userDetails) {
         User user = userService.getUserByUsername(username);
@@ -41,9 +40,6 @@ public class UserController {
             User newUser = new User();
             newUser.setUsername(username);
             newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
-            newUser.setEmail("MockEmail@ECS160.edu");
-            newUser.setLoss(0);
-            newUser.setWin(0);
             return userService.save(newUser);
         }
         else {

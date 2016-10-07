@@ -22,7 +22,7 @@ public class User implements Serializable {
     @JsonProperty
     private Integer loss;
 
-    @Column(name = "username", unique = true, nullable = false)
+    @Column(name = "username", unique = true)
     @JsonProperty
     private String username;
 
@@ -30,8 +30,7 @@ public class User implements Serializable {
     @JsonProperty
     private String password;
 
-    //TODO: make email unique and non-nullable when we can get emails from user sign up.
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     @JsonProperty
     private String email;
 

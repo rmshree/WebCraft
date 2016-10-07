@@ -1,25 +1,26 @@
-<head>
-    <title> NittaCraft a.out Landing</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-</head>
+<div class="landing">
+    <div class="container-fluid col-xs-12 text-center" ng-init="ctrl.init()" align="center">
 
-<body background="/images/land-map.png">
-    <div class="container-fluid" ng-init="ctrl.init()" align="center">
-
-        <h1>{{ctrl.welcomeMessage}}</h1>
-        <h1>{{ctrl.welcomeMessage2}}</h1>
+        <h1 style="color: yellow"><b>{{ctrl.welcomeMessage}}</b></h1>
+        <h1 style="color: moccasin;"><b>{{ctrl.welcomeMessage2}}</b></h1>
+        <br>
         <h2>Sign-Up</h2>
 
-        <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
-        <div ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+        <div class="form-group" style="margin: auto; padding: 20px; width: 30%; background-color: cornsilk">
+            <form class="form-register">
+                <span class="pull-left">Username: </span>
+                <input type="text" ng-model="user.username" class="form-control" maxlength="15">
+                <span class="pull-left">Password: </span>
+                <input type="password" ng-model="user.password" class="form-control">
+            </form>
 
-        <label>Username</label>
-        <input type="text" ng-model="user.username">
-        <br>
-        <label>Password</label>
-        <input type="password" ng-model="user.password">
-        <br>
-        <button ng-click="ctrl.signUp(user)" ng-disabled="!user.username || !user.password"> Submit </button>
+            <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.username || !user.password" type="submit" ng-click="ctrl.signUp(user)">Submit</button>
+
+            <div style="margin: auto; width: 80%; padding: 10px">
+                <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+                <div style="color: red" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+            </div>
+        </div>
+
     </div>
-</body>
+</div>
