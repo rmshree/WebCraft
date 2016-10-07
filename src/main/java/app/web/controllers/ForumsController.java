@@ -40,4 +40,15 @@ public class ForumsController {
     public List<Comment> getComments(@PathVariable Integer id){
         return commentService.getCommentsByPost(id);
     }
+
+    @RequestMapping(value = "{id}/add/comment", method = RequestMethod.PUT)
+    public Comment addComment(@PathVariable Integer id, @RequestBody String text){
+        Comment comment = new Comment();
+        Post post = postService.getPostById(id);
+        comment.setPost(post);
+        User user = userService.getUserByUsername("root");
+        comment.setUser(user);
+        comment.setText(text);
+        return commentService.save(comment);
+    }
 }

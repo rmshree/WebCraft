@@ -28,7 +28,7 @@ public class Comment implements Serializable{
 
     @Column(name = "date", nullable = false)
     @JsonProperty
-    private Date date;
+    private Date date = new Date();
 
     @Column(name = "text", nullable = false, length = 500)
     @JsonProperty

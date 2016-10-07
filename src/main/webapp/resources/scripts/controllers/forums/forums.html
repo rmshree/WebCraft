@@ -29,6 +29,19 @@
             <span class="col-md-2">{{post.date | date: 'short'}}</span>
             <a href ng-if="!post.showComments" ng-click="post.showComments = true"><i class="fa fa-chevron-down"></i></a>
             <a href ng-if="post.showComments" ng-click="post.showComments = false"><i class="fa fa-chevron-up"></i></a>
+            <button ng-click="post.showCommentForm = true">Reply</button>
+        </div>
+
+        <div ng-if="post.showCommentForm">
+            <div class="form-group col-md-12">
+                <label for="comment">Text</label>
+                <textarea id="comment" class="form-control" maxlength="500" rows="3" ng-model="newComment.text"></textarea>
+            </div>
+
+            <div class="col-xs-12">
+                <button class="btn btn-primary" ng-click="ctrl.addComment(post, newComment.text)" ng-disabled="!newComment.text">Add comment</button>
+                <button class="btn btn-primary" ng-click="post.showCommentForm = false">Cancel</button>
+            </div>
         </div>
 
         <div ng-if="post.showComments && post.comments.length > 0" ng-repeat="comment in post.comments" class="col-xs-12 panel-body" style="background-color: #9d9d9d; height: 50px">

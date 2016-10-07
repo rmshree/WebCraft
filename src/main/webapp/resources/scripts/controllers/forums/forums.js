@@ -23,9 +23,18 @@ angular.module('app').controller('ForumsCtrl', function (ForumsService) {
     };
 
     ctrl.getCommentsForPost = function (post) {
-
+        post.comments = [];
         ForumsService.getCommentsForPost({id: post.id}).$promise.then(function (response) {
             post.comments = response;
         })
     };
+
+    ctrl.addComment = function (post, text) {
+        ForumsService.addComment({id: post.id}, text).$promise.then(function (response) {
+            if(response.id){
+                post.showCommentForm = false;
+                post.comments.push(response);
+            }
+        })
+    }
 });
