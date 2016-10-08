@@ -1,33 +1,55 @@
-<div ng-init="ctrl.init()" style="padding-top: 30px">
-    <div class="col-xs-12 panel-body" style="background-color: cornsilk; border-bottom: 1px solid black">
-        <span class="col-md-3" style="font-size: large">{{ctrl.post.title}}</span>
-        <span class="col-md-3">
+<div ng-init="ctrl.init()">
+
+    <div class="col-xs-12 panel-body">
+        <h1>{{ctrl.post.title}}</h1>
+    </div>
+
+    <div class="col-md-3 col-xs-12">
+        <!-- User info -->
+        <div class="col-xs-12" style="display: inline-block; padding-bottom: 10px">
             <!--<img ng-if="ctrl.post.user.artwork_url !== null" height="50px" width="50px" ng-src="{{ctrl.post.user.artwork_url}}">-->
-            <img height="50px" width="50px" src="resources/images/noImage.jpg">
-            {{ctrl.post.user.username}}
-        </span>
-        <span class="col-md-2">{{ctrl.post.comments.length}}</span>
-        <span class="col-md-2">{{ctrl.post.date | date: 'short'}}</span>
-        <button class="btn btn-primary" ng-click="ctrl.post.showCommentForm = true">Add Comment</button>
-    </div>
-
-    <div ng-if="ctrl.post.showCommentForm" class="col-xs-12 panel-body">
-        <div class="form-group col-md-12">
-            <label for="comment">Text</label>
-            <textarea id="comment" class="form-control" maxlength="500" rows="3" ng-model="newComment.text"></textarea>
-        </div>
-
-        <div class="col-xs-12">
-            <button class="btn btn-primary" ng-click="ctrl.addComment(ctrl.post, newComment.text)" ng-disabled="!newComment.text">Add</button>
-            <button class="btn btn-primary" ng-click="ctrl.post.showCommentForm = false">Cancel</button>
+            <img height="100px" width="100px" class="pull-left" src="resources/images/noImage.jpg">
+            <div class="col-md-8">
+                <h3>{{ctrl.post.user.username}}</h3>
+                <span>{{ctrl.post.date | date: 'medium'}}</span>
+            </div>
         </div>
     </div>
 
-    <div ng-repeat="comment in ctrl.post.comments" class="col-xs-12 panel-body" style="border-bottom: dashed .1em grey">
-        <span class="col-md-3">
-            <img height="50px" width="50px" src="resources/images/noImage.jpg">
-            {{comment.user.username}}
-        </span>
-        <span class="col-md-9" style="font-size: large">{{comment.text}}</span>
+    <div class="col-md-9 col-xs-12 panel-body">
+
+        <!-- Text from the forum post -->
+        <div class="jumbotron" style="margin-bottom: 0">
+            <p style="padding: 10px">{{ctrl.post.text}}</p>
+        </div>
+
+        <div class="page-header col-xs-12" style="margin-top: 5px">
+            <h3 style="display: inline-block">Comments <small class="badge">{{ctrl.post.comments.length}}</small></h3>
+            <button class="btn btn-primary pull-right" style="margin-top: 20px" ng-if="!ctrl.post.showCommentForm" ng-click="ctrl.post.showCommentForm = true">Add Comment</button>
+
+            <!-- Add comment form -->
+            <div ng-if="ctrl.post.showCommentForm" class="col-xs-12 panel-body" style="padding: 0">
+                <!-- Text area for add comment form-->
+                <div class="form-group col-md-12">
+                    <label for="comment">Text</label>
+                    <textarea id="comment" class="form-control" maxlength="500" rows="3" ng-model="newComment.text"></textarea>
+                </div>
+                <!-- Buttons for the add comment form -->
+                <div class="col-xs-12">
+                    <button class="btn btn-primary" ng-click="ctrl.addComment(ctrl.post, newComment.text)" ng-disabled="!newComment.text">Add</button>
+                    <button class="btn btn-primary" ng-click="ctrl.post.showCommentForm = false">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div ng-repeat="comment in ctrl.post.comments" class="col-xs-12" style="border-bottom: dashed .1em grey">
+            <span class="col-md-3">
+                <img height="50px" width="50px" src="resources/images/noImage.jpg">
+                {{comment.user.username}}
+            </span>
+            <span class="col-md-9" style="font-size: large">{{comment.text}}</span>
+        </div>
+
     </div>
+
 </div>
