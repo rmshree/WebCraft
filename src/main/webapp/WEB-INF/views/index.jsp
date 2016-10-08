@@ -8,9 +8,8 @@
     <title>NittaCraft a.out Edition</title>
 </head>
 <body ng-app="app">
-<div ng-include="'resources/scripts/controllers/nav/nav.html'"></div>
-<main ng-view></main>
-
+    <div ng-include="'resources/scripts/controllers/nav/nav.html'"></div>
+    <main ng-view></main>
 </body>
 
 <%-- Angular injects --%>
@@ -18,10 +17,6 @@
 <script src="resources/js/angular-route.min.js"></script>
 <script src="resources/js/angular-resource.min.js"></script>
 <%-- Angular injects --%>
-
-<%-- Only needed for nav toggle --%>
-<script src="resources/js/jquery.min.js"></script>
-<script src="resources/css/bootstrap.min.js"></script>
 
 <script src="resources/scripts/app.js"></script>
 

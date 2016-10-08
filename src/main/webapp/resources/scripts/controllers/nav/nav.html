@@ -1,40 +1,35 @@
 <div ng-controller="NavCtrl as ctrl">
     <nav class="navbar navbar-fixed-top navbar-inverse" style="margin-bottom: 0">
         <div class="container-fluid">
+
             <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Section below only visible in mobile view -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <a role="button" href class="navbar-toggle collapsed" ng-click="ctrl.navCollapsed = !ctrl.navCollapsed">
+                    <i class="fa fa-bars" style="color: white"></i>
+                </a>
                 <a class="navbar-brand" href="#/">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="#/about">About</a></li>
                     <li><a href="#/maps">Maps</a></li>
                     <li><a href="#/rankings">Rankings</a></li>
                     <li><a href="#/forums">Forums</a></li>
                     <li><a href="#/profile">Profile</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <li class="dropdown" ng-class="{'open': ctrl.toggleDropDown}">
+                        <a href class="dropdown-toggle" ng-click="ctrl.toggleDropDown = !ctrl.toggleDropDown" ng-blur="ctrl.toggleDropDown = false;" role="button">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#/signup">Login/Sign up</a></li>
-                            <li><a>Another action</a></li>
-                            <li><a>Something else here</a></li>
-                            <!--<li role="separator" class="divider"></li>-->
-                            <!--<li><a href="#">Separated link</a></li>-->
-                            <!--<li role="separator" class="divider"></li>-->
-                            <!--<li><a href="#">One more separated link</a></li>-->
+                            <li><a href>Another action</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href>Logout</a></li>
                         </ul>
                     </li>
                 </ul>
+                <!-- Login fields -->
                 <ul class="nav navbar-nav navbar-right">
                     <form class="navbar-form navbar-left hidden-xs">
                         <div class="form-group">
