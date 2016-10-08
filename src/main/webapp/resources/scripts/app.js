@@ -7,8 +7,7 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
                 templateUrl: 'resources/scripts/controllers/landing/landing.html',
                 controller: 'LandingCtrl',
                 controllerAs: 'ctrl',
-                resolve:{
-                }
+                resolve:{}
             })
             .when('/home', {
                 templateUrl: 'resources/scripts/controllers/home/home.html',
@@ -34,14 +33,12 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
                 controllerAs: 'ctrl',
                 resolve:{}
             })
-
             .when('/forums', {
                 templateUrl: 'resources/scripts/controllers/forums/forums.html',
                 controller: 'ForumsCtrl',
                 controllerAs: 'ctrl',
                 resolve:{}
             })
-
             .when('/forum/:id', {
                 templateUrl: 'resources/scripts/controllers/forums/forum.html',
                 controller: 'ForumCtrl',
