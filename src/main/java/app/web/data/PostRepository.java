@@ -1,3 +1,6 @@
+/** \file PostRepository.java
+ * Repository queries for forum posts.
+ */
 package app.web.data;
 
 import app.web.domain.Post;

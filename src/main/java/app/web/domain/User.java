@@ -1,3 +1,9 @@
+/** \class User
+ *  \brief This is the User class.
+ *
+ * The User class contains confidential information regarding the user in addition to the user's win/loss record.
+ */
+
 package app.web.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

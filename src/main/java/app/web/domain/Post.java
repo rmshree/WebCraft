@@ -1,3 +1,9 @@
+/** \class Post
+ *  \brief This is the Post class.
+ *
+ * The Post class contains information on the post's title, the user who created the post, the date of creation and contents of the post.
+ */
+
 package app.web.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

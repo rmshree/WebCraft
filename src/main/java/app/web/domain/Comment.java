@@ -1,3 +1,9 @@
+/** \class Comment
+ *  \brief This is the Comment class.
+ *
+ * The Comment class contains information regarding its parent post, the user who created the comment and the comment text itself.
+ */
+
 package app.web.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
