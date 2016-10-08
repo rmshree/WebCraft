@@ -8,6 +8,9 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService) {
             if(response.id){
                 ctrl.post = response;
                 ctrl.getCommentsForPost(response);
+                ctrl.postFound = true;
+            }else{
+                ctrl.postFound = false;
             }
         });
     };

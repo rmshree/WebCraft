@@ -34,7 +34,7 @@ public class Post implements Serializable {
     @JsonProperty
     private Date date = new Date();
 
-    @Column(name = "text", nullable = false, length = 500)
+    @Column(name = "text", nullable = false, length = 1000)
     @JsonProperty
     private String text;
 
