@@ -6,6 +6,9 @@ angular.module('app').controller('LandingCtrl', function (UserService) {
     ctrl.init = function () {
         ctrl.welcomeMessage = 'NittaCraft';
         ctrl.welcomeMessage2 = 'a.out Edition';
+
+
+
     };
 
     ctrl.signUp = function (user) {

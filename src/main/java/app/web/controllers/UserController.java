@@ -1,10 +1,19 @@
 package app.web.controllers;
 
 import app.web.domain.User;
+import app.web.services.CookieService;
 import app.web.services.UserService;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
+
+import static javax.management.Query.value;
+
 
 @RestController
 @RequestMapping(value = "/api/user/")
@@ -13,8 +22,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CookieService cookieService;
+
+
     @RequestMapping(value = "get/{username}", method = RequestMethod.GET)
-    public User getUserByName(@PathVariable String username){
+    public User getUserByUsername(@PathVariable String username){
         User user = userService.getUserByUsername(username);
         if (user == null) {
             return null;
@@ -46,4 +59,13 @@ public class UserController {
             return null;
         }
     }
+
+    @RequestMapping(value = "getCurrent", method = RequestMethod.GET)
+    public Object getCurrentUser() {
+            cookieService.setCurrentUser();
+            return cookieService.getValueFromCookie();
+
+    }
+
+
 }
