@@ -41,6 +41,13 @@ angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider
                 controllerAs: 'ctrl',
                 resolve:{}
             })
+
+            .when('/forum/:id', {
+                templateUrl: 'resources/scripts/controllers/forums/forum.html',
+                controller: 'ForumCtrl',
+                controllerAs: 'ctrl',
+                resolve:{}
+            })
             .when('/profile', {
                 templateUrl: 'resources/scripts/controllers/profile/profile.html',
                 controller: 'ProfileCtrl',

@@ -29,6 +29,7 @@
 <script src="resources/scripts/controllers/maps/maps.js"></script>
 <script src="resources/scripts/controllers/rankings/rankings.js"></script>
 <script src="resources/scripts/controllers/forums/forums.js"></script>
+<script src="resources/scripts/controllers/forums/forum.js"></script>
 <script src="resources/scripts/controllers/profile/profile.js"></script>
 <%-- Controllers --%>
 

@@ -1,0 +1,33 @@
+<div ng-init="ctrl.init()" style="padding-top: 30px">
+    <div class="col-xs-12 panel-body" style="background-color: cornsilk; border-bottom: 1px solid black">
+        <span class="col-md-3" style="font-size: large">{{ctrl.post.title}}</span>
+        <span class="col-md-3">
+            <!--<img ng-if="ctrl.post.user.artwork_url !== null" height="50px" width="50px" ng-src="{{ctrl.post.user.artwork_url}}">-->
+            <img height="50px" width="50px" src="resources/images/noImage.jpg">
+            {{ctrl.post.user.username}}
+        </span>
+        <span class="col-md-2">{{ctrl.post.comments.length}}</span>
+        <span class="col-md-2">{{ctrl.post.date | date: 'short'}}</span>
+        <button class="btn btn-primary" ng-click="ctrl.post.showCommentForm = true">Add Comment</button>
+    </div>
+
+    <div ng-if="ctrl.post.showCommentForm" class="col-xs-12 panel-body">
+        <div class="form-group col-md-12">
+            <label for="comment">Text</label>
+            <textarea id="comment" class="form-control" maxlength="500" rows="3" ng-model="newComment.text"></textarea>
+        </div>
+
+        <div class="col-xs-12">
+            <button class="btn btn-primary" ng-click="ctrl.addComment(ctrl.post, newComment.text)" ng-disabled="!newComment.text">Add</button>
+            <button class="btn btn-primary" ng-click="ctrl.post.showCommentForm = false">Cancel</button>
+        </div>
+    </div>
+
+    <div ng-repeat="comment in ctrl.post.comments" class="col-xs-12 panel-body" style="border-bottom: dashed .1em grey">
+        <span class="col-md-3">
+            <img height="50px" width="50px" src="resources/images/noImage.jpg">
+            {{comment.user.username}}
+        </span>
+        <span class="col-md-9" style="font-size: large">{{comment.text}}</span>
+    </div>
+</div>

@@ -1,7 +1,9 @@
 <div class="container-fluid" ng-init="ctrl.init()">
 
-    <h3>Example Forums Page... Under Construction</h3>
-    <button class="btn btn-primary" ng-click="ctrl.showForm = true" ng-if="!ctrl.showForm">New Post</button>
+    <h3>Forums</h3>
+
+    <button class="btn btn-primary pull-right" style="margin-bottom: 20px" ng-click="ctrl.showForm = true" ng-if="!ctrl.showForm">New Post</button>
+
     <div ng-if="ctrl.showForm" class="col-xs-12 panel">
         <div class="col-xs-6">
             <div class="form-group col-md-7">
@@ -20,33 +22,16 @@
         </div>
     </div>
 
-    <hr>
     <div ng-repeat="post in ctrl.posts track by post.id">
-        <div class="col-xs-12 panel-body" style="background-color: gainsboro;" ng-init="ctrl.getCommentsForPost(post)">
+        <div href class="clickable col-xs-12 panel-body" style="background-color: cornsilk; border-bottom: 1px solid black" ng-click="ctrl.goToPost(post)">
             <span class="col-md-3" style="font-size: large">{{post.title}}</span>
-            <span class="col-md-3">{{post.user.username}}</span>
+            <span class="col-md-3">
+                <!--<img ng-if="post.user.artwork_url !== null" height="50px" width="50px" ng-src="{{post.user.artwork_url}}">-->
+                <img height="50px" width="50px" src="resources/images/noImage.jpg">
+                {{post.user.username}}
+            </span>
             <span class="col-md-2">{{post.comments_length}}</span>
             <span class="col-md-2">{{post.date | date: 'short'}}</span>
-            <a href ng-if="!post.showComments" ng-click="post.showComments = true"><i class="fa fa-chevron-down"></i></a>
-            <a href ng-if="post.showComments" ng-click="post.showComments = false"><i class="fa fa-chevron-up"></i></a>
-            <button ng-click="post.showCommentForm = true">Reply</button>
-        </div>
-
-        <div ng-if="post.showCommentForm">
-            <div class="form-group col-md-12">
-                <label for="comment">Text</label>
-                <textarea id="comment" class="form-control" maxlength="500" rows="3" ng-model="newComment.text"></textarea>
-            </div>
-
-            <div class="col-xs-12">
-                <button class="btn btn-primary" ng-click="ctrl.addComment(post, newComment.text)" ng-disabled="!newComment.text">Add comment</button>
-                <button class="btn btn-primary" ng-click="post.showCommentForm = false">Cancel</button>
-            </div>
-        </div>
-
-        <div ng-if="post.showComments && post.comments.length > 0" ng-repeat="comment in post.comments" class="col-xs-12 panel-body" style="background-color: #9d9d9d; height: 50px">
-            <span class="col-md-3">{{comment.user.username}}</span>
-            <span class="col-md-9" style="font-size: large">{{comment.text}}</span>
         </div>
     </div>
 

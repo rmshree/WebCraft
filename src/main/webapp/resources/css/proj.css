@@ -25,3 +25,12 @@ main{
 main{
     padding-top: 49px;
 }
+.clickable{
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

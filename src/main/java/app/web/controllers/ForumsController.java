@@ -29,6 +29,11 @@ public class ForumsController {
         return postService.getAllPost();
     }
 
+    @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
+    public Post get (@PathVariable Integer id) {
+        return postService.getPostById(id);
+    }
+
     @RequestMapping(value = "add", method = RequestMethod.PUT)
     public Post add(@RequestBody Post post){
         User user = userService.getUserByUsername("root");
@@ -45,6 +50,7 @@ public class ForumsController {
     public Comment addComment(@PathVariable Integer id, @RequestBody String text){
         Comment comment = new Comment();
         Post post = postService.getPostById(id);
+        post.setComments_length(post.getComments_length() + 1);
         comment.setPost(post);
         User user = userService.getUserByUsername("root");
         comment.setUser(user);
