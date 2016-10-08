@@ -1,31 +1,29 @@
-main{
-    padding-top: 49px;
-}
-
-.landing
-{
+.landing {
     height: 100%;
     background-image: url('../images/land-map.png') !important;
 }
-.landing h2{
+
+.landing h2 {
     color: white;
 }
-.landing a{
+
+.landing a {
     color: greenyellow;
 }
 
 .signup {
     text-align: center;
-
 }
+
 .signup input {
     margin: 0 auto;
+}
 
+main {
+    padding-top: 50px;
 }
-main{
-    padding-top: 49px;
-}
-.clickable{
+
+.clickable {
     -ms-touch-action: manipulation;
     touch-action: manipulation;
     cursor: pointer;

@@ -1,77 +1,52 @@
 <div ng-controller="NavCtrl as ctrl">
-    <div class="nav">
-        <ul>
-            <li class="home"><a ng-href="#/home">Home</a></li>
-            <li class="about"><a ng-href="#/about">About</a></li>
-            <li class="maps"><a ng-href="#/maps">Maps</a></li>
-            <li class="rankings"><a ng-href="#/rankings">Rankings</a></li>
-            <li class="forums"><a ng-href="#/forums">Forums</a></li>
-            <li class="profile"><a ng-href="#/profile">Profile</a></li>
+    <nav class="navbar navbar-fixed-top navbar-inverse" style="margin-bottom: 0">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/">Home</a>
+            </div>
 
-            <span style="padding-top: 12px; width: 30%; display: inline-block" class="pull-right">
-                <div style="display: inline-block; width: 33%;" class="form-group">
-                    <input type="text" class="form-control" name="username" placeholder="Username" align="left" ng-model="username">
-                </div>
-                <div style="display: inline-block; width: 33%;" class="form-group">
-                    <input type="text" class="form-control" name="password" placeholder="Password" align="left" ng-model="password">
-                </div>
-                <button type="submit" class="btn btn-default" ng-click="ctrl.login(username, password)">Sign In</button>
-            </span>
-        </ul>
-    </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/about">About</a></li>
+                    <li><a href="#/maps">Maps</a></li>
+                    <li><a href="#/rankings">Rankings</a></li>
+                    <li><a href="#/forums">Forums</a></li>
+                    <li><a href="#/profile">Profile</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/signup">Login/Sign up</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <!--<li role="separator" class="divider"></li>-->
+                            <!--<li><a href="#">Separated link</a></li>-->
+                            <!--<li role="separator" class="divider"></li>-->
+                            <!--<li><a href="#">One more separated link</a></li>-->
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <form class="navbar-form navbar-left hidden-xs">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Username" align="left" ng-model="username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" align="left" ng-model="password">
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-click="ctrl.login(username, password)">Signin</button>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </div>
-
-
-<style>
-    .nav ul{
-        list-style: none;
-        background-color: #444;
-        text-align: center;
-        padding: 0;
-        margin: 0;
-    }
-
-    .nav li {
-        font-family: 'Oswald', sans-serif;
-        font-size: 1.2em;
-        line-height: 40px;
-        height: 40px;
-        border-bottom: 1px solid #888;
-    }
-
-    .nav a {
-        text-decoration: none;
-        color: #fff;
-        display: block;
-        transition: .3s background-color;
-    }
-
-    .nav a:hover {
-        background-color: #005f5f;
-    }
-
-    .nav{
-        position: fixed;
-        width: 100%;
-        z-index: 99;
-    }
-
-    @media screen and (min-width: 600px) {
-        .nav li {
-            width: 120px;
-            border-bottom: none;
-            height: 60px;
-            line-height: 50px;
-            font-size: 1.4em;
-        }
-
-        /* Display Inline */
-        .nav li {
-            display: inline-block;
-            align-items: center;
-            margin-right: -4px;
-        }
-    }
-
-
-</style>
