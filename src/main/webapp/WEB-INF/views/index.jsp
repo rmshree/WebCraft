@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="resources/css/proj.css">
+    <link href="https://fonts.googleapis.com/css?family=Almendra+SC|IM+Fell+Great+Primer+SC|Open+Sans:600" rel="stylesheet">
     <title>NittaCraft a.out Edition</title>
 </head>
 <body ng-app="app">
