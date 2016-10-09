@@ -111,7 +111,15 @@ public class ForumsController {
     public Integer deleteComment(@PathVariable Integer id) {
         Comment comment = commentService.getCommentByID(id);
         if (comment != null && comment.getUser().getUsername().equals("root")){
+            Post post = postService.getPostById(comment.getPost().getId());
+            if (post.getComments_length()> 0) {
+            post.setComments_length(post.getComments_length() -1);
+            postService.save(post);
             return commentService.deleteCommentFromPost(id);
+            }
+            else {
+                return 0;
+            }
         }
         else {
             return 0;
