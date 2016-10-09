@@ -60,18 +60,18 @@
                 <span class="col-md-9 col-xs-12" style="margin-top: 10px; margin-bottom: 10px">{{comment.text}}</span>
 
                 <!-- Edit comment -->
-                <div ng-if="ctrl.post.showEditCommentForm" class="col-xs-12 panel-body" style="padding: 0">
+                <div ng-if="comment.showEditCommentForm" class="col-xs-12 panel-body" style="padding: 0">
                     <div class="form-group col-md-12">
                         <label for="editComment">Text</label>
-                        <textarea id="editComment" class="form-control" maxlength="1000" rows="3" ng-model="ctrl.post.editText"></textarea>
+                        <textarea id="editComment" class="form-control" maxlength="1000" rows="3" ng-model="comment.editText"></textarea>
                     </div>
 
                     <div class="col-xs-12">
-                        <button class="btn btn-primary" ng-click="ctrl.editComment(ctrl.post, ctrl.post.editText, ctrl.post.editCommentNumber)" ng-disabled="!ctrl.post.editText">Submit</button>
-                        <button class="btn btn-primary" ng-click="ctrl.post.showEditCommentForm = false">Cancel</button>
+                        <button class="btn btn-primary" ng-click="ctrl.editComment(ctrl.post, comment)" ng-disabled="!comment.editText">Submit</button>
+                        <button class="btn btn-primary" ng-click="comment.showEditCommentForm = false">Cancel</button>
                     </div>
                 </div>
-                <button class="btn btn-primary pull-right" ng-click="ctrl.post.showEditCommentForm = true; ctrl.post.showCommentForm = false; ctrl.post.editText = comment.text; ctrl.post.editCommentNumber = comment.id">Edit Comment</button>
+                <button class="btn btn-primary pull-right" ng-click="comment.showEditCommentForm = true; comment.editText = comment.text">Edit Comment</button>
             </div>
 
         </div>

@@ -32,11 +32,10 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService) {
     };
 
     //TODO: Only give the user who created the comment the ability to edit the comment.
-    ctrl.editComment = function (post, text, commentID) {
-        console.log(commentID);
-        ForumsService.editComment({id: commentID}, text).$promise.then(function (response) {
+    ctrl.editComment = function (post, comment) {
+        ForumsService.editComment({id: comment.id}, comment.editText).$promise.then(function (response) {
             if (response.id){
-                post.showEditCommentForm = false;
+                comment.showEditCommentForm = false;
                 ctrl.getCommentsForPost(post); //Updates displayed comments.
             }
         })
