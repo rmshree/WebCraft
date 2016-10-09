@@ -1,6 +1,12 @@
 .landing {
     height: 100%;
-    background-image: url('../images/land-map.png') !important;
+    background-image: url('../images/arthas.jpg') !important;
+}
+
+@font-face{
+    font-family: "inkferno";
+    src: url('../fonts/INKFERNO.ttf'),
+    url('../fonts/INKFERNO.ttf'); /* IE */
 }
 
 .forum-page {
