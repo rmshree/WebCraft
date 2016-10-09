@@ -1,6 +1,6 @@
 .landing {
     height: 100%;
-    background-image: url('../images/extrafade.jpg'); background-position: top left; background-repeat:no-repeat;
+    background: url('../images/extrafade.jpg') no-repeat top left;
     background-size:cover;  !important;
 }
 
