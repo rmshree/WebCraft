@@ -41,8 +41,9 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService) {
         })
     };
 
-    ctrl.deleteComment = function(post, commentID) {
-        ForumsService.deleteComment({id: commentID}).$promise.then(function (response) {
+    //TODO: Only give the user who created the comment the ability to delete the comment.
+    ctrl.deleteComment = function(post, comment) {
+        ForumsService.deleteComment({id: comment.id}).$promise.then(function (response) {
             if (response !== 0) {
                 ctrl.getCommentsForPost(post);
             }
