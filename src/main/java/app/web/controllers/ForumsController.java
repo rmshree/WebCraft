@@ -11,7 +11,6 @@ import app.web.domain.User;
 import app.web.services.CommentService;
 import app.web.services.PostService;
 import app.web.services.UserService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -88,7 +87,7 @@ public class ForumsController {
         comment.setText(text);
         return commentService.save(comment);
     }
-    /** /api/forums/{id}/edit/comment
+    /** /api/forums/comment/edit/{id}
      *  \brief edits the comment that corresponds with {id}
      *  \param id is an Integer that represents a Post's ID
      *  \param text is a String that contains the contents of a comment.
@@ -102,6 +101,11 @@ public class ForumsController {
         return commentService.save(comment);
     }
 
+    /** /api/forums/comment/delete/{id}
+     *  \brief deletes the comment associated with {id}
+     *  \param id is an Integer that represents a comment's ID
+     *  \return number of entries deleted in Integer. Expected 1 or 0.
+     */
     //TODO: Have requestBody take in user instead of hardcoding for root.
     @RequestMapping(value = "comment/delete/{id}", method = RequestMethod.DELETE)
     public Integer deleteComment(@PathVariable Integer id) {
