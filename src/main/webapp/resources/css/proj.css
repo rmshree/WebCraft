@@ -1,8 +1,6 @@
 .landing {
     height: 100%;
-    background-image: url('../images/simplelanding.jpg') !important;
-    padding: 50px; !important;
-    background-color: darkgray; !important;
+    background-image: url('../images/arthas.jpg') !important;
 }
 
 @font-face{
