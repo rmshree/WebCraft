@@ -71,7 +71,7 @@
                         <button class="btn btn-primary" ng-click="comment.showEditCommentForm = false">Cancel</button>
                     </div>
                 </div>
-                <button class="btn btn-primary pull-right" ng-click="comment.showEditCommentForm = true; comment.editText = comment.text">Edit Comment</button>
+                <button class="btn btn-primary pull-right" ng-if="!comment.showEditCommentForm" ng-click="comment.showEditCommentForm = true; comment.editText = comment.text">Edit Comment</button>
             </div>
 
         </div>

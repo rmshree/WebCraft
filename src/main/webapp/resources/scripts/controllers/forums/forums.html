@@ -1,25 +1,25 @@
-<div class="container-fluid" ng-init="ctrl.init()">
+<div class="container-fluid forums-page" ng-init="ctrl.init()">
 
     <div class="page-header col-xs-12">
         <h1 style="display: inline-block; font-family: initial">Forums <small></small></h1>
 
         <button class="btn btn-primary pull-right" style="margin-top: 25px" ng-click="ctrl.showForm = true" ng-if="!ctrl.showForm">New Post</button>
 
-        <div ng-if="ctrl.showForm" class="col-xs-12 panel">
+        <div ng-if="ctrl.showForm" class="col-xs-12 panel-body">
             <div class="col-xs-12">
-                <div class="form-group col-md-7">
+                <div class="form-group">
                     <label for="title">Title</label>
                     <input id="title" class="form-control" type="text" ng-model="newPost.title">
                 </div>
 
-                <div class="form-group col-md-12">
+                <div class="form-group">
                     <label for="text">Text</label>
                     <textarea id="text" class="form-control" maxlength="1000" rows="3" ng-model="newPost.text"></textarea>
                 </div>
             </div>
             <div class="col-xs-12">
-                <button class="btn btn-primary" ng-click="ctrl.post(newPost)" ng-disabled="!newPost.title || !newPost.text">Add post</button>
-                <button class="btn btn-primary" ng-click="ctrl.showForm = false">Cancel</button>
+                <button class="btn btn-success" ng-click="ctrl.post(newPost)" ng-disabled="!newPost.title || !newPost.text">Add post</button>
+                <button class="btn btn-default" ng-click="ctrl.showForm = false">Cancel</button>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
                         <div class="col-md-3" style="display: inline-block">
                             <!--<img ng-if="post.user.artwork_url !== null" height="50px" width="50px" ng-src="{{post.user.artwork_url}}">-->
                             <img height="75px" width="75px" class="pull-left" style="margin-right: 10px" src="resources/images/noImage.jpg">
-                            <div class="col-md-8" style="padding: 0">
+                            <div class="col-md-8 col-xs-6" style="padding: 0">
                                 <h5>{{post.user.username}}</h5>
                                 <span>{{post.date | date: 'medium'}}</span>
                             </div>
