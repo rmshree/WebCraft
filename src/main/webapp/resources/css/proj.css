@@ -32,3 +32,7 @@ main {
     -ms-user-select: none;
     user-select: none;
 }
+
+.forum-list-item:hover{
+    background-color: whitesmoke;
+}

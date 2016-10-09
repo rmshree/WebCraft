@@ -6,7 +6,7 @@
 
     <div ng-if="ctrl.postFound">
         <div class="col-xs-12 panel-body">
-            <h1>{{ctrl.post.title}}</h1>
+            <h1 style="font-family: monospace">{{ctrl.post.title}}</h1>
         </div>
 
         <div class="col-md-3 col-xs-12 panel-body">
@@ -15,7 +15,7 @@
                 <!--<img ng-if="ctrl.post.user.artwork_url !== null" height="50px" width="50px" ng-src="{{ctrl.post.user.artwork_url}}">-->
                 <img height="100px" width="100px" class="pull-left" src="resources/images/noImage.jpg">
                 <div class="col-md-8">
-                    <h3>{{ctrl.post.user.username}}</h3>
+                    <h4>{{ctrl.post.user.username}}</h4>
                     <span>{{ctrl.post.date | date: 'medium'}}</span>
                 </div>
             </div>
