@@ -87,4 +87,17 @@ public class ForumsController {
         comment.setText(text);
         return commentService.save(comment);
     }
+    /** /api/forums/{id}/edit/comment
+     *  \brief edits the comment that corresponds with {id}
+     *  \param id is an Integer that represents a Post's ID
+     *  \param text is a String that contains the contents of a comment.
+     *  \return a Comment.
+     */
+    //TODO: Only give the user who created the comment the ability to edit the comment.
+    @RequestMapping(value = "{id}/edit/comment", method = RequestMethod.POST)
+    public Comment editComment(@PathVariable Integer id, @RequestBody String text){
+        Comment comment = commentService.getCommentByID(id);
+        comment.setText(text);
+        return commentService.save(comment);
+    }
 }

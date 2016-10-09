@@ -30,9 +30,9 @@
 
             <div class="page-header col-xs-12" style="margin-top: 5px">
                 <h3 style="display: inline-block">Comments <small class="badge">{{ctrl.post.comments.length}}</small></h3>
-                <button class="btn btn-primary pull-right" style="margin-top: 20px" ng-if="!ctrl.post.showCommentForm" ng-click="ctrl.post.showCommentForm = true">Add Comment</button>
-
+                <button class="btn btn-primary pull-right" style="margin-top: 20px" ng-if="!ctrl.post.showCommentForm" ng-click="ctrl.post.showCommentForm = true; ctrl.post.showEditCommentForm = false">Add Comment</button>
                 <!-- Add comment form -->
+
                 <div ng-if="ctrl.post.showCommentForm" class="col-xs-12 panel-body" style="padding: 0">
                     <!-- Text area for add comment form-->
                     <div class="form-group col-md-12">
@@ -43,6 +43,19 @@
                     <div class="col-xs-12">
                         <button class="btn btn-primary" ng-click="ctrl.addComment(ctrl.post, newComment.text)" ng-disabled="!newComment.text">Add</button>
                         <button class="btn btn-primary" ng-click="ctrl.post.showCommentForm = false">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Edit comment -->
+                <div ng-if="ctrl.post.showEditCommentForm" class="col-xs-12 panel-body" style="padding: 0">
+                    <div class="form-group col-md-12">
+                        <label for="editComment">Text</label>
+                        <textarea id="editComment" class="form-control" maxlength="1000" rows="3" ng-model="ctrl.post.editText"></textarea>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <button class="btn btn-primary" ng-click="ctrl.editComment(ctrl.post, ctrl.post.editText, ctrl.post.editCommentNumber)" ng-disabled="!ctrl.post.editText">Edit</button>
+                        <button class="btn btn-primary" ng-click="ctrl.post.showEditCommentForm = false">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -58,11 +71,10 @@
                     </div>
                 </div>
                 <span class="col-md-9" style="margin-top: 10px; margin-bottom: 10px">{{comment.text}}</span>
+                <button class="btn btn-primary pull-right" ng-click="ctrl.post.showEditCommentForm = true; ctrl.post.showCommentForm = false; ctrl.post.editText = comment.text; ctrl.post.editCommentNumber = comment.id">Edit Comment</button>
             </div>
 
         </div>
     </div>
-
-
 
 </div>

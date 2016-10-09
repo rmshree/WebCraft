@@ -12,8 +12,17 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Integer>  {
 
+    /**  Comment getCommentByID(Integer id);
+     *  \brief Gets the comment associated with the given id
+     *  \param id is the Comment Id in the database.
+     *  \return a list of comment.
+     */
+    @Query("select c from Comment c where c.id = ?1")
+    Comment getCommentByID(Integer id);
+
     /** List <Comment> getCommentsByPost(Integer id);
      *  \brief Gets all of the comments related to the post in order of creation.
+     *  \parama id is the Post Id associated with the comment.
      *  \return a list of comment.
      */
     @Query("select c from Comment c where c.post.id = ?1")

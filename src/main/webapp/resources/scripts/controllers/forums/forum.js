@@ -29,5 +29,16 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService) {
                 post.comments.push(response);
             }
         })
+    };
+
+    //TODO: Only give the user who created the comment the ability to edit the comment.
+    ctrl.editComment = function (post, text, commentID) {
+        console.log(commentID);
+        ForumsService.editComment({id: commentID}, text).$promise.then(function (response) {
+            if (response.id){
+                post.showEditCommentForm = false;
+                ctrl.getCommentsForPost(post); //Updates displayed comments.
+            }
+        })
     }
 });
