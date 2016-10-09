@@ -30,4 +30,8 @@ public class CommentServiceImpl implements CommentService{
         return commentRepository.getCommentsByPost(id);
     }
 
+    @Override
+    public Integer deleteCommentFromPost(Integer id) {
+        return commentRepository.deleteCommentFromPost(id);
+    }
 }

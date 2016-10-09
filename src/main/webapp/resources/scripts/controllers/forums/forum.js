@@ -39,5 +39,13 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService) {
                 ctrl.getCommentsForPost(post); //Updates displayed comments.
             }
         })
+    };
+
+    ctrl.deleteComment = function(post, commentID) {
+        ForumsService.deleteComment({id: commentID}).$promise.then(function (response) {
+            if (response !== 0) {
+                ctrl.getCommentsForPost(post);
+            }
+        })
     }
 });

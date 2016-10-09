@@ -31,4 +31,6 @@ public interface CommentService {
      */
     List<Comment> getCommentsByPost(Integer id);
 
+    Integer deleteCommentFromPost(Integer id);
+
 }

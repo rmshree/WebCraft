@@ -7,6 +7,7 @@ angular.module('app').factory('ForumsService', function ($resource) {
         add: {method: 'PUT', url: 'api/forums/add'},
         getCommentsForPost: {method: 'GET', url: 'api/forums/:id/comments', isArray: true},
         addComment: {method: 'PUT', url: 'api/forums/:id/add/comment'},
-        editComment: {method: 'POST', url: 'api/forums/:id/edit/comment'}
+        editComment: {method: 'POST', url: 'api/forums/comment/edit/:id'},
+        deleteComment: {method: 'DELETE', url: 'api/forums/comment/delete/:id'}
     });
 });

@@ -11,6 +11,7 @@ import app.web.domain.User;
 import app.web.services.CommentService;
 import app.web.services.PostService;
 import app.web.services.UserService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -94,10 +95,22 @@ public class ForumsController {
      *  \return a Comment.
      */
     //TODO: Only give the user who created the comment the ability to edit the comment.
-    @RequestMapping(value = "{id}/edit/comment", method = RequestMethod.POST)
+    @RequestMapping(value = "comment/edit/{id}", method = RequestMethod.POST)
     public Comment editComment(@PathVariable Integer id, @RequestBody String text){
         Comment comment = commentService.getCommentByID(id);
         comment.setText(text);
         return commentService.save(comment);
+    }
+
+    //TODO: Have requestBody take in user instead of hardcoding for root.
+    @RequestMapping(value = "comment/delete/{id}", method = RequestMethod.DELETE)
+    public Integer deleteComment(@PathVariable Integer id) {
+        Comment comment = commentService.getCommentByID(id);
+        if (comment != null && comment.getUser().getUsername().equals("root")){
+            return commentService.deleteCommentFromPost(id);
+        }
+        else {
+            return 0;
+        }
     }
 }
