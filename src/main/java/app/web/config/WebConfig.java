@@ -5,6 +5,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.request.RequestContextListener;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -22,6 +23,15 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 @PropertySources(value = {  @PropertySource( value = "classpath:/app.${spring.profiles.active}.properties", ignoreResourceNotFound = true)})
 public class WebConfig extends WebMvcConfigurerAdapter implements WebApplicationInitializer {
+
+    private static final Integer MaxUploadSize = 20 * 1024 * 1024; // 20 MB
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setMaxUploadSize(MaxUploadSize);
+        return resolver;
+    }
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
