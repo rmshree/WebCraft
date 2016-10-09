@@ -1,13 +1,31 @@
 <div class="container-fluid" ng-init="ctrl.init()">
 
-    <div class="page-header">
-        <h1>Forums <small></small></h1>
+    <div class="page-header col-xs-12">
+        <h1 style="display: inline-block">Forums <small></small></h1>
+
+        <button class="btn btn-primary pull-right" style="margin-top: 25px" ng-click="ctrl.showForm = true" ng-if="!ctrl.showForm">New Post</button>
+
+        <div ng-if="ctrl.showForm" class="col-xs-12 panel">
+            <div class="col-xs-12">
+                <div class="form-group col-md-7">
+                    <label for="title">Title</label>
+                    <input id="title" class="form-control" type="text" ng-model="newPost.title">
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="text">Text</label>
+                    <textarea id="text" class="form-control" maxlength="1000" rows="3" ng-model="newPost.text"></textarea>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <button class="btn btn-primary" ng-click="ctrl.post(newPost)" ng-disabled="!newPost.title || !newPost.text">Add post</button>
+                <button class="btn btn-primary" ng-click="ctrl.showForm = false">Cancel</button>
+            </div>
+        </div>
     </div>
 
-    <button class="btn btn-primary pull-right" style="margin-bottom: 20px" ng-click="ctrl.showForm = true" ng-if="!ctrl.showForm">New Post</button>
-
-    <div class="col-md-8">
-        <div class="panel panel-info">
+    <div class="col-md-12">
+        <div class="panel panel-info col-xs-12" style="padding: 0">
             <div class="panel-heading">
                 Sample Category
             </div>
@@ -34,21 +52,5 @@
         </div>
     </div>
 
-    <div ng-if="ctrl.showForm" class="col-xs-4 panel">
-        <div class="col-xs-12">
-            <div class="form-group col-md-7">
-                <label for="title">Title</label>
-                <input id="title" class="form-control" type="text" ng-model="newPost.title">
-            </div>
 
-            <div class="form-group col-md-12">
-                <label for="text">Text</label>
-                <textarea id="text" class="form-control" maxlength="1000" rows="3" ng-model="newPost.text"></textarea>
-            </div>
-        </div>
-        <div class="col-xs-12">
-            <button class="btn btn-primary" ng-click="ctrl.post(newPost)" ng-disabled="!newPost.title || !newPost.text">Add post</button>
-            <button class="btn btn-primary" ng-click="ctrl.showForm = false">Cancel</button>
-        </div>
-    </div>
 </div>
