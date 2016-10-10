@@ -37,6 +37,7 @@ public class FileArchiveServiceImpl {
     public Object getUserImage(User user) throws IOException {
         URL userURL = user.getUserURL();
         return (userURL.getContent() );
+
     }
 
 }

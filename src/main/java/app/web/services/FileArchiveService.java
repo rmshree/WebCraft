@@ -12,4 +12,5 @@ public interface FileArchiveService {
 
     Object getUserImage(User user) throws IOException;
 
+
 }
