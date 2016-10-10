@@ -47,3 +47,35 @@ main{
     border-radius: 10px;
 }
 
+
+
+.forum-page {
+    overflow: auto;
+    min-height: 100%;
+    background: #00d2ff; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #00d2ff , #3a7bd5); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #00d2ff , #3a7bd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.forums-page{
+    overflow: auto;
+    min-height: 100%;
+    background: aliceblue; /* fallback for old browsers */
+    /*background: -webkit-linear-gradient(to left, #00d2ff , #3a7bd5); !* Chrome 10-25, Safari 5.1-6 *!*/
+    /*background: linear-gradient(to left, #00d2ff , #3a7bd5); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+}
+
+
+.clickable {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.forum-list-item:hover{
+    background-color: whitesmoke;
+}
