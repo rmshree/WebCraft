@@ -1,16 +1,10 @@
-html,body {
+.landing {
     height: 100%;
-    overflow: hidden;
-    font-family: 'Eagle Lake', cursive;
-}
-.landing
-{
     background: url('../images/simplelanding.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100%;
 }
 .landing button {
 
