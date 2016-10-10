@@ -42,5 +42,6 @@
 <%-- Services --%>
 <script src="resources/scripts/services/user.service.js"></script>
 <script src="resources/scripts/services/login.service.js"></script>
+<script src="resources/scripts/services/cookie.service.js"></script>
 <script src="resources/scripts/services/forums.service.js"></script>
 <%-- Services --%>
