@@ -6,6 +6,7 @@
 package app.web.controllers;
 
 import app.web.domain.User;
+import app.web.services.CookieService;
 import app.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CookieService cookieService;
 
     /** /api/user/get/{username}
      *  \brief Get User associated with {username}
@@ -66,4 +70,12 @@ public class UserController {
             return null;
         }
     }
+
+
+    @RequestMapping(value="getCurrent", method = RequestMethod.GET)
+    public Object getCurrentUser() {
+        cookieService.setCurrentUser();
+        return cookieService.getValueFromCookie();
+    }
+
 }
