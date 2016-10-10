@@ -1,3 +1,6 @@
+body{
+    font-family: 'Eagle Lake', cursive;
+}
 .landing {
     height: 100%;
     background: url('../images/simplelanding.jpg') no-repeat center center fixed;
