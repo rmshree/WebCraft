@@ -1,3 +1,9 @@
+/** \class User
+ *  \brief This is the User class.
+ *
+ * The User class contains confidential information regarding the user in addition to the user's win/loss record.
+ */
+
 package app.web.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,6 +39,10 @@ public class User implements Serializable {
     @Column(name = "email", unique = true)
     @JsonProperty
     private String email;
+
+    @Column(name = "avatar_url", unique = true)
+    @JsonProperty
+    private String avatarUrl;
 
     public Integer getId() {
         return id;
@@ -80,5 +90,13 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

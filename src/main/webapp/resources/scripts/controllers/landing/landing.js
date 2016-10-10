@@ -16,18 +16,16 @@ angular.module('app').controller('LandingCtrl', function (UserService) {
         ctrl.statusFlag = true;
 
         UserService.getUserByUsername({username: user.username}).$promise.then(function (response) {
-            // console.log(response);
 
             //if response is undefined, create a new user
             if (!response.id) {
                 UserService.createNewUser({username: user.username}, user).$promise.then(function (response) {
-                    // console.log(response);
                     ctrl.statusMessage = 'Sign-up successful!';
                 });
             }
             else {
                 ctrl.statusFlag = false;
-                ctrl.statusMessage = 'Username "' + user.username + '" exists already';
+                ctrl.statusMessage = 'Username ' + user.username + ' exists already';
             }
         });
     };

@@ -1,82 +1,47 @@
 <div ng-controller="NavCtrl as ctrl">
-    <div class="nav">
-        <ul>
-            <li class="home"><a ng-href="#/home">Home</a></li>
-            <li class="about"><a ng-href="#/about">About</a></li>
-            <li class="maps"><a ng-href="#/maps">Maps</a></li>
-            <li class="rankings"><a ng-href="#/rankings">Rankings</a></li>
-            <li class="forums"><a ng-href="#/forums">Forums</a></li>
+    <nav class="navbar navbar-fixed-top navbar-inverse" style="margin-bottom: 0">
+        <div class="container-fluid">
 
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Section below only visible in mobile view -->
+            <div class="navbar-header">
+                <a role="button" href class="navbar-toggle collapsed" ng-click="ctrl.navCollapsed = !ctrl.navCollapsed">
+                    <i class="fa fa-bars" style="color: white"></i>
+                </a>
+                <a class="navbar-brand" href="#/home">Home</a>
+            </div>
 
-            <span style="width: 30%; display: inline-block">
-                <div style="display: inline-block; width: 33%;" class="form-group">
-                    <input type="text" class="form-control" name="username" placeholder="Username" align="left">
-                </div>
-                <div style="display: inline-block; width: 33%;" class="form-group">
-                    <input type="text" class="form-control" name="password" placeholder="Password" align="left">
-                </div>
-                <button type="submit" class="btn btn-default">Log In</button>
-            </span>
-        </ul>
-    </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/about">About</a></li>
+                    <li><a href="#/maps">Maps</a></li>
+                    <li><a href="#/rankings">Rankings</a></li>
+                    <li><a href="#/forums">Forums</a></li>
+                    <li><a href="#/profile">Profile</a></li>
+                    <li class="dropdown" ng-class="{'open': ctrl.toggleDropDown}">
+                        <a href class="dropdown-toggle" ng-click="ctrl.toggleDropDown = !ctrl.toggleDropDown" role="button">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/signup">Login/Sign up</a></li>
+                            <li><a href="#/">Landing</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Login fields -->
+                <ul class="nav navbar-nav navbar-right">
+                    <form class="navbar-form navbar-left hidden-xs">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Username" align="left" ng-model="username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" align="left" ng-model="password">
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-click="ctrl.login(username, password)">Signin</button>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </div>
-
-
-<style>
-    .nav ul {
-        list-style: none;
-        background-color: #444;
-        text-align: center;
-        padding: 0;
-        margin: 0;
-    }
-
-    .nav li {
-        font-family: 'Eagle Lake', cursive;
-        font-size: 1.2em;
-        line-height: 40px;
-        height: 40px;
-        border-bottom: 1px solid #888;
-    }
-
-    .nav a {
-        text-decoration: none;
-        color: #fff;
-        display: block;
-        transition: .3s background-color;
-    }
-
-    .nav a:hover {
-        color: darkred;
-    }
-
-    .nav{
-        position: fixed;
-        width: 100%;
-        z-index: 99;
-    }
-
-    .nav button:hover {
-        color: darkred;
-    }
-
-
-    @media screen and (min-width: 600px) {
-        .nav li {
-            width: 120px;
-            border-bottom: none;
-            height: 60px;
-            line-height: 50px;
-            font-size: 1.4em;
-        }
-
-        /* Display Inline */
-        .nav li {
-            display: inline-block;
-            align-items: center;
-            margin-right: -4px;
-        }
-    }
-
-
-</style>
