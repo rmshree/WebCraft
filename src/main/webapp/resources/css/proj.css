@@ -19,6 +19,12 @@
     /*background: linear-gradient(to left, #00d2ff , #3a7bd5); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
 }
 
+.maps-page{
+    overflow: auto;
+    min-height: 100%;
+    background-color: beige;
+}
+
 .landing h2 {
     color: white;
 }

@@ -2,10 +2,7 @@ package app.web.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -16,13 +13,18 @@ public class GameMap {
     @JsonProperty
     private String id = UUID.randomUUID().toString();
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", nullable = false, unique = true)
     @JsonProperty
     private String title;
 
     @Column(name = "description")
     @JsonProperty
     private String description;
+
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "user_id", referencedColumnName = "id")
+    @JsonProperty
+    private User user;
 
     @Column(name = "primary_image_url")
     @JsonProperty
@@ -35,6 +37,10 @@ public class GameMap {
     @Column(name = "download_url")
     @JsonProperty
     private String downloadUrl;
+
+    @Column(name = "count")
+    @JsonProperty
+    private Integer count = 0;
 
     public String getId() {
         return id;
@@ -60,6 +66,14 @@ public class GameMap {
         this.description = description;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getPrimaryImageUrl() {
         return primaryImageUrl;
     }
@@ -82,5 +96,13 @@ public class GameMap {
 
     public void setDownloadUrl(String downloadUrl) {
         this.downloadUrl = downloadUrl;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

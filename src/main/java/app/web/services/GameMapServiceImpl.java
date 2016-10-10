@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class GameMapServiceImpl implements GameMapService {
@@ -16,5 +18,15 @@ public class GameMapServiceImpl implements GameMapService {
     @Override
     public GameMap save(GameMap gameMap){
         return gameMapRepository.save(gameMap);
+    }
+
+    @Override
+    public List<GameMap> getAll(){
+        return gameMapRepository.findAll();
+    }
+
+    @Override
+    public GameMap findById(String id){
+        return gameMapRepository.findOne(id);
     }
 }
