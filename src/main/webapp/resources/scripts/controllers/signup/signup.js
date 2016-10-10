@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('LandingCtrl', function (UserService) {
+angular.module('app').controller('SignupCtrl', function (UserService) {
     var ctrl = this;
 
     ctrl.init = function ()
