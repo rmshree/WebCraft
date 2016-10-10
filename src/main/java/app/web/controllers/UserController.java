@@ -10,6 +10,8 @@ import app.web.services.CookieService;
 import app.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.xml.bind.DatatypeConverter;
 
 @RestController
@@ -69,6 +71,34 @@ public class UserController {
         else {
             return null;
         }
+    }
+
+    /** /api/user/{username}/upload/avatar
+     *  \brief Gets an image file from the front-end and makes that User's avatar image
+     *  \param username is the associated username.
+     *  \param image file as multipart file. Max size in 20MB.
+     *  \return the saved User with avatar image url.
+     */
+    @RequestMapping(value = "{username}/upload/avatar", method = RequestMethod.POST)
+    public User uploadAvatar(@PathVariable String username, MultipartFile imageFile) {
+        User user = userService.getUserByUsername(username);
+        if(user != null){
+            try{
+                System.out.println(imageFile.getInputStream().toString());
+                // figure out how to take this multipart file, and upload to AWS S3 servers and get a url for that file back.
+                // once we have the url, set that to user's avatar_url object and save + return the user object.
+                String urlFromAWS = "";
+                user.setAvatarUrl(urlFromAWS);
+                userService.save(user);
+                return user;
+            }catch (Exception e){
+                e.printStackTrace();
+                return user;
+            }
+        }else {
+            return null;
+        }
+
     }
 
 
