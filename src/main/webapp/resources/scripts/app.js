@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider) {
+angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function ($routeProvider) {
     $routeProvider
     // after webcraft/#
         .when('/', {
