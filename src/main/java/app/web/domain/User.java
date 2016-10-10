@@ -10,10 +10,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.net.URL;
+
 
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,9 +47,25 @@ public class User implements Serializable {
     @JsonProperty
     private String avatarUrl;
 
-    public Integer getId() {
-        return id;
-    }
+    //S3 amazon client information for storing images
+    @Column(name = "user_Image")
+    @JsonProperty
+    private URL userImage;
+
+    @Column(name = "s3_key", unique = true)
+    @JsonProperty
+    private String s3_key;
+
+
+    public void setUserURL(URL url) {userImage = url;}
+
+    public URL getUserURL() { return userImage; }
+
+    public void setS3Key(String key) { s3_key = key; }
+
+    public String getS3Key(){ return s3_key; }
+
+    public Integer getId() {return id; }
 
     public void setId(Integer id) {
         this.id = id;

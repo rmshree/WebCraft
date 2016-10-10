@@ -6,6 +6,7 @@ package app.web.services;
 
 import app.web.domain.User;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface UserService{
@@ -29,5 +30,7 @@ public interface UserService{
      *  \param email is a String.
      *  \return a user or NULL
      */
+
     User getUserByEmail (String email);
-}
+
+    }
