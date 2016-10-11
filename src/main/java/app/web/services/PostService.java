@@ -29,4 +29,9 @@ public interface PostService {
      */
     Post getPostById(Integer id);
 
+    /** Integer deletePost(Integer id);
+     *  \brief deletes a post by its Post ID.
+     *  \return a Integer, 1 or 0.
+     */
+    Integer deletePost(Integer id);
 }

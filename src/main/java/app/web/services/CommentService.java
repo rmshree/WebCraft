@@ -38,4 +38,10 @@ public interface CommentService {
      */
     Integer deleteCommentFromPost(Integer id);
 
+    /** Integer deleteAllCommentsFromPost(Integer id);
+     *  \brief Deletes all comment from the comment table with the Post ID {id}.
+     *  \param id is an integer.
+     *  \return an Integer.
+     */
+    Integer deleteAllCommentsFromPost(Integer id);
 }

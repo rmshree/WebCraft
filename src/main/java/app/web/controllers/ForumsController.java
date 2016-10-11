@@ -87,6 +87,7 @@ public class ForumsController {
         comment.setText(text);
         return commentService.save(comment);
     }
+
     /** /api/forums/comment/edit/{id}
      *  \brief edits the comment that corresponds with {id}
      *  \param id is an Integer that represents a Post's ID
@@ -117,12 +118,25 @@ public class ForumsController {
             postService.save(post);
             return commentService.deleteCommentFromPost(id);
             }
-            else {
-                return 0;
+        }
+        return 0;
+    }
+
+    /** /api/forums/post/delete/{id}
+     *  \brief deletes the post and its comments associated with {id}
+     *  \param id is an Integer that represents a post's ID
+     *  \return number of entries deleted in Integer. Expected 1 or 0.
+     */
+    //TODO: Have request body take in user to check if the deleting user is the post creator.
+    @RequestMapping(value = "post/delete/{id}", method = RequestMethod.DELETE)
+    public Integer deletePost(@PathVariable Integer id) {
+        Post post = postService.getPostById(id);
+        if (post != null) {
+            if (commentService.deleteAllCommentsFromPost(id) >= 0) {
+                return postService.deletePost(id);
             }
         }
-        else {
-            return 0;
-        }
+        return 0;
     }
+
 }
