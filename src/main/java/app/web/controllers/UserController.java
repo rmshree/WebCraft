@@ -105,4 +105,6 @@ public class UserController {
     @RequestMapping(value="getCurrentUser", method = RequestMethod.GET)
     public User getCurrentUser() { return userService.getCurrentUser(); }
 
+
+
 }
