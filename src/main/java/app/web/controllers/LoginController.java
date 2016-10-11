@@ -1,13 +1,10 @@
 package app.web.controllers;
 
 import app.web.domain.User;
-import app.web.services.LoginService;
-import app.web.services.UserService;
 import app.web.services.CookieService;
+import app.web.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.Cookie;
 
 
 @RestController
@@ -22,8 +19,8 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping(value = "{username}/{password}", method = RequestMethod.GET)
-    public User userLogin(@PathVariable String username, @PathVariable String password){
+    @RequestMapping(value = "{username}", method = RequestMethod.PUT)
+    public User userLogin(@PathVariable String username, @RequestBody String password){
         return loginService.logInUser(username,password);
 
     }

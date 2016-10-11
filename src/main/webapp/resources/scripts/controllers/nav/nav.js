@@ -8,7 +8,7 @@ angular.module('app').controller('NavCtrl', function (LoginService) {
         ctrl.statusMessage ='';
         ctrl.statusFlag = false;
 
-        LoginService.logInUser({username: user.username},{password: user.password}).$promise.then(function(response) {
+        LoginService.logInUser({username: user.username}, user.password).$promise.then(function(response) {
 
             if (response.id) {
                 ctrl.statusFlag = true;
