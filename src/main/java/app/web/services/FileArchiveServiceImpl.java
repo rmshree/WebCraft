@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
 
-import app.web.domain.User;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.io.FileOutputStream;
@@ -15,13 +14,13 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
-public class FileArchiveServiceImpl {
+public class FileArchiveServiceImpl implements FileArchiveService {
     @Autowired
     private AmazonS3Client s3Client;
     private static final String S3_BUCKET_NAME = "ecs160-bucket";
 
 
-    public URL uploadImage(MultipartFile m_fileToUpload, String key) throws IOException
+    public URL uploadFile(MultipartFile m_fileToUpload, String key) throws IOException
     {
         // save file
         File fileToUpload = multipartToFile(m_fileToUpload);
@@ -35,16 +34,16 @@ public class FileArchiveServiceImpl {
     private File multipartToFile(MultipartFile file) throws IOException
     {
         File convFile = new File(file.getOriginalFilename());
-        convFile.createNewFile();
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
-        fos.close();
+        if(convFile.createNewFile() ) {
+            FileOutputStream fos = new FileOutputStream(convFile);
+            fos.write(file.getBytes());
+            fos.close();
+        }
         return convFile;
     }
 
-    //return object (image) specified under given URL by given user
-    public Object getUserImage(User user) throws IOException {
-        URL userURL = user.getUserURL();
+    //return file specified under given URL
+    public Object getFile(URL userURL) throws IOException {
         return (userURL.getContent() );
 
     }
