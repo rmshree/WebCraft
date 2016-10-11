@@ -6,7 +6,9 @@ import java.net.URL;
 import java.time.Instant;
 
 import app.web.domain.User;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import java.io.FileOutputStream;
 
 import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -18,19 +20,26 @@ public class FileArchiveServiceImpl {
     private AmazonS3Client s3Client;
     private static final String S3_BUCKET_NAME = "ecs160-bucket";
 
-    //Save image to S3 and return user public URL
-    public URL uploadImage(File fileToUpload) {
-        //string consists of file name + timestamp
-        String key = Instant.now().getEpochSecond() + "_" + fileToUpload.getName();
 
+    public URL uploadImage(MultipartFile m_fileToUpload, String key) throws IOException
+    {
         // save file
+        File fileToUpload = multipartToFile(m_fileToUpload);
         s3Client.putObject(new PutObjectRequest(S3_BUCKET_NAME, key, fileToUpload));
 
         GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(S3_BUCKET_NAME, key);
         generatePresignedUrlRequest.setMethod(HttpMethod.GET);
-        URL signedUrl = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
+        return (s3Client.generatePresignedUrl(generatePresignedUrlRequest));
+    }
 
-        return signedUrl;
+    private File multipartToFile(MultipartFile file) throws IOException
+    {
+        File convFile = new File(file.getOriginalFilename());
+        convFile.createNewFile();
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
+        fos.close();
+        return convFile;
     }
 
     //return object (image) specified under given URL by given user
