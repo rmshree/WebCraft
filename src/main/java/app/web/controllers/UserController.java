@@ -102,12 +102,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value="getCurrentUser/{username}", method = RequestMethod.GET)
-    public String getCurrentUser(@PathVariable String username) {
-        User user = userService.getUserByUsername(username);
-        cookieService.setCurrentUser(user);
-        return cookieService.getValueFromCookie();
-
-    }
+    @RequestMapping(value="getCurrentUser", method = RequestMethod.GET)
+    public User getCurrentUser() { return userService.getCurrentUser(); }
 
 }
