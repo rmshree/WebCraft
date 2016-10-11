@@ -65,7 +65,8 @@ public class UserController {
         if (user == null){
             User newUser = new User();
             newUser.setUsername(username);
-            newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
+            //newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
+            newUser.setPassword(userDetails.getPassword());
             return userService.save(newUser);
         }
         else {
@@ -101,7 +102,10 @@ public class UserController {
 
     }
 
-
+    /** /api/user/getCurrentUser
+     *  \brief Utilizes cookies to get the current user logged-in user
+     *  \return the current User
+     */
     @RequestMapping(value="getCurrentUser", method = RequestMethod.GET)
     public User getCurrentUser() { return userService.getCurrentUser(); }
 

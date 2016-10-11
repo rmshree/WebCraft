@@ -30,7 +30,7 @@ public class CookieServiceImpl implements CookieService {
 
     @Override
     public void setCurrentUser(User user){
-        Cookie cookie = new Cookie("cookie", user.getUsername());
+        Cookie cookie = new Cookie("user_cookie", user.getUsername());
         cookie.setMaxAge(5*60);
         cookie.setPath("/");
         response.addCookie(cookie);
@@ -42,7 +42,7 @@ public class CookieServiceImpl implements CookieService {
         String value = "";
         if (cookies != null) {
             for(Cookie cookie: cookies){
-                if(cookie.getName().equalsIgnoreCase("cookie")) {
+                if(cookie.getName().equalsIgnoreCase("user_cookie")) {
                     value = cookie.getValue();
                     break;
                 }

@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         return getUserByUsername(cookieService.getValueFromCookie());
     }
 
-    //public boolean confirmPassword(String username, String password) {return true;};
+
 
 
 }
