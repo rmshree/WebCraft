@@ -22,9 +22,9 @@
     width:1330px;
     text-align: center;
     border-style: double; border-color: #0f0f0f;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 3.5px;
-    margin-bottom: 100px;
+    margin-bottom: 10px;
 }
 
 .all_maps{
@@ -32,6 +32,14 @@
     *display: inline;
     vertical-align:top;
     height: 50%;
+}
+
+.all_icons{
+    display: inline-block;
+    *display: inline;
+    vertical-align:top;
+    height: 10%;
+    margin-right: 25px;
 }
 
 @font-face{
