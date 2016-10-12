@@ -1,0 +1,73 @@
+<div class="landing" ng-init="ctrl.init()">
+    <div class="container">
+
+        <div class="row">
+            <br>
+            <h1 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 72px;" align="center">
+                <b>{{ctrl.welcomeMessage}}</b>
+            </h1>
+            <h2 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 48px;" align="center">
+                <b>[{{ctrl.welcomeMessage2}}]</b>
+            </h2>
+            <br>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <br><br>
+                <h1 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 72px;"
+                    align="center">
+                    <b>Why Join?</b>
+                </h1>
+                <div style="font-family: 'Open Sans', serif;color: #2a3829;">
+                    <li>Download the game!</li>
+                    <li>Join the NittaCraft Community</li>
+                    <li>View stats of players!</li>
+                    <li>Play your games on any supported platform</li>
+                    <li>Download new maps to play!</li>
+                    <li>Receive automatic game updates, and more!</li>
+                </div>
+                <br><br>
+
+            </div>
+
+
+            <div class=" col-md-8 text-center" align="center">
+
+                <br><br><br>
+                <h2 style="color: #2a3829;font-family: 'IM Fell Great Primer SC', serif; font-size: 36px;"><b>Create
+                    Account</b>
+                </h2>
+
+                <div class="form-group" style="margin: auto; padding: 20px; width: 300px; background-color: #f7eac5">
+
+                    <form class="form-register">
+                        <span class="pull-left"
+                              style="font-family: 'Open Sans', serif;color: #8d1d1c;">Username: </span>
+                        <input type="text" ng-model="user.username" class="form-control" maxlength="15">
+                        <span class="pull-left"
+                              style="font-family: 'Open Sans', serif;color: #8d1d1c;">Password: </span>
+                        <input type="password" ng-model="user.password" class="form-control" maxlength="15">
+                    </form>
+
+                    <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.username || !user.password"
+                            type="submit" ng-click="ctrl.signUp(user)"
+                            style="font-family: 'IM Fell Great Primer SC', serif;">
+                        Submit
+                    </button>
+
+                    <div style="margin: auto; width: 80%; padding: 10px">
+                        <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+                        <div style="color: red" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

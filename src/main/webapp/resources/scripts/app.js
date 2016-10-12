@@ -1,22 +1,24 @@
 'use strict';
 
-angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function ($routeProvider) {
+angular.module('app', ['ngRoute', 'ngResource']).config(function ($routeProvider) {
     $routeProvider
     // after webcraft/#
-      /*  .when('/', {
-       /!*     templateUrl: 'resources/scripts/controllers/landing/landing.html',
-            controller: 'LandingCtrl',
+        .when('/', {
+            templateUrl: 'resources/scripts/controllers/home/home.html',
+            controller: 'HomeCtrl',
             controllerAs: 'ctrl',
             resolve: {}
-            
-         /!*   templateUrl: 'resources/scripts/controllers/home/home.html',
-             controller: 'HomeCtrl',
-             controllerAs: 'ctrl',
-             resolve: {}*!/!*!/
-        })*/
-        .when('/', {
-            templateUrl: 'resources/scripts/controllers/landing/landing.html',
-            controller: 'LandingCtrl',
+        })
+
+        .when('/signup', {
+            templateUrl: 'resources/scripts/controllers/signup/signup.html',
+            controller: 'SignupCtrl',
+            controllerAs: 'ctrl',
+            resolve: {}
+        })
+        .when('/home', {
+            templateUrl: 'resources/scripts/controllers/home/home.html',
+            controller: 'HomeCtrl',
             controllerAs: 'ctrl',
             resolve: {}
         })
