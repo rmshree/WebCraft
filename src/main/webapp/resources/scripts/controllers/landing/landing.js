@@ -3,10 +3,17 @@
 angular.module('app').controller('LandingCtrl', function (UserService) {
     var ctrl = this;
 
+
+
     ctrl.init = function () {
-        ctrl.welcomeMessage = 'Welcome to NittaCraft!';
+        ctrl.welcomeMessage = 'NITTACRAFT';
         ctrl.welcomeMessage2 = 'a.out Edition';
+
+
+
     };
+
+
 
     ctrl.signUp = function (user) {
         ctrl.StatusMessage = '';

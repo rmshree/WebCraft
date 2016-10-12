@@ -16,6 +16,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CookieService cookieService;
+
     @Override
     public User save(User user){
         return userRepository.save(user);
@@ -30,5 +33,14 @@ public class UserServiceImpl implements UserService {
     public User getUserByEmail (String email) {
         return userRepository.getUserByEmail(email);
     }
+
+    @Override
+    public User getCurrentUser() {
+        return getUserByUsername(cookieService.getValueFromCookie());
+    }
+
+
+
+
 
 }
