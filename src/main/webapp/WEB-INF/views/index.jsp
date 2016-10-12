@@ -28,6 +28,7 @@
 <script src="resources/js/ng-file-upload.min.js"></script>
 <%-- Third party JS --%>
 
+
 <%-- Controllers --%>
 <script src="resources/scripts/controllers/nav/nav.js"></script>
 <script src="resources/scripts/controllers/landing/landing.js"></script>
