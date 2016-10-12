@@ -7,6 +7,16 @@
     background-color: darkgray;*/
 }
 
+
+.signupBG {
+    height: 100%;
+    background: url('../images/extrafade.jpg') no-repeat top left;
+    background-size:cover;  !important;
+}
+
+
+
+
 #background{
     height: 675px;
     background: no-repeat center fixed url('../images/simplelanding.jpg') !important;;

@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="resources/css/proj.css">
     <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Almendra+SC|IM+Fell+Great+Primer+SC|Open+Sans:600" rel="stylesheet">
+
 
 
     <title>NittaCraft a.out Edition</title>
@@ -40,6 +42,8 @@
 <script src="resources/scripts/controllers/forums/forums.js"></script>
 <script src="resources/scripts/controllers/forums/forum.js"></script>
 <script src="resources/scripts/controllers/profile/profile.js"></script>
+<script src="resources/scripts/controllers/signup/signup.js"></script>
+
 <%-- Controllers --%>
 
 <%-- Services --%>
