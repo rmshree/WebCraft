@@ -6,9 +6,6 @@ package app.web.services;
 
 import app.web.domain.User;
 
-import java.io.IOException;
-import java.util.List;
-
 public interface UserService{
 
     /** User save(User number);
@@ -32,8 +29,6 @@ public interface UserService{
      */
 
     User getUserByEmail (String email);
-
-    }
 
 
     User getCurrentUser();
