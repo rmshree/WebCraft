@@ -1,8 +1,88 @@
-<div class="container-fluid" ng-init="ctrl.init()">
-    <h3>Example Profile Page... Under Construction</h3>
-    <a href="/webcraft/#/">Go to Home page</a>
-    <br>
-    <br>
-    <input type="file" ngf-select ng-model="imageFile"><br>
-    <button class="btn btn-default" ng-click="ctrl.upload(imageFile)">Upload</button>
+<div class="pro_bg lg">
+    <div class="container gray" ng-init="ctrl.init()" style="margin-bottom: 0; background-color: rgba(255,255,255, 1)">
+        <div class="row">
+            <br/>
+            <br/>
+            <div class="col-md-3">
+                <img src="resources/images/av4.png" height="200" width="200">
+                <input type="file" ngf-select ng-model="imageFile"><br>
+                <button class="btn btn-default" ng-click="ctrl.upload(imageFile)">Upload</button>
+            </div>
+            <div class="col-md-5">
+                <h1>USERNAME1234567</h1>
+                <span>North America [Region]</span>
+                <h2>RANK:</h2>
+            </div>
+            <div class="col-md-4" align="right">
+                <h1>BIOGRAPHY</h1>
+                <span>Born in Ohio in 1988 to former NBA player Dell Curry, Stephen Curry garnered national attention
+                    for his impressive play at Davidson College. He was drafted in 2009 by the Golden State Warriors,
+                    and eventually developed into one of pro basketball's top players with his stellar shooting skills. </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1>RANKING</h1>
+            </div>
+
+            <div class="col-md-4">
+                <h3>TOTAL MATCHES</h3>
+            </div>
+            <div class="col-md-4">
+                <h3>PERCENTAGE</h3>
+            </div>
+            <div class="col-md-4">
+                <h3>RECENT MATCHES</h3>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>UPLOADED MAPS</h1>
+            </div>
+
+            <div class="col-md-4" align="center">
+                <h3>Map_Name1</h3>
+                <img src="resources/images/m1.jpg" height="300" width="300">
+                <br/>
+                <span>The NVIDIA GeForce GTX 1050 Ti features 768 CUDA Cores. The core comes packed with 48 TMUs and 32 ROPs.
+                    The chip is clocked at 1318 MHz core and 1392 MHz boost frequency which is just around a 250 MHz jump over the GM107 GPU.
+                    The texture fill rate of the chip goes up to 84 GTexel/s (almost twice of GM107).</span>
+            </div>
+
+            <div class="col-md-4" align="center">
+                <h3>Map_Name1</h3>
+                <img src="resources/images/m2.jpg" height="300" width="300">
+                <br/>
+                <span>Replacing the GM206 and GM107 based GTX 950 and GTX 750 Ti, the Pascal based card will offer better performance
+                    and efficiency figures.
+                    The card is expected to perform really good on 1080p monitors for gamers and builders on a strict budget. </span>
+            </div>
+            <div class="col-md-4" align="center">
+                <h3>Map_Name1</h3>
+                <img src="resources/images/m3.jpg" height="300" width="300">
+                <br/>
+                <span>NVIDIA is expected to launch their new GeForce GTX 1050 series cards later this month.
+                    The GTX 1050 and GTX 1050 Ti will target the entry-level market with decent performance figures.
+                    The latest leak shows us the performance of the Ti model in various synthetic benchmarks. </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1>RECENT FORUMS</h1>
+                <p>Last 3 forum posts.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" style="background-color: black">
+        <div class="container">
+            <div class="col-md-12" align="center">
+               <h3 style="text-decoration-color: white" >
+                   ECS160 Fall 2016
+               </h3>
+                <br/>
+            </div>
+        </div>
+    </div>
 </div>

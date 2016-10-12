@@ -1,5 +1,70 @@
-<div class="container-fluid" ng-init="ctrl.init()">
-    <h3>Example Maps Page... Under Construction</h3>
-    <a href="/webcraft/#/">Go to Home page</a>
-    <br>
+<div class="container-fluid maps-page" ng-init="ctrl.init()">
+
+    <div class="col-xs-12 panel-body">
+        <h2 class="text-center">Maps</h2>
+        <h4 class="text-center">From sticks and stones to bricks and bones each map offers a different gameplay experience for the game</h4>
+
+        <button class="btn btn-primary pull-right" ng-click="ctrl.showMapForm = true" ng-if="!ctrl.showMapForm">Add a map</button>
+    </div>
+
+
+    <div ng-if="ctrl.showMapForm" class="col-xs-12 panel-body">
+        <div class="col-xs-12">
+            <div class="col-md-5" style="padding: 0">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input id="title" class="form-control" type="text" ng-model="ctrl.newMap.title">
+                </div>
+
+                <div class="form-group">
+                    <label for="text">Description</label>
+                    <textarea id="text" class="form-control" maxlength="1000" rows="3" ng-model="ctrl.newMap.description"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+                <label for="text">Map File (.format)</label>
+                <input type="file" ngf-select ng-model="ctrl.newMap.file">
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="form-group col-md-9">
+                <label for="text">Primary Image</label>
+                <input type="file" ngf-select ng-model="ctrl.newMap.primaryImageFile" ng-change="ctrl.makePrimaryUrl(ctrl.newMap)">
+            </div>
+            <img style="margin-left: 15px" ng-if="ctrl.newMap.primaryImageUrl" ng-src="{{ctrl.newMap.primaryImageUrl}}" height="100px" width="100px">
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="form-group col-md-9">
+                <label for="text">Secondary Image</label>
+                <input type="file" ngf-select ng-model="ctrl.newMap.secondaryImageFile" ng-change="ctrl.makeSecondaryUrl(ctrl.newMap)">
+            </div>
+            <img style="margin-left: 15px" ng-if="ctrl.newMap.secondaryImageUrl" ng-src="{{ctrl.newMap.secondaryImageUrl}}" height="100px" width="100px">
+        </div>
+
+        <div class="col-md-3">
+            <div class="pull-left">
+                <button class="btn btn-success" ng-click="ctrl.uploadMap(ctrl.newMap)" ng-disabled="!ctrl.isValid()">Add post</button>
+                <button class="btn btn-default" ng-click="ctrl.showMapForm = false; ctrl.newMap = {}">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="map in ctrl.maps track by map.id">
+        <div class="thumbnail clickable" ng-click="ctrl.goToMap(map)">
+            <img ng-if="map.primaryImageUrl" ng-src="{{map.primaryImageUrl}}" alt="" height="300px">
+            <img ng-if="!map.primaryImageUrl" src="resources/images/noImage.jpg" alt="" height="300px">
+            <div class="caption">
+                <h3>{{map.title | limitTo: 20}} <span ng-if="map.title.length > 20">...</span></h3>
+                <p>{{map.description | limitTo: 45}} <span ng-if="map.description.length > 45">...</span></p>
+            </div>
+        </div>
+        <p>
+            <button class="btn btn-default" ng-click="ctrl.download(map)"> Download <i class="fa fa-download"></i></button>
+            <span class="pull-right"><small style="display: inline-block">Count: </small> {{map.count}}</span>
+        </p>
+    </div>
 </div>
