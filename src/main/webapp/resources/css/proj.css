@@ -1,5 +1,6 @@
 .landing {
     height: 100%;
+    zoom: 110%;
     /*background: no-repeat center fixed url('../images/simplelanding.jpg') !important;;
     background: border-box; zoom: 110%;
     padding: 50px;*/
@@ -11,19 +12,16 @@
     background: no-repeat center fixed url('../images/simplelanding.jpg') !important;;
     background: border-box; zoom: 110%;
     padding: 50px;
-    background-color: darkgray;
 }
 
 .intro{
-    background-image: url("../images/W1.jpg");
+    background:  no-repeat center fixed url("../images/W1.jpg"); !important;
     opacity: 0.9;
     font-family: inkferno;
     display: inline-block;
-    width:1330px;
+    width:1217px;
     text-align: center;
-    border-style: double; border-color: #0f0f0f;
     margin-top: 10px;
-    margin-left: 3.5px;
     margin-bottom: 10px;
 }
 
