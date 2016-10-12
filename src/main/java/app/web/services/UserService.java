@@ -30,4 +30,7 @@ public interface UserService{
      *  \return a user or NULL
      */
     User getUserByEmail (String email);
+
+
+    User getCurrentUser();
 }

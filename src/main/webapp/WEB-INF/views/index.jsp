@@ -46,6 +46,9 @@
 
 <%-- Controllers --%>
 
+<%-- Google Fonts--%>
+<link href="https://fonts.googleapis.com/css?family=Eagle+Lake" rel="stylesheet">
+
 <%-- Services --%>
 <script src="resources/scripts/services/user.service.js"></script>
 <script src="resources/scripts/services/login.service.js"></script>

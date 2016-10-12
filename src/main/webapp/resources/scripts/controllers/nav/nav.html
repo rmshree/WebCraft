@@ -33,14 +33,17 @@
                 <!-- Login fields -->
                 <ul class="nav navbar-nav navbar-right">
                     <form class="navbar-form navbar-left hidden-xs">
+                        <div style="color: green;display: inline" ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+                        <div style="color: red;display: inline" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="username" placeholder="Username" align="left" ng-model="username">
+                            <input type="text" class="form-control" name="username" placeholder="Username" align="left" ng-model="user.username">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password" align="left" ng-model="password">
+                            <input type="password" class="form-control" name="password" placeholder="Password" align="left" ng-model="user.password">
                         </div>
                         <button style="margin-right: 10px" type="submit" class="btn btn-default" ng-click="ctrl.login(username, password)">Sign In</button>
                         <a href="#/signup" style="color: white">New User? Sign-up.</a>
+                        <button type="submit" class="btn btn-default" ng-click="ctrl.login(user)">Log In</button>
                     </form>
                 </ul>
             </div>
