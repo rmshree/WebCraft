@@ -43,10 +43,11 @@ public class User implements Serializable {
     @JsonProperty
     private String email;
 
-    @Column(name = "avatar_url", unique = true)
+    @Column(name = "avatar_url", unique = true, length = 500)
     @JsonProperty
     private String avatarUrl;
 
+    // TODO: cleanup
     //S3 amazon client information for storing images
     @Column(name = "user_Image")
     @JsonProperty
