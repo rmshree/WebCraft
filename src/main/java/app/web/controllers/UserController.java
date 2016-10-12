@@ -20,6 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    static final Integer ZERO = 0;
     /** /api/user/get/{username}
      *  \brief Get User associated with {username}
      *  \param username is a String.
@@ -62,6 +63,8 @@ public class UserController {
             User newUser = new User();
             newUser.setUsername(username);
             newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
+            newUser.setWin(ZERO);
+            newUser.setLoss(ZERO);
             return userService.save(newUser);
         }
         else {

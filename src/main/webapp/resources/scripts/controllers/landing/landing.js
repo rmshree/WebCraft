@@ -1,12 +1,17 @@
 'use strict';
 
-angular.module('app').controller('NavCtrl', function (UserService) {
+angular.module('app').controller('LandingCtrl', function (UserService) {
     var ctrl = this;
 
 
-    ctrl.login = function (username, password) {
-        console.log(username, password);
-    }
+
+    ctrl.init = function () {
+        ctrl.welcomeMessage = 'NITTACRAFT';
+        ctrl.welcomeMessage2 = 'a.out Edition';
+    };
+
+
+
     ctrl.signUp = function (user) {
         ctrl.StatusMessage = '';
         ctrl.statusFlag = true;
@@ -26,3 +31,4 @@ angular.module('app').controller('NavCtrl', function (UserService) {
         });
     };
 });
+
