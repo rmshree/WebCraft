@@ -5,6 +5,10 @@
     <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="resources/css/proj.css">
+    <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
+
+
     <title>NittaCraft a.out Edition</title>
 </head>
 <body ng-app="app">
@@ -40,4 +44,5 @@
 <script src="resources/scripts/services/user.service.js"></script>
 <script src="resources/scripts/services/login.service.js"></script>
 <script src="resources/scripts/services/forums.service.js"></script>
+<script src="resources/scripts/services/map.service.js"></script>
 <%-- Services --%>
