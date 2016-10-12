@@ -6,12 +6,14 @@
 package app.web.controllers;
 
 import app.web.domain.User;
+import app.web.services.FileArchiveService;
 import app.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.xml.bind.DatatypeConverter;
+import java.net.URL;
 
 @RestController
 @RequestMapping(value = "/api/user/")
@@ -19,6 +21,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private FileArchiveService fileArchiveService;
 
     /** /api/user/get/{username}
      *  \brief Get User associated with {username}
@@ -83,6 +88,8 @@ public class UserController {
                 System.out.println(imageFile.getInputStream().toString());
                 // figure out how to take this multipart file, and upload to AWS S3 servers and get a url for that file back.
                 // once we have the url, set that to user's avatar_url object and save + return the user object.
+                URL url = fileArchiveService.uploadFile(imageFile, "balh");
+                System.out.println(url);
                 String urlFromAWS = "";
                 user.setAvatarUrl(urlFromAWS);
                 userService.save(user);
