@@ -6,7 +6,8 @@ angular.module('app').controller('NavCtrl', function (UserService) {
 
     ctrl.login = function (username, password) {
         console.log(username, password);
-    }
+    };
+
     ctrl.signUp = function (user) {
         ctrl.StatusMessage = '';
         ctrl.statusFlag = true;

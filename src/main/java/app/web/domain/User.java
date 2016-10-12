@@ -22,11 +22,11 @@ public class User implements Serializable {
 
     @Column(name = "win")
     @JsonProperty
-    private Integer win;
+    private Integer win = 0;
 
     @Column(name = "loss")
     @JsonProperty
-    private Integer loss;
+    private Integer loss = 0;
 
     @Column(name = "username", unique = true)
     @JsonProperty
