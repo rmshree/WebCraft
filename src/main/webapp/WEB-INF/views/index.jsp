@@ -7,7 +7,8 @@
     <link rel="stylesheet" type="text/css" href="resources/css/proj.css">
     <title>NittaCraft a.out Edition</title>
 </head>
-<body ng-app="app">
+<body ng-app="app" style="padding: 5px;
+    background-color: darkgray;">
     <div ng-include="'resources/scripts/controllers/nav/nav.html'"></div>
     <main ng-view></main>
 </body>

@@ -1,27 +1,54 @@
 <div class="landing">
-    <div class="container-fluid col-xs-12 text-center" ng-init="ctrl.init()" align="center">
+    <div id="background">
+        <div class="container-fluid col-xs-12 text-center" ng-init="ctrl.init()" align="center">
 
-        <h1 style="color: yellow"><b>{{ctrl.welcomeMessage}}</b></h1>
-        <h1 style="color: moccasin;"><b>{{ctrl.welcomeMessage2}}</b></h1>
-        <br>
-        <h2>Sign-Up</h2>
+            <div style="margin: auto; border-color: black">
 
-        <div class="form-group" style="margin: auto; padding: 20px; width: 30%; background-color: cornsilk">
-
-            <form class="form-register">
-                <span class="pull-left">Username: </span>
-                <input type="text" ng-model="user.username" class="form-control" maxlength="15">
-                <span class="pull-left">Password: </span>
-                <input type="password" ng-model="user.password" class="form-control">
-            </form>
-
-            <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.username || !user.password" type="submit" ng-click="ctrl.signUp(user)">Submit</button>
-
-            <div style="margin: auto; width: 80%; padding: 10px">
-                <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
-                <div style="color: red" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+                <h1 style="color: black; font-family: inkferno; font-size: 70px; letter-spacing: 10px;
+            width: 45%"><b>{{ctrl.welcomeMessage}}</b></h1>
+                <h3 style="color: black; width: 45%"><i><b>{{ctrl.welcomeMessage2}}</b></i></h3>
             </div>
         </div>
 
+        <div style="margin: auto; width: 80%; padding: 10px">
+            <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+            <div style="color: red" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+        </div>
+    </div>
+
+    <div>
+        <div class="intro" style="color: white">
+
+            <h2 style="font-family: inkferno"><b> Welcome to NittaCraft: <i>a.out Edition </i></b> <br>
+                Awaken the warrior within you at the new war zone. </h2><br>
+            <h3>Pick your own fighting arenas and battlefields. <br>
+                Play with fellow warriors and challenge war leaders. <br>
+                Interact with adventurers like yourself and choose your opponents. <br>
+            </h3> <br><br>
+
+            <img class="all_maps" src="resources/images/M1.jpg">
+            <img class="all_maps" src="resources/images/M2.jpg"> <br>
+            <img class="all_maps" src="resources/images/M3.jpg">
+
+            <br>
+            <h2> <a href="#/signup"> <font color="orange"> Sign-up </font> </a> today to start your adventure! </h2>
+
+        </div>
+
+        <div class="part" style="color: white">
+            <div id="news">
+
+            </div>
+        </div>
+
+        <div class="intro" style="color: white">
+            <h4> Available on: </h4>
+            <img class="all_icons" src="resources/images/android.png">
+            <img class="all_icons" src="resources/images/ios.png">
+            <img class="all_icons" src="resources/images/osx.png">
+            <img class="all_icons" src="resources/images/windows.png">
+            <img class="all_icons" src="resources/images/linux.png">
+        </div>
     </div>
 </div>
+
