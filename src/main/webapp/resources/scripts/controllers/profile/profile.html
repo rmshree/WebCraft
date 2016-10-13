@@ -4,12 +4,13 @@
             <br/>
             <br/>
             <div class="col-md-3">
-                <img src="resources/images/av4.png" height="200" width="200">
+                <img ng-src="{{ctrl.currentUser.avatarUrl}}" height="200" width="200">
                 <input type="file" ngf-select ng-model="imageFile"><br>
-                <button class="btn btn-default" ng-click="ctrl.upload(imageFile)">Upload</button>
+                <button class="btn btn-default" ng-if="ctrl.currentUser.id" ng-click="ctrl.upload(imageFile)">Upload</button>
+                <span ng-if="!ctrl.currentUser.id">Please sign in to upload a picture.</span>
             </div>
             <div class="col-md-5">
-                <h1>USERNAME1234567</h1>
+                <h1>{{ctrl.currentUser.username}}</h1>
                 <span>North America [Region]</span>
                 <h2>RANK:</h2>
             </div>

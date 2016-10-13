@@ -28,10 +28,16 @@ public class CookieServiceImpl implements CookieService {
     @Autowired
     private HttpServletResponse response;
 
+    private static final Integer SECONDS_IN_A_DAY = 84000;
+
     @Override
     public void setCurrentUser(User user){
-        Cookie cookie = new Cookie("user_cookie", user.getUsername());
-        cookie.setMaxAge(5*60);
+        String payload = "";
+        if(user != null){
+            payload = user.getUsername();
+        }
+        Cookie cookie = new Cookie("user_cookie", payload);
+        cookie.setMaxAge(SECONDS_IN_A_DAY * 2);
         cookie.setPath("/");
         response.addCookie(cookie);
     }

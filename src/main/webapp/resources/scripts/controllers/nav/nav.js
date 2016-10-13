@@ -1,7 +1,17 @@
 'use strict';
 
-angular.module('app').controller('NavCtrl', function (LoginService) {
+angular.module('app').controller('NavCtrl', function (LoginService, UserService, $location) {
     var ctrl = this;
+    ctrl.currentUser = null;
+
+    ctrl.init = function () {
+        UserService.getCurrentUser().$promise.then(function (response) {
+            if(response.id){
+                ctrl.currentUser = response;
+            }
+            console.log(response);
+        })
+    };
 
     ctrl.login = function (user) {
 
@@ -13,7 +23,8 @@ angular.module('app').controller('NavCtrl', function (LoginService) {
             if (response.id) {
                 ctrl.statusFlag = true;
                 ctrl.statusMessage = "You're logged in!";
-                console.log(response);
+                ctrl.currentUser = response;
+                window.location.reload();
             }
             else {
                 ctrl.statusMessage = "Could not log in...";
@@ -22,5 +33,16 @@ angular.module('app').controller('NavCtrl', function (LoginService) {
         });
 
     };
+
+    ctrl.goToProfile = function () {
+        $location.path('/profile/' + ctrl.currentUser.username);
+    };
+
+    ctrl.signOut = function () {
+        LoginService.signOut(ctrl.currentUser.username).$promise.then(function () {
+            window.location.reload();
+        });
+
+    }
 
 });

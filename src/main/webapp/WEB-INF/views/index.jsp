@@ -13,8 +13,7 @@
 
     <title>NittaCraft a.out Edition</title>
 </head>
-<body ng-app="app" style="padding: 5px;
-    background-color: darkgray;">
+<body ng-app="app" style="background-color: darkgray;">
     <div ng-include="'resources/scripts/controllers/nav/nav.html'"></div>
     <main ng-view></main>
 </body>
