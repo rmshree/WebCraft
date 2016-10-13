@@ -6,13 +6,21 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
             templateUrl: 'resources/scripts/controllers/landing/landing.html',
             controller: 'LandingCtrl',
             controllerAs: 'ctrl',
-            resolve: {}
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
         })
         .when('/signup', {
             templateUrl: 'resources/scripts/controllers/signup/signup.html',
             controller: 'SignupCtrl',
             controllerAs: 'ctrl',
-            resolve: {}
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
         })
         // .when('/home', {
         //     templateUrl: 'resources/scripts/controllers/home/home.html',
@@ -24,19 +32,31 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
             templateUrl: 'resources/scripts/controllers/about/about.html',
             controller: 'AboutCtrl',
             controllerAs: 'ctrl',
-            resolve: {}
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
         })
         .when('/maps', {
             templateUrl: 'resources/scripts/controllers/maps/maps.html',
             controller: 'MapsCtrl',
             controllerAs: 'ctrl',
-            resolve: {}
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
         })
         .when('/rankings', {
             templateUrl: 'resources/scripts/controllers/rankings/rankings.html',
             controller: 'RankingsCtrl',
             controllerAs: 'ctrl',
-            resolve: {}
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
         })
         .when('/forums', {
             templateUrl: 'resources/scripts/controllers/forums/forums.html',
@@ -54,7 +74,11 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
             templateUrl: 'resources/scripts/controllers/profile/profile.html',
             controller: 'ProfileCtrl',
             controllerAs: 'ctrl',
-            resolve: {}
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
         })
         .when('/error', {
             templateUrl: 'resources/scripts/controllers/error/error.html'
