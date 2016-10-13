@@ -12,7 +12,7 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}">
                 <ul style="font-family: inkferno; font-size: medium" class="nav navbar-nav">
 
                     <!--  <li><a href="#/about">About</a></li>  -->
@@ -31,7 +31,7 @@
                 </ul>
                 <!-- Login fields -->
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 5px;">
-                    <form class="navbar-form navbar-left hidden-xs" ng-if="!ctrl.currentUser">
+                    <form class="navbar-form navbar-left" ng-if="!ctrl.currentUser">
                         <div style="color: green;display: inline" ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
                         <div style="color: red;display: inline" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
                         <div class="form-group">
@@ -43,7 +43,7 @@
                         <button style="margin-right: 10px" type="submit" class="btn btn-default" ng-click="ctrl.login(user)">Sign In</button>
                         <a href="#/signup" style="color: white">New User? Sign-up.</a>
                     </form>
-                    <div class="navbar-form navbar-right hidden-xs" ng-if="ctrl.currentUser">
+                    <div class="navbar-form navbar-right" ng-if="ctrl.currentUser">
                         <div class="form-group">
                             <button class="btn btn-info" ng-click="ctrl.goToProfile()"> {{ctrl.currentUser.username}}'s Profile</button>
                         </div>

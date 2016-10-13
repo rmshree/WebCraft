@@ -24,6 +24,7 @@ angular.module('app').controller('NavCtrl', function (LoginService, UserService,
                 ctrl.statusFlag = true;
                 ctrl.statusMessage = "You're logged in!";
                 ctrl.currentUser = response;
+                window.location.reload();
             }
             else {
                 ctrl.statusMessage = "Could not log in...";
