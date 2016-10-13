@@ -25,14 +25,15 @@
 }
 
 .intro{
-    background:  no-repeat center fixed url("../images/W1.jpg"); !important;
+    background: no-repeat center center fixed url("../images/W1.jpg"); !important;
     opacity: 0.9;
     font-family: inkferno;
     display: inline-block;
-    width:1217px;
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .all_maps{

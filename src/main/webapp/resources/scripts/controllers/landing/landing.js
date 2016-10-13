@@ -8,6 +8,9 @@ angular.module('app').controller('LandingCtrl', function (UserService) {
     ctrl.init = function () {
         ctrl.welcomeMessage = 'NITTACRAFT';
         ctrl.welcomeMessage2 = 'a.out Edition';
+
+
+
     };
 
 

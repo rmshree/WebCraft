@@ -1,11 +1,13 @@
 package app.web.controllers;
 
 import app.web.domain.GameMap;
+import app.web.services.FileArchiveService;
 import app.web.services.GameMapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.net.URL;
 import java.util.List;
 
 @RestController
@@ -15,6 +17,9 @@ public class GameMapController {
     @Autowired
     private GameMapService gameMapService;
 
+    @Autowired
+    private FileArchiveService fileArchiveService;
+
     @RequestMapping(value = "save", method = RequestMethod.PUT)
     public GameMap save(@RequestBody GameMap gameMap){
         return gameMapService.save(gameMap);
@@ -23,6 +28,13 @@ public class GameMapController {
     @RequestMapping(value = "{id}/upload/file", method = RequestMethod.POST)
     public GameMap uploadFile(@PathVariable String id, MultipartFile file){
         GameMap gameMap = gameMapService.findById(id);
+        try{
+            URL url = fileArchiveService.uploadFile(file, gameMap.getId());
+            gameMap.setDownloadUrl(url.toString());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         // need to save the map and get url for it.
         return gameMapService.save(gameMap);
     }

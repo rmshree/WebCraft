@@ -26,15 +26,15 @@ public class GameMap {
     @JsonProperty
     private User user;
 
-    @Column(name = "primary_image_url")
+    @Column(name = "primary_image_url", length = 500)
     @JsonProperty
     private String primaryImageUrl;
 
-    @Column(name = "secondary_image_url")
+    @Column(name = "secondary_image_url", length = 500)
     @JsonProperty
     private String secondaryImageUrl;
 
-    @Column(name = "download_url")
+    @Column(name = "download_url", length = 500)
     @JsonProperty
     private String downloadUrl;
 
