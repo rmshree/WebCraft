@@ -34,4 +34,9 @@ public class CommentServiceImpl implements CommentService{
     public Integer deleteCommentFromPost(Integer id) {
         return commentRepository.deleteCommentFromPost(id);
     }
+
+    @Override
+    public Integer deleteAllCommentsFromPost(Integer id) {
+        return commentRepository.deleteAllCommentsFromPost(id);
+    }
 }

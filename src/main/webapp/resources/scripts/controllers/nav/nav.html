@@ -8,18 +8,19 @@
                 <a role="button" href class="navbar-toggle collapsed" ng-click="ctrl.navCollapsed = !ctrl.navCollapsed">
                     <i class="fa fa-bars" style="color: white"></i>
                 </a>
-                <a class="navbar-brand" href="#/home">Home</a>
+                <a style="font-family: inkferno" class="navbar-brand" href="#/">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="#/about">About</a></li>
+                <ul style="font-family: inkferno; font-size: medium" class="nav navbar-nav">
+
+                    <!--  <li><a href="#/about">About</a></li>  -->
                     <li><a href="#/maps">Maps</a></li>
                     <li><a href="#/rankings">Rankings</a></li>
                     <li><a href="#/forums">Forums</a></li>
                     <li><a href="#/profile">Profile</a></li>
-                    <li class="dropdown" ng-class="{'open': ctrl.toggleDropDown}">
+                    <!--<li class="dropdown" ng-class="{'open': ctrl.toggleDropDown}">
                         <a href class="dropdown-toggle" ng-click="ctrl.toggleDropDown = !ctrl.toggleDropDown" role="button">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#/signup">Login/Sign up</a></li>
@@ -27,18 +28,21 @@
                             <li role="separator" class="divider"></li>
                             <li><a href>Logout</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
                 <!-- Login fields -->
                 <ul class="nav navbar-nav navbar-right">
                     <form class="navbar-form navbar-left hidden-xs">
+                        <div style="color: green;display: inline" ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+                        <div style="color: red;display: inline" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="username" placeholder="Username" align="left" ng-model="username">
+                            <input type="text" class="form-control" name="username" placeholder="Username" align="left" ng-model="user.username">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password" align="left" ng-model="password">
+                            <input type="password" class="form-control" name="password" placeholder="Password" align="left" ng-model="user.password">
                         </div>
-                        <button type="submit" class="btn btn-default" ng-click="ctrl.login(username, password)">Sign In</button>
+                        <button style="margin-right: 10px" type="submit" class="btn btn-default" ng-click="ctrl.login(user)">Sign In</button>
+                        <a href="#/signup" style="color: white">New User? Sign-up.</a>
                     </form>
                 </ul>
             </div>
