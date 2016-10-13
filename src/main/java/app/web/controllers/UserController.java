@@ -6,12 +6,13 @@
 package app.web.controllers;
 
 import app.web.domain.User;
+import app.web.services.FileArchiveService;
 import app.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.xml.bind.DatatypeConverter;
+import java.net.URL;
 
 @RestController
 @RequestMapping(value = "/api/user/")
@@ -20,7 +21,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    static final Integer ZERO = 0;
+    @Autowired
+    private FileArchiveService fileArchiveService;
+
     /** /api/user/get/{username}
      *  \brief Get User associated with {username}
      *  \param username is a String.
@@ -62,9 +65,8 @@ public class UserController {
         if (user == null){
             User newUser = new User();
             newUser.setUsername(username);
-            newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
-            newUser.setWin(ZERO);
-            newUser.setLoss(ZERO);
+            //newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
+            newUser.setPassword(userDetails.getPassword());
             return userService.save(newUser);
         }
         else {
@@ -83,11 +85,10 @@ public class UserController {
         User user = userService.getUserByUsername(username);
         if(user != null){
             try{
-                System.out.println(imageFile.getInputStream().toString());
                 // figure out how to take this multipart file, and upload to AWS S3 servers and get a url for that file back.
                 // once we have the url, set that to user's avatar_url object and save + return the user object.
-                String urlFromAWS = "";
-                user.setAvatarUrl(urlFromAWS);
+                URL url = fileArchiveService.uploadFile(imageFile, user.getUsername());
+                user.setAvatarUrl(url.toString());
                 userService.save(user);
                 return user;
             }catch (Exception e){
@@ -99,4 +100,14 @@ public class UserController {
         }
 
     }
+
+    /** /api/user/getCurrentUser
+     *  \brief Utilizes cookies to get the current user logged-in user
+     *  \return the current User
+     */
+    @RequestMapping(value="getCurrentUser", method = RequestMethod.GET)
+    public User getCurrentUser() { return userService.getCurrentUser(); }
+
+
+
 }

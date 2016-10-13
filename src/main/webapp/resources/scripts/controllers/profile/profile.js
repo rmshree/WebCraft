@@ -5,7 +5,7 @@ angular.module('app').controller('ProfileCtrl', function (Upload) {
 
     ctrl.upload = function (file) {
         var username = 'root';
-
+        console.log(file);
         // hardcoding the username to root for testing stuff.
 
         Upload.upload({
