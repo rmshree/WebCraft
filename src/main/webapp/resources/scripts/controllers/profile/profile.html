@@ -4,7 +4,7 @@
             <br/>
             <br/>
             <div class="col-md-3">
-                <img src="resources/images/av4.png" height="200" width="200">
+                <img ng-src="{{ctrl.currentUser.avatarUrl}}" height="200" width="200">
                 <input type="file" ngf-select ng-model="imageFile"><br>
                 <button class="btn btn-default" ng-click="ctrl.upload(imageFile)">Upload</button>
             </div>

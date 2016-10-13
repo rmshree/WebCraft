@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('app').controller('ProfileCtrl', function (Upload) {
+angular.module('app').controller('ProfileCtrl', function (Upload, currentUser) {
     var ctrl = this;
+    ctrl.currentUser = currentUser;
 
     ctrl.upload = function (file) {
         var username = 'root';
@@ -16,6 +17,7 @@ angular.module('app').controller('ProfileCtrl', function (Upload) {
             }
         }).success(function() {
             console.log('upload success');
+            window.location.reload();
         });
 
     }

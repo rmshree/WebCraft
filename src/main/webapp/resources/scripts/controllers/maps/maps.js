@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('app').controller('MapsCtrl', function (MapService, Upload, $sce) {
+angular.module('app').controller('MapsCtrl', function (currentUser, MapService, Upload, $sce) {
     var ctrl = this;
-
+    ctrl.currentUser = currentUser;
     ctrl.init = function () {
+        console.log(currentUser);
+
         ctrl.newMap = {};
         MapService.getAll().$promise.then(function (response) {
             ctrl.maps = response;
