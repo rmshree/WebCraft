@@ -70,7 +70,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
             controllerAs: 'ctrl',
             resolve: {}
         })
-        .when('/profile', {
+        .when('/profile/:username', {
             templateUrl: 'resources/scripts/controllers/profile/profile.html',
             controller: 'ProfileCtrl',
             controllerAs: 'ctrl',
