@@ -10,7 +10,7 @@ angular.module('app').controller('NavCtrl', function (LoginService, UserService,
                 ctrl.currentUser = response;
             }
             console.log(response);
-        })
+        });
     };
 
     ctrl.login = function (user) {

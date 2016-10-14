@@ -1,16 +1,17 @@
-<div class="pro_bg lg">
-    <div class="container gray" ng-init="ctrl.init()" style="margin-bottom: 0; background-color: rgba(255,255,255, 1)">
+<div class="pro_bg lg" ng-init="ctrl.init()">
+    <div class="container gray" ng-if="ctrl.profileUser.id" style="margin-bottom: 0; background-color: rgba(255,255,255, 1)">
         <div class="row">
             <br/>
             <br/>
             <div class="col-md-3">
-                <img ng-src="{{ctrl.currentUser.avatarUrl}}" height="200" width="200">
-                <input type="file" ngf-select ng-model="imageFile"><br>
-                <button class="btn btn-default" ng-if="ctrl.currentUser.id" ng-click="ctrl.upload(imageFile)">Upload</button>
+                <img ng-src="{{ctrl.profileUser.avatarUrl}}" height="200" width="200">
+                <input type="file" ngf-select ng-model="ctrl.imageFile" ng-if="ctrl.currentUser.id === ctrl.profileUser.id"><br>
+                <button class="btn btn-default" ng-if="ctrl.currentUser.id === ctrl.profileUser.id && ctrl.imageFile" ng-click="ctrl.upload(ctrl.imageFile)">Upload</button>
                 <span ng-if="!ctrl.currentUser.id">Please sign in to upload a picture.</span>
+                <span ng-if="ctrl.uploading">uploading...</span>
             </div>
             <div class="col-md-5">
-                <h1>{{ctrl.currentUser.username}}</h1>
+                <h1>{{ctrl.profileUser.username}}</h1>
                 <span>North America [Region]</span>
                 <h2>RANK:</h2>
             </div>
@@ -75,6 +76,9 @@
                 <p>Last 3 forum posts.</p>
             </div>
         </div>
+    </div>
+    <div class="container gray" ng-if="!ctrl.profileUser.id" style="margin-bottom: 0; background-color: rgba(255,255,255, 1)">
+        <h2>User not found</h2>
     </div>
     <div class="col-md-12" style="background-color: black">
         <div class="container">

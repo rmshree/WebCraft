@@ -8,9 +8,6 @@
     <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Almendra+SC|IM+Fell+Great+Primer+SC|Open+Sans:600" rel="stylesheet">
-
-
-
     <title>NittaCraft a.out Edition</title>
 </head>
 <body ng-app="app" style="background-color: darkgray;">
