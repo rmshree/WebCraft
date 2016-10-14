@@ -25,17 +25,17 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
     };
 
     // Util methods
-    ctrl.makePrimaryUrl = function (map) {
-        if(map.primaryImageFile){
-            map.primaryImageUrl = $sce.trustAsResourceUrl(window.URL.createObjectURL(map.primaryImageFile));
-        }
-    };
-
-    ctrl.makeSecondaryUrl = function (map) {
-        if(map.secondaryImageFile){
-            map.secondaryImageUrl = $sce.trustAsResourceUrl(window.URL.createObjectURL(map.secondaryImageFile));
-        }
-    };
+    // ctrl.makePrimaryUrl = function (map) {
+    //     if(map.primaryImageFile){
+    //         map.primaryImageUrl = $sce.trustAsResourceUrl(window.URL.createObjectURL(map.primaryImageFile));
+    //     }
+    // };
+    //
+    // ctrl.makeSecondaryUrl = function (map) {
+    //     if(map.secondaryImageFile){
+    //         map.secondaryImageUrl = $sce.trustAsResourceUrl(window.URL.createObjectURL(map.secondaryImageFile));
+    //     }
+    // };
 
     ctrl.isValid = function () {
         return ctrl.newMap.title && ctrl.newMap.description && ctrl.newMap.file;
@@ -51,54 +51,48 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         MapService.save(gameMap).$promise.then(function (response) {
             console.log(response);
             if(response.id){
-                 uploadFile(response.id, map);
-                if(map.primaryImageFile){
-                    uploadPrimary(response.id, map);
-                }
-                if(map.secondaryImageFile){
-                    uploadSecondary(response.id, map);
-                }
-                ctrl.showMapForm = false;
-                ctrl.newMap = {};
-                ctrl.maps.push(response);
+                 uploadFile(response, map);
             }
         });
     };
 
-    function uploadFile(id, map) {
+    function uploadFile(res, map) {
         Upload.upload({
             method: 'POST',
-            url: 'api/map/' + id + '/upload/file',
+            url: 'api/map/' + res.id + '/upload/file',
             data: {
                 file: map.file
             }
         }).success(function() {
             console.log('File upload success');
+            ctrl.showMapForm = false;
+            ctrl.newMap = {};
+            ctrl.maps.push(res);
         });
     }
 
-    function uploadPrimary(id, map) {
-        Upload.upload({
-            method: 'POST',
-            url: 'api/map/' + id + '/upload/primary',
-            data: {
-                file: map.primaryImageFile
-            }
-        }).success(function() {
-            console.log('Primary upload success');
-        });
-    }
-
-    function uploadSecondary(id, map) {
-        Upload.upload({
-            method: 'POST',
-            url: 'api/map/' + id + '/upload/secondary',
-            data: {
-                file: map.secondaryImageFile
-            }
-        }).success(function() {
-            console.log('Secondary upload success');
-        });
-    }
+    // function uploadPrimary(id, map) {
+    //     Upload.upload({
+    //         method: 'POST',
+    //         url: 'api/map/' + id + '/upload/primary',
+    //         data: {
+    //             file: map.primaryImageFile
+    //         }
+    //     }).success(function() {
+    //         console.log('Primary upload success');
+    //     });
+    // }
+    //
+    // function uploadSecondary(id, map) {
+    //     Upload.upload({
+    //         method: 'POST',
+    //         url: 'api/map/' + id + '/upload/secondary',
+    //         data: {
+    //             file: map.secondaryImageFile
+    //         }
+    //     }).success(function() {
+    //         console.log('Secondary upload success');
+    //     });
+    // }
 
 });

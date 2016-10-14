@@ -3,8 +3,8 @@
 angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'resources/scripts/controllers/landing/landing.html',
-            controller: 'LandingCtrl',
+            templateUrl: 'resources/scripts/controllers/home/home.html',
+            controller: 'HomeCtrl',
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
@@ -22,12 +22,12 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
                 }
             }
         })
-        // .when('/home', {
-        //     templateUrl: 'resources/scripts/controllers/home/home.html',
-        //     controller: 'HomeCtrl',
-        //     controllerAs: 'ctrl',
-        //     resolve: {}
-        // })
+        .when('/home', {
+            templateUrl: 'resources/scripts/controllers/home/home.html',
+            controller: 'HomeCtrl',
+            controllerAs: 'ctrl',
+            resolve: {}
+        })
         .when('/about', {
             templateUrl: 'resources/scripts/controllers/about/about.html',
             controller: 'AboutCtrl',
