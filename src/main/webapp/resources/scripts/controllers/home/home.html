@@ -1,5 +1,49 @@
-<div class="container-fluid" ng-init="ctrl.init()">
-    <h3>Example Home Page... Under Construction!</h3>
+<div class="landing" id="background">
+    <div class="container" ng-init="ctrl.init()">
 
-    <a href="#/landing">Go to Home page</a>
+        <div class="col-md-12 col-xs-12" align="center">
+            <h1 style="color: white; font-family: inkferno;" align="center">
+                <b>NITTACRAFT</b></h1>
+            <h3 style="color: black; width: 45%"><i><b>{{ctrl.welcomeMessage2}}</b></i></h3>
+        </div>
+
+
+        <div style="margin: auto; width: 80%; padding: 10px">
+            <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+            <div style="color: red" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 intro" style="color: white; margin-top: 5px">
+
+        <h2 style="font-family: inkferno"><b> Welcome to NittaCraft: <i>a.out Edition </i></b> <br>
+            Awaken the warrior within you at the new war zone. </h2><br>
+        <h3>Pick your own fighting arenas and battlefields. <br>
+            Play with fellow warriors and challenge war leaders. <br>
+            Interact with adventurers like yourself and choose your opponents. <br>
+        </h3> <br><br>
+
+        <img class="all_maps" src="resources/images/mp1.jpg">
+        <img class="all_maps" src="resources/images/mp2.jpg"> <br>
+        <img class="all_maps" src="resources/images/mp3.jpg">
+
+        <br>
+        <h2><a href="#/signup"> <font color="orange"> Sign-up </font> </a> today to start your adventure! </h2>
+
+    </div>
+
+    <div class="part" style="color: white">
+        <div id="news">
+
+        </div>
+    </div>
+
+    <div class="intro col-xs-12" style="color: white; padding-bottom: 30px">
+        <h4> Available on: </h4>
+        <img class="all_icons" src="resources/images/android.png">
+        <img class="all_icons" src="resources/images/ios.png">
+        <img class="all_icons" src="resources/images/osx.png">
+        <img class="all_icons" src="resources/images/windows.png">
+        <img class="all_icons" src="resources/images/linux.png">
+    </div>
 </div>
