@@ -27,5 +27,26 @@ angular.module('app').controller('SignupCtrl', function (UserService) {
             }
         });
     };
+
+    ctrl.login = function (user) {
+
+        ctrl.statusMessage ='';
+        ctrl.statusFlag = false;
+
+        LoginService.logInUser({username: user.username}, user.password).$promise.then(function(response) {
+
+            if (response.id) {
+                ctrl.statusFlag = true;
+                ctrl.statusMessage = "You're logged in!";
+                ctrl.currentUser = response;
+                window.location.reload();
+            }
+            else {
+                ctrl.statusMessage = "Could not log in...";
+                console.log(response);
+            }
+        });
+
+    };
 });
 
