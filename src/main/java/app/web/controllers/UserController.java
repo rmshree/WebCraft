@@ -9,6 +9,7 @@ import app.web.domain.User;
 import app.web.services.FileArchiveService;
 import app.web.services.UserService;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -84,11 +85,11 @@ public class UserController {
         User user = userService.getUserByUsername(username);
         if(user != null){
             try{
-                // figure out how to take this multipart file, and upload to AWS S3 servers and get a url for that file back.
-                // once we have the url, set that to user's avatar_url object and save + return the user object.
                 ObjectMetadata objectMetadata = new ObjectMetadata();
                 objectMetadata.setContentType("image/jpeg");
-                user.setAvatarUrl(fileArchiveService.uploadFile2(imageFile, user.getUsername(), objectMetadata));
+                DateTime now = new DateTime();
+                String key = "avatar/" + user.getUsername() + now.toString();
+                user.setAvatarUrl(fileArchiveService.uploadFile2(imageFile, key, objectMetadata));
                 userService.save(user);
                 return user;
             }catch (Exception e){

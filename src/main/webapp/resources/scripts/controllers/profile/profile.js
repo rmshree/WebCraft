@@ -8,7 +8,6 @@ angular.module('app').controller('ProfileCtrl', function (Upload, currentUser) {
         if(ctrl.currentUser.id){
             var username = ctrl.currentUser.username;
             console.log(file);
-            // hardcoding the username to root for testing stuff.
 
             Upload.upload({
                 method: 'POST',
@@ -18,7 +17,7 @@ angular.module('app').controller('ProfileCtrl', function (Upload, currentUser) {
                 }
             }).success(function() {
                 console.log('upload success');
-                // window.location.reload();
+                window.location.reload();
             });
 
         }
