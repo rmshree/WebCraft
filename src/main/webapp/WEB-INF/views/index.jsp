@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Almendra+SC|IM+Fell+Great+Primer+SC|Open+Sans:600" rel="stylesheet">
     <title>NittaCraft a.out Edition</title>
 </head>
-<body ng-app="app" style="background-color: darkgray;">
+<body ng-app="app" style="background-color: #0f253c;">
     <div ng-include="'resources/scripts/controllers/nav/nav.html'"></div>
     <main ng-view></main>
 </body>
