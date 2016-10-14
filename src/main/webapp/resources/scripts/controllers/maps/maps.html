@@ -3,8 +3,9 @@
     <div class="col-xs-12 panel-body">
         <h2 class="text-center">Maps</h2>
         <h4 class="text-center">From sticks and stones to bricks and bones each map offers a different gameplay experience for the game</h4>
+        <h4 class="text-center" ng-if="!ctrl.currentUser">Want to upload a map? Please sign in or <a href="#/signup">sign up</a></h4>
 
-        <button class="btn btn-primary pull-right" ng-click="ctrl.showMapForm = true" ng-if="!ctrl.showMapForm">Add a map</button>
+        <button class="btn btn-primary pull-right" ng-click="ctrl.showMapForm = true" ng-if="!ctrl.showMapForm && ctrl.currentUser">Add a map</button>
     </div>
 
 
