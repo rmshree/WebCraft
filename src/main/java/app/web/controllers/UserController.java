@@ -89,7 +89,7 @@ public class UserController {
                 objectMetadata.setContentType("image/jpeg");
                 DateTime now = new DateTime();
                 String key = "avatar/" + user.getUsername() + now.toString();
-                user.setAvatarUrl(fileArchiveService.uploadFile2(imageFile, key, objectMetadata));
+                user.setAvatarUrl(fileArchiveService.upload(imageFile, key, objectMetadata));
                 userService.save(user);
                 return user;
             }catch (Exception e){

@@ -3,11 +3,12 @@ package app.web.controllers;
 import app.web.domain.GameMap;
 import app.web.services.FileArchiveService;
 import app.web.services.GameMapService;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.net.URL;
 import java.util.List;
 
 @RestController
@@ -29,8 +30,11 @@ public class GameMapController {
     public GameMap uploadFile(@PathVariable String id, MultipartFile file){
         GameMap gameMap = gameMapService.findById(id);
         try{
-            URL url = fileArchiveService.uploadFile(file, gameMap.getId());
-            gameMap.setDownloadUrl(url.toString());
+            DateTime now = new DateTime();
+            String key = "maps/" + gameMap.getId() + now.toString();
+            ObjectMetadata objectMetadata = new ObjectMetadata();
+            objectMetadata.setContentType("text/plain");
+            gameMap.setDownloadUrl(fileArchiveService.upload(file, key, objectMetadata));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -39,19 +43,19 @@ public class GameMapController {
         return gameMapService.save(gameMap);
     }
 
-    @RequestMapping(value = "{id}/upload/primary", method = RequestMethod.POST)
-    public GameMap uploadPrimaryImage(@PathVariable String id, MultipartFile file){
-        GameMap gameMap = gameMapService.findById(id);
-        // need to save the primary image in AWS and get url for it.
-        return gameMapService.save(gameMap);
-    }
-
-    @RequestMapping(value = "{id}/upload/secondary", method = RequestMethod.POST)
-    public GameMap uploadSecondaryImage(@PathVariable String id, MultipartFile file){
-        GameMap gameMap = gameMapService.findById(id);
-        // need to save the secondary image in AWS and get url for it.
-        return gameMapService.save(gameMap);
-    }
+//    @RequestMapping(value = "{id}/upload/primary", method = RequestMethod.POST)
+//    public GameMap uploadPrimaryImage(@PathVariable String id, MultipartFile file){
+//        GameMap gameMap = gameMapService.findById(id);
+//        // need to save the primary image in AWS and get url for it.
+//        return gameMapService.save(gameMap);
+//    }
+//
+//    @RequestMapping(value = "{id}/upload/secondary", method = RequestMethod.POST)
+//    public GameMap uploadSecondaryImage(@PathVariable String id, MultipartFile file){
+//        GameMap gameMap = gameMapService.findById(id);
+//        // need to save the secondary image in AWS and get url for it.
+//        return gameMapService.save(gameMap);
+//    }
 
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public List<GameMap> all(){
