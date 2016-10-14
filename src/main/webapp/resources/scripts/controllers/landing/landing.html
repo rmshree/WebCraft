@@ -1,12 +1,12 @@
-<div class="landing">
-    <div id="background">
-        <div class="container-fluid col-xs-12 text-center" ng-init="ctrl.init()" align="center">
+<div class="container-fluid" ng-init="ctrl.init()">
+<div class="landing" id="background">
 
-            <div style="margin: auto; border-color: black">
-
-                <h1 style="color: black; font-family: inkferno; font-size: 70px; letter-spacing: 10px;
-            width: 45%"><b>{{ctrl.welcomeMessage}}</b></h1>
-                <h3 style="color: black; width: 45%"><i><b>{{ctrl.welcomeMessage2}}</b></i></h3>
+        <div class=" col-xs-12 col-md-12" align="left">
+            <div style="border-color: black">
+                <h1 style="color: black; font-family: 'IM Fell Great Primer SC';">
+                    <b>{{ctrl.welcomeMessage}}</b>
+                </h1>
+                <h3 style="color: black;"><i><b>{{ctrl.welcomeMessage2}}</b></i></h3>
             </div>
         </div>
 
@@ -16,8 +16,7 @@
         </div>
     </div>
 
-    <div>
-        <div class="intro" style="color: white">
+        <div class="col-xs-12 intro" style="background-color: #ffc904; color: white; margin-top: 5px">
 
             <h2 style="font-family: inkferno"><b> Welcome to NittaCraft: <i>a.out Edition </i></b> <br>
                 Awaken the warrior within you at the new war zone. </h2><br>
@@ -26,22 +25,18 @@
                 Interact with adventurers like yourself and choose your opponents. <br>
             </h3> <br><br>
 
-            <img class="all_maps" src="resources/images/M1.jpg">
+
+            ffc904
+            <img class="all_maps" src="resources/images/M1.jpg"><br>
             <img class="all_maps" src="resources/images/M2.jpg"> <br>
             <img class="all_maps" src="resources/images/M3.jpg">
 
             <br>
-            <h2> <a href="#/signup"> <font color="orange"> Sign-up </font> </a> today to start your adventure! </h2>
+            <h2><a href="#/signup"> <font color="orange"> Sign-up </font> </a> today to start your adventure! </h2>
 
         </div>
 
-        <div class="part" style="color: white">
-            <div id="news">
-
-            </div>
-        </div>
-
-        <div class="intro" style="color: white">
+        <div class="intro col-xs-12" style="color: white; padding-bottom: 30px">
             <h4> Available on: </h4>
             <img class="all_icons" src="resources/images/android.png">
             <img class="all_icons" src="resources/images/ios.png">
@@ -50,5 +45,4 @@
             <img class="all_icons" src="resources/images/linux.png">
         </div>
     </div>
-</div>
 
