@@ -22,6 +22,17 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
                 }
             }
         })
+
+        .when('/create', {
+            templateUrl: 'resources/scripts/controllers/signup/create.html',
+            controller: 'CreateCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
         // .when('/home', {
         //     templateUrl: 'resources/scripts/controllers/home/home.html',
         //     controller: 'HomeCtrl',

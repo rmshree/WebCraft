@@ -42,6 +42,7 @@
 <script src="resources/scripts/controllers/forums/forum.js"></script>
 <script src="resources/scripts/controllers/profile/profile.js"></script>
 <script src="resources/scripts/controllers/signup/signup.js"></script>
+<script src="resources/scripts/controllers/create/create.js"></script>
 
 <%-- Controllers --%>
 
