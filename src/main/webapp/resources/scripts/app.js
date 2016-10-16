@@ -12,9 +12,9 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
                 }
             }
         })
-        .when('/signup', {
-            templateUrl: 'resources/scripts/controllers/signup/signup.html',
-            controller: 'SignupCtrl',
+        .when('/login', {
+            templateUrl: 'resources/scripts/controllers/signup/login.html',
+            controller: 'LoginCtrl',
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
@@ -23,9 +23,9 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
             }
         })
 
-        .when('/create', {
-            templateUrl: 'resources/scripts/controllers/signup/create.html',
-            controller: 'CreateCtrl',
+        .when('/signup', {
+            templateUrl: 'resources/scripts/controllers/signup/signup.html',
+            controller: 'SignUpCtrl',
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
