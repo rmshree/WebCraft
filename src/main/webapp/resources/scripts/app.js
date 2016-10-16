@@ -33,6 +33,17 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
                 }
             }
         })
+
+        .when('/recover', {
+            templateUrl: 'resources/scripts/controllers/signup/recover.html',
+            controller: 'RecoverCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
         // .when('/home', {
         //     templateUrl: 'resources/scripts/controllers/home/home.html',
         //     controller: 'HomeCtrl',
