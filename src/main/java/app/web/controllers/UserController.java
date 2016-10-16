@@ -110,7 +110,7 @@ public class UserController {
     public User getCurrentUser() { return userService.getCurrentUser(); }
 
 
-    @RequestMapping(value="{username}/edit/email", method = RequestMethod.PATCH)
+    @RequestMapping(value="edit/email/{username}", method = RequestMethod.PATCH)
     public boolean editEmail(@PathVariable String username, String email){
         User user = userService.getUserByUsername(username);
         if(user != null){
@@ -123,7 +123,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="{username}/edit/password", method = RequestMethod.PATCH)
+    @RequestMapping(value="edit/password/{username}", method = RequestMethod.PATCH)
     public boolean editPassword(@PathVariable String username, String oldPassword, String newPassword){
         User user = userService.getUserByUsername(username);
         if(user != null){
@@ -145,7 +145,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value="{username}/edit/name", method = RequestMethod.PATCH)
+    @RequestMapping(value="edit/name/{username}", method = RequestMethod.PATCH)
     public boolean editName(@PathVariable String username, String first, String last){
         User user = userService.getUserByUsername(username);
         if(user != null){
