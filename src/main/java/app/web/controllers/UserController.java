@@ -110,5 +110,52 @@ public class UserController {
     public User getCurrentUser() { return userService.getCurrentUser(); }
 
 
+    @RequestMapping(value="{username}/edit/email", method = RequestMethod.PATCH)
+    public boolean editEmail(@PathVariable String username, String email){
+        User user = userService.getUserByUsername(username);
+        if(user != null){
+            user.setEmail(email);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    @RequestMapping(value="{username}/edit/password", method = RequestMethod.PATCH)
+    public boolean editPassword(@PathVariable String username, String oldPassword, String newPassword){
+        User user = userService.getUserByUsername(username);
+        if(user != null){
+            String currentPassword = user.getPassword();
+            if(currentPassword.equals(oldPassword)){
+                user.setPassword(newPassword);
+                return true;
+            }
+            else{
+                //user entered incorrect current password
+                return false;
+            }
+        }
+        else{
+            //user does not exist
+            return false;
+        }
+    }
+
+
+    @RequestMapping(value="{username}/edit/name", method = RequestMethod.PATCH)
+    public boolean editName(@PathVariable String username, String first, String last){
+        User user = userService.getUserByUsername(username);
+        if(user != null){
+            user.setFirstname(first);
+            user.setLastname(last);
+            return true;
+        }
+        else{
+            //use does not exist
+            return false;
+        }
+    }
+
 
 }

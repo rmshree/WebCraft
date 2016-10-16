@@ -33,6 +33,14 @@ public class User implements Serializable {
     @JsonProperty
     private String username;
 
+    @Column(name = "firstname")
+    @JsonProperty
+    private String firstname;
+
+    @Column(name = "lastname")
+    @JsonProperty
+    private String lastname;
+
     @Column(name = "password", nullable = false)
     @JsonProperty
     private String password;
@@ -76,6 +84,14 @@ public class User implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getFirstname() {return firstname;}
+
+    public void setFirstname(String firstname) {this.firstname = firstname;}
+
+    public String getLastname(String lastname) {return lastname; }
+
+    public void setLastname(String lastname) {this.lastname = lastname;}
 
     public String getPassword() {
         return password;

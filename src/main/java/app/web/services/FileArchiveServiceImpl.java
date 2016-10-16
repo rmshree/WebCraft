@@ -38,4 +38,10 @@ public class FileArchiveServiceImpl implements FileArchiveService {
 
     }
 
+    @Override
+    public Object getUrlContent(String url) throws IOException{
+        URL userURL = new URL(url);
+        return userURL.getContent();
+    }
+
 }

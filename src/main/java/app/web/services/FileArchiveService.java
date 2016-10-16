@@ -10,4 +10,6 @@ public interface FileArchiveService {
 
     String upload(MultipartFile m_fileToUpload, String key, ObjectMetadata meta) throws IOException;
 
+    Object getUrlContent(String url) throws IOException;
+
 }
