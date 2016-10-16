@@ -22,7 +22,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
                 }
             }
         })
-        .when('/home', {
+        .when('/landing', {
             templateUrl: 'resources/scripts/controllers/landing/landing.html',
             controller: 'LandingCtrl',
             controllerAs: 'ctrl',
