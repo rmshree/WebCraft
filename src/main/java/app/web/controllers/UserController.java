@@ -116,7 +116,7 @@ public class UserController {
     @RequestMapping(value="getCurrentUser", method = RequestMethod.GET)
     public User getCurrentUser() { return userService.getCurrentUser(); }
 
-    @RequestMapping(value = "activate/{userID}", method = RequestMethod.GET)
+    @RequestMapping(value = "activate/{userKey}", method = RequestMethod.GET)
     public User activateUserAccount(@PathVariable String userKey) {
         User user = userService.getUserByUserKey(userKey);
         if (user != null && !user.isActive()) {
