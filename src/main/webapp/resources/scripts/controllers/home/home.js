@@ -1,14 +1,12 @@
 'use strict';
 
-angular.module('app').controller('LandingCtrl', function (UserService) {
+angular.module('app').controller('HomeCtrl', function (UserService) {
     var ctrl = this;
 
 
 
     ctrl.init = function () {
-        ctrl.welcomeMessage = 'NITTACRAFT';
-        ctrl.welcomeMessage2 = 'a.out Edition';
-
+        ctrl.welcomeMessage = 'Warcraft II;
 
 
     };
