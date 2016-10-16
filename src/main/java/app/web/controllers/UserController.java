@@ -115,6 +115,7 @@ public class UserController {
         User user = userService.getUserByUsername(username);
         if(user != null){
             user.setEmail(email);
+            userService.save(user);
             return true;
         }
         else{
@@ -129,6 +130,7 @@ public class UserController {
             String currentPassword = user.getPassword();
             if(currentPassword.equals(oldPassword)){
                 user.setPassword(newPassword);
+                userService.save(user);
                 return true;
             }
             else{
@@ -149,6 +151,7 @@ public class UserController {
         if(user != null){
             user.setFirstname(first);
             user.setLastname(last);
+            userService.save(user);
             return true;
         }
         else{
