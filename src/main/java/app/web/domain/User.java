@@ -45,6 +45,14 @@ public class User implements Serializable {
     @JsonProperty
     private String avatarUrl;
 
+    @Column(name = "isActive")
+    @JsonProperty
+    private boolean isActive = false;
+
+    @Column(name = "userKey")
+    @JsonProperty
+    private String userKey;
+
     public String getId() {
         return id;
     }
@@ -99,5 +107,21 @@ public class User implements Serializable {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
 }

@@ -30,6 +30,7 @@ public interface UserService{
 
     User getUserByEmail (String email);
 
+    User getUserByUserKey (String userKey);
 
     User getCurrentUser();
 }
