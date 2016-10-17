@@ -51,12 +51,11 @@ public class EmailServiceImpl implements EmailService {
             Template template = velocityEngine.getTemplate(VERIFICATIONTEMPLATE);
             VelocityContext velocityContext = new VelocityContext();
 
-
             if (this.env.getActiveProfiles()[0].equals("local")) {
-                verifcationLink = LOCALADDRESS + user.getUserKey();
+                verifcationLink = LOCALADDRESS + user.getVeriKey();
             }
             else {
-                verifcationLink = PRODADDRESS + user.getUserKey();
+                verifcationLink = PRODADDRESS + user.getVeriKey();
             }
 
             velocityContext.put("user", user);
