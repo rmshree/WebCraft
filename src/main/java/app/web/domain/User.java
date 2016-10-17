@@ -47,7 +47,7 @@ public class User implements Serializable {
 
     @Column(name = "isActive")
     @JsonProperty
-    private boolean isActive = false;
+    private Boolean isActive = false;
 
     @Column(name = "userKey")
     @JsonProperty
@@ -55,12 +55,11 @@ public class User implements Serializable {
 
     @Column(name = "isCurrentlyOnline") //For users logged in to the game
     @JsonProperty
-    private boolean isCurrentlyOnline = false;
+    private Boolean isCurrentlyOnline = false;
 
     @Column(name = "isCurrentlyOnsite") //For users logged in to the website
     @JsonProperty
-    private boolean isCurrentlyOnsite = false;
-
+    private Boolean isCurrentlyOnsite = false;
 
     public String getId() {
         return id;
@@ -118,11 +117,11 @@ public class User implements Serializable {
         this.avatarUrl = avatarUrl;
     }
 
-    public boolean isActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 
@@ -134,19 +133,19 @@ public class User implements Serializable {
         this.userKey = userKey;
     }
 
-    public boolean isCurrentlyOnline() {
+    public Boolean getCurrentlyOnline() {
         return isCurrentlyOnline;
     }
 
-    public void setCurrentlyOnline(boolean currentlyOnline) {
+    public void setCurrentlyOnline(Boolean currentlyOnline) {
         isCurrentlyOnline = currentlyOnline;
     }
 
-    public boolean isCurrentlyOnsite() {
+    public Boolean getCurrentlyOnsite() {
         return isCurrentlyOnsite;
     }
 
-    public void setCurrentlyOnsite(boolean currentlyOnsite) {
+    public void setCurrentlyOnsite(Boolean currentlyOnsite) {
         isCurrentlyOnsite = currentlyOnsite;
     }
 }
