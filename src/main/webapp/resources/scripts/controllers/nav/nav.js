@@ -17,7 +17,7 @@ angular.module('app').controller('NavCtrl', function (LoginService, UserService,
     };
 
     ctrl.signOut = function () {
-        LoginService.logOutUser(ctrl.currentUser.username).$promise.then(function () {
+        LoginService.signOut(ctrl.currentUser.username).$promise.then(function () {
             window.location.reload();
             $location.path('/');
         });

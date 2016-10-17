@@ -37,18 +37,5 @@ public class LoginServiceImpl implements LoginService {
             }
         }
 
-        @Override
-        public User logOutUser(String username) {
-            User currentUser = userService.getCurrentUser();
 
-            if (currentUser != null) {
-                currentUser.setCurrentlyOnsite(false);
-                cookieService.setCurrentUser(null);
-                return userService.save(currentUser);
-            }
-            else {
-                //no one is logged in
-                return null;
-            }
-        }
 }
