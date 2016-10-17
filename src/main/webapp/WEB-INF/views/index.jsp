@@ -40,6 +40,8 @@
 <script src="resources/scripts/controllers/profile/profile.js"></script>
 <script src="resources/scripts/controllers/signup/signup.js"></script>
 <script src="resources/scripts/controllers/settings/settings.js"></script>
+<script src="resources/scripts/controllers/signup/login.js"></script>
+<script src="resources/scripts/controllers/signup/recover.js"></script>
 
 
 

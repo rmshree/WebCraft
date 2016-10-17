@@ -13,13 +13,13 @@ angular.module('app').controller('RecoverCtrl', function (UserService) {
         ctrl.StatusMessage = '';
         ctrl.statusFlag = true;
 
-        UserService.getUserByEmail({email: user.email}).$promise.then(function (response) {
+        UserService.passwordRecovery({email: user.email}).$promise.then(function (response) {
 //this is where I need to check if the email is associated with an account or not*****
 
             //if response is undefined, create a new user
             if (response.id) {
-                EmailServiceImpl.sendPassswordRecoveryEmail({username: user.username}, user).$promise.then(function (response) {
-                    ctrl.statusMessage = 'Check your email for a reset code';
+                EmailService.sendPassswordRecoveryEmail({username: user.username}, user).$promise.then(function (response) {
+                    ctrl.statusMessage = 'Check your email for a verification link';
                 });
             }
             else {
@@ -27,7 +27,43 @@ angular.module('app').controller('RecoverCtrl', function (UserService) {
                 ctrl.statusMessage = 'Email ' + user.email + ' is not associated with an account';
             }
         });
+
+//         UserService.getUserByEmail({email: user.email}).$promise.then(function (response) {
+// //this is where I need to check if the email is associated with an account or not*****
+//
+//             //if response is undefined, create a new user
+//             if (response.id) {
+//                 EmailService.sendPassswordRecoveryEmail({username: user.username}, user).$promise.then(function (response) {
+//                     ctrl.statusMessage = 'Check your email for a verification link';
+//                 });
+//             }
+//             else {
+//                 ctrl.statusFlag = false;
+//                 ctrl.statusMessage = 'Email ' + user.email + ' is not associated with an account';
+//             }
+//         });
     };
+
+
+
+
+
+
+//         UserService.getUserByEmail({email: user.email}).$promise.then(function (response) {
+// //this is where I need to check if the email is associated with an account or not*****
+//
+//             //if response is undefined, create a new user
+//             if (response.id) {
+//                 EmailService.sendPassswordRecoveryEmail({username: user.username}, user).$promise.then(function (response) {
+//                     ctrl.statusMessage = 'Check your email for a verification link';
+//                 });
+//             }
+//             else {
+//                 ctrl.statusFlag = false;
+//                 ctrl.statusMessage = 'Email ' + user.email + ' is not associated with an account';
+//             }
+//         });
+//     };
 
     // ctrl.login = function (user) {
     //
