@@ -26,8 +26,9 @@ public class LoginController {
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.PUT)
-    public void userLogout(@RequestBody String username) {
-        cookieService.setCurrentUser(null);
+    public User userLogout(@RequestBody String username) {
+        return loginService.logOutUser(username);
+
     }
 
 
