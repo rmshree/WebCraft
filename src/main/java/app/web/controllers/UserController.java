@@ -6,17 +6,17 @@
 package app.web.controllers;
 
 import app.web.domain.User;
-import app.web.services.EmailService;
 import app.web.services.FileArchiveService;
 import app.web.services.UserService;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.sun.org.apache.regexp.internal.RE;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.UUID;
 import java.util.List;
 
 @RestController
@@ -25,9 +25,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private EmailService emailService;
 
     @Autowired
     private FileArchiveService fileArchiveService;
@@ -46,6 +43,7 @@ public class UserController {
             return user;
         }
     }
+
     /** /api/user/getByEmail/{email}
      *  \brief Get User associated with {email}
      *  \param email is a String.
@@ -58,29 +56,6 @@ public class UserController {
             return null;
         } else {
             return user;
-        }
-    }
-
-    /** /api/user/create/{username}
-     *  \brief Creates and saves a new User into the User database.
-     *  \param username is the associated username.
-     *  \param userDetails is a User that contains all of data associated with the user.
-     *  \return the saved User or null.
-     */
-    @RequestMapping(value = "create/{username}", method = RequestMethod.PUT)
-    public User create(@PathVariable String username, @RequestBody User userDetails) {
-        User user = userService.getUserByUsername(username);
-        if (user == null){
-            User newUser = new User();
-            newUser.setUsername(username);
-            //newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
-            newUser.setPassword(userDetails.getPassword());
-            newUser.setUserKey(UUID.randomUUID().toString());
-            //emailService.sendVerificationEmail(newUser); /*UNCOMMENT THIS */
-            return userService.save(newUser);
-        }
-        else {
-            return null;
         }
     }
 
@@ -118,6 +93,10 @@ public class UserController {
     @RequestMapping(value="getCurrentUser", method = RequestMethod.GET)
     public User getCurrentUser() { return userService.getCurrentUser(); }
 
+    /** /api/user/getOnsiteUsers
+     *  \brief looks up users in the database who are currently on site using the isCurrentlyOnsite attribute on User table
+     *  \return a list of Users
+     */
     @RequestMapping(value="getOnsiteUsers", method = RequestMethod.GET)
     public List<User> getOnsiteUsers() {
         List<User> onsiteUsers = userService.getOnsiteUsers();
@@ -126,29 +105,6 @@ public class UserController {
         } else {
             return null;
         }
-    }
-
-    @RequestMapping(value = "activate/{userKey}", method = RequestMethod.GET)
-    public User activateUserAccount(@PathVariable String userKey) {
-        User user = userService.getUserByUserKey(userKey);
-        if (user != null && !user.isActive()) {
-            user.setActive(true);
-            userService.save(user);
-            return user;
-        }
-        else {
-            return null;
-        }
-    }
-
-    @RequestMapping(value = "passwordRecovery/{email}", method = RequestMethod.GET)
-    public boolean passwordRecovery(@PathVariable String email) {
-        User user = userService.getUserByEmail(email);
-        if (user != null && user.isActive())
-        {
-            return emailService.sendPasswordRecoveryEmail(user);
-        }
-        return false;
     }
 
 }

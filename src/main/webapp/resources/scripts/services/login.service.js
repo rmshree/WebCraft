@@ -3,8 +3,8 @@
 angular.module('app').factory('LoginService', function ($resource) {
     return $resource('api/login/', {},  {
         logInUser: {method: 'PUT', url: 'api/login/:username'},
-        logOutUser: {method: 'PUT', url: 'api/login/logout'}
-
+        signOut: {method: 'PUT', url: 'api/login/logout/:username'},
+        signUp: {method: 'POST', url: 'api/login/signUp'}
     });
 });
 
