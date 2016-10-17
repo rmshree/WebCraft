@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function ($routeProvider) {
+angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetector']).config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'resources/scripts/controllers/home/home.html',
@@ -62,6 +62,12 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
         .when('/forums', {
             templateUrl: 'resources/scripts/controllers/forums/forums.html',
             controller: 'ForumsCtrl',
+            controllerAs: 'ctrl',
+            resolve: {}
+        })
+        .when('/download', {
+            templateUrl: 'resources/scripts/controllers/download/download.html',
+            controller: 'downloadCtrl',
             controllerAs: 'ctrl',
             resolve: {}
         })

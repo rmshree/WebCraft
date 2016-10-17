@@ -25,7 +25,13 @@
 
 <%-- Third party JS --%>
 <script src="resources/js/ng-file-upload.min.js"></script>
+
+<script src="resources/js/ng-device-detector.min.js"></script>
+<script src="resources/js/re-tree.min.js"></script>
+
 <%-- Third party JS --%>
+
+
 
 
 <%-- Controllers --%>
@@ -40,6 +46,7 @@
 <script src="resources/scripts/controllers/profile/profile.js"></script>
 <script src="resources/scripts/controllers/signup/signup.js"></script>
 <script src="resources/scripts/controllers/settings/settings.js"></script>
+<script src="resources/scripts/controllers/download/download.js"></script>
 
 
 
