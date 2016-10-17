@@ -2,6 +2,7 @@
 
 angular.module('app').controller('ForumCtrl', function ($route, ForumsService) {
     var ctrl = this;
+    var forumsHref = "#/forums";
 
     ctrl.init = function () {
         ForumsService.getPost({id: $route.current.params.id}).$promise.then(function (response) {
@@ -46,6 +47,15 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService) {
         ForumsService.deleteComment({id: comment.id}).$promise.then(function (response) {
             if (response !== 0) {
                 ctrl.getCommentsForPost(post);
+            }
+        })
+    }
+
+    //TODO: Only give the user who created the post the ability to delete the post.
+    ctrl.deletePost = function (post) {
+        ForumsService.deletePost({id: post.id}).$promise.then(function (response) {
+            if (response !== 0) {
+                window.location.href = forumsHref;
             }
         })
     }
