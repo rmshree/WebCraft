@@ -22,9 +22,9 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
                 }
             }
         })
-        .when('/home', {
-            templateUrl: 'resources/scripts/controllers/home/home.html',
-            controller: 'HomeCtrl',
+        .when('/landing', {
+            templateUrl: 'resources/scripts/controllers/landing/landing.html',
+            controller: 'LandingCtrl',
             controllerAs: 'ctrl',
             resolve: {}
         })
@@ -38,6 +38,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
                 }
             }
         })
+
         .when('/maps', {
             templateUrl: 'resources/scripts/controllers/maps/maps.html',
             controller: 'MapsCtrl',
@@ -70,6 +71,15 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
             controllerAs: 'ctrl',
             resolve: {}
         })
+        .when('/settings', {
+            templateUrl: 'resources/scripts/controllers/settings/settings.html',
+            controller: 'SettingsCtrl',
+            controllerAs: 'ctrl',
+            resolve: {}
+        })
+
+
+
         .when('/profile/:username', {
             templateUrl: 'resources/scripts/controllers/profile/profile.html',
             controller: 'ProfileCtrl',

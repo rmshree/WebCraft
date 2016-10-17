@@ -1,6 +1,9 @@
+/**
+ * Created by DGM on 10/14/16.
+ */
 'use strict';
 
-angular.module('app').controller('SignupCtrl', function (UserService) {
+angular.module('app').controller('SettingsCtrl', function (UserService) {
     var ctrl = this;
 
     ctrl.init = function ()
@@ -12,10 +15,9 @@ angular.module('app').controller('SignupCtrl', function (UserService) {
     ctrl.signUp = function (user) {
         ctrl.StatusMessage = '';
         ctrl.statusFlag = true;
-        // EmailService.sendEmail().$promise.then(function (response) {
-        //     console.log(response);
-        // });
+
         UserService.getUserByUsername({username: user.username}).$promise.then(function (response) {
+
             //if response is undefined, create a new user
             if (!response.id) {
                 UserService.createNewUser({username: user.username}, user).$promise.then(function (response) {
