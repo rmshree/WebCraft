@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <h3>Hi ${user.username}, Welcome to a.out!</h3>
+        <h3>
+            In order to complete the sign up process, please verify your email by clicking on the link:
+        </h3>
+        <p>
+            ${verificationLink}
+        </p>
+        <h3>
+            If this isn't you or you wish to cancel the signup process, please click the following link:
+        </h3>
+        <p>
+            ${cancelLink}
+        </p>
+    </body>
+
+</html>
