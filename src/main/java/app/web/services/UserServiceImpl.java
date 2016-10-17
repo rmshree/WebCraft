@@ -39,8 +39,9 @@ public class UserServiceImpl implements UserService {
         return getUserByUsername(cookieService.getValueFromCookie());
     }
 
-
-
-
+    @Override
+    public User getUserByVerificationKey(String verikey) {
+        return userRepository.getUserByVerificationKey(verikey);
+    }
 
 }
