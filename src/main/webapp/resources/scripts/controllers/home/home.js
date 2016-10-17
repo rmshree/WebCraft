@@ -7,9 +7,9 @@ angular.module('app').controller('HomeCtrl', function (UserService) {
 
     ctrl.init = function () {
         ctrl.welcomeMessage = 'Warcraft II';
-        console.log("currently onsite is: " + UserService.getOnsiteUsers());
-        ctrl.onsiteUsers = UserService.getOnsiteUsers();
-
+        UserService.getOnsiteUsers().$promise.then(function (res) {
+            ctrl.onsiteUsers = res;
+        });
     };
 
 
