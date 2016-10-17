@@ -4,9 +4,11 @@ angular.module('app').controller('downloadCtrl',['deviceDetector',function(devic
     ctrl.allData = JSON.stringify(ctrl.data, null, 2);
 
 
+    /*
     if(ctrl.data.os != null) {
         window.alert("You should download windows");
     }
+    */
 
 }])
 

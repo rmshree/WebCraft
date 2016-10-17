@@ -1,9 +1,42 @@
-<br>
-<br>
-<div style="color: gold" ng-controller="downloadCtrl as vm">
-    <p>You are using <b>{{vm.data.browser}}</b> on <b>{{vm.data.os}} ({{vm.data.os_version}})</b>.</p>
-    <p>Your <b>{{vm.data.browser}}</b> version is <b>{{vm.data.browser_version}}</b></p>
-    <p>Device - <b></b>{{vm.data.device}}</p>
+<div class="container">
+    <div style="color: gold" ng-controller="downloadCtrl as vm">
+        <br>
+        <br>
+
+        <!--<p>You are using <b>{{vm.data.browser}}</b> on <b>{{vm.data.os}} ({{vm.data.os_version}})</b>.</p>-->
+        <!--<p>Your <b>{{vm.data.browser}}</b> version is <b>{{vm.data.browser_version}}</b></p>-->
+        <!--<p>Device - <b></b>{{vm.data.device}}</p>-->
+
+        <div ng-if="vm.data.os === 'mac'">
+            <h1>
+                OS X DOWNLOAD
+            </h1>
+        </div>
+
+        <div ng-if="vm.data.os === 'windows'">
+            <h1>
+                WINDOWS DOWNLOAD
+            </h1>
+        </div>
+
+        <div ng-if="vm.data.os === 'linux'">
+            <h1>
+                LINUX DOWNLOAD
+            </h1>
+        </div>
+
+        <div ng-if="vm.data.os === 'ios'">
+            <h1>
+                IOS DOWNLOAD
+            </h1>
+        </div>
+
+        <div ng-if="vm.data.os === 'android'">
+            <h1>
+                ANDROID DOWNLOAD
+            </h1>
+        </div>
 
 
+    </div>
 </div>
