@@ -6,12 +6,24 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, String> {
 
+    /** User getUserByUsername (String username);
+     *  \brief Get User data from database
+     *  \param username is a String.
+     *  \return a user or NULL
+     */
     @Query("select u from User u where u.username = ?1")
     User getUserByUsername (String username);
 
+    /** User getUserByEmail (String email);
+     *  \brief Get User data from database
+     *  \param email is a String.
+     *  \return a user or NULL
+     */
     @Query("select u from User u where u.email = ?1")
     User getUserByEmail (String email);
 
+    @Query("select u from User u where u.veriKey = ?1")
+    User getUserByVerificationKey(String verikey);
 }

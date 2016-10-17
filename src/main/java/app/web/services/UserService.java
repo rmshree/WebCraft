@@ -6,8 +6,6 @@ package app.web.services;
 
 import app.web.domain.User;
 
-import java.util.List;
-
 public interface UserService{
 
     /** User save(User number);
@@ -29,5 +27,10 @@ public interface UserService{
      *  \param email is a String.
      *  \return a user or NULL
      */
+
     User getUserByEmail (String email);
+
+    User getUserByVerificationKey (String verikey);
+
+    User getCurrentUser();
 }

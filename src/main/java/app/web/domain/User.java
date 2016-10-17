@@ -10,23 +10,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
+
 
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty
-    private Integer id;
+    private String id = UUID.randomUUID().toString();
 
     @Column(name = "win")
     @JsonProperty
-    private Integer win;
+    private Integer win = 0;
 
     @Column(name = "loss")
     @JsonProperty
-    private Integer loss;
+    private Integer loss = 0;
 
     @Column(name = "username", unique = true)
     @JsonProperty
@@ -44,11 +45,19 @@ public class User implements Serializable {
     @JsonProperty
     private String avatarUrl;
 
-    public Integer getId() {
+    @Column(name = "isActive")
+    @JsonProperty
+    private boolean isActive = false;
+
+    @Column(name = "veriKey")
+    @JsonProperty
+    private String veriKey;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -98,5 +107,21 @@ public class User implements Serializable {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getVeriKey() {
+        return veriKey;
+    }
+
+    public void setVeriKey(String veriKey) {
+        this.veriKey = veriKey;
     }
 }
