@@ -73,7 +73,7 @@ public class UserController {
             newUser.setUsername(username);
             //newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
             newUser.setPassword(userDetails.getPassword());
-            newUser.setUserKey(UUID.randomUUID().toString());
+            newUser.setVeriKey(UUID.randomUUID().toString());
             emailService.sendVerificationEmail(newUser);
             return userService.save(newUser);
         }
@@ -116,9 +116,9 @@ public class UserController {
     @RequestMapping(value="getCurrentUser", method = RequestMethod.GET)
     public User getCurrentUser() { return userService.getCurrentUser(); }
 
-    @RequestMapping(value = "activate/{userKey}", method = RequestMethod.GET)
-    public User activateUserAccount(@PathVariable String userKey) {
-        User user = userService.getUserByUserKey(userKey);
+    @RequestMapping(value = "activate/{veriKey}", method = RequestMethod.GET)
+    public User activateUserAccount(@PathVariable String veriKey) {
+        User user = userService.getUserByVerificationKey(veriKey);
         if (user != null && !user.isActive()) {
             user.setActive(true);
             userService.save(user);

@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUserKey(String userkey) {
-        return userRepository.getUserByUserKey(userkey);
+    public User getUserByVerificationKey(String verikey) {
+        return userRepository.getUserByVerificationKey(verikey);
     }
 
 }

@@ -49,9 +49,9 @@ public class User implements Serializable {
     @JsonProperty
     private boolean isActive = false;
 
-    @Column(name = "userKey")
+    @Column(name = "veriKey")
     @JsonProperty
-    private String userKey;
+    private String veriKey;
 
     public String getId() {
         return id;
@@ -117,11 +117,11 @@ public class User implements Serializable {
         isActive = active;
     }
 
-    public String getUserKey() {
-        return userKey;
+    public String getVeriKey() {
+        return veriKey;
     }
 
-    public void setUserKey(String userKey) {
-        this.userKey = userKey;
+    public void setVeriKey(String veriKey) {
+        this.veriKey = veriKey;
     }
 }
