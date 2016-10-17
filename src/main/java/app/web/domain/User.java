@@ -53,6 +53,15 @@ public class User implements Serializable {
     @JsonProperty
     private String userKey;
 
+    @Column(name = "isCurrentlyOnline") //For users logged in to the game
+    @JsonProperty
+    private boolean isCurrentlyOnline = false;
+
+    @Column(name = "isCurrentlyOnsite") //For users logged in to the website
+    @JsonProperty
+    private boolean isCurrentlyOnsite = false;
+
+
     public String getId() {
         return id;
     }
@@ -123,5 +132,21 @@ public class User implements Serializable {
 
     public void setUserKey(String userKey) {
         this.userKey = userKey;
+    }
+
+    public boolean isCurrentlyOnline() {
+        return isCurrentlyOnline;
+    }
+
+    public void setCurrentlyOnline(boolean currentlyOnline) {
+        isCurrentlyOnline = currentlyOnline;
+    }
+
+    public boolean isCurrentlyOnsite() {
+        return isCurrentlyOnsite;
+    }
+
+    public void setCurrentlyOnsite(boolean currentlyOnsite) {
+        isCurrentlyOnsite = currentlyOnsite;
     }
 }

@@ -74,7 +74,7 @@ public class UserController {
             //newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
             newUser.setPassword(userDetails.getPassword());
             newUser.setUserKey(UUID.randomUUID().toString());
-            emailService.sendVerificationEmail(newUser);
+            //emailService.sendVerificationEmail(newUser);
             return userService.save(newUser);
         }
         else {

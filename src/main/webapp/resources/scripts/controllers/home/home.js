@@ -6,7 +6,7 @@ angular.module('app').controller('HomeCtrl', function (UserService) {
 
 
     ctrl.init = function () {
-        ctrl.welcomeMessage = 'Warcraft II;
+        ctrl.welcomeMessage = 'Warcraft II';
 
 
     };
