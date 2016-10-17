@@ -12,9 +12,31 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
                 }
             }
         })
+        .when('/login', {
+            templateUrl: 'resources/scripts/controllers/signup/login.html',
+            controller: 'LoginCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
+
         .when('/signup', {
             templateUrl: 'resources/scripts/controllers/signup/signup.html',
-            controller: 'SignupCtrl',
+            controller: 'SignUpCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
+
+        .when('/recover', {
+            templateUrl: 'resources/scripts/controllers/signup/recover.html',
+            controller: 'RecoverCtrl',
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
