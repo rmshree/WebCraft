@@ -1,11 +1,13 @@
 package app.web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.Resource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -27,11 +29,14 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"app.web.data", "app.web"}, repositoryFactoryBeanClass = JpaRepositoryFactoryBean.class)
-@PropertySources(value = {@PropertySource(value = "classpath:/app.${spring.profiles.active}.properties", ignoreResourceNotFound = true)})
+@PropertySources(value = {@PropertySource(value = "classpath:/app.${spring.profiles.active}.properties")})
 public class DataConfig {
 
     @Autowired
     private Environment environment;
+
+    @Value("classpath:db/test-data.sql")
+    private Resource dataScript;
 
     @Bean
     public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
@@ -43,6 +48,9 @@ public class DataConfig {
 
     private DatabasePopulator databasePopulator() {
         final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+        if(environment.getActiveProfiles()[0].equalsIgnoreCase("local")){
+            populator.addScript(dataScript);
+        }
         return populator;
     }
 

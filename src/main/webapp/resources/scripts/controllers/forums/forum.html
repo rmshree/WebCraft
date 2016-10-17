@@ -19,6 +19,21 @@
                     <span>{{ctrl.post.date | date: 'medium'}}</span>
                 </div>
             </div>
+
+            <div ng-if="!ctrl.post.showDeletePostForm">
+                <button class="btn btn-primary pull-left" style="margin-top: 10px" ng-click="ctrl.post.showDeletePostForm = true"> Delete Post </button>
+            </div>
+            <!-- Delete Post form -->
+            <div ng-if="ctrl.post.showDeletePostForm" class="pull-left">
+                <div class="form-group pull-left">
+                    <label>Are you sure you want to delete this post?</label>
+                </div>
+                <!-- Buttons for the Delete Post form -->
+                <div>
+                    <button class="btn btn-primary pull-left" style="margin-right: 10px" ng-click="ctrl.deletePost(ctrl.post)" >Confirm</button>
+                    <button class="btn btn-primary pull-left" ng-click="ctrl.post.showDeletePostForm = false">Cancel</button>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-9 col-xs-12 panel-body">

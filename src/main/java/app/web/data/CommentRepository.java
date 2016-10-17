@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.servlet.annotation.MultipartConfig;
 import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Integer>  {
@@ -29,7 +30,7 @@ public interface CommentRepository extends JpaRepository<Comment, Integer>  {
     List <Comment> getCommentsByPost(Integer id);
 
     /** Integer deleteCommentFromPost(Integer id);
-     *  \brief deleted the comment associated with {id}
+     *  \brief delete the comment associated with post id: {id}
      *  \param id is the Post Id associated with the comment.
      *  \return an integer representing the number of entries deleted. 1 or 0 expected.
      */
@@ -37,4 +38,12 @@ public interface CommentRepository extends JpaRepository<Comment, Integer>  {
     @Query("delete from Comment c where c.id = ?1")
     Integer deleteCommentFromPost(Integer id);
 
+    /** Integer deleteAllCommentsFromPost(Integer id);
+     *  \brief deleted all of the comments associated with post id: {id}
+     *  \param id is the Post Id associated with the post.
+     *  \return an integer representing the number of entries deleted. 1 or 0 expected.
+     */
+    @Modifying
+    @Query ("delete from Comment c where c.post.id = ?1")
+    Integer deleteAllCommentsFromPost(Integer id);
 }
