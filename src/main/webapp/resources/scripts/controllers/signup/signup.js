@@ -18,7 +18,7 @@ angular.module('app').controller('SignUpCtrl', function (UserService) {
         UserService.getUserByUsername({username: user.username}).$promise.then(function (response) {
             //if response is undefined, create a new user
             if (!response.id) {
-                UserService.createNewUser({username: user.username}, user).$promise.then(function (response) {
+                UserService.create({username: user.username}, user).$promise.then(function (response) {
                     ctrl.statusMessage = 'Sign-up successful!';
                 });
             }

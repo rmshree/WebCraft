@@ -85,13 +85,13 @@
                         <!--minlength="5">-->
                         <span class="pull-left"
                               style="font-family: 'Open Sans', serif;color: #8d1d1c;"> </span>
-                        <input type="text" ng-model="user.Fname" class="form-control" placeholder="First Name"
+                        <input type="text" ng-model="user.firstname" class="form-control" placeholder="First Name"
                                maxlength="20">
                         <br>
                         <!--<input type="text" class="form-control" name="username" placeholder="Username" align="left" ng-model="user.username">-->
                         <span class="pull-left"
                               style="font-family: 'Open Sans', serif;color: #8d1d1c;"></span>
-                        <input type="text" ng-model="user.Lname" class="form-control" placeholder="Last Name" maxlength="20">
+                        <input type="text" ng-model="user.lastname" class="form-control" placeholder="Last Name" maxlength="20">
                         <br>
                         <span class="pull-left"
                               style="font-family: 'Open Sans', serif;color: #8d1d1c;"> </span>
@@ -112,7 +112,7 @@
                                minlength="5">
                     </form>
                     <button class="btn btn-lg btn-primary btn-block"
-                            ng-disabled="!user.username || !user.password || !user.email || !user.Fname || !user.Lname || (user.password !=user.Cpassword)"
+                            ng-disabled="!user.username || !user.password || !user.email || !user.firstname || !user.lastname || (user.password !=user.Cpassword)"
                             type="submit" ng-click="ctrl.signUp(user)"
                             style="font-family: 'IM Fell Great Primer SC', serif;">
                         Submit

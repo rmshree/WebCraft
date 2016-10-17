@@ -71,6 +71,7 @@ public class UserController {
         if (user == null){
             User newUser = new User();
             newUser.setUsername(username);
+            newUser.setEmail(userDetails.getEmail());
             //newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
             newUser.setPassword(userDetails.getPassword());
             newUser.setVeriKey(UUID.randomUUID().toString());

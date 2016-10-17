@@ -18,7 +18,7 @@ angular.module('app').controller('RecoverCtrl', function (UserService) {
 
             //if response is undefined, create a new user
             if (response.id) {
-                EmailService.sendPassswordRecoveryEmail({username: user.username}, user).$promise.then(function (response) {
+                UserService.sendPassswordRecoveryEmail({username: user.username}, user).$promise.then(function (response) {
                     ctrl.statusMessage = 'Check your email for a verification link';
                 });
             }
