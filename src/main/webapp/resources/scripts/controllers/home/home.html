@@ -2,7 +2,9 @@
 
 <div class="col-lg-4 userlog pull-right">
     <h3>Users Currently Logged-In</h3></h3>
+
     <hr>
+    <p ng-repeat="user in ctrl.onsiteUsers">{{user.username}}</p>
 
 </div>
 

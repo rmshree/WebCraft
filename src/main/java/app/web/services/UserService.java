@@ -5,6 +5,7 @@
 package app.web.services;
 
 import app.web.domain.User;
+import java.util.List;
 
 public interface UserService{
 
@@ -33,4 +34,6 @@ public interface UserService{
     User getUserByUserKey (String userKey);
 
     User getCurrentUser();
+
+    List<User> getOnsiteUsers();
 }

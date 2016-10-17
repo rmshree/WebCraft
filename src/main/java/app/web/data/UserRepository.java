@@ -26,4 +26,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     @Query("select u from User u where u.userKey = ?1")
     User getUserByUserKey(String userkey);
+
+    @Query("select u from User u where u.isCurrentlyOnsite = true")
+    List<User> getOnsiteUsers();
 }

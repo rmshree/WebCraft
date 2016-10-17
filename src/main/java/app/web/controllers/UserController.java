@@ -10,12 +10,14 @@ import app.web.services.EmailService;
 import app.web.services.FileArchiveService;
 import app.web.services.UserService;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.sun.org.apache.regexp.internal.RE;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/user/")
@@ -74,7 +76,7 @@ public class UserController {
             //newUser.setPassword(DatatypeConverter.printBase64Binary(userDetails.getPassword().getBytes()));
             newUser.setPassword(userDetails.getPassword());
             newUser.setUserKey(UUID.randomUUID().toString());
-            //emailService.sendVerificationEmail(newUser);
+            //emailService.sendVerificationEmail(newUser); /*UNCOMMENT THIS */
             return userService.save(newUser);
         }
         else {
@@ -115,6 +117,16 @@ public class UserController {
      */
     @RequestMapping(value="getCurrentUser", method = RequestMethod.GET)
     public User getCurrentUser() { return userService.getCurrentUser(); }
+
+    @RequestMapping(value="getOnsiteUsers", method = RequestMethod.GET)
+    public List<User> getOnsiteUsers() {
+        List<User> onsiteUsers = userService.getOnsiteUsers();
+        if (onsiteUsers.size() != 0) {
+            return onsiteUsers;
+        } else {
+            return null;
+        }
+    }
 
     @RequestMapping(value = "activate/{userKey}", method = RequestMethod.GET)
     public User activateUserAccount(@PathVariable String userKey) {
