@@ -112,8 +112,8 @@
                                minlength="5">
                     </form>
                     <button class="btn btn-lg btn-primary btn-block"
-                            ng-disabled="!user.username || !user.password || !user.email || !user.firstname || !user.lastname || (user.password !=user.Cpassword)"
-                            type="submit" ng-click="ctrl.signUp(user)"
+                            ng-disabled="ctrl.disabledButton || !user.username || !user.password || !user.email || !user.firstname || !user.lastname || (user.password !=user.Cpassword)"
+                            type="submit" ng-click="ctrl.signUp(user);"
                             style="font-family: 'IM Fell Great Primer SC', serif;">
                         Submit
                     </button>
