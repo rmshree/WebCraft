@@ -71,6 +71,39 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         });
     }
 
+    function onMapRender (mapStrings, divId) {
+
+        //read char by char
+        var charMap = "";
+
+        var mapString = mapStrings.split("\n");
+        var row = mapString[1].split(" ")[1] + 2;
+        var column = mapString[1].split(" ")[0] + 2;
+
+        for (var i = 0; i < row; i++) {
+            for (var j = 0; j < column; j++) {
+                charMap = mapString[i+2][j];
+                var imageMap = document.createElement("img");
+                imageMap.style.display = "inline-block";
+                var divLocation = document.getElementById("divId");
+
+                if (charMap === "G") {
+                    imageMap.src("grass.png");
+                } else if (charMap === "F") {
+                    imageMap.src("forest.png");
+                } else if (charMap === "R") {
+                    imageMap.src("rock.png");
+                } else {
+                    imageMap.src("dirt.png");
+                }
+
+                imageMap.id = charMap + "_" + row.toString + "_" + column.toString;
+                divLocation.appendChild(imageMap);
+                count++;
+            }// second for
+        }// outer for
+    }
+
     // function uploadPrimary(id, map) {
     //     Upload.upload({
     //         method: 'POST',
