@@ -24,10 +24,15 @@
 
 .background
 {
-    height: 750px;
-    background: url('../images/simplelanding.jpg') no-repeat top left;
-    background-size:cover;  !important;
+    background: no-repeat top fixed linear-gradient(230deg, #860038, #87806e,  #eec900, #e17d09);
+    background-size: 800% 800%; !important;
+    -webkit-animation: AnimationName 27s ease infinite;
+    -moz-animation: AnimationName 27s ease infinite;
+    animation: AnimationName 27s ease infinite;
 
+    height: 550px;
+    /*background: url('../images/simplelanding.jpg') no-repeat top left;
+*/
     /*
     height: 750px;
     background: no-repeat top fixed url('../images/simplelanding.jpg') !important;;
@@ -39,6 +44,21 @@
     */
 }
 
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 86%}
+    50%{background-position:100% 15%}
+    100%{background-position:0% 86%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 86%}
+    50%{background-position:100% 15%}
+    100%{background-position:0% 86%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 86%}
+    50%{background-position:100% 15%}
+    100%{background-position:0% 86%}
+}
 
 
 .intro{

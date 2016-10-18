@@ -47,7 +47,7 @@
 <script src="resources/scripts/controllers/signup/signup.js"></script>
 <script src="resources/scripts/controllers/settings/settings.js"></script>
 <script src="resources/scripts/controllers/download/download.js"></script>
-
+<script src="resources/scripts/controllers/download/redirect.js"></script>
 
 
 <%-- Controllers --%>

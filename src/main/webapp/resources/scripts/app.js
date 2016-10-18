@@ -71,6 +71,12 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {}
         })
+        .when('/redirect', {
+            templateUrl: 'resources/scripts/controllers/redirect/redirect.html',
+            controller: 'downloadCtrl',
+            controllerAs: 'ctrl',
+            resolve: {}
+        })
         .when('/forum/:id', {
             templateUrl: 'resources/scripts/controllers/forums/forum.html',
             controller: 'ForumCtrl',
