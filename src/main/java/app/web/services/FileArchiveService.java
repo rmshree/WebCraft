@@ -12,4 +12,6 @@ public interface FileArchiveService {
 
     Object getUrlContent(String url) throws IOException;
 
+    void delete(String key);
+
 }

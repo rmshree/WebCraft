@@ -44,4 +44,13 @@ public class FileArchiveServiceImpl implements FileArchiveService {
         return userURL.getContent();
     }
 
+    @Override
+    public void delete(String key){
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials(ACCESSKEY, SECRETKEY);
+
+        AmazonS3 s3Client = new AmazonS3Client(awsCreds);
+        s3Client.deleteObject(S3_BUCKET_NAME, key);
+    }
+
+
 }

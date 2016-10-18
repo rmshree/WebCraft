@@ -85,11 +85,15 @@ public class UserController {
         User user = userService.getUserByUsername(username);
         if(user != null){
             try{
+                if(user.getS3key() != null){
+                    fileArchiveService.delete(user.getS3key());
+                }
                 ObjectMetadata objectMetadata = new ObjectMetadata();
                 objectMetadata.setContentType("image/jpeg");
                 DateTime now = new DateTime();
                 String key = "avatar/" + user.getUsername() + now.toString();
                 user.setAvatarUrl(fileArchiveService.upload(imageFile, key, objectMetadata));
+                user.setS3key(key);
                 userService.save(user);
                 return user;
             }catch (Exception e){

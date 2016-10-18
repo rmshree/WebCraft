@@ -53,6 +53,9 @@ public class User implements Serializable {
     @JsonProperty
     private String avatarUrl;
 
+    @Column(name = "s3key", unique = true)
+    private String s3key;
+
     public String getId() {
         return id;
     }
@@ -116,4 +119,8 @@ public class User implements Serializable {
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
     }
+
+    public void setS3key(String s3key) {this.s3key = s3key;}
+
+    public String getS3key() {return s3key;}
 }
