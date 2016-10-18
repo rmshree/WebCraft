@@ -22,8 +22,9 @@ public class LoginServiceImpl implements LoginService {
             if (currentUser != null) {
                 String storedPassword = currentUser.getPassword();
                 if (inputPassword.equals(storedPassword)) {
+                        currentUser.setCurrentlyOnsite(true);
                         cookieService.setCurrentUser(currentUser);
-                        return currentUser;
+                        return userService.save(currentUser);
                 }
                 else {
                     //password is incorrect
@@ -34,7 +35,7 @@ public class LoginServiceImpl implements LoginService {
                 // username does not exist
                 return null;
             }
-
-
         }
+
+
 }

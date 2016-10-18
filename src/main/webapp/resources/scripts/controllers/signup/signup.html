@@ -1,75 +1,52 @@
-<div class="signupBG" ng-init="ctrl.init()">
-    <div class="container">
+<div ng-init="ctrl.init()">
 
-        <div class="row">
-            <br>
-            <h1 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 72px;" align="center">
-                <b>Welcome to NittaCraft</b>
-            </h1>
-            <h2 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 48px;" align="center">
-                <b>a.out Edition</b>
-            </h2>
-            <br>
-        </div>
+    <div class="col-xs-12">
 
+        <div class="form-group signupContainer col-md-5 col-xs-12">
 
-        <div class="row">
+            <a href ng-click="ctrl.showLogin = true; ctrl.showSignUp = false">Login</a>
+            <a href ng-click="ctrl.showLogin = false; ctrl.showSignUp = true">Signup</a>
 
-            <div class="col-md-4">
-
-                <br><br>
-
-
-                <h1 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 72px;"
-                    align="center">
-                    <b>Why Join?</b>
-                </h1>
-                <div style="font-family: 'Open Sans', serif;color: #2a3829;">
-                    <li>Download the game!</li>
-                    <li>Join the NittaCraft Community</li>
-                    <li>View stats of players!</li>
-                    <li>Play your games on any supported platform</li>
-                    <li>Download new maps to play!</li>
-                    <li>Receive automatic game updates, and more!</li>
+            <!-- Login Form -->
+            <div class="text-center" ng-if="ctrl.showLogin && !ctrl.showSignUp">
+                <h3>Login</h3>
+                <form>
+                    <div class="form-group">
+                        <label class="pull-left">Username: </label>
+                        <input type="text" class="form-control" name="username" placeholder="Username" align="left"
+                               ng-model="user.username">
+                    </div>
+                    <div class="form-group">
+                        <label class="pull-left">Password: </label>
+                        <input type="password" class="form-control" name="password" placeholder="Password"
+                               align="left" ng-model="user.password">
+                    </div>
+                    <button style="margin-right: 10px" type="submit" class="btn btn-lg btn-primary btn-block" ng-click="ctrl.login(user)">Login</button>
+                </form>
+                <div ng-if="ctrl.logInMessage">
+                    <span>{{ctrl.logInMessage}}</span>
                 </div>
-                <br><br>
-
             </div>
 
-
-            <div class=" col-md-8 text-center" align="center">
-
-                <br><br><br>
-                <h2 style="color: #2a3829;font-family: 'IM Fell Great Primer SC', serif; font-size: 36px;"><b>Create
-                    Account</b>
-                </h2>
-
-                <div class="form-group" style="margin: auto; padding: 20px; width: 300px; background-color: #f7eac5">
-
-                    <form class="form-register">
-                        <span class="pull-left"
-                              style="font-family: 'Open Sans', serif;color: #8d1d1c;">Username: </span>
+            <!-- Signup Form -->
+            <div class="text-center" ng-if="!ctrl.showLogin && ctrl.showSignUp">
+                <h3>Signup</h3>
+                <form>
+                    <div class="form-group">
+                        <label class="pull-left">Username: </label>
                         <input type="text" ng-model="user.username" class="form-control" maxlength="15">
-                        <span class="pull-left"
-                              style="font-family: 'Open Sans', serif;color: #8d1d1c;">Password: </span>
-                        <input type="password" ng-model="user.password" class="form-control" maxlength="15">
-                    </form>
-
-                    <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.username || !user.password"
-                            type="submit" ng-click="ctrl.signUp(user)"
-                            style="font-family: 'IM Fell Great Primer SC', serif;">
-                        Submit
-                    </button>
-
-                    <div style="margin: auto; width: 80%; padding: 10px">
-                        <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
-                        <div style="color: red" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
                     </div>
+                    <div class="form-group">
+                        <label class="pull-left">Password: </label>
+                        <input type="password" ng-model="user.password" class="form-control" maxlength="15">
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.username || !user.password" type="submit" ng-click="ctrl.signUp(user)">Submit</button>
+                </form>
+                <div ng-if="ctrl.signUpMessage">
+                    <span>{{ctrl.signUpMessage}}</span>
                 </div>
-
             </div>
 
         </div>
     </div>
-
 </div>

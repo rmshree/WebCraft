@@ -9,7 +9,8 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
             resolve: {
                 currentUser: function (UserService) {
                     return UserService.getCurrentUser().$promise;
-                }
+                },
+
             }
         })
         .when('/signup', {
