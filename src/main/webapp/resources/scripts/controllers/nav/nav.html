@@ -1,6 +1,6 @@
 <div ng-controller="NavCtrl as ctrl" ng-init="ctrl.init()">
-    <nav class="navbar navbar-fixed-top navbar-inverse">
-        <div class="container-fluid" >
+    <nav class="navbar navbar-fixed-top navbar-inverse" style="margin-bottom: 0; background-color: #860038;">
+        <div class="container-fluid" style="font-family: 'IM Fell Great Primer SC', serif;">
 
             <!-- Brand and toggle get grouped for better mobile display -->
             <!-- Section below only visible in mobile view -->
@@ -13,7 +13,7 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}">
-                <ul class="nav navbar-nav">
+                <ul style="font-size: large" class="nav navbar-nav">
 
                     <!--  <li><a href="#/about">About</a></li>  -->
                     <li><a href="#/maps">Maps</a></li>
@@ -32,7 +32,7 @@
                 </ul>
 
                 <!-- Login fields -->
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 3px">
                     <div class="navbar-form navbar-right" ng-if="ctrl.currentUser">
                         <div class="form-group">
                             <button class="btn btn-info" ng-click="ctrl.goToProfile()"> {{ctrl.currentUser.username}}'s

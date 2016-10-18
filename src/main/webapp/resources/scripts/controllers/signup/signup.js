@@ -3,13 +3,15 @@
 angular.module('app').controller('SignupCtrl', function (UserService, LoginService) {
     var ctrl = this;
 
-    ctrl.init = function () {
-        ctrl.showLogin = true;
-        ctrl.showSignUp = false;
+    ctrl.init = function ()
+    {
+        ctrl.welcomeMessage = 'Welcome to NittaCraft';
+        ctrl.welcomeMessage2 = 'a.out Edition';
+        ctrl.showLogin = false;
+        ctrl.showSignup = true;
     };
 
     ctrl.signUp = function (user) {
-
         UserService.getUserByUsername({username: user.username}).$promise.then(function (response) {
             //if response is undefined, create a new user
             if (!response.id) {
@@ -26,16 +28,13 @@ angular.module('app').controller('SignupCtrl', function (UserService, LoginServi
     };
 
     ctrl.login = function (user) {
-
         LoginService.logInUser({username: user.username}, user.password).$promise.then(function (response) {
-
             if (response.id) {
                 ctrl.currentUser = response;
                 window.location.reload();
             }
             else {
                 ctrl.logInMessage = "Could not log in...";
-                console.log(response);
             }
         });
 
