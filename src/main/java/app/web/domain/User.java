@@ -33,6 +33,14 @@ public class User implements Serializable {
     @JsonProperty
     private String username;
 
+    @Column(name = "firstname")
+    @JsonProperty
+    private String firstname;
+
+    @Column(name = "lastname")
+    @JsonProperty
+    private String lastname;
+
     @Column(name = "password", nullable = false)
     @JsonProperty
     private String password;
@@ -44,6 +52,9 @@ public class User implements Serializable {
     @Column(name = "avatar_url", unique = true)
     @JsonProperty
     private String avatarUrl;
+
+    @Column(name = "s3key", unique = true)
+    private String s3key;
 
     @Column(name = "isActive")
     @JsonProperty
@@ -92,6 +103,14 @@ public class User implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getFirstname() {return firstname;}
+
+    public void setFirstname(String firstname) {this.firstname = firstname;}
+
+    public String getLastname(String lastname) {return lastname; }
+
+    public void setLastname(String lastname) {this.lastname = lastname;}
 
     public String getPassword() {
         return password;
@@ -148,4 +167,8 @@ public class User implements Serializable {
     public void setCurrentlyOnsite(Boolean currentlyOnsite) {
         isCurrentlyOnsite = currentlyOnsite;
     }
+
+    public void setS3key(String s3key) {this.s3key = s3key;}
+
+    public String getS3key() {return s3key;}
 }

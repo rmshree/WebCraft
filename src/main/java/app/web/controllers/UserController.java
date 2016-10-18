@@ -70,11 +70,15 @@ public class UserController {
         User user = userService.getUserByUsername(username);
         if(user != null){
             try{
+                if(user.getS3key() != null){
+                    fileArchiveService.delete(user.getS3key());
+                }
                 ObjectMetadata objectMetadata = new ObjectMetadata();
                 objectMetadata.setContentType("image/jpeg");
                 DateTime now = new DateTime();
                 String key = "avatar/" + user.getUsername() + now.toString();
                 user.setAvatarUrl(fileArchiveService.upload(imageFile, key, objectMetadata));
+                user.setS3key(key);
                 userService.save(user);
                 return user;
             }catch (Exception e){
@@ -106,5 +110,56 @@ public class UserController {
             return null;
         }
     }
+
+    @RequestMapping(value="edit/email/{username}", method = RequestMethod.POST)
+    public boolean editEmail(@PathVariable String username, String email){
+        User user = userService.getUserByUsername(username);
+        if(user != null){
+            user.setEmail(email);
+            userService.save(user);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    @RequestMapping(value="edit/password/{username}", method = RequestMethod.POST)
+    public boolean editPassword(@PathVariable String username, String oldPassword, String newPassword){
+        User user = userService.getUserByUsername(username);
+        if(user != null){
+            String currentPassword = user.getPassword();
+            if(currentPassword.equals(oldPassword)){
+                user.setPassword(newPassword);
+                userService.save(user);
+                return true;
+            }
+            else{
+                //user entered incorrect current password
+                return false;
+            }
+        }
+        else{
+            //user does not exist
+            return false;
+        }
+    }
+
+
+    @RequestMapping(value="edit/name/{username}", method = RequestMethod.POST)
+    public boolean editName(@PathVariable String username, String first, String last){
+        User user = userService.getUserByUsername(username);
+        if(user != null){
+            user.setFirstname(first);
+            user.setLastname(last);
+            userService.save(user);
+            return true;
+        }
+        else{
+            //use does not exist
+            return false;
+        }
+    }
+
 
 }
