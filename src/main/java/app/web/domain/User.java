@@ -49,9 +49,9 @@ public class User implements Serializable {
     @JsonProperty
     private Boolean isActive = false;
 
-    @Column(name = "veriKey")
+    @Column(name = "userKey")
     @JsonProperty
-    private String veriKey;
+    private String userKey;
 
     @Column(name = "isCurrentlyOnline") //For users logged in to the game
     @JsonProperty
@@ -125,12 +125,12 @@ public class User implements Serializable {
         isActive = active;
     }
 
-    public String getVeriKey() {
-        return veriKey;
+    public String getUserKey() {
+        return userKey;
     }
 
-    public void setVeriKey(String veriKey) {
-        this.veriKey = veriKey;
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
 
     public Boolean getCurrentlyOnline() {

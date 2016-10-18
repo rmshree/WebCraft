@@ -1,20 +1,22 @@
 'use strict';
 
-angular.module('app').controller('HomeCtrl', function (UserService,$interval) {
+angular.module('app').controller('HomeCtrl', function (UserService, $interval, $location) {
     var ctrl = this;
 
-
-
     ctrl.init = function () {
-        ctrl.welcomeMessage = 'Warcraft II';
-        $interval( function() {
-                UserService.getOnsiteUsers().$promise.then(function (res) {
-                ctrl.onsiteUsers = res;
-            });
-            console.log("Called getOnsiteUsers");
-        }, 10000)
+        getCurrentlyOnline();
+        $interval(getCurrentlyOnline, 10000)
     };
 
+    function getCurrentlyOnline() {
+        UserService.getOnsiteUsers().$promise.then(function (res) {
+            ctrl.onsiteUsers = res;
+        });
+    }
+
+    ctrl.goToUserProfile = function (user) {
+        $location.path('profile/' + user.username);
+    }
 
 });
 

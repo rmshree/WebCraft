@@ -1,11 +1,11 @@
-<div class="homepage" ng-controller="HomeCtrl as ctrl" ng-init="ctrl.init()">
+<div class="homepage" ng-init="ctrl.init()">
+    <div class="col-lg-4 userlog pull-left">
+        <h3>Users Currently Logged-In</h3>
 
-<div class="col-lg-4 userlog pull-left">
-    <h3>Users Currently Logged-In</h3></h3>
+        <hr>
+        <div ng-repeat="user in ctrl.onsiteUsers" style="margin-bottom: 10px">
+            <a href ng-click="ctrl.goToUserProfile(user)"><span style="font-size: large">{{user.username}}</span></a>
+        </div>
 
-    <hr>
-    <p ng-repeat="user in ctrl.onsiteUsers">{{user.username}}</p>
-
-</div>
-
+    </div>
 </div>

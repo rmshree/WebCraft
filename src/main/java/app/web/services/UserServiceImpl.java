@@ -1,13 +1,10 @@
 package app.web.services;
 
-import java.net.URL;
 import app.web.data.UserRepository;
 import app.web.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -41,8 +38,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByVerificationKey(String verikey) {
-        return userRepository.getUserByVerificationKey(verikey);
+    public User getUserByUserKey(String userkey) {
+        return userRepository.getUserByUserKey(userkey);
     }
 
     @Override
