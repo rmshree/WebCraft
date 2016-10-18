@@ -1,9 +1,65 @@
-<br>
-<br>
-<div style="color: gold" ng-controller="downloadCtrl as vm">
-    <p>You are using <b>{{vm.data.browser}}</b> on <b>{{vm.data.os}} ({{vm.data.os_version}})</b>.</p>
-    <p>Your <b>{{vm.data.browser}}</b> version is <b>{{vm.data.browser_version}}</b></p>
-    <p>Device - <b></b>{{vm.data.device}}</p>
+<div class="container">
+    <div style="color: gold" ng-controller="downloadCtrl as vm">
+        <br>
+        <br>
 
+        <!--<p>You are using <b>{{vm.data.browser}}</b> on <b>{{vm.data.os}} ({{vm.data.os_version}})</b>.</p>-->
+        <!--<p>Your <b>{{vm.data.browser}}</b> version is <b>{{vm.data.browser_version}}</b></p>-->
+        <!--<p>Device - <b></b>{{vm.data.device}}</p>-->
 
+        <div ng-if="vm.data.os === 'mac'">
+            <h1>
+                OS X PLATFORM
+            </h1>
+            <h3>
+                <a href="redirect.html"> Download!  </a>
+            </h3>
+
+        </div>
+
+        <div ng-if="vm.data.os === 'windows'">
+            <h1>
+                WINDOWS PLATFORM
+            </h1>
+            <h3>
+                <a href="redirect.html"> Download!  </a>
+            </h3>
+        </div>
+
+        <div ng-if="vm.data.os === 'linux'">
+            <h1>
+                LINUX PLATFORM
+            </h1>
+            <h3>
+                <a href="redirect.html"> Download!  </a>
+            </h3>
+        </div>
+
+        <div ng-if="vm.data.os === 'ios'">
+            <h1>
+                IOS PLATFORM
+            </h1>
+            <h3>
+                <a href="redirect.html"> Download!  </a>
+            </h3>
+        </div>
+
+        <div ng-if="vm.data.os === 'android'">
+            <h1>
+                ANDROID PLATFORM
+            </h1>
+            <h3>
+                <a href="redirect.html"> Download!  </a>
+            </h3>
+        </div>
+
+        <div ng-if="vm.data.os !== 'mac' || vm.data.os !== 'windows' || vm.data.os !== 'linux' || vm.data.os !== 'ios' vm.data.os !== 'android' ">
+            <h1>
+                PLATFORM NOT SUPPORTED!
+            </h1>
+            <h3>
+                SUPPORT COMING NEVER!
+            </h3>
+        </div>
+    </div>
 </div>
