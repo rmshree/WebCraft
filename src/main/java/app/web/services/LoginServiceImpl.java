@@ -9,43 +9,42 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class LoginServiceImpl implements LoginService {
 
-        @Autowired
-        private UserService userService;
+    @Autowired
+    private UserService userService;
 
-        @Autowired
-        private CookieService cookieService;
+    @Autowired
+    private CookieService cookieService;
 
-        @Override
-        public User logInUser(String username, String inputPassword, Boolean isWeb){
-            User currentUser = userService.getUserByUsername(username);
+    @Override
+    public User logInUser(String username, String inputPassword, Boolean isWeb) {
+        User currentUser = userService.getUserByUsername(username);
 
-            if (currentUser != null) {
-                String storedPassword = currentUser.getPassword();
-                if (inputPassword.equals(storedPassword)) {
-
-                        //Web or Platform?
-                        if (isWeb) {
-                            currentUser.setCurrentlyOnsite(true);
-                            cookieService.setCurrentUser(currentUser);
-                            return userService.save(currentUser);
-                        }
-
-                        else { // is platform
-                            currentUser.setCurrentlyOnline(true);
-                            return userService.save(currentUser);
-                        }
-
-                }
-                else {
-                    //password is incorrect
+        if (currentUser != null) {
+            String storedPassword = currentUser.getPassword();
+            if (inputPassword.equals(storedPassword)) {
+                if (currentUser.getIsActive()) {
+                    //Web or Platform?
+                    if (isWeb) {
+                        currentUser.setCurrentlyOnsite(true);
+                        cookieService.setCurrentUser(currentUser);
+                        return userService.save(currentUser);
+                    } else { // is platform
+                        currentUser.setCurrentlyOnline(true);
+                        return userService.save(currentUser);
+                    }
+                } else {
+                    // user isn't active yet
                     return null;
                 }
-            }
-            else {
-                // username does not exist
+            } else {
+                //password is incorrect
                 return null;
             }
+        } else {
+            // username does not exist
+            return null;
         }
+    }
 
 
 }

@@ -45,6 +45,7 @@ public class LoginController {
             newUser.setEmail(userDetails.getEmail());
             newUser.setIsActive(false);
             emailService.sendVerificationEmail(newUser);
+            cookieService.setCurrentUser(null);
             return userService.save(newUser);
         } else {
             return null;
@@ -81,7 +82,7 @@ public class LoginController {
      * /api/login/logout
      * \brief Logout for a user given a username. Only used for WebSite
      * \param username is the associated username.
-     * \return void.
+     * \return user object.
      */
     @RequestMapping(value = "logout/web", method = RequestMethod.PUT)
     public User userLogoutWeb(@RequestBody String username) {
@@ -100,7 +101,7 @@ public class LoginController {
      * /api/login/logout
      * \brief Logout for a user given a username. Only used for Platforms, and Multiplayer
      * \param username is the associated username.
-     * \return void.
+     * \return user object.
      */
     @RequestMapping(value = "logout/platform", method = RequestMethod.PUT)
     public User userLogoutPlatform(@RequestBody String username) {
@@ -137,8 +138,8 @@ public class LoginController {
      * \param email is the associated email.
      * \return a Boolean.
      */
-    @RequestMapping(value = "passwordRecovery/{email}", method = RequestMethod.GET)
-    public Boolean passwordRecovery(@PathVariable String email) {
+    @RequestMapping(value = "passwordRecovery", method = RequestMethod.PUT)
+    public Boolean passwordRecovery(@RequestBody String email) {
         User user = userService.getUserByEmail(email);
         if (user != null && user.getIsActive()) {
             return emailService.sendPasswordRecoveryEmail(user);
