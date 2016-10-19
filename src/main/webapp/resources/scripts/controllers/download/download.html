@@ -7,47 +7,43 @@
         <!--<p>Your <b>{{vm.data.browser}}</b> version is <b>{{vm.data.browser_version}}</b></p>-->
         <!--<p>Device - <b></b>{{vm.data.device}}</p>-->
 
-        <div ng-if="vm.data.os === 'mac'">
-            <meta http-equiv="refresh" content="0; URL='http://itunes.apple.com'" />
-            <!--<h1>-->
-                <!--OS X PLATFORM-->
-            <!--</h1>-->
 
+        <div ng-if="vm.data.os === 'mac'">
+            <meta http-equiv="refresh" content="0; URL='#/redirect'" />
             <h3>
                If you were not redirected in 5 seconds, please click <a href="http://itunes.apple.com"> here </a> to download for OS X platform!
             </h3>
 
         </div>
 
+
+
         <div ng-if="vm.data.os === 'windows'">
-            <meta http-equiv="refresh" content="0; URL='http://microsoft.com/store/apps/windows'" />
-            <!--<h1>-->
-                <!--WINDOWS PLATFORM-->
-            <!--</h1>-->
+            <meta http-equiv="refresh" content="0; URL='#/redirect'" />
             <h3>
+
                 If you were not redirected in 5 seconds, please click <a href="http://microsoft.com/store/apps/windows"> here </a> to download for Windows platform!
             </h3>
         </div>
 
+
+
         <div ng-if="vm.data.os === 'linux'">
-            <!--<h1>-->
-                <!--LINUX PLATFORM-->
-            <!--</h1>-->
-            <h3>
-               Since there is no store for Linux, please click <a href="#/redirect"> here </a> to download this game for Linux!
-            </h3>
+            <meta http-equiv="refresh" content="0; URL='#/redirect'" />
+            If you were not redirected in 5 seconds, please click <a href="#/redirect"> here </a>!
         </div>
 
+
+        <body>
         <div ng-if="vm.data.os === 'ios'">
             <meta http-equiv="refresh" content="0; URL='http://itunes.apple.com'" />
-            <!--<h1>-->
-                <!--iOS PLATFORM-->
-            <!--</h1>-->
             <h3>
                 If you were not redirected in 5 seconds, please click <a href="http://itunes.apple.com"> here </a> to download for iOS platform!
             </h3>
         </div>
+        </body>
 
+        <body>
         <div ng-if="vm.data.os === 'android'">
             <meta http-equiv="refresh" content="0; URL='http://play.google.com/store'" />
             <!--<h1>-->
@@ -57,6 +53,7 @@
                 If you were not redirected in 5 seconds, please click <a href="http://play.google.com/store"> here </a> to download for Android platform!
             </h3>
         </div>
+        </body>
 
         <div ng-if="vm.data.os !== 'mac' || vm.data.os !== 'windows' || vm.data.os !== 'linux' || vm.data.os !== 'ios' vm.data.os !== 'android' ">
             <h1>
