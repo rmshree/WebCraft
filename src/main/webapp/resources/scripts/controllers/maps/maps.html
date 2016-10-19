@@ -29,20 +29,6 @@
                 <input type="file" ngf-select ng-model="ctrl.newMap.file">
             </div>
         </div>
-        <!--<div class="col-xs-12 col-md-3">-->
-            <!--<div class="form-group col-md-9">-->
-                <!--<label for="text">Primary Image</label>-->
-                <!--<input type="file" ngf-select ng-model="ctrl.newMap.primaryImageFile" ng-change="ctrl.makePrimaryUrl(ctrl.newMap)">-->
-            <!--</div>-->
-            <!--<img style="margin-left: 15px" ng-if="ctrl.newMap.primaryImageUrl" ng-src="{{ctrl.newMap.primaryImageUrl}}" height="100px" width="100px">-->
-        <!--</div>-->
-        <!--<div class="col-xs-12 col-md-3">-->
-            <!--<div class="form-group col-md-9">-->
-                <!--<label for="text">Secondary Image</label>-->
-                <!--<input type="file" ngf-select ng-model="ctrl.newMap.secondaryImageFile" ng-change="ctrl.makeSecondaryUrl(ctrl.newMap)">-->
-            <!--</div>-->
-            <!--<img style="margin-left: 15px" ng-if="ctrl.newMap.secondaryImageUrl" ng-src="{{ctrl.newMap.secondaryImageUrl}}" height="100px" width="100px">-->
-        <!--</div>-->
 
         <div class="col-md-3">
             <div class="pull-left">
@@ -54,7 +40,7 @@
     </div>
 
     <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="map in ctrl.maps track by map.id">
-        <div class="thumbnail clickable" ng-click="ctrl.goToMap(map)">
+        <div class="thumbnail">
             <img ng-if="map.primaryImageUrl" ng-src="{{map.primaryImageUrl}}" alt="" height="300px">
             <img ng-if="!map.primaryImageUrl" src="resources/images/noImage.jpg" alt="" height="300px">
             <div class="caption">
@@ -63,7 +49,7 @@
             </div>
         </div>
         <p>
-            <button class="btn btn-default" ng-click="ctrl.download(map)"> Download <i class="fa fa-download"></i></button>
+            <a download href="{{map.downloadUrl}}" class="btn btn-default" ng-click="ctrl.download(map)"> Download </a>
             <span class="pull-right"><small style="display: inline-block">Count: </small> {{map.count}}</span>
         </p>
     </div>

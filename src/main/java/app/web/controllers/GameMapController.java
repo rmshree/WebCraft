@@ -4,7 +4,6 @@ import app.web.domain.GameMap;
 import app.web.services.FileArchiveService;
 import app.web.services.GameMapService;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,8 +29,7 @@ public class GameMapController {
     public GameMap uploadFile(@PathVariable String id, MultipartFile file){
         GameMap gameMap = gameMapService.findById(id);
         try{
-            DateTime now = new DateTime();
-            String key = "maps/" + gameMap.getId() + now.toString();
+            String key = "maps/" + gameMap.getTitle();
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentType("text/plain");
             gameMap.setDownloadUrl(fileArchiveService.upload(file, key, objectMetadata));
