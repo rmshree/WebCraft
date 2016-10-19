@@ -40,6 +40,9 @@ public class LoginController {
             User newUser = new User();
             newUser.setUsername(userDetails.getUsername());
             newUser.setPassword(userDetails.getPassword());
+            newUser.setFirstName(userDetails.getFirstName());
+            newUser.setLastName(userDetails.getLastName());
+            newUser.setIsActive(false);
             //emailService.sendVerificationEmail(newUser);
             return userService.save(newUser);
         } else {
