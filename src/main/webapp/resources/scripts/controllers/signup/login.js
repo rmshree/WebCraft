@@ -35,7 +35,7 @@ angular.module('app').controller('LoginCtrl', function (UserService) {
 
         LoginService.logInUser({username: user.username}, user.password).$promise.then(function(response) {
 
-            if (response.id) {
+            if (response.id && user.isActive) {
                 ctrl.statusFlag = true;
                 ctrl.statusMessage = "You're logged in!";
                 ctrl.currentUser = response;
