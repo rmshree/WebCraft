@@ -36,7 +36,6 @@
 
 <%-- Controllers --%>
 <script src="resources/scripts/controllers/nav/nav.js"></script>
-<script src="resources/scripts/controllers/landing/landing.js"></script>
 <script src="resources/scripts/controllers/home/home.js"></script>
 <script src="resources/scripts/controllers/about/about.js"></script>
 <script src="resources/scripts/controllers/maps/maps.js"></script>

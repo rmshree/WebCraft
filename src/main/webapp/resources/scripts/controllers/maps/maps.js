@@ -1,12 +1,27 @@
 'use strict';
 
-angular.module('app').controller('MapsCtrl', function (currentUser, MapService, Upload, $sce) {
+angular.module('app').controller('MapsCtrl', function (currentUser, MapService, Upload, $sce, $scope) {
     var ctrl = this;
     ctrl.currentUser = currentUser;
-    ctrl.init = function () {
-        console.log(currentUser);
+    ctrl.newMap = {};
 
-        ctrl.newMap = {};
+    $scope.$watchCollection('ctrl.newMap.file', function(file){
+        console.log(file);
+        if(file !== undefined){
+            var reader = new FileReader();
+            reader.onload = function(){
+                var dataURL = reader.result;
+                console.log(dataURL);
+                onMapRender(dataURL, 'imgDiv');
+            };
+            var blob = file.slice(0, file.size);
+
+            reader.readAsBinaryString(blob);
+        }
+
+    });
+
+    ctrl.init = function () {
         MapService.getAll().$promise.then(function (response) {
             ctrl.maps = response;
         })
@@ -19,23 +34,6 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
             ctrl.maps[index] = response;
         });
     };
-
-    ctrl.goToMap = function (map) {
-        console.log(map);
-    };
-
-    // Util methods
-    // ctrl.makePrimaryUrl = function (map) {
-    //     if(map.primaryImageFile){
-    //         map.primaryImageUrl = $sce.trustAsResourceUrl(window.URL.createObjectURL(map.primaryImageFile));
-    //     }
-    // };
-    //
-    // ctrl.makeSecondaryUrl = function (map) {
-    //     if(map.secondaryImageFile){
-    //         map.secondaryImageUrl = $sce.trustAsResourceUrl(window.URL.createObjectURL(map.secondaryImageFile));
-    //     }
-    // };
 
     ctrl.isValid = function () {
         return ctrl.newMap.title && ctrl.newMap.description && ctrl.newMap.file;
@@ -54,6 +52,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
                  uploadFile(response, map);
             }
         });
+
     };
 
     function uploadFile(res, map) {
@@ -63,36 +62,46 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
             data: {
                 file: map.file
             }
-        }).success(function() {
-            console.log('File upload success');
+        }).success(function(response) {
+            console.log('File upload success', response);
             ctrl.showMapForm = false;
             ctrl.newMap = {};
-            ctrl.maps.push(res);
+            ctrl.maps.push(response);
         });
     }
 
-    // function uploadPrimary(id, map) {
-    //     Upload.upload({
-    //         method: 'POST',
-    //         url: 'api/map/' + id + '/upload/primary',
-    //         data: {
-    //             file: map.primaryImageFile
-    //         }
-    //     }).success(function() {
-    //         console.log('Primary upload success');
-    //     });
-    // }
-    //
-    // function uploadSecondary(id, map) {
-    //     Upload.upload({
-    //         method: 'POST',
-    //         url: 'api/map/' + id + '/upload/secondary',
-    //         data: {
-    //             file: map.secondaryImageFile
-    //         }
-    //     }).success(function() {
-    //         console.log('Secondary upload success');
-    //     });
-    // }
+    function onMapRender (mapStrings, divId) {
+
+        //read char by char
+        var charMap = "";
+
+        var mapString = mapStrings.split("\n");
+        var row = mapString[1].split(" ")[1];
+        var column = mapString[1].split(" ")[0];
+        column = parseInt(column) + 2;
+        row = parseInt(row) + 2;
+
+        for (var i = 0; i < row; i++) {
+            for (var j = 0; j < column; j++) {
+                charMap = mapString[i+2][j];
+                var imageMap = document.createElement('img');
+                imageMap.style.display = "inline-block";
+                var divLocation = document.getElementById(divId);
+
+                if (charMap === "G") {
+                    imageMap.src = 'resources/images/tiles/grass.png';
+                } else if (charMap === "F") {
+                    imageMap.src = 'resources/images/tiles/forest.png';
+                } else if (charMap === "R") {
+                    imageMap.src = 'resources/images/tiles/rock.png';
+                } else {
+                    imageMap.src = 'resources/images/tiles/dirt.png';
+                }
+
+                imageMap.id = charMap + "_" + row.toString + "_" + column.toString;
+                divLocation.appendChild(imageMap);
+            }
+        }
+    }
 
 });

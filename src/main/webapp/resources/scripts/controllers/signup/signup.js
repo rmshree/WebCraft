@@ -1,32 +1,42 @@
 'use strict';
 
-angular.module('app').controller('SignupCtrl', function (UserService) {
+angular.module('app').controller('SignupCtrl', function (UserService, LoginService) {
     var ctrl = this;
 
-    ctrl.init = function ()
-    {
+    ctrl.init = function () {
         ctrl.welcomeMessage = 'Welcome to NittaCraft';
         ctrl.welcomeMessage2 = 'a.out Edition';
+        ctrl.showLogin = false;
+        ctrl.showSignup = true;
     };
 
     ctrl.signUp = function (user) {
-        ctrl.StatusMessage = '';
-        ctrl.statusFlag = true;
-        // EmailService.sendEmail().$promise.then(function (response) {
-        //     console.log(response);
-        // });
         UserService.getUserByUsername({username: user.username}).$promise.then(function (response) {
             //if response is undefined, create a new user
             if (!response.id) {
-                UserService.createNewUser({username: user.username}, user).$promise.then(function (response) {
-                    ctrl.statusMessage = 'Sign-up successful!';
+                LoginService.signUp(user).$promise.then(function (response) {
+                    if(response.id){
+                        ctrl.signUpMessage = 'Please check your e-mail to verify your account';
+                    }
                 });
             }
             else {
-                ctrl.statusFlag = false;
-                ctrl.statusMessage = 'Username ' + user.username + ' exists already';
+                ctrl.signUpMessage = 'Username ' + user.username + ' exists already';
             }
         });
+    };
+
+    ctrl.login = function (user) {
+        LoginService.logInUser({username: user.username}, user.password).$promise.then(function (response) {
+            if (response.id) {
+                ctrl.currentUser = response;
+                window.location.reload();
+            }
+            else {
+                ctrl.logInMessage = "Could not log in...";
+            }
+        });
+
     };
 });
 

@@ -16,14 +16,25 @@ public class LoginServiceImpl implements LoginService {
         private CookieService cookieService;
 
         @Override
-        public User logInUser(String username, String inputPassword){
+        public User logInUser(String username, String inputPassword, Boolean isWeb){
             User currentUser = userService.getUserByUsername(username);
 
             if (currentUser != null) {
                 String storedPassword = currentUser.getPassword();
                 if (inputPassword.equals(storedPassword)) {
-                        cookieService.setCurrentUser(currentUser);
-                        return currentUser;
+
+                        //Web or Platform?
+                        if (isWeb) {
+                            currentUser.setCurrentlyOnsite(true);
+                            cookieService.setCurrentUser(currentUser);
+                            return userService.save(currentUser);
+                        }
+
+                        else { // is platform
+                            currentUser.setCurrentlyOnline(true);
+                            return userService.save(currentUser);
+                        }
+
                 }
                 else {
                     //password is incorrect
@@ -34,7 +45,7 @@ public class LoginServiceImpl implements LoginService {
                 // username does not exist
                 return null;
             }
-
-
         }
+
+
 }

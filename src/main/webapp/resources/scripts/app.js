@@ -38,7 +38,6 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
-
         .when('/maps', {
             templateUrl: 'resources/scripts/controllers/maps/maps.html',
             controller: 'MapsCtrl',
@@ -89,9 +88,6 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {}
         })
-
-
-
         .when('/profile/:username', {
             templateUrl: 'resources/scripts/controllers/profile/profile.html',
             controller: 'ProfileCtrl',
