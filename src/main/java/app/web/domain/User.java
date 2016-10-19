@@ -47,7 +47,7 @@ public class User implements Serializable {
 
     @Column(name = "isActive")
     @JsonProperty
-    private boolean isActive = false;
+    private Boolean isActive = false;
 
     @Column(name = "veriKey")
     @JsonProperty
