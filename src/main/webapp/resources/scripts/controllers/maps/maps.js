@@ -1,12 +1,27 @@
 'use strict';
 
-angular.module('app').controller('MapsCtrl', function (currentUser, MapService, Upload, $sce) {
+angular.module('app').controller('MapsCtrl', function (currentUser, MapService, Upload, $sce, $scope) {
     var ctrl = this;
     ctrl.currentUser = currentUser;
-    ctrl.init = function () {
-        console.log(currentUser);
+    ctrl.newMap = {};
 
-        ctrl.newMap = {};
+    $scope.$watchCollection('ctrl.newMap.file', function(file){
+        console.log(file);
+        if(file !== undefined){
+            var reader = new FileReader();
+            reader.onload = function(){
+                var dataURL = reader.result;
+                console.log(dataURL);
+                onMapRender(dataURL, 'imgDiv');
+            };
+            var blob = file.slice(0, file.size);
+
+            reader.readAsBinaryString(blob);
+        }
+
+    });
+
+    ctrl.init = function () {
         MapService.getAll().$promise.then(function (response) {
             ctrl.maps = response;
         })
@@ -38,7 +53,6 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
             }
         });
 
-        // onMapRender()
     };
 
     function uploadFile(res, map) {
@@ -62,29 +76,28 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         var charMap = "";
 
         var mapString = mapStrings.split("\n");
-        var row = mapString[1].split(" ")[1] + 2;
-        var column = mapString[1].split(" ")[0] + 2;
+        var row = mapString[1].split(" ")[1].charCodeAt(0) + 2;
+        var column = mapString[1].split(" ")[0].charCodeAt(0) + 2;
 
         for (var i = 0; i < row; i++) {
             for (var j = 0; j < column; j++) {
                 charMap = mapString[i+2][j];
-                var imageMap = document.createElement("img");
+                var imageMap = document.createElement('img');
                 imageMap.style.display = "inline-block";
-                var divLocation = document.getElementById("divId");
+                var divLocation = document.getElementById(divId);
 
                 if (charMap === "G") {
-                    imageMap.src("grass.png");
+                    imageMap.src = 'resources/images/tiles/grass.png';
                 } else if (charMap === "F") {
-                    imageMap.src("forest.png");
+                    imageMap.src = 'resources/images/tiles/forest.png';
                 } else if (charMap === "R") {
-                    imageMap.src("rock.png");
+                    imageMap.src = 'resources/images/tiles/rock.png';
                 } else {
-                    imageMap.src("dirt.png");
+                    imageMap.src = 'resources/images/tiles/dirt.png';
                 }
 
                 imageMap.id = charMap + "_" + row.toString + "_" + column.toString;
                 divLocation.appendChild(imageMap);
-                count++;
             }// second for
         }// outer for
     }
