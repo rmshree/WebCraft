@@ -111,6 +111,20 @@ public class UserController {
         }
     }
 
+    /** /api/user/getOnlineUsers
+     *  \brief looks up users in the database who are currently logged in thru a platform
+     *  \return a list of Users
+     */
+    @RequestMapping(value="getOnlineUsers", method = RequestMethod.GET)
+    public List<User> getOnlineUsers() {
+        List<User> onlineUsers = userService.getOnlineUsers();
+        if (onlineUsers.size() != 0) {
+            return onlineUsers;
+        } else {
+            return null;
+        }
+    }
+
     @RequestMapping(value="edit/email/{username}", method = RequestMethod.POST)
     public boolean editEmail(@PathVariable String username, String email){
         User user = userService.getUserByUsername(username);

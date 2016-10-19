@@ -29,4 +29,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     @Query("select u from User u where u.isCurrentlyOnsite = true")
     List<User> getOnsiteUsers();
+
+    @Query("select u from User u where u.isCurrentlyOnline = true")
+    List<User> getOnlineUsers();
 }
