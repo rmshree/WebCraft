@@ -26,11 +26,11 @@ public class EmailServiceImpl implements EmailService {
     private static final String PASSWORD = "Nitta160";
     private static final String EMAIL = "ecs160web@gmail.com";
     private static final String VERIFICATIONSUBJECT = "NittaCraft Email Verification";
-    private static final String PASSWORDSUBJECT = "NittaCraft Email Verification";
+    private static final String PASSWORDSUBJECT = "NittaCraft Password Recovery";
     private static final String VERIFICATIONTEMPLATE = "verificationEmail.vm";
     private static final String PASSWORDTEMPLATE = "passwordRecoveryEmail.vm";
-    private static final String LOCALADDRESS = "http://localhost:8080/webcraft/api/user/activate/";
-    private static final String PRODADDRESS = "http://52.35.50.19:8080/webcraft/api/user/activate/";
+    private static final String LOCALADDRESS = "http://localhost:8080/webcraft/api/login/activate/";
+    private static final String PRODADDRESS = "http://52.35.50.19:8080/webcraft/api/login/activate/";
 
     @Autowired
     private Environment env;

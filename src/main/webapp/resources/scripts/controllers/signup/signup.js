@@ -3,8 +3,7 @@
 angular.module('app').controller('SignupCtrl', function (UserService, LoginService) {
     var ctrl = this;
 
-    ctrl.init = function ()
-    {
+    ctrl.init = function () {
         ctrl.welcomeMessage = 'Welcome to NittaCraft';
         ctrl.welcomeMessage2 = 'a.out Edition';
         ctrl.showLogin = false;

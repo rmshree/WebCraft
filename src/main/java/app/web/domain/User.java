@@ -62,7 +62,7 @@ public class User implements Serializable {
 
     @Column(name = "userKey")
     @JsonProperty
-    private String userKey;
+    private String userKey = UUID.randomUUID().toString();
 
     @Column(name = "isCurrentlyOnline") //For users logged in to the game
     @JsonProperty

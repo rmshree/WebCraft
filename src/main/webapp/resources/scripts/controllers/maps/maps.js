@@ -43,17 +43,19 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
 
     ctrl.uploadMap = function (map) {
         // TODO: need to make sure the title isn't talked already
-        var gameMap = {
-            title: map.title,
-            description: map.description
-        };
+        // var gameMap = {
+        //     title: map.title,
+        //     description: map.description
+        // };
+        //
+        // MapService.save(gameMap).$promise.then(function (response) {
+        //     console.log(response);
+        //     if(response.id){
+        //          uploadFile(response, map);
+        //     }
+        // });
 
-        MapService.save(gameMap).$promise.then(function (response) {
-            console.log(response);
-            if(response.id){
-                 uploadFile(response, map);
-            }
-        });
+        // onMapRender()
     };
 
     function uploadFile(res, map) {

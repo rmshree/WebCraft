@@ -8,8 +8,6 @@ import app.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 
 @RestController
 @RequestMapping(value = "/api/login/")
@@ -42,7 +40,6 @@ public class LoginController {
             User newUser = new User();
             newUser.setUsername(userDetails.getUsername());
             newUser.setPassword(userDetails.getPassword());
-            newUser.setUserKey(UUID.randomUUID().toString());
             //emailService.sendVerificationEmail(newUser);
             return userService.save(newUser);
         } else {

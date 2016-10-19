@@ -7,6 +7,3 @@ angular.module('app').factory('LoginService', function ($resource) {
         signUp: {method: 'POST', url: 'api/login/signUp'}
     });
 });
-
-
-
