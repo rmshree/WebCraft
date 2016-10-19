@@ -45,4 +45,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getOnsiteUsers() {return userRepository.getOnsiteUsers();}
 
+    @Override
+    public List<User> getOnlineUsers() {return userRepository.getOnlineUsers();}
+
 }
