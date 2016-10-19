@@ -76,8 +76,10 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         var charMap = "";
 
         var mapString = mapStrings.split("\n");
-        var row = mapString[1].split(" ")[1].charCodeAt(0) + 2;
-        var column = mapString[1].split(" ")[0].charCodeAt(0) + 2;
+        var row = mapString[1].split(" ")[1];
+        var column = mapString[1].split(" ")[0];
+        column = parseInt(column) + 2;
+        row = parseInt(row) + 2;
 
         for (var i = 0; i < row; i++) {
             for (var j = 0; j < column; j++) {
@@ -98,8 +100,8 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
 
                 imageMap.id = charMap + "_" + row.toString + "_" + column.toString;
                 divLocation.appendChild(imageMap);
-            }// second for
-        }// outer for
+            }
+        }
     }
 
 });
