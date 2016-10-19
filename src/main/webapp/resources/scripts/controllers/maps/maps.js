@@ -98,7 +98,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         column = parseInt(column) + 2;
         row = parseInt(row) + 2;
         ctrl.newMap.title = mapString[0];
-        var dynamicDivWidth = column * 32;
+        var dynamicDivWidth = column * 15;
 
         for (var i = 0; i < row; i++) {
             for (var j = 0; j < column; j++) {
