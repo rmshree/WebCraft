@@ -80,6 +80,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         var column = mapString[1].split(" ")[0];
         column = parseInt(column) + 2;
         row = parseInt(row) + 2;
+        var dynamicDivWidth = column * 32;
 
         for (var i = 0; i < row; i++) {
             for (var j = 0; j < column; j++) {
@@ -87,9 +88,11 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
                 var imageMap = document.createElement('img');
                 imageMap.style.display = "inline-block";
                 var divLocation = document.getElementById(divId);
+                divLocation.style.width = dynamicDivWidth;
 
                 if (charMap === "G") {
                     imageMap.src = 'resources/images/tiles/grass.png';
+                    //potentially add imageMap.style.width="35%"???
                 } else if (charMap === "F") {
                     imageMap.src = 'resources/images/tiles/forest.png';
                 } else if (charMap === "R") {
