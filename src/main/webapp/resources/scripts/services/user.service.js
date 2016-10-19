@@ -6,5 +6,6 @@ angular.module('app').factory('UserService', function ($resource) {
         getCurrentUser: {method: 'GET', url: 'api/user/getCurrentUser'},
         getOnsiteUsers: {method: 'GET', isArray:true, url: 'api/user/getOnsiteUsers'}
 
+
     });
 });

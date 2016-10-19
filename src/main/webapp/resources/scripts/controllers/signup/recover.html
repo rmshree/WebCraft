@@ -1,0 +1,54 @@
+<div class="signupBG" ng-init="ctrl.init()">
+    <div class="container">
+
+        <div class="row">
+            <br>
+            <h1 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 72px;" align="center">
+                <b>Welcome to NittaCraft</b>
+            </h1>
+            <h2 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 48px;" align="center">
+                <b>a.out Edition</b>
+            </h2>
+            <br>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-12 text-center" align="center">
+
+                <br><br>
+                <h2 style="color: #2a3829;font-family: 'IM Fell Great Primer SC', serif; font-size: 48px;"><b>Forgot
+                    your password?</b>
+                </h2>
+
+                <div class="form-group" style="margin: auto; padding: 20px; width: 300px; background-color: #f7eac5">
+
+                    <form class="form-register">
+
+                        <span class="pull-left"
+                              style="font-family: 'Open Sans', serif;color: #8d1d1c;">Enter your email address:</span>
+                        <input type="text" ng-model="user.email" class="form-control" maxlength="64">
+
+                    </form>
+
+                    <button class="btn btn-lg btn-primary btn-block"
+                            type="submit" ng-click="ctrl.Email(user)"
+                            style="font-family: 'IM Fell Great Primer SC', serif;">
+                        Submit
+                    </button>
+
+
+                    <div style="margin: auto; width: 80%; padding: 10px">
+                        <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+                        <div style="color: red" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+                    </div>  <!-- Adjust messages above for when email is not in database**** -->
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

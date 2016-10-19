@@ -42,6 +42,11 @@
 <script src="resources/scripts/controllers/signup/signup.js"></script>
 <script src="resources/scripts/controllers/settings/settings.js"></script>
 <script src="resources/scripts/controllers/download/download.js"></script>
+<script src="resources/scripts/controllers/signup/login.js"></script>
+<script src="resources/scripts/controllers/signup/recover.js"></script>
+
+
+
 <%-- Controllers --%>
 
 <%-- Google Fonts--%>
