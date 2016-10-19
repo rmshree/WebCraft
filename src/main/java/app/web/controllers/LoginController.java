@@ -43,7 +43,7 @@ public class LoginController {
             newUser.setFirstName(userDetails.getFirstName());
             newUser.setLastName(userDetails.getLastName());
             newUser.setIsActive(false);
-            //emailService.sendVerificationEmail(newUser);
+            emailService.sendVerificationEmail(newUser);
             return userService.save(newUser);
         } else {
             return null;
@@ -72,8 +72,8 @@ public class LoginController {
         User user = userService.getUserByUserKey(userKey);
         if (user != null && !user.getIsActive()) {
             user.setIsActive(true);
-            userService.save(user);
-            return user;
+            cookieService.setCurrentUser(user);
+            return userService.save(user);
         } else {
             return null;
         }
