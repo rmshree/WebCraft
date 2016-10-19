@@ -5,7 +5,7 @@ angular.module('app').factory('UserService', function ($resource) {
         getUserByUsername: {method: 'GET', url: 'api/user/get/:username'},
         getCurrentUser: {method: 'GET', url: 'api/user/getCurrentUser'},
         getOnsiteUsers: {method: 'GET', isArray:true, url: 'api/user/getOnsiteUsers'},
-        create: {method: 'PUT', url: 'api/user/create/:username'}
+        getOnlineUsers: {method: 'GET', isArray:true, url: 'api/user/getOnlineUsers'}
 
     });
 });

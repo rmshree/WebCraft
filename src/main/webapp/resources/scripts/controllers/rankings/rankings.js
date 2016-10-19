@@ -5,14 +5,23 @@ angular.module('app').controller('RankingsCtrl', function ($interval, UserServic
 
     ctrl.init = function () {
         getCurrentlyOnline();
-        $interval(getCurrentlyOnline, 10000)
+        $interval(getCurrentlyOnline, 5000);
+        $interval(getCurrentlyOnsite, 5000);
     };
 
     function getCurrentlyOnline() {
-        UserService.getOnsiteUsers().$promise.then(function (res) {
+        UserService.getOnlineUsers().$promise.then(function (res) {
             ctrl.onlineUsers = res;
         });
     }
+
+    function getCurrentlyOnsite() {
+        UserService.getOnsiteUsers().$promise.then(function (res) {
+            ctrl.onsiteUsers = res;
+        });
+    }
+
+
 
     ctrl.goToUserProfile = function (user) {
         $location.path('profile/' + user.username);
