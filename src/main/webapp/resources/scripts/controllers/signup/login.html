@@ -58,7 +58,7 @@
                     </form>
 
                     <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.username || !user.password "
-                            type="submit" ng-click="ctrl.signUp(user)"
+                            type="submit" ng-click="ctrl.login(user)"
                             style="font-family: 'IM Fell Great Primer SC', serif;">
                         Log In
                     </button>
@@ -90,12 +90,14 @@
                     </p>
                 </div>
 
-                <button class="btn btn-lg btn-primary btn-block"
-                        type="button"
-                        style="font-family: 'IM Fell Great Primer SC', serif;">
-                    <a href="#/create"></a>
-                    Join
-                </button>
+                <a href="#/signup">Join!</a>
+
+
+                <!--<button class="btn btn-lg btn-primary btn-block"-->
+                        <!--type="button"-->
+                        <!--style="font-family: 'IM Fell Great Primer SC', serif;" href='/signup'>-->
+                    <!--Join-->
+                <!--</button>-->
 
                     <!--<form class="form-register">-->
                         <!--<span class="pull-left"-->

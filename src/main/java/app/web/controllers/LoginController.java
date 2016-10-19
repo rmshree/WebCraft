@@ -42,6 +42,7 @@ public class LoginController {
             newUser.setPassword(userDetails.getPassword());
             newUser.setFirstName(userDetails.getFirstName());
             newUser.setLastName(userDetails.getLastName());
+            newUser.setEmail(userDetails.getEmail());
             newUser.setIsActive(false);
             emailService.sendVerificationEmail(newUser);
             return userService.save(newUser);

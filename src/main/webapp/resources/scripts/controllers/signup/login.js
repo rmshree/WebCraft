@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('LoginCtrl', function (UserService) {
+angular.module('app').controller('LoginCtrl', function (UserService, LoginService) {
     var ctrl = this;
 
     ctrl.init = function ()
@@ -17,7 +17,7 @@ angular.module('app').controller('LoginCtrl', function (UserService) {
 
             //if response is undefined, create a new user
             if (!response.id) {
-                UserService.createNewUser({username: user.username}, user).$promise.then(function (response) {
+                UserService.create({username: user.username}, user).$promise.then(function (response) {
                     ctrl.statusMessage = 'Sign-up successful!';
                 });
             }
@@ -35,7 +35,7 @@ angular.module('app').controller('LoginCtrl', function (UserService) {
 
         LoginService.logInUser({username: user.username}, user.password).$promise.then(function(response) {
 
-            if (response.id && user.isActive) {
+            if (response.id) {
                 ctrl.statusFlag = true;
                 ctrl.statusMessage = "You're logged in!";
                 ctrl.currentUser = response;

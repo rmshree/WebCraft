@@ -3,6 +3,9 @@
  *
  * The User class contains confidential information regarding the user in addition to the user's win/loss record.
  */
+/** Class Definitions **/
+
+
 
 package app.web.domain;
 
