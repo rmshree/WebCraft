@@ -9,7 +9,7 @@ public interface LoginService {
      * @param inputPassword will be taken from the H2 database
      *                 and compared to what the user inputs
      */
-    User logInUser(String username, String inputPassword);
+    User logInUser(String username, String inputPassword, Boolean isWeb);
 
 
 

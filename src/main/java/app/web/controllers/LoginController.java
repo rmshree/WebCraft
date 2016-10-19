@@ -50,9 +50,14 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "{username}", method = RequestMethod.PUT)
-    public User userLogin(@PathVariable String username, @RequestBody String password) {
-        return loginService.logInUser(username, password);
+    @RequestMapping(value = "web/{username}", method = RequestMethod.PUT)
+    public User userLoginWeb(@PathVariable String username, @RequestBody String password) {
+        return loginService.logInUser(username, password, true);
+
+    }
+    @RequestMapping(value = "platform/{username}", method = RequestMethod.PUT)
+    public User userLoginPlatform(@PathVariable String username, @RequestBody String password) {
+        return loginService.logInUser(username, password, false);
 
     }
 
