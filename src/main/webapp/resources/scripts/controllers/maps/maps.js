@@ -28,7 +28,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         // TODO: need to make sure the title isn't talked already
         var gameMap = {
             title: map.title,
-            description: map.description,
+            numberOfPlayers: map.numberOfPlayers,
             user: ctrl.currentUser
         };
 
@@ -97,6 +97,14 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         var column = mapString[1].split(" ")[0];
         column = parseInt(column) + 2;
         row = parseInt(row) + 2;
+
+        // miss-match in the smallmap and bigmap txt file format
+        var numPlayers = mapString[row + 3];
+        if(numPlayers.length > 3){
+            // for big map
+            numPlayers = mapString[row + 2];
+        }
+        ctrl.newMap.numberOfPlayers = parseInt(numPlayers);
         ctrl.newMap.title = mapString[0];
         var dynamicDivWidth = column * 15;
 

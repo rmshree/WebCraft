@@ -34,6 +34,10 @@ public class GameMap {
     @JsonProperty
     private Integer count = 0;
 
+    @Column(name = "number_of_players")
+    @JsonProperty
+    private Integer numberOfPlayers = 1;
+
     public String getId() {
         return id;
     }
@@ -80,5 +84,13 @@ public class GameMap {
 
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    public Integer getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    public void setNumberOfPlayers(Integer numberOfPlayers) {
+        this.numberOfPlayers = numberOfPlayers;
     }
 }

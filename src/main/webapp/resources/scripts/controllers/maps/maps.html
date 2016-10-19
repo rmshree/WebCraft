@@ -3,7 +3,7 @@
     <div class="col-xs-12 panel-body">
         <h2 class="text-center">Maps</h2>
         <h4 class="text-center">From sticks and stones to bricks and bones each map offers a different gameplay experience for the game</h4>
-        <h4 class="text-center" ng-if="!ctrl.currentUser">Want to upload a map? Please sign in or <a href="#/signup">sign up</a></h4>
+        <h4 class="text-center" ng-if="!ctrl.currentUser.id">Want to upload a map? Please sign in or <a href="#/signup">sign up</a></h4>
 
         <button class="btn btn-primary center-block" ng-click="ctrl.showMapForm = true" ng-if="!ctrl.showMapForm && ctrl.currentUser.id">Add a map</button>
     </div>
@@ -23,10 +23,10 @@
                     <input id="title" class="form-control" type="text" ng-model="ctrl.newMap.title">
                 </div>
 
-                <!--<div class="form-group">-->
-                    <!--<label for="text">Description</label>-->
-                    <!--<textarea id="text" class="form-control" maxlength="1000" rows="3" ng-model="ctrl.newMap.description"></textarea>-->
-                <!--</div>-->
+                <div class="form-group">
+                    <label>Number of players</label>
+                    <input type="number" class="form-control" ng-model="ctrl.newMap.numberOfPlayers"/>
+                </div>
             </div>
         </div>
 
@@ -43,7 +43,6 @@
 
     <div ng-if="ctrl.maps.length === 0" class="col-xs-12">
         <p>There are currently no maps</p><br>
-        <a ng-href="#/signup" ng-if="!ctrl.currentUser.id">Login to upload a map</a>
     </div>
 
     <div class="col-xs-12" style="padding: 0">
@@ -58,7 +57,10 @@
             </div>
             <p>
                 <a download href="{{map.downloadUrl}}" class="btn btn-default" ng-click="ctrl.download(map)"> Download </a>
-                <span class="pull-right"><small style="display: inline-block">Count: </small> {{map.count}}</span>
+                <span class="pull-right" align="right">
+                    <span><small>Download count: </small> {{map.count}}</span><br>
+                    <span><small>Number of Players: </small>{{map.numberOfPlayers}}</span>
+                </span>
             </p>
         </div>
     </div>
