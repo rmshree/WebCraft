@@ -7,77 +7,57 @@
     </div>
 
     <div class="col-md-12 col-xs-12" style="background-color: burlywood">
-        <div class="form-group" style="padding: 20px; width: 300px">
+        <div class="form-group col-md-6">
             <form class="form-register">
 
                 <h2 style="color: #860038; font-family: 'IM Fell Great Primer SC', serif;" align="left">
                     <b>User Information</b>
                 </h2>
 
-                <span class="pull-left" style="font-family: 'Open Sans', serif;color: #8d1d1c; font-size: large">
-                    <b>Username:</b>
-                    CNITTA2016
+                <div class="form-group col-md-11">
+                    <label class="col-md-3"><span class="pull-right">First</span></label>
+                    <div class="col-md-9 pull-right">
+                        <input type="text" class="form-control" ng-model="ctrl.currentUser.firstName">
+                    </div>
+                </div>
+                <div class="form-group col-md-11">
+                    <label class="col-md-3"><span class="pull-right">Last</span></label>
+                    <div class="col-md-9 pull-right">
+                        <input type="text" class="form-control" ng-model="ctrl.currentUser.lastName">
+                    </div>
+                </div>
+                <div class="form-group col-md-11">
+                    <label class="col-md-3"><span class="pull-right">Email</span></label>
+                    <div class="col-md-9 pull-right">
+                        <input type="text" class="form-control" ng-model="ctrl.currentUser.email" disabled>
+                    </div>
+                </div>
+                <div class="form-group col-md-11">
+                    <label class="col-md-3"><span class="pull-right">Password</span></label>
+                    <div class="col-md-9 pull-right">
+                        <input type="password" class="form-control" ng-model="ctrl.currentUser.password">
+                    </div>
+                </div>
+                <div class="form-group col-md-11" ng-init="ctrl.currentUser.pass2 = ctrl.currentUser.password">
+                    <label class="col-md-3"><span class="pull-right">Re-type password</span></label>
+                    <div class="col-md-9 pull-right">
+                        <input type="password" class="form-control" ng-model="ctrl.currentUser.pass2">
+                    </div>
+                </div>
+                <div class="form-group col-md-11">
+                    <label class="col-md-3"><span class="pull-right">Username</span></label>
+                    <div class="col-md-9 pull-right">
+                        <input type="text" class="form-control" ng-model="ctrl.currentUser.username" disabled>
+                    </div>
+                </div>
 
-                    <br/>
-                        Name: Chris Nitta
-                        [Change]
+                <button class="btn btn-lg btn-primary btn-block"
+                        ng-disabled="ctrl.currentUser.password !== ctrl.currentUser.pass2"
+                        type="submit" ng-click="ctrl.edit(ctrl.currentUser);"
+                        style="font-family: 'IM Fell Great Primer SC', serif;">Save Settings</button>
 
-                    <br/>
-                    <br/>
-                    <br/>
-                </span>
-
-                <br/>
-                <br/>
-
-                <span class="pull-left" style="font-family: 'Open Sans', serif;color: #8d1d1c;">
-                    Change First Name:
-                </span>
-
-                <!-- ctrl.user.first is the dabtabase property for that user it is local copy of db -->
-                <input type="text" ng-model="ctrl.user.firstname" class="form-control" maxlength="64">
-                <br/>
-
-                <span class="pull-left" style="font-family: 'Open Sans', serif;color: #8d1d1c;">
-                    Change Last Name:
-                </span>
-                <input type="text" ng-model="ctrl.user.lastname" class="form-control" maxlength="64">
-                <br/>
-
-
-
-                <!--
-                <br/>
-                <input type="password" ng-model="user.setPassword" class="form-control" maxlength="15">
-                <br/>
-
-                <span class="pull-left"
-                      style="font-family: 'Open Sans', serif;color: #8d1d1c;">Biography (160 Characters Max.)
-                </span>
-
-                <textarea name="myTextBox" cols="30" rows="5">
-                This textbox has been given a name of "myTextBox". This can be used by any script that process
-                    the contents of this textbox (once it's been submitted to the server).
-                </textarea>
-                -->
-
+                <span ng-if="ctrl.showMessage">{{ctrl.message}}</span>
             </form>
-
-
-            <!-- ng-disabled="!user.username || !user.password"
-             user = is user defined but maust match controotller paramet in .js
-             ctrl.____ nedds to matk ctorl definiont ins .js
-
-            -->
-
-
-            <!-- edit(ctrl.user) found in js -->
-            <button class="btn btn-lg btn-primary btn-block"
-                    type="submit" ng-click="ctrl.edit(ctrl.user);"
-                    style="font-family: 'IM Fell Great Primer SC', serif;">
-                Save Settings
-            </button>
-
         </div>
     </div>
 </div>

@@ -5,6 +5,7 @@ angular.module('app').controller('RankingsCtrl', function ($interval, UserServic
 
     ctrl.init = function () {
         getCurrentlyOnline();
+        getCurrentlyOnsite();
         $interval(getCurrentlyOnline, 5000);
         $interval(getCurrentlyOnsite, 5000);
     };

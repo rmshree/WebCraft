@@ -1,4 +1,5 @@
-/** \file UserController.java
+/**
+ * \file UserController.java
  * Back-End User services that are used by Front-End.
  * Called by using /api/user/
  */
@@ -11,10 +12,7 @@ import app.web.services.UserService;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -35,7 +33,7 @@ public class UserController {
      *  \return a user or NULL
      */
     @RequestMapping(value = "get/{username}", method = RequestMethod.GET)
-    public User getUserByName(@PathVariable String username){
+    public User getUserByName(@PathVariable String username) {
         User user = userService.getUserByUsername(username);
         if (user == null) {
             return null;
@@ -68,9 +66,9 @@ public class UserController {
     @RequestMapping(value = "{username}/upload/avatar", method = RequestMethod.POST)
     public User uploadAvatar(@PathVariable String username, MultipartFile imageFile) {
         User user = userService.getUserByUsername(username);
-        if(user != null){
-            try{
-                if(user.getS3key() != null){
+        if (user != null) {
+            try {
+                if (user.getS3key() != null) {
                     fileArchiveService.delete(user.getS3key());
                 }
                 ObjectMetadata objectMetadata = new ObjectMetadata();
@@ -81,11 +79,11 @@ public class UserController {
                 user.setS3key(key);
                 userService.save(user);
                 return user;
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 return user;
             }
-        }else {
+        } else {
             return null;
         }
     }
@@ -94,14 +92,16 @@ public class UserController {
      *  \brief Utilizes cookies to get the current user logged-in user
      *  \return the current User
      */
-    @RequestMapping(value="getCurrentUser", method = RequestMethod.GET)
-    public User getCurrentUser() { return userService.getCurrentUser(); }
+    @RequestMapping(value = "getCurrentUser", method = RequestMethod.GET)
+    public User getCurrentUser() {
+        return userService.getCurrentUser();
+    }
 
     /** /api/user/getOnsiteUsers
      *  \brief looks up users in the database who are currently on site using the isCurrentlyOnsite attribute on User table
      *  \return a list of Users
      */
-    @RequestMapping(value="getOnsiteUsers", method = RequestMethod.GET)
+    @RequestMapping(value = "getOnsiteUsers", method = RequestMethod.GET)
     public List<User> getOnsiteUsers() {
         List<User> onsiteUsers = userService.getOnsiteUsers();
         if (onsiteUsers.size() != 0) {
@@ -115,7 +115,7 @@ public class UserController {
      *  \brief looks up users in the database who are currently logged in thru a platform
      *  \return a list of Users
      */
-    @RequestMapping(value="getOnlineUsers", method = RequestMethod.GET)
+    @RequestMapping(value = "getOnlineUsers", method = RequestMethod.GET)
     public List<User> getOnlineUsers() {
         List<User> onlineUsers = userService.getOnlineUsers();
         if (onlineUsers.size() != 0) {
@@ -125,55 +125,17 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="edit/email/{username}", method = RequestMethod.POST)
-    public boolean editEmail(@PathVariable String username, String email){
-        User user = userService.getUserByUsername(username);
-        if(user != null){
-            user.setEmail(email);
-            userService.save(user);
-            return true;
-        }
-        else{
-            return false;
+    /** /api/user/update
+     *  \brief updates the user object with the new values
+     *  \return a User object
+     */
+    @RequestMapping(value = "update", method = RequestMethod.PUT)
+    public User update(@RequestBody User user) {
+        if (user != null && user.getId() != null) {
+
+            return userService.save(user);
+        } else {
+            return null;
         }
     }
-
-    @RequestMapping(value="edit/password/{username}", method = RequestMethod.POST)
-    public boolean editPassword(@PathVariable String username, String oldPassword, String newPassword){
-        User user = userService.getUserByUsername(username);
-        if(user != null){
-            String currentPassword = user.getPassword();
-            if(currentPassword.equals(oldPassword)){
-                user.setPassword(newPassword);
-                userService.save(user);
-                return true;
-            }
-            else{
-                //user entered incorrect current password
-                return false;
-            }
-        }
-        else{
-            //user does not exist
-            return false;
-        }
-    }
-
-
-    @RequestMapping(value="edit/name/{username}", method = RequestMethod.POST)
-    public boolean editName(@PathVariable String username, String first, String last){
-        User user = userService.getUserByUsername(username);
-        if(user != null){
-            user.setFirstName(first);
-            user.setLastName(last);
-            userService.save(user);
-            return true;
-        }
-        else{
-            //use does not exist
-            return false;
-        }
-    }
-
-
 }

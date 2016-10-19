@@ -108,7 +108,11 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             templateUrl: 'resources/scripts/controllers/settings/settings.html',
             controller: 'SettingsCtrl',
             controllerAs: 'ctrl',
-            resolve: {}
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
         })
         .when('/profile/:username', {
             templateUrl: 'resources/scripts/controllers/profile/profile.html',

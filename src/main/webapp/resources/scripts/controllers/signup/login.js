@@ -3,8 +3,7 @@
 angular.module('app').controller('LoginCtrl', function (UserService, LoginService) {
     var ctrl = this;
 
-    ctrl.init = function ()
-    {
+    ctrl.init = function () {
         ctrl.welcomeMessage = 'Welcome to NittaCraft';
         ctrl.welcomeMessage2 = 'a.out Edition';
     };
@@ -30,10 +29,10 @@ angular.module('app').controller('LoginCtrl', function (UserService, LoginServic
 
     ctrl.login = function (user) {
 
-        ctrl.statusMessage ='';
+        ctrl.statusMessage = '';
         ctrl.statusFlag = false;
 
-        LoginService.logInUser({username: user.username}, user.password).$promise.then(function(response) {
+        LoginService.logInUser({username: user.username}, user.password).$promise.then(function (response) {
 
             if (response.id) {
                 ctrl.statusFlag = true;
