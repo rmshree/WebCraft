@@ -46,19 +46,21 @@
         <a ng-href="#/signup" ng-if="!ctrl.currentUser.id">Login to upload a map</a>
     </div>
 
-    <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="map in ctrl.maps track by map.id">
-        <div class="thumbnail">
-            <img ng-if="map.primaryImageUrl" ng-src="{{map.primaryImageUrl}}" alt="" height="300px">
-            <img ng-if="!map.primaryImageUrl" src="resources/images/noImage.jpg" alt="" height="300px">
-            <div class="caption">
-                <h3>{{map.title | limitTo: 20}} <span ng-if="map.title.length > 20">...</span></h3>
-                <p>{{map.description | limitTo: 45}} <span ng-if="map.description.length > 45">...</span></p>
+    <div class="col-xs-12" style="padding: 0">
+        <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="map in ctrl.maps track by map.id">
+            <div class="thumbnail">
+                <img ng-if="map.primaryImageUrl" ng-src="{{map.primaryImageUrl}}" alt="" height="300px">
+                <img ng-if="!map.primaryImageUrl" src="resources/images/noImage.jpg" alt="" height="300px">
+                <div class="caption">
+                    <h3>{{map.title | limitTo: 20}} <span ng-if="map.title.length > 20">...</span></h3>
+                    <p>{{map.description | limitTo: 45}} <span ng-if="map.description.length > 45">...</span></p>
+                </div>
             </div>
+            <p>
+                <a download href="{{map.downloadUrl}}" class="btn btn-default" ng-click="ctrl.download(map)"> Download </a>
+                <span class="pull-right"><small style="display: inline-block">Count: </small> {{map.count}}</span>
+            </p>
         </div>
-        <p>
-            <a download href="{{map.downloadUrl}}" class="btn btn-default" ng-click="ctrl.download(map)"> Download </a>
-            <span class="pull-right"><small style="display: inline-block">Count: </small> {{map.count}}</span>
-        </p>
     </div>
 
 </div>
