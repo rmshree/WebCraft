@@ -5,11 +5,6 @@ angular.module('app').controller('downloadCtrl', function(deviceDetector) {
 
     ctrl.data = deviceDetector;
 
-    ctrl.getUrl = function () {
-        console.log('resources/images/' + ctrl.data.os + '.png');
-        return 'resources/images/' + ctrl.data.os + '.png';
-    };
-
 });
 
 
