@@ -60,7 +60,6 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
                 }
             }
         })
-
         .when('/maps', {
             templateUrl: 'resources/scripts/controllers/maps/maps.html',
             controller: 'MapsCtrl',
@@ -99,9 +98,6 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload']).config(function
             controllerAs: 'ctrl',
             resolve: {}
         })
-
-
-
         .when('/profile/:username', {
             templateUrl: 'resources/scripts/controllers/profile/profile.html',
             controller: 'ProfileCtrl',

@@ -40,7 +40,7 @@ public class EmailServiceImpl implements EmailService {
     private Session session;
 
     @Override
-    public boolean sendVerificationEmail(User user) {
+    public Boolean sendVerificationEmail(User user) {
         setProperties();
         try {
             String verifcationLink = "";
@@ -51,11 +51,12 @@ public class EmailServiceImpl implements EmailService {
             Template template = velocityEngine.getTemplate(VERIFICATIONTEMPLATE);
             VelocityContext velocityContext = new VelocityContext();
 
-            if (this.env.getActiveProfiles()[0].equals("local")) {
-                verifcationLink = LOCALADDRESS + user.getVeriKey();
+
+            if (env.getActiveProfiles()[0].equals("local")) {
+                verifcationLink = LOCALADDRESS + user.getUserKey();
             }
             else {
-                verifcationLink = PRODADDRESS + user.getVeriKey();
+                verifcationLink = PRODADDRESS + user.getUserKey();
             }
 
             velocityContext.put("user", user);
@@ -77,7 +78,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public boolean sendPasswordRecoveryEmail(User user) {
+    public Boolean sendPasswordRecoveryEmail(User user) {
         setProperties();
         try {
             Message message = new MimeMessage(session);

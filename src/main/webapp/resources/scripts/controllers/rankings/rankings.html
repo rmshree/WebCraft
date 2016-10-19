@@ -1,4 +1,7 @@
-<div class="container-fluid" ng-init="ctrl.init()">
-    <h3>Example Rankings Page... Under Construction</h3>
-    <a href="/webcraft/#/">Go to Home page</a>    <br>
+<div class="container-fluid" ng-init="ctrl.init()" style="color: white">
+
+    <h3>Currently online</h3>
+    <div ng-repeat="user in ctrl.onlineUsers">
+        <a href ng-click="ctrl.goToUserProfile(user)" style="font-size: larger">{{user.username}}</a>
+    </div>
 </div>

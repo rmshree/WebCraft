@@ -33,6 +33,14 @@ public class User implements Serializable {
     @JsonProperty
     private String username;
 
+    @Column(name = "firstname")
+    @JsonProperty
+    private String firstname;
+
+    @Column(name = "lastname")
+    @JsonProperty
+    private String lastname;
+
     @Column(name = "password", nullable = false)
     @JsonProperty
     private String password;
@@ -45,13 +53,24 @@ public class User implements Serializable {
     @JsonProperty
     private String avatarUrl;
 
+    @Column(name = "s3key", unique = true)
+    private String s3key;
+
     @Column(name = "isActive")
     @JsonProperty
-    private boolean isActive = false;
+    private Boolean isActive = false;
 
-    @Column(name = "veriKey")
+    @Column(name = "userKey")
     @JsonProperty
-    private String veriKey;
+    private String userKey;
+
+    @Column(name = "isCurrentlyOnline") //For users logged in to the game
+    @JsonProperty
+    private Boolean isCurrentlyOnline = false;
+
+    @Column(name = "isCurrentlyOnsite") //For users logged in to the website
+    @JsonProperty
+    private Boolean isCurrentlyOnsite = false;
 
     public String getId() {
         return id;
@@ -85,6 +104,14 @@ public class User implements Serializable {
         this.username = username;
     }
 
+    public String getFirstname() {return firstname;}
+
+    public void setFirstname(String firstname) {this.firstname = firstname;}
+
+    public String getLastname(String lastname) {return lastname; }
+
+    public void setLastname(String lastname) {this.lastname = lastname;}
+
     public String getPassword() {
         return password;
     }
@@ -109,19 +136,39 @@ public class User implements Serializable {
         this.avatarUrl = avatarUrl;
     }
 
-    public boolean isActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 
-    public String getVeriKey() {
-        return veriKey;
+    public String getUserKey() {
+        return userKey;
     }
 
-    public void setVeriKey(String veriKey) {
-        this.veriKey = veriKey;
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
+
+    public Boolean getCurrentlyOnline() {
+        return isCurrentlyOnline;
+    }
+
+    public void setCurrentlyOnline(Boolean currentlyOnline) {
+        isCurrentlyOnline = currentlyOnline;
+    }
+
+    public Boolean getCurrentlyOnsite() {
+        return isCurrentlyOnsite;
+    }
+
+    public void setCurrentlyOnsite(Boolean currentlyOnsite) {
+        isCurrentlyOnsite = currentlyOnsite;
+    }
+
+    public void setS3key(String s3key) {this.s3key = s3key;}
+
+    public String getS3key() {return s3key;}
 }
