@@ -1,16 +1,16 @@
-angular.module('app').controller('downloadCtrl',['deviceDetector',function(deviceDetector){
+'use strict';
+
+angular.module('app').controller('downloadCtrl', function(deviceDetector) {
     var ctrl = this;
+
     ctrl.data = deviceDetector;
-    ctrl.allData = JSON.stringify(ctrl.data, null, 2);
 
+    ctrl.getUrl = function () {
+        console.log('resources/images/' + ctrl.data.os + '.png');
+        return 'resources/images/' + ctrl.data.os + '.png';
+    };
 
-    /*
-    if(ctrl.data.os != null) {
-        window.alert("You should download windows");
-    }
-    */
-
-}])
+});
 
 
 

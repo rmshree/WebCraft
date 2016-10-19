@@ -1,67 +1,54 @@
-<div class="container">
-    <div style="color: gold" ng-controller="downloadCtrl as vm">
-        <br>
-        <br>
+<div class="container" style="color: gold">
 
-        <!--<p>You are using <b>{{vm.data.browser}}</b> on <b>{{vm.data.os}} ({{vm.data.os_version}})</b>.</p>-->
-        <!--<p>Your <b>{{vm.data.browser}}</b> version is <b>{{vm.data.browser_version}}</b></p>-->
-        <!--<p>Device - <b></b>{{vm.data.device}}</p>-->
+    <h1 align="center">Welcome! You are currently using {{ctrl.data.os}}</h1>
+    <br>
 
-
-        <div ng-if="vm.data.os === 'mac'">
-            <meta http-equiv="refresh" content="0; URL='#/redirect'" />
+    <div style="font-size: larger; margin-bottom: 10px" align="center">
+        <div ng-if="ctrl.data.os === 'mac'">
             <h3>
-               If you were not redirected in 5 seconds, please click <a href="http://itunes.apple.com"> here </a> to download for OS X platform!
-            </h3>
-
-        </div>
-
-
-
-        <div ng-if="vm.data.os === 'windows'">
-            <meta http-equiv="refresh" content="0; URL='#/redirect'" />
-            <h3>
-
-                If you were not redirected in 5 seconds, please click <a href="http://microsoft.com/store/apps/windows"> here </a> to download for Windows platform!
+                Download the game using this <a href="resources/images/osx.png" download>link</a>
             </h3>
         </div>
 
-
-
-        <div ng-if="vm.data.os === 'linux'">
-            <meta http-equiv="refresh" content="0; URL='#/redirect'" />
-            If you were not redirected in 5 seconds, please click <a href="#/redirect"> here </a>!
-        </div>
-
-
-        <body>
-        <div ng-if="vm.data.os === 'ios'">
-            <meta http-equiv="refresh" content="0; URL='http://itunes.apple.com'" />
+        <div ng-if="ctrl.data.os === 'windows'">
             <h3>
-                If you were not redirected in 5 seconds, please click <a href="http://itunes.apple.com"> here </a> to download for iOS platform!
+                Download the game using this <a href="resources/images/windows.png" download>link</a>
             </h3>
         </div>
-        </body>
 
-        <body>
-        <div ng-if="vm.data.os === 'android'">
-            <meta http-equiv="refresh" content="0; URL='http://play.google.com/store'" />
-            <!--<h1>-->
-                <!--ANDROID PLATFORM-->
-            <!--</h1>-->
+        <div ng-if="ctrl.data.os === 'linux'">
             <h3>
-                If you were not redirected in 5 seconds, please click <a href="http://play.google.com/store"> here </a> to download for Android platform!
+                Download the game using this <a href="resources/images/linux.png" download>link</a>
             </h3>
         </div>
-        </body>
 
-        <div ng-if="vm.data.os !== 'mac' || vm.data.os !== 'windows' || vm.data.os !== 'linux' || vm.data.os !== 'ios' vm.data.os !== 'android' ">
-            <h1>
-                PLATFORM NOT SUPPORTED!
-            </h1>
+        <div ng-if="ctrl.data.os === 'ios'">
             <h3>
-                SUPPORT COMING NEVER!
+                Download the game using this <a href="resources/images/ios.png" download>link</a>
+            </h3>
+        </div>
+
+        <div ng-if="ctrl.data.os === 'android'">
+            <h3>
+                Download the game using this <a href="resources/images/android.png" download>link</a>
             </h3>
         </div>
     </div>
+
+    <h4 align="center">Check out our other supported platforms:
+        <div style="font-family: 'Berlin Sans FB'; font-size: x-large">
+            <br>
+            <br>
+            <a href="resources/images/windows.png" download> Windows </a>
+            <br>
+            <a href="resources/images/osx.png" download> MAC OS </a>
+            <br>
+            <a href="resources/images/ios.png" download> iOS </a>
+            <br>
+            <a href="resources/images/android.png" download> Android </a>
+            <br>
+            <a href="resources/images/linux.png" download> Linux </a>
+        </div>
+    </h4>
+
 </div>
