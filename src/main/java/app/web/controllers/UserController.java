@@ -150,8 +150,8 @@ public class UserController {
     public boolean editName(@PathVariable String username, String first, String last){
         User user = userService.getUserByUsername(username);
         if(user != null){
-            user.setFirstname(first);
-            user.setLastname(last);
+            user.setFirstName(first);
+            user.setLastName(last);
             userService.save(user);
             return true;
         }

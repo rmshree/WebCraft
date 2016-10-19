@@ -6,12 +6,11 @@
 
 package app.web.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
-
 
 @Entity
 @Table(name = "user")
@@ -33,13 +32,13 @@ public class User implements Serializable {
     @JsonProperty
     private String username;
 
-    @Column(name = "firstname")
+    @Column(name = "firstName")
     @JsonProperty
-    private String firstname;
+    private String firstName;
 
-    @Column(name = "lastname")
+    @Column(name = "lastName")
     @JsonProperty
-    private String lastname;
+    private String lastName;
 
     @Column(name = "password", nullable = false)
     @JsonProperty
@@ -54,13 +53,14 @@ public class User implements Serializable {
     private String avatarUrl;
 
     @Column(name = "s3key", unique = true)
+    @JsonIgnore
     private String s3key;
 
     @Column(name = "isActive")
     @JsonProperty
     private Boolean isActive = false;
 
-    @Column(name = "userKey")
+    @Column(name = "userKey", unique = true)
     @JsonProperty
     private String userKey = UUID.randomUUID().toString();
 
@@ -104,13 +104,21 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public String getFirstname() {return firstname;}
+    public String getFirstName() {
+        return firstName;
+    }
 
-    public void setFirstname(String firstname) {this.firstname = firstname;}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    public String getLastname(String lastname) {return lastname; }
+    public String getLastName() {
+        return lastName;
+    }
 
-    public void setLastname(String lastname) {this.lastname = lastname;}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getPassword() {
         return password;
@@ -168,7 +176,7 @@ public class User implements Serializable {
         isCurrentlyOnsite = currentlyOnsite;
     }
 
-    public void setS3key(String s3key) {this.s3key = s3key;}
+    public void setS3key(String s3key) { this.s3key = s3key; }
 
     public String getS3key() {return s3key;}
 }
