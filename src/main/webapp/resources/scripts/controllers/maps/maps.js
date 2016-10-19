@@ -6,7 +6,6 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
     ctrl.newMap = {};
 
     $scope.$watchCollection('ctrl.newMap.file', function(file){
-        console.log(file);
         if(file !== undefined){
             var reader = new FileReader();
             reader.onload = function(){
@@ -15,10 +14,8 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
                 onMapRender(dataURL, 'imgDiv');
             };
             var blob = file.slice(0, file.size);
-
             reader.readAsBinaryString(blob);
         }
-
     });
 
     ctrl.init = function () {
@@ -27,32 +24,27 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         })
     };
 
-    ctrl.download = function (map) {
-        console.log('Download map', map);
-        MapService.download({id: map.id}).$promise.then(function (response) {
-            var index = ctrl.maps.indexOf(map);
-            ctrl.maps[index] = response;
-        });
-    };
-
-    ctrl.isValid = function () {
-        return ctrl.newMap.title && ctrl.newMap.description && ctrl.newMap.file;
-    };
-
     ctrl.uploadMap = function (map) {
         // TODO: need to make sure the title isn't talked already
         var gameMap = {
             title: map.title,
-            description: map.description
+            description: map.description,
+            user: ctrl.currentUser
         };
 
         MapService.save(gameMap).$promise.then(function (response) {
             console.log(response);
             if(response.id){
-                 uploadFile(response, map);
+                uploadFile(response, map);
             }
         });
+    };
 
+    ctrl.download = function (map) {
+        MapService.download({id: map.id}).$promise.then(function (response) {
+            var index = ctrl.maps.indexOf(map);
+            ctrl.maps[index] = response;
+        });
     };
 
     function uploadFile(res, map) {
@@ -63,10 +55,35 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
                 file: map.file
             }
         }).success(function(response) {
-            console.log('File upload success', response);
-            ctrl.showMapForm = false;
-            ctrl.newMap = {};
-            ctrl.maps.push(response);
+            if(response.id){
+                html2canvas([document.getElementById('imgDiv')], {
+                    onrendered: function (canvas) {
+                        var data = canvas.toDataURL('image/png');
+                        var file= dataURLtoBlob(data);
+                        uploadImage(response.id, file);
+                    }
+                });
+            }
+        });
+    }
+
+    ctrl.isValid = function () {
+        return ctrl.newMap.title && ctrl.newMap.file;
+    };
+
+    function uploadImage(id, img) {
+        Upload.upload({
+            method: 'POST',
+            url: 'api/map/' + id + '/upload/primary',
+            data: {
+                file: img
+            }
+        }).success(function(map) {
+            if(map.id){
+                ctrl.showMapForm = false;
+                ctrl.newMap = {};
+                ctrl.maps.push(map);
+            }
         });
     }
 
@@ -80,6 +97,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         var column = mapString[1].split(" ")[0];
         column = parseInt(column) + 2;
         row = parseInt(row) + 2;
+        ctrl.newMap.title = mapString[0];
         var dynamicDivWidth = column * 32;
 
         for (var i = 0; i < row; i++) {
@@ -105,6 +123,18 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
                 divLocation.appendChild(imageMap);
             }
         }
+    }
+
+    function dataURLtoBlob(dataURL) {
+        // Decode the dataURL
+        var binary = atob(dataURL.split(',')[1]);
+        // Create 8-bit unsigned array
+        var array = [];
+        for(var i = 0; i < binary.length; i++) {
+            array.push(binary.charCodeAt(i));
+        }
+        // Return our Blob object
+        return new Blob([new Uint8Array(array)], {type: 'image/png'});
     }
 
 });

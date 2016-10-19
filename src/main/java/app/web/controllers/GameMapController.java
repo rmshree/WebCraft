@@ -36,24 +36,24 @@ public class GameMapController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
         // need to save the map and get url for it.
         return gameMapService.save(gameMap);
     }
 
-//    @RequestMapping(value = "{id}/upload/primary", method = RequestMethod.POST)
-//    public GameMap uploadPrimaryImage(@PathVariable String id, MultipartFile file){
-//        GameMap gameMap = gameMapService.findById(id);
-//        // need to save the primary image in AWS and get url for it.
-//        return gameMapService.save(gameMap);
-//    }
-//
-//    @RequestMapping(value = "{id}/upload/secondary", method = RequestMethod.POST)
-//    public GameMap uploadSecondaryImage(@PathVariable String id, MultipartFile file){
-//        GameMap gameMap = gameMapService.findById(id);
-//        // need to save the secondary image in AWS and get url for it.
-//        return gameMapService.save(gameMap);
-//    }
+    @RequestMapping(value = "{id}/upload/primary", method = RequestMethod.POST)
+    public GameMap uploadPrimaryImage(@PathVariable String id, MultipartFile file){
+        GameMap gameMap = gameMapService.findById(id);
+        try{
+            String key = "maps/images/" + gameMap.getTitle();
+            ObjectMetadata objectMetadata = new ObjectMetadata();
+            objectMetadata.setContentType("img/jpeg");
+            gameMap.setPrimaryImageUrl(fileArchiveService.upload(file, key, objectMetadata));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        // need to save the primary image in AWS and get url for it.
+        return gameMapService.save(gameMap);
+    }
 
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public List<GameMap> all(){

@@ -27,6 +27,7 @@
 <script src="resources/js/ng-file-upload.min.js"></script>
 <script src="resources/js/ng-device-detector.min.js"></script>
 <script src="resources/js/re-tree.min.js"></script>
+<script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
 <%-- Third party JS --%>
 
 <%-- Controllers --%>

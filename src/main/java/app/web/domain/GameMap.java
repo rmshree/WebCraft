@@ -17,10 +17,6 @@ public class GameMap {
     @JsonProperty
     private String title;
 
-    @Column(name = "description")
-    @JsonProperty
-    private String description;
-
     @OneToOne
     @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "user_id", referencedColumnName = "id")
     @JsonProperty
@@ -29,10 +25,6 @@ public class GameMap {
     @Column(name = "primary_image_url", length = 500)
     @JsonProperty
     private String primaryImageUrl;
-
-    @Column(name = "secondary_image_url", length = 500)
-    @JsonProperty
-    private String secondaryImageUrl;
 
     @Column(name = "download_url", length = 500)
     @JsonProperty
@@ -58,14 +50,6 @@ public class GameMap {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public User getUser() {
         return user;
     }
@@ -80,14 +64,6 @@ public class GameMap {
 
     public void setPrimaryImageUrl(String primaryImageUrl) {
         this.primaryImageUrl = primaryImageUrl;
-    }
-
-    public String getSecondaryImageUrl() {
-        return secondaryImageUrl;
-    }
-
-    public void setSecondaryImageUrl(String secondaryImageUrl) {
-        this.secondaryImageUrl = secondaryImageUrl;
     }
 
     public String getDownloadUrl() {
