@@ -7,8 +7,7 @@ angular.module('app').factory('UserService', function ($resource) {
         getCurrentUser: {method: 'GET', url: 'api/user/getCurrentUser'},
         getUserByEmail: {method: 'GET', url: 'api/user/getByEmail/:email'},
         passwordRecovery: {method: 'GET', url: 'api/user/passwordRecovery/:email'}
-        //
-        // activate: {method: 'GET', url: 'api/user/activate'}
+
 
 
 
