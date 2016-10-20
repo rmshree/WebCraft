@@ -1,4 +1,4 @@
-<div class="signupBG" ng-init="ctrl.init()">
+<div class="signupBG">
     <div class="container">
         <div class="row">
             <br>
@@ -70,8 +70,7 @@
                         Submit
                     </button>
                     <div style="margin: auto; width: 80%; padding: 10px">
-                        <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
-                        <div style="color: red" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+                        <div ng-if="ctrl.statusMessage">{{ctrl.statusMessage}}</div>
                     </div>
                 </div>
             </div>

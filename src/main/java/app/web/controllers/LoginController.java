@@ -1,5 +1,6 @@
 package app.web.controllers;
 
+import app.web.domain.DTOs.ResponseDTO;
 import app.web.domain.User;
 import app.web.services.CookieService;
 import app.web.services.EmailService;
@@ -34,9 +35,15 @@ public class LoginController {
      * \return the saved User or null.
      */
     @RequestMapping(value = "signUp", method = RequestMethod.POST)
-    public User signUp(@RequestBody User userDetails) {
-        User user = userService.getUserByUsername(userDetails.getUsername());
-        if (user == null) {
+    public ResponseDTO signUp(@RequestBody User userDetails) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        if(userService.getUserByEmail(userDetails.getEmail()) != null){
+            // email account already taken
+            responseDTO.setMessage("Email is already take. Please use forgot password to recover your password");
+            responseDTO.setSuccess(false);
+            return responseDTO;
+        }
+        if (userService.getUserByUsername(userDetails.getUsername()) == null) {
             User newUser = new User();
             newUser.setUsername(userDetails.getUsername());
             newUser.setPassword(userDetails.getPassword());
@@ -46,9 +53,14 @@ public class LoginController {
             newUser.setIsActive(false);
             emailService.sendVerificationEmail(newUser);
             cookieService.setCurrentUser(null);
-            return userService.save(newUser);
+            responseDTO.setData(userService.save(newUser));
+            responseDTO.setMessage("SUCCESS");
+            responseDTO.setSuccess(true);
+            return responseDTO;
         } else {
-            return null;
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("Username is already in use");
+            return responseDTO;
         }
     }
 

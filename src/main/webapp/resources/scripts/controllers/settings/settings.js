@@ -13,12 +13,12 @@ angular.module('app').controller('SettingsCtrl', function (currentUser, UserServ
     ctrl.edit = function (user) {
         ctrl.showMessage = false;
         UserService.update(user).$promise.then(function (response) {
-            if (response.id) {
-                ctrl.currentUser = response;
+            if (response.success) {
+                ctrl.currentUser = response.data;
                 ctrl.message = 'Success!';
             }
             else {
-                ctrl.message = 'Unexpected error!';
+                ctrl.message = response.message;
             }
             ctrl.showMessage = true;
         });

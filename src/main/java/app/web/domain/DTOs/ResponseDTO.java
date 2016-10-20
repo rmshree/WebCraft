@@ -3,7 +3,7 @@ package app.web.domain.DTOs;
 public class ResponseDTO {
 
     private String message;
-    private Object object;
+    private Object data;
     private Boolean success;
 
     public String getMessage() {
@@ -14,12 +14,12 @@ public class ResponseDTO {
         this.message = message;
     }
 
-    public Object getObject() {
-        return object;
+    public Object getData() {
+        return data;
     }
 
-    public void setObject(Object object) {
-        this.object = object;
+    public void setData(Object data) {
+        this.data = data;
     }
 
     public Boolean getSuccess() {

@@ -6,6 +6,7 @@
 
 package app.web.controllers;
 
+import app.web.domain.DTOs.ResponseDTO;
 import app.web.domain.User;
 import app.web.services.FileArchiveService;
 import app.web.services.UserService;
@@ -130,12 +131,18 @@ public class UserController {
      *  \return a User object
      */
     @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public User update(@RequestBody User user) {
+    public ResponseDTO update(@RequestBody User user) {
+        ResponseDTO responseDTO = new ResponseDTO();
         if (user != null && user.getId() != null) {
-
-            return userService.save(user);
+            responseDTO.setSuccess(true);
+            responseDTO.setMessage("SUCCESS");
+            user = userService.save(user);
+            responseDTO.setData(user);
         } else {
-            return null;
+            responseDTO.setData(null);
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("User does not exist.");
         }
+        return responseDTO;
     }
 }
