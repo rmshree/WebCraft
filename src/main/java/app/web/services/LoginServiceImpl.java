@@ -1,5 +1,6 @@
 package app.web.services;
 
+import app.web.domain.DTOs.ResponseDTO;
 import app.web.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,35 +17,45 @@ public class LoginServiceImpl implements LoginService {
     private CookieService cookieService;
 
     @Override
-    public User logInUser(String username, String inputPassword, Boolean isWeb) {
-        User currentUser = userService.getUserByUsername(username);
-
-        if (currentUser != null) {
-            String storedPassword = currentUser.getPassword();
+    public ResponseDTO logInUser(String username, String inputPassword, Boolean isWeb) {
+        User user = userService.getUserByUsername(username);
+        ResponseDTO responseDTO = new ResponseDTO();
+        if (user != null) {
+            String storedPassword = user.getPassword();
             if (inputPassword.equals(storedPassword)) {
-                if (currentUser.getIsActive()) {
+                if (user.getIsActive()) {
                     //Web or Platform?
                     if (isWeb) {
-                        currentUser.setCurrentlyOnsite(true);
-                        cookieService.setCurrentUser(currentUser);
-                        return userService.save(currentUser);
+                        user.setCurrentlyOnsite(true);
+                        cookieService.setCurrentUser(user);
+                        responseDTO.setMessage("SUCCESS");
+                        responseDTO.setSuccess(true);
+                        responseDTO.setData(userService.save(user));
+                        return responseDTO;
                     } else { // is platform
-                        currentUser.setCurrentlyOnline(true);
-                        return userService.save(currentUser);
+                        user.setCurrentlyOnline(true);
+                        responseDTO.setMessage("SUCCESS");
+                        responseDTO.setSuccess(true);
+                        responseDTO.setData(userService.save(user));
+                        return responseDTO;
                     }
                 } else {
                     // user isn't active yet
-                    return null;
+                    responseDTO.setMessage("Please activate your account first");
+                    responseDTO.setSuccess(false);
+                    return responseDTO;
                 }
             } else {
-                //password is incorrect
-                return null;
+                // incorrect password
+                responseDTO.setMessage("Incorrect password");
+                responseDTO.setSuccess(false);
+                return responseDTO;
             }
         } else {
-            // username does not exist
-            return null;
+            responseDTO.setMessage("No account found with " + username);
+            responseDTO.setSuccess(false);
+            return responseDTO;
         }
     }
-
 
 }

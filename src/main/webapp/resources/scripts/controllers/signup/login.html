@@ -64,12 +64,11 @@
                             style="font-family: 'IM Fell Great Primer SC', serif;">
                         Log In
                     </button>
-
+                    <br>
                     <a href="#/recover">Forgot your password?</a>
 
-                    <div style="margin: auto; width: 80%; padding: 10px">
-                        <div ng-if="ctrl.statusFlag">{{ctrl.statusMessage}}</div>
-                        <div style="color: red" ng-if="!ctrl.statusFlag">{{ctrl.statusMessage}}</div>
+                    <div style="margin: auto; width: 80%; padding: 10px" ng-if="ctrl.message">
+                        <span>{{ctrl.message}}</span>
                     </div>
                 </div>
 

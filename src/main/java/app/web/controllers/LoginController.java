@@ -72,9 +72,8 @@ public class LoginController {
      * \return a user object or null.
      */
     @RequestMapping(value = "web/{username}", method = RequestMethod.PUT)
-    public User userLoginWeb(@PathVariable String username, @RequestBody String password) {
+    public ResponseDTO userLoginWeb(@PathVariable String username, @RequestBody String password) {
         return loginService.logInUser(username, password, true);
-
     }
 
     /**
@@ -85,9 +84,8 @@ public class LoginController {
      * \return a user object or null.
      */
     @RequestMapping(value = "platform/{username}", method = RequestMethod.PUT)
-    public User userLoginPlatform(@PathVariable String username, @RequestBody String password) {
+    public ResponseDTO userLoginPlatform(@PathVariable String username, @RequestBody String password) {
         return loginService.logInUser(username, password, false);
-
     }
 
     /**
@@ -106,7 +104,6 @@ public class LoginController {
         }else {
             return null;
         }
-
     }
 
     /**
