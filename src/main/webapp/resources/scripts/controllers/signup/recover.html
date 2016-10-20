@@ -26,7 +26,7 @@
                         <input type="text" ng-model="user.email" class="form-control" maxlength="64">
                     </form>
 
-                    <button class="btn btn-lg btn-primary btn-block"
+                    <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.email"
                             type="submit" ng-click="ctrl.submit(user)"
                             style="font-family: 'IM Fell Great Primer SC', serif;">
                         Submit

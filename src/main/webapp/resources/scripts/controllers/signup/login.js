@@ -4,6 +4,7 @@ angular.module('app').controller('LoginCtrl', function (UserService, LoginServic
     var ctrl = this;
 
     ctrl.login = function (user) {
+        ctrl.message = '';
         LoginService.logInUser({username: user.username}, user.password).$promise.then(function (response) {
             if(response.success){
                 window.location.reload();
