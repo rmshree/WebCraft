@@ -152,12 +152,27 @@ public class LoginController {
      * \return a Boolean.
      */
     @RequestMapping(value = "passwordRecovery", method = RequestMethod.PUT)
-    public Boolean passwordRecovery(@RequestBody String email) {
+    public ResponseDTO passwordRecovery(@RequestBody String email) {
         User user = userService.getUserByEmail(email);
-        if (user != null && user.getIsActive()) {
-            return emailService.sendPasswordRecoveryEmail(user);
+        ResponseDTO responseDTO = new ResponseDTO();
+        if(user == null){
+            responseDTO.setMessage("No account created with " + email);
+            responseDTO.setSuccess(false);
+            return responseDTO;
+        }else if(!user.getIsActive()){
+            responseDTO.setMessage("Please activate your account");
+            responseDTO.setSuccess(false);
+            return responseDTO;
+        }else if (user.getIsActive()) {
+            emailService.sendPasswordRecoveryEmail(user);
+            responseDTO.setData(null);
+            responseDTO.setMessage("Password Recovery email has been sent");
+            responseDTO.setSuccess(true);
+            return responseDTO;
         }
-        return false;
+        responseDTO.setSuccess(false);
+        responseDTO.setMessage("Unexpected error");
+        return responseDTO;
     }
 
 }
