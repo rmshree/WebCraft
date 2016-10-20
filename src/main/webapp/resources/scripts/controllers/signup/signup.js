@@ -6,6 +6,7 @@ angular.module('app').controller('SignUpCtrl', function (LoginService) {
     var EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     ctrl.signUp = function (user) {
+        ctrl.message = '';
         if(testEmail(user.email)){
             LoginService.signUp(user).$promise.then(function (response) {
                 if(response.success){
