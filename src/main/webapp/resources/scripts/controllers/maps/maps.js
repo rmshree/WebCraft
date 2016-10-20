@@ -5,10 +5,10 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
     ctrl.currentUser = currentUser;
     ctrl.newMap = {};
 
-    $scope.$watchCollection('ctrl.newMap.file', function(file){
-        if(file !== undefined){
+    $scope.$watchCollection('ctrl.newMap.file', function (file) {
+        if (file !== undefined) {
             var reader = new FileReader();
-            reader.onload = function(){
+            reader.onload = function () {
                 var dataURL = reader.result;
                 console.log(dataURL);
                 onMapRender(dataURL, 'imgDiv');
@@ -25,25 +25,32 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
     };
 
     ctrl.uploadMap = function (map) {
-        // TODO: need to make sure the title isn't talked already
-        var gameMap = {
-            title: map.title,
-            numberOfPlayers: map.numberOfPlayers,
-            user: ctrl.currentUser
-        };
-
-        MapService.save(gameMap).$promise.then(function (response) {
-            console.log(response);
-            if(response.id){
-                uploadFile(response, map);
-            }
-        });
+        if (ctrl.currentUser) {
+            var gameMap = {
+                title: map.title,
+                numberOfPlayers: map.numberOfPlayers,
+                user: ctrl.currentUser
+            };
+            MapService.save(gameMap).$promise.then(function (response) {
+                console.log(response);
+                if (response.success) {
+                    uploadFile(response.data, map);
+                } else {
+                    ctrl.message = response.message;
+                }
+            });
+        }
     };
 
     ctrl.download = function (map) {
         MapService.download({id: map.id}).$promise.then(function (response) {
-            var index = ctrl.maps.indexOf(map);
-            ctrl.maps[index] = response;
+            if (response.success) {
+                var index = ctrl.maps.indexOf(map);
+                ctrl.maps[index] = response.data;
+            } else {
+                // should never happen
+                console.log(response.message);
+            }
         });
     };
 
@@ -54,12 +61,12 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
             data: {
                 file: map.file
             }
-        }).success(function(response) {
-            if(response.id){
+        }).success(function (response) {
+            if (response.id) {
                 html2canvas([document.getElementById('imgDiv')], {
                     onrendered: function (canvas) {
                         var data = canvas.toDataURL('image/png');
-                        var file= dataURLtoBlob(data);
+                        var file = dataURLtoBlob(data);
                         uploadImage(response.id, file);
                     }
                 });
@@ -78,8 +85,8 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
             data: {
                 file: img
             }
-        }).success(function(map) {
-            if(map.id){
+        }).success(function (map) {
+            if (map.id) {
                 ctrl.showMapForm = false;
                 ctrl.newMap = {};
                 ctrl.maps.push(map);
@@ -87,7 +94,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         });
     }
 
-    function onMapRender (mapStrings, divId) {
+    function onMapRender(mapStrings, divId) {
 
         //read char by char
         var charMap = "";
@@ -100,7 +107,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
 
         // miss-match in the smallmap and bigmap txt file format
         var numPlayers = mapString[row + 3];
-        if(numPlayers.length > 3){
+        if (numPlayers.length > 3) {
             // for big map
             numPlayers = mapString[row + 2];
         }
@@ -110,7 +117,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
 
         for (var i = 0; i < row; i++) {
             for (var j = 0; j < column; j++) {
-                charMap = mapString[i+2][j];
+                charMap = mapString[i + 2][j];
                 var imageMap = document.createElement('img');
                 imageMap.style.display = "inline-block";
                 var divLocation = document.getElementById(divId);
@@ -138,7 +145,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         var binary = atob(dataURL.split(',')[1]);
         // Create 8-bit unsigned array
         var array = [];
-        for(var i = 0; i < binary.length; i++) {
+        for (var i = 0; i < binary.length; i++) {
             array.push(binary.charCodeAt(i));
         }
         // Return our Blob object

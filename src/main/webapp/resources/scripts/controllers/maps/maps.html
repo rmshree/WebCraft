@@ -36,6 +36,9 @@
                 <button class="btn btn-default" ng-click="ctrl.showMapForm = false; ctrl.newMap = {}">Cancel</button>
             </div>
         </div>
+        <div class="col-xs-12" ng-if="ctrl.message">
+            <span>{{ctrl.message}}</span>
+        </div>
     </div>
     <div class="col-xs-12" ng-if="ctrl.newMap.file">
         <div id="imgDiv"></div>

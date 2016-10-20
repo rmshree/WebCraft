@@ -16,17 +16,22 @@ public class GameMapServiceImpl implements GameMapService {
     private GameMapRepository gameMapRepository;
 
     @Override
-    public GameMap save(GameMap gameMap){
+    public GameMap save(GameMap gameMap) {
         return gameMapRepository.save(gameMap);
     }
 
     @Override
-    public List<GameMap> getAll(){
+    public List<GameMap> getAll() {
         return gameMapRepository.findAll();
     }
 
     @Override
-    public GameMap findById(String id){
+    public GameMap findById(String id) {
         return gameMapRepository.findOne(id);
+    }
+
+    @Override
+    public GameMap findByTitle(String title) {
+        return gameMapRepository.findByTitle(title);
     }
 }

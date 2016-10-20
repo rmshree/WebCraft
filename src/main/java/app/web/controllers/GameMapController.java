@@ -1,5 +1,6 @@
 package app.web.controllers;
 
+import app.web.domain.DTOs.ResponseDTO;
 import app.web.domain.GameMap;
 import app.web.services.FileArchiveService;
 import app.web.services.GameMapService;
@@ -21,8 +22,19 @@ public class GameMapController {
     private FileArchiveService fileArchiveService;
 
     @RequestMapping(value = "save", method = RequestMethod.PUT)
-    public GameMap save(@RequestBody GameMap gameMap){
-        return gameMapService.save(gameMap);
+    public ResponseDTO save(@RequestBody GameMap gameMap){
+        ResponseDTO responseDTO = new ResponseDTO();
+        if(gameMapService.findByTitle(gameMap.getTitle()) == null){
+            responseDTO.setData(gameMapService.save(gameMap));
+            responseDTO.setSuccess(true);
+            responseDTO.setMessage("SUCCESS");
+        }else{
+            // title taken
+            responseDTO.setData(null);
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("Map title is already taken. Please change the title and try again");
+        }
+        return responseDTO;
     }
 
     @RequestMapping(value = "{id}/upload/file", method = RequestMethod.POST)
@@ -61,9 +73,20 @@ public class GameMapController {
     }
 
     @RequestMapping(value = "download/{id}", method = RequestMethod.GET)
-    public GameMap download(@PathVariable String id){
+    public ResponseDTO download(@PathVariable String id){
+        ResponseDTO responseDTO = new ResponseDTO();
         GameMap gameMap = gameMapService.findById(id);
-        gameMap.setCount(gameMap.getCount() + 1);
-        return gameMapService.save(gameMap);
+        if (gameMap != null) {
+            gameMap.setCount(gameMap.getCount() + 1);
+            responseDTO.setData(gameMapService.save(gameMap));
+            responseDTO.setMessage("SUCCESS");
+            responseDTO.setSuccess(true);
+        } else {
+            responseDTO.setSuccess(false);
+            responseDTO.setData(null);
+            responseDTO.setMessage("Unknown Map. Map does not exist");
+        }
+
+        return responseDTO;
     }
 }

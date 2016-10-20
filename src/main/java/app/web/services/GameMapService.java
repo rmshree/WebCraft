@@ -11,4 +11,6 @@ public interface GameMapService {
     List<GameMap> getAll();
 
     GameMap findById(String id);
+
+    GameMap findByTitle(String title);
 }
