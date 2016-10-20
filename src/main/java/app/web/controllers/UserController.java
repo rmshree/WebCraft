@@ -47,7 +47,7 @@ public class UserController {
      *  \param email is a String.
      *  \return a user or NULL
      */
-    @RequestMapping(value = "getByEmail/{email}", method = RequestMethod.GET)
+    @RequestMapping(value = "getByEmail/{email:.+}", method = RequestMethod.GET)
     public User getUserByEmail(@PathVariable String email) {
         User user = userService.getUserByEmail(email);
         if (user == null) {
