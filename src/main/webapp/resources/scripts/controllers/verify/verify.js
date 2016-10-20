@@ -1,16 +1,14 @@
 'use strict';
 
-angular.module('app').controller('VerifyCtrl', function ($routeParams, LoginService) {
+angular.module('app').controller('VerifyCtrl', function ($routeParams, LoginService, $location) {
     var ctrl = this;
 
     ctrl.init = function () {
-        LoginService.activate({userKey: $routeParams.userKey}).$promise.then(function (user) {
-            console.log(user);
-            if(user.id){
-                ctrl.success = true;
+        LoginService.activate({userKey: $routeParams.userKey}).$promise.then(function (response) {
+            if(response.success){
+                $location.path('/login');
             } else{
-                //User not found.
-                ctrl.success = false;
+                ctrl.message = response.message;
             }
         })
     };

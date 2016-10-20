@@ -130,15 +130,22 @@ public class LoginController {
      * \return a user object or null.
      */
     @RequestMapping(value = "activate/{userKey}", method = RequestMethod.GET)
-    public User activateUserAccount(@PathVariable String userKey) {
+    public ResponseDTO activateUserAccount(@PathVariable String userKey) {
         User user = userService.getUserByUserKey(userKey);
+        ResponseDTO responseDTO = new ResponseDTO();
         if (user != null && !user.getIsActive()) {
             user.setIsActive(true);
             cookieService.setCurrentUser(user);
             user.setCurrentlyOnsite(true);
-            return userService.save(user);
+            responseDTO.setSuccess(true);
+            responseDTO.setMessage("SUCCESS");
+            responseDTO.setData(userService.save(user));
+            return responseDTO;
         } else {
-            return null;
+            responseDTO.setData(null);
+            responseDTO.setMessage("Incorrect or expired link. Please sign up to login");
+            responseDTO.setSuccess(false);
+            return responseDTO;
         }
     }
 
