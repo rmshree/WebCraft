@@ -5,6 +5,8 @@ import app.web.domain.User;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -47,6 +49,8 @@ public class EmailServiceImpl implements EmailService {
             Message message = new MimeMessage(session);
             StringWriter writer = new StringWriter();
             VelocityEngine velocityEngine = new VelocityEngine();
+            velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+            velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
             velocityEngine.init();
             Template template = velocityEngine.getTemplate(VERIFICATIONTEMPLATE);
             VelocityContext velocityContext = new VelocityContext();
@@ -84,6 +88,8 @@ public class EmailServiceImpl implements EmailService {
             Message message = new MimeMessage(session);
             StringWriter writer = new StringWriter();
             VelocityEngine velocityEngine = new VelocityEngine();
+            velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+            velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
             velocityEngine.init();
             Template template = velocityEngine.getTemplate(PASSWORDTEMPLATE);
             VelocityContext velocityContext = new VelocityContext();

@@ -15,7 +15,7 @@ angular.module('app').controller('SignUpCtrl', function (UserService, LoginServi
             //if response is undefined, create a new user
             if (!response.id) {
                 ctrl.disabledButton = true;
-                LoginService.signUp({username: user.username}, user).$promise.then(function (response) {
+                LoginService.signUp(user).$promise.then(function (response) {
                     ctrl.statusMessage = 'Sign-up successful!  Please check your email for your verification link';
                 });
             }

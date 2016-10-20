@@ -5,7 +5,7 @@ angular.module('app').controller('RecoverCtrl', function (LoginService) {
 
     ctrl.submit = function (user) {
         LoginService.recovery(user.email).$promise.then(function (response) {
-            console.log(response);
+            ctrl.success = true;
         });
     };
 
