@@ -5,10 +5,6 @@
             <br/>
             <div class="col-md-3">
                 <img ng-src="{{ctrl.profileUser.avatarUrl}}" height="200" width="200">
-                <input type="file" ngf-select ng-model="ctrl.imageFile" ng-if="ctrl.currentUser.id === ctrl.profileUser.id"><br>
-                <button class="btn btn-default" ng-if="ctrl.currentUser.id === ctrl.profileUser.id && ctrl.imageFile" ng-click="ctrl.upload(ctrl.imageFile)">Upload</button>
-                <span ng-if="!ctrl.currentUser.id">Please sign in to upload a picture.</span>
-                <span ng-if="ctrl.uploading">uploading...</span>
             </div>
             <div class="col-md-5">
                 <h1>{{ctrl.profileUser.username}}</h1>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('ProfileCtrl', function (Upload, UserService, currentUser, $routeParams) {
+angular.module('app').controller('ProfileCtrl', function (UserService, currentUser, $routeParams) {
     var ctrl = this;
     ctrl.currentUser = currentUser;
 
@@ -14,22 +14,4 @@ angular.module('app').controller('ProfileCtrl', function (Upload, UserService, c
         })
     };
 
-    ctrl.upload = function (file) {
-        if(ctrl.currentUser.id === ctrl.profileUser.id){
-            ctrl.uploading = true;
-
-            Upload.upload({
-                method: 'POST',
-                url: 'api/user/' + ctrl.currentUser.username + '/upload/avatar',
-                data: {
-                    imageFile: file
-                }
-            }).success(function(response) {
-                ctrl.profileUser = response;
-                ctrl.currentUser = response;
-                ctrl.uploading = false;
-            });
-        }
-
-    }
 });

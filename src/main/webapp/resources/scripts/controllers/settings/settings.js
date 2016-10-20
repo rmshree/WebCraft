@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('SettingsCtrl', function (currentUser, UserService, $location) {
+angular.module('app').controller('SettingsCtrl', function (currentUser, UserService, $location, Upload) {
     var ctrl = this;
     ctrl.currentUser = currentUser;
     console.log(currentUser);
@@ -23,4 +23,19 @@ angular.module('app').controller('SettingsCtrl', function (currentUser, UserServ
             ctrl.showMessage = true;
         });
     };
+
+    ctrl.upload = function (file) {
+        ctrl.uploading = true;
+        Upload.upload({
+            method: 'POST',
+            url: 'api/user/' + ctrl.currentUser.username + '/upload/avatar',
+            data: {
+                imageFile: file
+            }
+        }).success(function(response) {
+            ctrl.currentUser = response;
+            ctrl.uploading = false;
+        });
+    };
+
 });
