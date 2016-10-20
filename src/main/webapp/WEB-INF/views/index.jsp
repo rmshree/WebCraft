@@ -44,6 +44,7 @@
 <script src="resources/scripts/controllers/download/download.js"></script>
 <script src="resources/scripts/controllers/signup/login.js"></script>
 <script src="resources/scripts/controllers/signup/recover.js"></script>
+<script src="resources/scripts/controllers/verify/verify.js"></script>
 
 
 

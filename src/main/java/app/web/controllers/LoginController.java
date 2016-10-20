@@ -126,6 +126,7 @@ public class LoginController {
         if (user != null && !user.getIsActive()) {
             user.setIsActive(true);
             cookieService.setCurrentUser(user);
+            user.setCurrentlyOnsite(true);
             return userService.save(user);
         } else {
             return null;

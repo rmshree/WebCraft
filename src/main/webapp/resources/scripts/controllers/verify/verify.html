@@ -1,0 +1,7 @@
+<div ng-init="ctrl.init()" style="color: white">
+    <div ng-if="ctrl.success">
+        <h2>Success!</h2>
+        Use this <a href="#/login">link</a> to Log in
+    </div>
+    <h3 ng-if="!ctrl.success">{{ctrl.unknownKey}}</h3>
+</div>

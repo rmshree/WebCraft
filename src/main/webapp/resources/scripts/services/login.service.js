@@ -5,7 +5,7 @@ angular.module('app').factory('LoginService', function ($resource) {
         logInUser: {method: 'PUT', url: 'api/login/web/:username'},
         signOut: {method: 'PUT', url: 'api/login/logout/web'},
         signUp: {method: 'POST', url: 'api/login/signUp'},
-        recovery: {method: 'PUT', url: 'api/login/passwordRecovery'}
-
+        recovery: {method: 'PUT', url: 'api/login/passwordRecovery'},
+        activate: {method: 'GET', url: 'api/login/activate/:userKey'}
     });
 });
