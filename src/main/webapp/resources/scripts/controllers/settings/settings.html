@@ -1,73 +1,22 @@
 <div class="container" ng-init="ctrl.init()">
 
-    <div class="col-md-12 col-xs-12">
-        <h1 style="color: white; font-family: 'IM Fell Great Primer SC', serif; font-size: 46px;" align="left">
+    <div class="col-md-12 col-xs-12" style="color: white">
+        <h1 style="font-family: 'IM Fell Great Primer SC', serif; font-size: 46px;" align="left">
             <b>Settings</b>
         </h1>
+        <div ng-if="ctrl.noUser">
+            <span>Please <a ng-href="#/login">log in</a> to see your settings</span>
+        </div>
     </div>
 
-    <div class="col-md-12 col-xs-12" style="background-color: burlywood">
-        <div class="form-group col-md-6">
-            <form class="form-register">
-
-                <h2 style="color: #860038; font-family: 'IM Fell Great Primer SC', serif;" align="left">
-                    <b>User Information</b>
-                </h2>
-
-                <div class="form-group col-md-11">
-                    <div class="col-md-9 pull-right">
-                        <img ng-if="ctrl.currentUser.avatarUrl" ng-src="{{ctrl.currentUser.avatarUrl}}" height="200" width="200">
-                        <img ng-if="!ctrl.currentUser.avatarUrl" src="resources/images/noImage.jpg" height="200" width="200">
-                        <input style="margin-top: 10px" type="file" ngf-select ng-model="ctrl.imageFile"><br>
-                        <button class="btn btn-default" ng-if="ctrl.imageFile" ng-click="ctrl.upload(ctrl.imageFile)">Upload</button>
-                        <span ng-if="ctrl.uploading">uploading...</span>
-                    </div>
-                </div>
-
-                <div class="form-group col-md-11">
-                    <label class="col-md-3"><span class="pull-right">First</span></label>
-                    <div class="col-md-9 pull-right">
-                        <input type="text" class="form-control" ng-model="ctrl.currentUser.firstName">
-                    </div>
-                </div>
-                <div class="form-group col-md-11">
-                    <label class="col-md-3"><span class="pull-right">Last</span></label>
-                    <div class="col-md-9 pull-right">
-                        <input type="text" class="form-control" ng-model="ctrl.currentUser.lastName">
-                    </div>
-                </div>
-                <div class="form-group col-md-11">
-                    <label class="col-md-3"><span class="pull-right">Email</span></label>
-                    <div class="col-md-9 pull-right">
-                        <input type="text" class="form-control" ng-model="ctrl.currentUser.email" disabled>
-                    </div>
-                </div>
-                <div class="form-group col-md-11">
-                    <label class="col-md-3"><span class="pull-right">Password</span></label>
-                    <div class="col-md-9 pull-right">
-                        <input type="password" class="form-control" ng-model="ctrl.currentUser.password">
-                    </div>
-                </div>
-                <div class="form-group col-md-11" ng-init="ctrl.currentUser.pass2 = ctrl.currentUser.password">
-                    <label class="col-md-3"><span class="pull-right">Re-type password</span></label>
-                    <div class="col-md-9 pull-right">
-                        <input type="password" class="form-control" ng-model="ctrl.currentUser.pass2">
-                    </div>
-                </div>
-                <div class="form-group col-md-11">
-                    <label class="col-md-3"><span class="pull-right">Username</span></label>
-                    <div class="col-md-9 pull-right">
-                        <input type="text" class="form-control" ng-model="ctrl.currentUser.username" disabled>
-                    </div>
-                </div>
-
-                <button class="btn btn-lg btn-primary btn-block"
-                        ng-disabled="ctrl.currentUser.password !== ctrl.currentUser.pass2"
-                        type="submit" ng-click="ctrl.edit(ctrl.currentUser);"
-                        style="font-family: 'IM Fell Great Primer SC', serif;">Save Settings</button>
-
-                <span ng-if="ctrl.showMessage">{{ctrl.message}}</span>
-            </form>
-        </div>
+    <div class="col-xs-12" style="background-color: burlywood" ng-if="ctrl.currentUser.id">
+        <ul class="nav nav-tabs" style="font-family: IM Fell Great Primer SC; font-size: x-large">
+            <li role="presentation" ng-class="{'active': ctrl.showUserTab}"><a ng-click="ctrl.showTab('user')" href>User Information</a></li>
+            <li role="presentation" ng-class="{'active': ctrl.showNotificationsTab}"><a ng-click="ctrl.showTab('notifications')" href>Notifications</a></li>
+        </ul>
+        <!-- User Info -->
+        <div class="form-group col-md-12" ng-if="ctrl.showUserTab" ng-include="'resources/scripts/controllers/settings/user.settings.html'"></div>
+        <!-- Notifications -->
+        <div class="form-group col-md-12" ng-if="ctrl.showNotificationsTab" ng-include="'resources/scripts/controllers/settings/notifications.settings.html'"></div>
     </div>
 </div>

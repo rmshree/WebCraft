@@ -1,1 +1,1 @@
-INSERT INTO webcraft.user (`id`, `username`, `email`, `win`, `loss`, `avatar_url`, `password`, `isActive`) VALUES ('1', 'root', 'root@root', 0, 0, '', 'abcde', 1)
+INSERT INTO webcraft.user (`id`, `firstName`, `lastName`, `username`, `email`, `win`, `loss`, `avatar_url`, `password`, `isActive`) VALUES ('1', 'Root', 'TestRoot', 'root', 'root@root', 0, 0, '', 'abcde', 1)

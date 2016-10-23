@@ -71,16 +71,14 @@ public class LoginServiceImpl implements LoginService {
                 responseDTO.setSuccess(true);
                 responseDTO.setData(userService.save(user));
                 return responseDTO;
-            }
-            else { //is platform
+            } else { //is platform
                 user.setCurrentlyOnline(false);
                 responseDTO.setMessage("LOGOUT SUCCESS");
                 responseDTO.setSuccess(true);
                 responseDTO.setData(userService.save(user));
                 return responseDTO;
             }
-        }
-        else {
+        } else {
             responseDTO.setMessage("No account found with " + username);
             responseDTO.setSuccess(false);
             return responseDTO;

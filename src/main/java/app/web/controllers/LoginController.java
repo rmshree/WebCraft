@@ -1,11 +1,9 @@
 package app.web.controllers;
 
 import app.web.domain.DTOs.ResponseDTO;
+import app.web.domain.Settings;
 import app.web.domain.User;
-import app.web.services.CookieService;
-import app.web.services.EmailService;
-import app.web.services.LoginService;
-import app.web.services.UserService;
+import app.web.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +25,9 @@ public class LoginController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private SettingsService settingsService;
+
     /**
      * /api/login/signUp/{username}
      * \brief Creates and saves a new User into the User database.
@@ -37,7 +38,7 @@ public class LoginController {
     @RequestMapping(value = "signUp", method = RequestMethod.POST)
     public ResponseDTO signUp(@RequestBody User userDetails) {
         ResponseDTO responseDTO = new ResponseDTO();
-        if(userService.getUserByEmail(userDetails.getEmail()) != null){
+        if (userService.getUserByEmail(userDetails.getEmail()) != null) {
             // email account already taken
             responseDTO.setMessage("Email is already take. Please use forgot password to recover your password");
             responseDTO.setSuccess(false);
@@ -96,7 +97,7 @@ public class LoginController {
      */
     @RequestMapping(value = "logout/web", method = RequestMethod.PUT)
     public ResponseDTO userLogoutWeb(@RequestBody String username) {
-        return loginService.logOutUser(username,true);
+        return loginService.logOutUser(username, true);
     }
 
     /**
@@ -107,7 +108,7 @@ public class LoginController {
      */
     @RequestMapping(value = "logout/platform", method = RequestMethod.PUT)
     public ResponseDTO userLogoutPlatform(@RequestBody String username) {
-       return loginService.logOutUser(username, false);
+        return loginService.logOutUser(username, false);
     }
 
     /**
@@ -126,6 +127,9 @@ public class LoginController {
             user.setCurrentlyOnsite(true);
             responseDTO.setSuccess(true);
             responseDTO.setMessage("SUCCESS");
+            Settings settings = new Settings();
+            settings.setUser(user);
+            settingsService.save(settings);
             responseDTO.setData(userService.save(user));
             return responseDTO;
         } else {
@@ -146,15 +150,15 @@ public class LoginController {
     public ResponseDTO passwordRecovery(@RequestBody String email) {
         User user = userService.getUserByEmail(email);
         ResponseDTO responseDTO = new ResponseDTO();
-        if(user == null){
+        if (user == null) {
             responseDTO.setMessage("No account created with " + email);
             responseDTO.setSuccess(false);
             return responseDTO;
-        }else if(!user.getIsActive()){
+        } else if (!user.getIsActive()) {
             responseDTO.setMessage("Please activate your account");
             responseDTO.setSuccess(false);
             return responseDTO;
-        }else if (user.getIsActive()) {
+        } else if (user.getIsActive()) {
             emailService.sendPasswordRecoveryEmail(user);
             responseDTO.setData(null);
             responseDTO.setMessage("Password Recovery email has been sent");
