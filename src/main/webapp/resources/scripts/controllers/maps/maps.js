@@ -126,13 +126,13 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
                 imageMap.style.display = "inline-block";
 
                 if (charMap === "G") {
-                    imageMap.src = 'resources/images/tiles/grass.png';
+                    imageMap.src = 'resources/images/tiles/15/grass.png';
                 } else if (charMap === "F") {
-                    imageMap.src = 'resources/images/tiles/forest.png';
+                    imageMap.src = 'resources/images/tiles/15/forest.png';
                 } else if (charMap === "R") {
-                    imageMap.src = 'resources/images/tiles/rock.png';
+                    imageMap.src = 'resources/images/tiles/15/rock.png';
                 } else {
-                    imageMap.src = 'resources/images/tiles/dirt.png';
+                    imageMap.src = 'resources/images/tiles/15/dirt.png';
                 }
                 divLocation.appendChild(imageMap);
             }
