@@ -1,5 +1,6 @@
 package app.web.services;
 
+import app.web.domain.TempUser;
 import app.web.domain.User;
 
 import org.apache.velocity.Template;
@@ -42,7 +43,7 @@ public class EmailServiceImpl implements EmailService {
     private Session session;
 
     @Override
-    public Boolean sendVerificationEmail(User user) {
+    public Boolean sendVerificationEmail(TempUser tempUser) {
         setProperties();
         try {
             String verifcationLink = "";
@@ -57,20 +58,20 @@ public class EmailServiceImpl implements EmailService {
 
 
             if (env.getActiveProfiles()[0].equals("local")) {
-                verifcationLink = LOCALADDRESS + user.getUserKey();
+                verifcationLink = LOCALADDRESS + tempUser.getVerificationKey();
             }
             else {
-                verifcationLink = PRODADDRESS + user.getUserKey();
+                verifcationLink = PRODADDRESS + tempUser.getVerificationKey();
             }
 
-            velocityContext.put("user", user);
+            velocityContext.put("user", tempUser);
             velocityContext.put("verificationLink", verifcationLink);
             velocityContext.put("cancelLink", "This link will delete the account");
             template.merge(velocityContext, writer);
 
             message.setFrom(new InternetAddress(EMAIL));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(user.getEmail()));
+                    InternetAddress.parse(tempUser.getEmail()));
             message.setSubject(VERIFICATIONSUBJECT);
             message.setContent(writer.toString(),"text/html");
 

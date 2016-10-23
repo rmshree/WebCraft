@@ -1,5 +1,6 @@
 package app.web.services;
 
+import app.web.domain.TempUser;
 import app.web.domain.User;
 
 public interface EmailService {
@@ -9,7 +10,7 @@ public interface EmailService {
      *  \param user is the User that is to be created.
      *  \return true when email is sent.
      */
-    Boolean sendVerificationEmail(User user);
+    Boolean sendVerificationEmail(TempUser tempUser);
 
     Boolean sendPasswordRecoveryEmail(User user);
 }

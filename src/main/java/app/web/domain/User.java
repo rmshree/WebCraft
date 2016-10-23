@@ -59,14 +59,6 @@ public class User implements Serializable {
     @JsonIgnore
     private String s3key;
 
-    @Column(name = "isActive")
-    @JsonProperty
-    private Boolean isActive = false;
-
-    @Column(name = "userKey", unique = true)
-    @JsonProperty
-    private String userKey = UUID.randomUUID().toString();
-
     @Column(name = "isCurrentlyOnline") //For users logged in to the game
     @JsonProperty
     private Boolean isCurrentlyOnline = false;
@@ -149,22 +141,6 @@ public class User implements Serializable {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
-    }
-
-    public Boolean getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean active) {
-        isActive = active;
-    }
-
-    public String getUserKey() {
-        return userKey;
-    }
-
-    public void setUserKey(String userKey) {
-        this.userKey = userKey;
     }
 
     public Boolean getCurrentlyOnline() {
