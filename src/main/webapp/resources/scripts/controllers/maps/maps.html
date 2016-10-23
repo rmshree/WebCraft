@@ -50,7 +50,7 @@
 
     <div class="col-xs-12" style="padding: 0">
         <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="map in ctrl.maps track by map.id">
-            <div class="thumbnail">
+            <div class="thumbnail clickable" ng-click="ctrl.goToMap(map)">
                 <img ng-if="map.primaryImageUrl" ng-src="{{map.primaryImageUrl}}" alt="" height="300px">
                 <img ng-if="!map.primaryImageUrl" src="resources/images/noImage.jpg" alt="" height="300px">
                 <div class="caption">

@@ -114,9 +114,20 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
+
         .when('/verify/:userKey', {
             templateUrl: 'resources/scripts/controllers/verify/verify.html',
             controller: 'VerifyCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
+        .when('/map/:id', {
+            templateUrl: 'resources/scripts/controllers/maps/map.html',
+            controller: 'MapViewCtrl',
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {

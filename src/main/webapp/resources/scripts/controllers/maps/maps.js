@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('MapsCtrl', function (currentUser, MapService, Upload, $sce, $scope) {
+angular.module('app').controller('MapsCtrl', function (currentUser, MapService, Upload, $sce, $scope, $location) {
     var ctrl = this;
     ctrl.currentUser = currentUser;
     ctrl.newMap = {};
@@ -17,6 +17,10 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
             reader.readAsBinaryString(blob);
         }
     });
+
+    ctrl.goToMap = function (map) {
+        $location.path('map/' + map.id);
+    };
 
     ctrl.init = function () {
         MapService.getAll().$promise.then(function (response) {
