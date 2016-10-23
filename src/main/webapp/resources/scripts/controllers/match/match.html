@@ -1,0 +1,20 @@
+<!-- This page is purely for testing MatchController. The api that is used for this should only be called by the platforms-------------->
+<div ng-init="ctrl.init()" class="match-page" style="color: gainsboro">
+    <div class="col-xs-12 panel-body">
+        <textarea id= "winners1" maxlength="1000" rows="3" ng-model="ctrl.matchContainer.winners[0]"></textarea>
+        <textarea id = "loser1" maxlength="1000" rows="3" ng-model="ctrl.matchContainer.losers[0]"></textarea>
+    </div>
+    <div class="col-xs-12 panel-body">
+        <textarea id= "winners2" maxlength="1000" rows="3" ng-model="ctrl.matchContainer.winners[1]"></textarea>
+        <textarea id = "loser2" maxlength="1000" rows="3" ng-model="ctrl.matchContainer.losers[1]"></textarea>
+    </div>
+    <div class="col-xs-12 panel-body">
+        <textarea id= "winners3" maxlength="1000" rows="3" ng-model="ctrl.matchContainer.winners[2]"></textarea>
+        <textarea id = "loser3" maxlength="1000" rows="3" ng-model="ctrl.matchContainer.losers[2]"></textarea>
+    </div>
+    <div class="col-xs-12 panel-body">
+        <textarea id= "winners4" maxlength="1000" rows="3" ng-model="ctrl.matchContainer.winners[3]"></textarea>
+        <textarea id = "loser4" maxlength="1000" rows="3" ng-model="ctrl.matchContainer.losers[3]"></textarea>
+    </div>
+    <button class="btn btn-default" ng-click="ctrl.saveMatch(ctrl.matchContainer)">Submit</button>
+</div>

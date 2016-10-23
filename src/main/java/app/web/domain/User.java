@@ -75,6 +75,10 @@ public class User implements Serializable {
     @JsonProperty
     private Boolean isCurrentlyOnsite = false;
 
+    @Column(name = "ELO")
+    @JsonProperty
+    private Integer elo = 1000;
+
     public String getId() {
         return id;
     }
@@ -182,4 +186,12 @@ public class User implements Serializable {
     public void setS3key(String s3key) { this.s3key = s3key; }
 
     public String getS3key() {return s3key;}
+
+    public Integer getElo() {
+        return elo;
+    }
+
+    public void setElo(Integer elo) {
+        this.elo = elo;
+    }
 }

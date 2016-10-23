@@ -45,6 +45,7 @@
 <script src="resources/scripts/controllers/signup/login.js"></script>
 <script src="resources/scripts/controllers/signup/recover.js"></script>
 <script src="resources/scripts/controllers/verify/verify.js"></script>
+<script src="resources/scripts/controllers/match/match.js"></script>
 
 
 
@@ -59,4 +60,5 @@
 <script src="resources/scripts/services/forums.service.js"></script>
 <script src="resources/scripts/services/map.service.js"></script>
 <script src="resources/scripts/services/settings.service.js"></script>
+<script src="resources/scripts/services/match.service.js"></script>
 <%-- Services --%>

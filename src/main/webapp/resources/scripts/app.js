@@ -129,6 +129,12 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
+        .when('/match', {
+            templateUrl: 'resources/scripts/controllers/match/match.html',
+            controller: 'MatchCtrl',
+            controllerAs: 'ctrl',
+            resolve: {}
+        })
         .when('/error', {
             templateUrl: 'resources/scripts/controllers/error/error.html'
         }).otherwise({
