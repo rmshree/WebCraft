@@ -10,6 +10,7 @@ public interface LoginService {
      *                 and compared to what the user inputs
      */
     ResponseDTO logInUser(String username, String inputPassword, Boolean isWeb);
+    ResponseDTO logOutUser(String username, Boolean isWeb);
 
 
 

@@ -28,13 +28,13 @@ public class LoginServiceImpl implements LoginService {
                     if (isWeb) {
                         user.setCurrentlyOnsite(true);
                         cookieService.setCurrentUser(user);
-                        responseDTO.setMessage("SUCCESS");
+                        responseDTO.setMessage("LOGIN SUCCESS");
                         responseDTO.setSuccess(true);
                         responseDTO.setData(userService.save(user));
                         return responseDTO;
                     } else { // is platform
                         user.setCurrentlyOnline(true);
-                        responseDTO.setMessage("SUCCESS");
+                        responseDTO.setMessage("LOGIN SUCCESS");
                         responseDTO.setSuccess(true);
                         responseDTO.setData(userService.save(user));
                         return responseDTO;
@@ -52,6 +52,35 @@ public class LoginServiceImpl implements LoginService {
                 return responseDTO;
             }
         } else {
+            responseDTO.setMessage("No account found with " + username);
+            responseDTO.setSuccess(false);
+            return responseDTO;
+        }
+    }
+
+    @Override
+    public ResponseDTO logOutUser(String username, Boolean isWeb) {
+        User user = userService.getUserByUsername(username);
+        ResponseDTO responseDTO = new ResponseDTO();
+        if (user != null) {
+            //Web or Platform?
+            if (isWeb) {
+                user.setCurrentlyOnsite(false);
+                cookieService.setCurrentUser(null);
+                responseDTO.setMessage("LOGOUT SUCCESS");
+                responseDTO.setSuccess(true);
+                responseDTO.setData(userService.save(user));
+                return responseDTO;
+            }
+            else { //is platform
+                user.setCurrentlyOnline(false);
+                responseDTO.setMessage("LOGOUT SUCCESS");
+                responseDTO.setSuccess(true);
+                responseDTO.setData(userService.save(user));
+                return responseDTO;
+            }
+        }
+        else {
             responseDTO.setMessage("No account found with " + username);
             responseDTO.setSuccess(false);
             return responseDTO;

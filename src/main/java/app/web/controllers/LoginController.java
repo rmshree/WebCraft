@@ -95,15 +95,8 @@ public class LoginController {
      * \return user object.
      */
     @RequestMapping(value = "logout/web", method = RequestMethod.PUT)
-    public User userLogoutWeb(@RequestBody String username) {
-        User user = userService.getUserByUsername(username);
-        if(user != null){
-            user.setCurrentlyOnsite(false);
-            cookieService.setCurrentUser(null);
-            return userService.save(user);
-        }else {
-            return null;
-        }
+    public ResponseDTO userLogoutWeb(@RequestBody String username) {
+        return loginService.logOutUser(username,true);
     }
 
     /**
@@ -113,14 +106,8 @@ public class LoginController {
      * \return user object.
      */
     @RequestMapping(value = "logout/platform", method = RequestMethod.PUT)
-    public User userLogoutPlatform(@RequestBody String username) {
-        User user = userService.getUserByUsername(username);
-        if(user != null){
-            user.setCurrentlyOnline(false);
-            return userService.save(user);
-        }else{
-            return null;
-        }
+    public ResponseDTO userLogoutPlatform(@RequestBody String username) {
+       return loginService.logOutUser(username, false);
     }
 
     /**
