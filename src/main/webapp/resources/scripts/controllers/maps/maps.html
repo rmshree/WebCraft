@@ -40,17 +40,17 @@
             <span>{{ctrl.message}}</span>
         </div>
     </div>
-    <div class="col-xs-12" ng-if="ctrl.newMap.file">
-        <div id="imgDiv"></div>
+    <div class="col-xs-12" ng-if="ctrl.newMap.file" style="margin-bottom: 10px">
+        <div id="image-canvas"></div>
     </div>
 
     <div ng-if="ctrl.maps.length === 0" class="col-xs-12">
         <p>There are currently no maps</p><br>
     </div>
 
-    <div class="col-xs-12" style="padding: 0">
+    <div class="col-xs-12" style="padding: 0" ng-if="!ctrl.showMapForm">
         <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="map in ctrl.maps track by map.id">
-            <div class="thumbnail">
+            <div class="thumbnail clickable" ng-click="ctrl.goToMap(map)">
                 <img ng-if="map.primaryImageUrl" ng-src="{{map.primaryImageUrl}}" alt="" height="300px">
                 <img ng-if="!map.primaryImageUrl" src="resources/images/noImage.jpg" alt="" height="300px">
                 <div class="caption">

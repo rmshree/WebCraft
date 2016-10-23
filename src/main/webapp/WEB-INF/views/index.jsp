@@ -27,7 +27,8 @@
 <script src="resources/js/ng-file-upload.min.js"></script>
 <script src="resources/js/ng-device-detector.min.js"></script>
 <script src="resources/js/re-tree.min.js"></script>
-<script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
+<script src="resources/js/html2canvas.js"></script>
+<%--<script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>--%>
 <%-- Third party JS --%>
 
 <%-- Controllers --%>
@@ -46,6 +47,7 @@
 <script src="resources/scripts/controllers/signup/recover.js"></script>
 <script src="resources/scripts/controllers/verify/verify.js"></script>
 <script src="resources/scripts/controllers/match/match.js"></script>
+<script src="resources/scripts/controllers/maps/map.js"></script>
 
 
 

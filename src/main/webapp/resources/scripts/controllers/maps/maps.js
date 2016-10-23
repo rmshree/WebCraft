@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('MapsCtrl', function (currentUser, MapService, Upload, $sce, $scope) {
+angular.module('app').controller('MapsCtrl', function (currentUser, MapService, Upload, $sce, $scope, $location) {
     var ctrl = this;
     ctrl.currentUser = currentUser;
     ctrl.newMap = {};
@@ -10,13 +10,16 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
             var reader = new FileReader();
             reader.onload = function () {
                 var dataURL = reader.result;
-                console.log(dataURL);
-                onMapRender(dataURL, 'imgDiv');
+                onMapRender(dataURL, 'image-canvas');
             };
             var blob = file.slice(0, file.size);
             reader.readAsBinaryString(blob);
         }
     });
+
+    ctrl.goToMap = function (map) {
+        $location.path('map/' + map.id);
+    };
 
     ctrl.init = function () {
         MapService.getAll().$promise.then(function (response) {
@@ -63,7 +66,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
             }
         }).success(function (response) {
             if (response.id) {
-                html2canvas([document.getElementById('imgDiv')], {
+                html2canvas([document.getElementById('image-canvas')], {
                     onrendered: function (canvas) {
                         var data = canvas.toDataURL('image/png');
                         var file = dataURLtoBlob(data);
@@ -114,27 +117,23 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
         ctrl.newMap.numberOfPlayers = parseInt(numPlayers);
         ctrl.newMap.title = mapString[0];
         var dynamicDivWidth = column * 15;
-
+        var divLocation = document.getElementById(divId);
+        divLocation.style.width = dynamicDivWidth;
         for (var i = 0; i < row; i++) {
             for (var j = 0; j < column; j++) {
                 charMap = mapString[i + 2][j];
                 var imageMap = document.createElement('img');
                 imageMap.style.display = "inline-block";
-                var divLocation = document.getElementById(divId);
-                divLocation.style.width = dynamicDivWidth;
 
                 if (charMap === "G") {
-                    imageMap.src = 'resources/images/tiles/grass.png';
-                    //potentially add imageMap.style.width="35%"???
+                    imageMap.src = 'resources/images/tiles/15/grass.png';
                 } else if (charMap === "F") {
-                    imageMap.src = 'resources/images/tiles/forest.png';
+                    imageMap.src = 'resources/images/tiles/15/forest.png';
                 } else if (charMap === "R") {
-                    imageMap.src = 'resources/images/tiles/rock.png';
+                    imageMap.src = 'resources/images/tiles/15/rock.png';
                 } else {
-                    imageMap.src = 'resources/images/tiles/dirt.png';
+                    imageMap.src = 'resources/images/tiles/15/dirt.png';
                 }
-
-                imageMap.id = charMap + "_" + row.toString + "_" + column.toString;
                 divLocation.appendChild(imageMap);
             }
         }
