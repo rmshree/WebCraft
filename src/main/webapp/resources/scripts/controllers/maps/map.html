@@ -1,8 +1,6 @@
-<div class="container-fluid" ng-init="ctrl.init()" style="margin-top: 10px">
-    <div ng-if="ctrl.message"><h4>{{ctrl.message}}</h4></div>
+<div ng-init="ctrl.init()">
+    <div style="margin-top: 10px" ng-if="ctrl.message"><h4>{{ctrl.message}}</h4></div>
     <div ng-if="ctrl.map.id">
-        <img ng-src="{{ctrl.map.primaryImageUrl}}">
+        <div id="image-canvas"></div>
     </div>
 </div>
-
-
