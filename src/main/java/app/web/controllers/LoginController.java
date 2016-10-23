@@ -1,11 +1,9 @@
 package app.web.controllers;
 
 import app.web.domain.DTOs.ResponseDTO;
+import app.web.domain.Settings;
 import app.web.domain.User;
-import app.web.services.CookieService;
-import app.web.services.EmailService;
-import app.web.services.LoginService;
-import app.web.services.UserService;
+import app.web.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +24,9 @@ public class LoginController {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private SettingsService settingsService;
 
     /**
      * /api/login/signUp/{username}
@@ -126,6 +127,9 @@ public class LoginController {
             user.setCurrentlyOnsite(true);
             responseDTO.setSuccess(true);
             responseDTO.setMessage("SUCCESS");
+            Settings settings = new Settings();
+            settings.setUser(user);
+            settingsService.save(settings);
             responseDTO.setData(userService.save(user));
             return responseDTO;
         } else {
