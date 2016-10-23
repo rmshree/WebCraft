@@ -44,12 +44,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
-        .when('/landing', {
-            templateUrl: 'resources/scripts/controllers/landing/landing.html',
-            controller: 'LandingCtrl',
-            controllerAs: 'ctrl',
-            resolve: {}
-        })
+
         .when('/about', {
             templateUrl: 'resources/scripts/controllers/about/about.html',
             controller: 'AboutCtrl',

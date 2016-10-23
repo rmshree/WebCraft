@@ -1,6 +1,6 @@
 <div ng-controller="NavCtrl as ctrl" ng-init="ctrl.init()">
-    <nav class="navbar navbar-fixed-top navbar-inverse" style="margin-bottom: 0; background-color: #860038;">
-        <div class="container-fluid" style="font-family: 'IM Fell Great Primer SC', serif;">
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container-fluid">
 
             <!-- Brand and toggle get grouped for better mobile display -->
             <!-- Section below only visible in mobile view -->
@@ -8,19 +8,19 @@
                 <a role="button" href class="navbar-toggle collapsed" ng-click="ctrl.navCollapsed = !ctrl.navCollapsed">
                     <i class="fa fa-bars" style="color: white"></i>
                 </a>
-                <a style="color: gold" class="navbar-brand" href="#/">Home</a>
+                <a class="navbar-brand" href="#/">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}">
                 <ul style="font-size: large" class="nav navbar-nav">
 
-                    <!--  <li><a href="#/about">About</a></li>  -->
-                    <li><a style="color: gold"  href="#/maps">Maps</a></li>
-                    <li><a style="color: gold"  href="#/rankings">Rankings</a></li>
-                    <li><a style="color: gold"  href="#/forums">Forums</a></li>
-                    <li><a style="color: gold" href="#/download">Download Game</a> </li>
-                    <li><a style="color: gold" href="#/settings">Settings</a> </li>
+                    <li><a href="#/about">About</a></li>
+                    <li><a href="#/maps">Maps</a></li>
+                    <li><a href="#/rankings">Rankings</a></li>
+                    <li><a href="#/forums">Forums</a></li>
+                    <li><a href="#/download">Download Game</a> </li>
+                    <li><a href="#/settings">Settings</a> </li>
                     <!--<li class="dropdown" ng-class="{'open': ctrl.toggleDropDown}">
                         <a href class="dropdown-toggle" ng-click="ctrl.toggleDropDown = !ctrl.toggleDropDown" role="button">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu">

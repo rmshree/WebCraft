@@ -1,101 +1,91 @@
-<div class="signupBG" ng-init="ctrl.init()">
-    <div class="container">
+<div class="container-fluid" ng-init="ctrl.init()">
 
-        <div class="row">
-            <br>
-            <h1 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 72px;" align="center">
-                <b>Welcome to NittaCraft</b>
-            </h1>
-            <h2 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 48px;" align="center">
-                <b>a.out Edition</b>
-            </h2>
-            <br>
-        </div>
+    <div class="container-fluid loginContainer">
+            <div class="row">
+                    <div class=" loginBox col-lg-6">
 
+                            <h3>Log in</h3>
+                            <form>
 
-        <div class="row">
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="pull-left">Username</label>
+                                        <input type="text" class="form-control" ng-model="loginUser.username" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="pull-left">Password</label>
+                                        <input type="password" class="form-control" ng-model="loginUser.password" />
+                                    </div>
+                                </div>
 
-            <div class="col-md-4">
+                                <div class="row">
+                                        <div class="col-lg-3">
+                                        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="ctrl.login(loginUser)" ng-disabled="!loginUser.username || !loginUser.password">
+                                            Log In</button>
+                                        </div>
+                                    <a href="#/recover">Forgot your password?</a>
+                                </div>
+                            </form>
 
-                <br><br>
-                <h1 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 48px;"
-                    align="center">
-                    <b>Why Join?</b>
-                </h1>
-
-                <div style="font-family: 'Open Sans', serif;color: #2a3829; margin: auto; padding: 20px; width: 300px; background-color: #f7eac5">
-                    <li type="square">Download the game!</li>
-                    <li type="square">Join the NittaCraft Community</li>
-                    <li type="square">View stats of players!</li>
-                    <li type="square">Play your games on any supported platform</li>
-                    <li type="square">Download new maps to play!</li>
-                    <li type="square">Receive automatic game updates, and more!</li>
-                </div>
-                <br><br>
-
-            </div>
-
-
-            <div class="col-md-4 text-center" align="center">
-
-                <br><br>
-                <h2 style="color: #2a3829;font-family: 'IM Fell Great Primer SC', serif; font-size: 48px;"><b>Log
-                    In</b>
-                </h2>
-
-                <div class="form-group" style="margin: auto; padding: 20px; width: 300px; background-color: #f7eac5">
-
-                    <form class="form-register">
-
-                        <span class="pull-left"
-                              style="font-family: 'Open Sans', serif;color: #8d1d1c;"> </span>
-                        <input type="text" ng-model="user.username" class="form-control" placeholder="Username"
-                               maxlength="15">
-                        <br>
-                        <span class="pull-left"
-                              style="font-family: 'Open Sans', serif;color: #8d1d1c;"></span>
-                        <input type="password" ng-model="user.password" class="form-control" placeholder="Password"
-                               maxlength="15" minlength="5">
-
-                    </form>
-
-                    <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.username || !user.password"
-                            type="submit" ng-click="ctrl.login(user)"
-                            style="font-family: 'IM Fell Great Primer SC', serif;">
-                        Log In
-                    </button>
-                    <br>
-                    <a href="#/recover">Forgot your password?</a>
-
-                    <div style="margin: auto; width: 80%; padding: 10px" ng-if="ctrl.message">
-                        <span>{{ctrl.message}}</span>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class=" col-md-4 text-center" align="center">
-
-                <br><br>
-                <h2 style="color: #2a3829;font-family: 'IM Fell Great Primer SC', serif; font-size: 48px;"><b>Create
-                    Account</b>
-                </h2>
-
-                <div class="form-group" style="margin: auto; padding: 20px; width: 300px; background-color: #f7eac5">
-                    <div style="font-family: 'Open Sans', serif;color: #2a3829;">
-                        <p>A new free account
-                            It's free to join and easy to use. Continue on to create your Steam account and get Steam,
-                            the leading digital solution for PC and Mac gamers.
-                        </p>
+                            <span>{{ctrl.message}}</span>
                     </div>
 
-                    <a href="#/signup">Join!</a>
-                </div>
+
+                    <div class="signupBox col-lg-6">
+
+                            <h3> Sign up</h3>
+                            <form class="form-register">
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="pull-left">First Name</label>
+                                        <input type="text" class="form-control" ng-model="signupUser.firstName" placeholder="John" maxlength="20" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="pull-left">Last Name</label>
+                                        <input type="text" class="form-control" ng-model="signupUser.lastName" placeholder="Smith" maxlength="20" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="pull-left">Email</label>
+                                        <input type="text" class="form-control" ng-model="signupUser.email" placeholder="Johnsmith@gmail.com" maxlength="64"  />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="pull-left">Username</label>
+                                        <input type="text" ng-model="signupUser.username" class="form-control" placeholder="Minimum 3 characters" maxlength="15" minlength="3" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="pull-left">Password</label>
+                                        <input type="password" ng-model="signupUser.password" class="form-control" placeholder="Minimum 5 characters" maxlength="15" minlength="5" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="pull-left">Confirm Password</label>
+                                        <input type="password" ng-model="signupUser.Cpassword" class="form-control"  placeholder="Retype password" maxlength="15" minlength="5" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <button class="btn btn-lg btn-primary btn-block"
+                                                ng-disabled="!signupUser.username || !signupUser.password || !signupUser.email || !signupUser.firstName || !signupUser.lastName || (signupUser.password !== signupUser.Cpassword)"
+                                                type="submit" ng-click="ctrl.signUp(signupUser)">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                                <span>{{ctrl.statusMessage}}</span>
+                    </div>
 
             </div>
 
-        </div>
     </div>
-
 </div>
