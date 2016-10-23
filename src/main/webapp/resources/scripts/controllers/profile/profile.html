@@ -4,7 +4,8 @@
             <br/>
             <br/>
             <div class="col-md-3">
-                <img ng-src="{{ctrl.profileUser.avatarUrl}}" height="200" width="200">
+                <img ng-if="!ctrl.profileUser.avatarUrl" src="resources/images/noImage.jpg" height="200" width="200">
+                <img ng-if="ctrl.profileUser.avatarUrl" ng-src="{{ctrl.profileUser.avatarUrl}}" height="200" width="200">
             </div>
             <div class="col-md-5">
                 <h1>{{ctrl.profileUser.username}}</h1>
