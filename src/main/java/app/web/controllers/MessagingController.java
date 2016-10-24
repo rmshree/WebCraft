@@ -81,5 +81,9 @@ public class MessagingController {
         }
     }
 
+    @RequestMapping(value= "get/messages/{conversation_id}", method = RequestMethod.GET)
+    public List<Message> getMessagesByConvoID(@PathVariable Integer id){
+        return messageService.getMessageByConversation(id);
+    }
 
 }
