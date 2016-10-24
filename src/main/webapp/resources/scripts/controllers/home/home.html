@@ -1,15 +1,26 @@
 <div class="container-fluid" ng-init="ctrl.init()" style="color: white">
 
-    <div class="col-md-6 col-xs-12">
-        <h3>Currently on website</h3>
-        <div ng-repeat="user in ctrl.onsiteUsers">
-            <a href ng-click="ctrl.goToUserProfile(user)" style="font-size: larger">{{user.username}}</a>
-        </div>
+    <div class="col-lg-12 warningBanner">
+        <p>This site is currently under construction <i class="fa fa-cog fa-spin" aria-hidden="true"></i></p>
     </div>
-    <div class="col-md-6 col-xs-12">
-        <h3>Currently on platform</h3>
-        <div ng-repeat="user in ctrl.onlineUsers">
-            <a href ng-click="ctrl.goToUserProfile(user)" style="font-size: larger">{{user.username}}</a>
-        </div>
+
+    <div class="container-fluid userLists">
+            <div class="row-fluid">
+                <div class="col-md-6 col-xs-12">
+                    <h3><u>Currently on website:</u></h3>
+                    <div ng-repeat="user in ctrl.onsiteUsers">
+                        <a href ng-click="ctrl.goToUserProfile(user)" style="font-size: larger">{{user.username}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="col-md-6 col-xs-12">
+                    <h3><u>Currently on platform:</u></h3>
+                    <div ng-repeat="user in ctrl.onlineUsers">
+                        <a href ng-click="ctrl.goToUserProfile(user)" style="font-size: larger">{{user.username}}</a>
+                    </div>
+                </div>
+            </div>
     </div>
+
 </div>
