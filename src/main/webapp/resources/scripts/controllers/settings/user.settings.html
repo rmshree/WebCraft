@@ -1,13 +1,13 @@
 <form class="form-register col-md-8">
 
-    <h2 style="color: #860038; font-family: 'IM Fell Great Primer SC', serif;" align="left">
+    <h2 >
         <b>User Information</b>
     </h2>
 
     <div class="form-group col-md-11">
         <div class="col-md-8 pull-right">
             <img ng-if="ctrl.currentUser.avatarUrl" ng-src="{{ctrl.currentUser.avatarUrl}}" height="200" width="200">
-            <img ng-if="!ctrl.currentUser.avatarUrl" src="resources/images/noImage.jpg" height="200" width="200">
+            <img ng-if="!ctrl.currentUser.avatarUrl" src="/resources/images/noImage.jpg" height="200" width="200">
             <input style="margin-top: 10px" type="file" ngf-select ng-model="ctrl.imageFile"><br>
             <button class="btn btn-default" ng-if="ctrl.imageFile" ng-click="ctrl.upload(ctrl.imageFile)">Upload</button>
             <span ng-if="ctrl.uploading">uploading...</span>
@@ -54,7 +54,7 @@
     <button class="btn btn-lg btn-primary btn-block"
             ng-disabled="ctrl.currentUser.password !== ctrl.currentUser.pass2"
             type="submit" ng-click="ctrl.edit(ctrl.currentUser);"
-            style="font-family: 'IM Fell Great Primer SC', serif; margin-bottom: 5px">Save Settings</button>
+            style="margin-bottom: 5px">Save Settings</button>
 
     <span ng-if="ctrl.showUserMessage">{{ctrl.message}}</span>
 </form>

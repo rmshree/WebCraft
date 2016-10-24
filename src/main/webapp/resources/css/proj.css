@@ -2,8 +2,39 @@
 main {
 
     padding-top: 50px;
+    font-family: 'Pontano Sans', sans-serif;
+
+}
+nav {
+    font-family: 'Pontano Sans', sans-serif;
 }
 
+.warningBanner {
+    text-align: center;
+    background-color: darkred;
+    font-size: 20px;
+    padding: 0;
+}
+
+.userLists {
+    background-color: lightslategray;
+    width: 50%;
+    height: 200px;
+    position: relative;
+    top: 100px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.userLists a {
+    text-decoration: none;
+    color: lightseagreen;
+    font-weight: bold;
+}
+
+.userLists a:hover {
+    color: aquamarine;
+}
 
 .loginContainer {
 
@@ -54,7 +85,7 @@ main {
 .forums-page{
     overflow: auto;
     min-height: 100%;
-    background: aliceblue; /* fallback for old browsers */
+    background: steelblue; /* fallback for old browsers */
     /*background: -webkit-linear-gradient(to left, #00d2ff , #3a7bd5); !* Chrome 10-25, Safari 5.1-6 *!*/
     /*background: linear-gradient(to left, #00d2ff , #3a7bd5); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
 }
@@ -81,12 +112,6 @@ main {
     min-height: 100%;
     background-color: beige;
 
-}
-
-.about-page {
-    background-color: #471756;
-    min-height: 100%;
-    overflow: auto;
 }
 
 
