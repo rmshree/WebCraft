@@ -45,18 +45,17 @@ public class MessagingController {
 
     }
 
-    /*@RequestMapping(value ="save/conversation", method = RequestMethod.POST)
+    @RequestMapping(value ="save/conversation", method = RequestMethod.POST)
     public Conversation saveConversation(@RequestBody Conversation conversation){
-        Conversation convo = ConversationService.save(conversation);
+        Conversation convo = conversationService.save(conversation);
         if(convo == null){
-            return null
+            return null;
         }
         else{
             return convo;
         }
 
-    }*/
-
+    }
 
 
     @RequestMapping(value= "get/message/{id}", method = RequestMethod.GET)
