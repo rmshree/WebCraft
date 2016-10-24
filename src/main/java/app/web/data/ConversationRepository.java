@@ -8,5 +8,11 @@ import java.util.List;
 
 public interface ConversationRepository extends JpaRepository<Conversation, User>{
     @Query("select c from Conversation c where c.user1 = ?1 and c.user2 = ?2")
-           Conversation getConvobyUsers(User user1, User user2);
+    Conversation getConvobyUsers(User user1, User user2);
+
+    @Query("select c from Conversation c where c.user1 = ?1 or c.user2 = ?1")
+    Conversation getConvobyUser(User user);
+
+    @Query("select c from Conversation c where c.id = ?1")
+    Conversation getconvoByID(Integer id);
 }

@@ -7,8 +7,8 @@ import java.util.List;
 public interface MessageService {
     Message save(Message message);
 
-    Message getMessagetByID(Integer id);
+    Message getMessageByID(Integer id);
 
-    List<Message> getMessageByConvo(Integer id);
+    List<Message> getMessageByConversation(Integer id);
 
 }
