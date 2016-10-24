@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
-public interface ConversationRepository extends JpaRepository<Conversation, String>{
-    @Query("select c from Conversation c where c.user1.username = ?1 and c.user2.username = ?2")
-            Conversation getConvobyUsers(String user1, String user2);
+public interface ConversationRepository extends JpaRepository<Conversation, User>{
+    @Query("select c from Conversation c where c.user1 = ?1 and c.user2 = ?2")
+           Conversation getConvobyUsers(User user1, User user2);
 }
