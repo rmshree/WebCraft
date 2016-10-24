@@ -15,12 +15,15 @@ import java.util.List;
 @RequestMapping(value = "/api/messages/")
 public class MessagingController {
     @Autowired
-    private ConversationService convoService;
+    private MessageService messageService;
+
+    @Autowired
+    private ConversationService conversationService;
 
 
     @RequestMapping(value= "get/conversation", method = RequestMethod.GET)
     public Conversation getConvoByUsers(@RequestBody User user1, @RequestBody User user2){
-        Conversation convo = convoService.getConvobyUsers(user1, user2);
+        Conversation convo = conversationService.getConvobyUsers(user1, user2);
         if(convo == null){
             return null;
         }
@@ -32,7 +35,7 @@ public class MessagingController {
 
     @RequestMapping(value= "get/conversation/{id}", method = RequestMethod.GET)
     public Conversation getConvoByID(@PathVariable Integer id){
-        Conversation convo = convoService.getConvobyID(id);
+        Conversation convo = conversationService.getConvobyID(id);
         if(convo == null){
             return null;
         }
