@@ -70,13 +70,14 @@ public class MessagingController {
     }
 
 
-    @RequestMapping(value= "save/message", method = RequestMethod.POST)
-    public Message saveMessage(@RequestBody Message message){
+    @RequestMapping(value= "{convoID}/save/message", method = RequestMethod.POST)
+    public Message saveMessage(@RequestBody Message message, @PathVariable Integer convoID){
         Message msg = messageService.save(message);
         if(msg == null){
             return null;
         }
         else{
+            msg.setConvo_id(convoID);
             return msg;
         }
     }
