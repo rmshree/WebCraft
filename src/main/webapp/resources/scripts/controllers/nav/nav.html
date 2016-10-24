@@ -24,37 +24,29 @@
                     </ul>
 
                     <!-- Current User is Logged in -->
-                    <ul class="nav navbar-nav navbar-right" style="margin-right: 3px" ng-if="ctrl.currentUser">
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 10px" ng-if="ctrl.currentUser">
 
-
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-2x" aria-hidden="true"></i><span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                    </ul>
-                                </li>
+                        <li><a href><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a></li>
+                       <li class="dropdown"  ng-class="{'open': ctrl.toggleDropDown}">
+                            <a href class="dropdown-toggle" ng-click="ctrl.toggleDropDown = !ctrl.toggleDropDown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user fa-2x" aria-hidden="true"></i><span class="caret"></span></a>
+                            <ul class="dropdown-menu" style="padding: 3px;">
+                                <li><p>Signed in as</p></li>
+                                <li><p><b>{{ctrl.currentUser.username}}</b></p></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href  ng-click="ctrl.goToProfile()">Profile</a></li>
+                                <li><a href ng-click="ctrl.goToSettings()">Settings</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href ng-click="ctrl.signOut()">Sign Out</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                <!--  No User logged in -->
+                                       <!--  No User logged in -->
                  <ul class="nav navbar-nav navbar-right" style="margin-right: 3px" ng-if="!ctrl.currentUser">
 
                    <li><a href="#/login">Login or Signup</a></li>
                  </ul>
-                    <!-- <li><a href="#/settings">Settings</a> </li> -->
 
-
-                        <!--<div class="form-group">
-                     <button class="btn btn-info" ng-click="ctrl.goToProfile()"> {{ctrl.currentUser.username}}'s
-                         Profile
-                     </button>
-                 </div>
-                 <div class="form-group">
-                     <button class="btn btn-danger" ng-click="ctrl.signOut()">Sign out</button>
-                 </div>-->
 
                 </div> <!--collapse-->
             </div> <!--container fluid -->
