@@ -1,7 +1,7 @@
 
 main {
 
-    padding-top: 50px;
+    padding-top: 40px;
     font-family: 'Pontano Sans', sans-serif;
 
 }
@@ -13,13 +13,13 @@ nav {
     text-align: center;
     background-color: darkred;
     font-size: 20px;
-    padding: 0;
+    padding-top: 20px;
 }
 
 .userLists {
     background-color: lightslategray;
     width: 50%;
-    height: 100%px;
+
     position: relative;
     top: 100px;
     border-radius: 15px;
@@ -28,7 +28,7 @@ nav {
 
 .userLists a {
     text-decoration: none;
-    color: lightseagreen;
+    color: mediumspringgreen;
     font-weight: bold;
 }
 
@@ -114,4 +114,9 @@ nav {
 
 }
 
+.profileContainer {
+    height: 75%;
+    width: 75%;
+    background-color: lightslategray;
+}
 
