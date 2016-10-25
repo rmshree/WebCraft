@@ -24,9 +24,9 @@ public class Message implements Serializable{
     @JsonProperty
     private String message_body;
 
-//    @Column(name = "create_date", nullable = false)
-//    @JsonProperty
-//    private Date create_date = new Date();
+    @Column(name = "create_date", nullable = false)
+    @JsonProperty
+    private Date createDate;
 
     @OneToOne
     @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "sender_id", referencedColumnName = "id")
@@ -62,13 +62,13 @@ public class Message implements Serializable{
         this.message_body = message_body;
     }
 
-//    public Date getCreate_date() {
-//        return create_date;
-//    }
-//
-//    public void setCreate_date(Date create_date) {
-//        this.create_date = create_date;
-//    }
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
     public User getSender() {
         return sender;

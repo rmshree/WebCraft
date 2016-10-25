@@ -2,6 +2,7 @@
 
 angular.module('app').factory('MessageService', function ($resource) {
     return $resource('api/messages/', {}, {
-        sendMessage: {method: 'POST', url: 'api/messages/save'}
+        sendMessage: {method: 'POST', url: 'api/messages/save'},
+        getMessages: {method: 'GET', url: 'api/messages/user/:username', isArray:true}
     });
 });

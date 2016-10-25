@@ -49,6 +49,7 @@
 <script src="resources/scripts/controllers/match/match.js"></script>
 <script src="resources/scripts/controllers/maps/map.js"></script>
 <script src="resources/scripts/controllers/messages/message.js"></script>
+<script src="resources/scripts/controllers/messages/compose.js"></script>
 
 
 

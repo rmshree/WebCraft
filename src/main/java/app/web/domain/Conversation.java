@@ -14,11 +14,13 @@ public class Conversation implements Serializable{
     @JsonProperty
     private Integer id;
 
-    @Column(name = "user1", nullable = false)
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "user1_id", referencedColumnName = "id")
     @JsonProperty
     private User user1;
 
-    @Column(name = "user2", nullable = false)
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "user2_id", referencedColumnName = "id")
     @JsonProperty
     private User user2;
 

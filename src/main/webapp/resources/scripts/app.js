@@ -109,6 +109,16 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
+        .when('/compose/:username', {
+            templateUrl: 'resources/scripts/controllers/messages/compose.html',
+            controller: 'ComposeCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
         .when('/messages', {
             templateUrl: 'resources/scripts/controllers/messages/message.html',
             controller: 'MessagesCtrl',
