@@ -48,6 +48,8 @@
 <script src="resources/scripts/controllers/verify/verify.js"></script>
 <script src="resources/scripts/controllers/match/match.js"></script>
 <script src="resources/scripts/controllers/maps/map.js"></script>
+<script src="resources/scripts/controllers/messages/message.js"></script>
+
 
 
 
@@ -63,4 +65,5 @@
 <script src="resources/scripts/services/map.service.js"></script>
 <script src="resources/scripts/services/settings.service.js"></script>
 <script src="resources/scripts/services/match.service.js"></script>
+<script src="resources/scripts/services/message.service.js"></script>
 <%-- Services --%>

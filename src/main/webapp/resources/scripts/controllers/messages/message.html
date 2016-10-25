@@ -1,0 +1,13 @@
+<h2 ng-init="ctrl.init()"> Messages Page</h2>
+
+<div class="col-md-5">
+    <div class="input-group">
+        <input ng-model="ctrl.messageTo" type="text" class="form-control" placeholder="Send to...">
+      <span class="input-group-btn">
+        <button ng-click="ctrl.sendMessage()" class="btn btn-default" type="button">Send!</button>
+      </span>
+    </div>
+    <div style="padding: 0; margin-top: 5px" class="col-md-12">
+        <textarea ng-model="ctrl.message" class="col-md-12" rows="4" cols="50" placeholder="Compose you message..."></textarea>
+    </div>
+</div>
