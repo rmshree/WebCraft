@@ -1,11 +1,7 @@
 package app.web.controllers;
 
-import app.web.domain.Message;
-import app.web.domain.Conversation;
-import app.web.domain.User;
-import app.web.services.MessageService;
-import app.web.services.ConversationService;
-import app.web.services.UserService;
+import app.web.domain.*;
+import app.web.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +19,12 @@ public class MessagingController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private FutureEmailService futureEmailService;
+
+    @Autowired
+    private SettingsService settingsService;
 
 
     @RequestMapping(value = "get/conversation", method = RequestMethod.GET)
@@ -83,7 +85,30 @@ public class MessagingController {
             message.setConvo_id(conversation.getId());
         }
 
-        message.setCreateDate(new Date());
+        Settings settings = settingsService.getByUser(message.getReceiver());
+        Date now = new Date();
+
+        if(settings.getDelay() == 0){
+            // send an immediate
+        } else {
+            FutureEmail futureEmail = new FutureEmail();
+            futureEmail.setUser(message.getReceiver());
+            String content = "Dear " + message.getReceiver().getUsername() + ",\n This notification is to inform you that " + message.getSender().getUsername() + " has sent you a message on Nittacraft.\n";
+            futureEmail.setContent(content);
+            Date fututeTime = new Date();
+            if(settings.getDelayUnit().equals("Minutes")){
+                fututeTime.setTime(fututeTime.getTime() + 60000 * settings.getDelay());
+            }else if(settings.getDelayUnit().equals("Hours")){
+                fututeTime.setTime(fututeTime.getTime() + 60 * 60000 * settings.getDelay());
+            }else if(settings.getDelayUnit().equals("Days")){
+                fututeTime.setTime(fututeTime.getTime() + 24 * 60 * 60000 * settings.getDelay());
+            }else{
+
+            }
+            futureEmail.setDate(fututeTime);
+            futureEmailService.save(futureEmail);
+        }
+        message.setCreateDate(now);
         return messageService.save(message);
     }
 

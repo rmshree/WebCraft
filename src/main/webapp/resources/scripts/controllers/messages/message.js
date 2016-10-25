@@ -3,7 +3,7 @@
 angular.module('app').controller('MessagesCtrl', function (currentUser, MessageService) {
     var ctrl = this;
     ctrl.currentUser = currentUser;
-    
+
     ctrl.init = function () {
         ctrl.getMessages();
     };
