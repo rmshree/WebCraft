@@ -9,8 +9,15 @@
             </div>
             <div class="col-md-5">
                 <h1>{{ctrl.profileUser.username}}</h1>
-                <span>North America [Region]</span>
-                <h2>RANK:</h2>
+                <!-- <span>North America [Region]</span> -->
+                <h2>
+                    Rank: {{ctrl.profileUser.elo}}
+                </h2>
+                <h3>
+                    Wins: {{ctrl.profileUser.win}}
+                    <br/>
+                    Losses: {{ctrl.profileUser.loss}}
+                </h3>
             </div>
         </div>
     </div>
