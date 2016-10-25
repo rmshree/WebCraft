@@ -1,0 +1,26 @@
+<h2 ng-init="ctrl.init()" style="color: #5bc0de " > Messages Page</h2>
+
+<div class="col-md-5">
+    <div class="panel panel-default">
+        <div class="panel-heading">Received Messages</div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Date/Time</th>
+                <th>Message</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="message in ctrl.messages">
+            <tr>
+                <td>{{message.sender.username}}</td>
+                <td>{{message.receiver.username}}</td>
+                <td>{{message.createDate | date: 'medium'}}</td>
+                <td>{{message.message_body}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

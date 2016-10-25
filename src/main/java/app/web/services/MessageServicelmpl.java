@@ -27,4 +27,9 @@ public class MessageServicelmpl implements MessageService {
     public List<Message> getMessageByConversation(Integer id){
         return messageRepository.getMessagesbyConversation(id);
     }
+
+    @Override
+    public List<Message> getMessagesByUsername(String username){
+        return messageRepository.getMessagesByUsername(username);
+    }
 }

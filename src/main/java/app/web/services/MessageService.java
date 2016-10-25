@@ -11,4 +11,6 @@ public interface MessageService {
 
     List<Message> getMessageByConversation(Integer id);
 
+    List<Message> getMessagesByUsername(String username);
+
 }

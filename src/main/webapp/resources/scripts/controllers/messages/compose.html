@@ -1,0 +1,17 @@
+<div ng-init="ctrl.init()">
+    <div class="col-md-5" ng-if="ctrl.profileUser.id">
+        <h2 style="color: #5bc0de " >Send message to {{ctrl.messageTo}}</h2>
+        <div class="input-group">
+            <input ng-model="ctrl.messageTo" type="text" class="form-control" placeholder="Send to..." disabled>
+      <span class="input-group-btn">
+        <button ng-click="ctrl.sendMessage()" ng-disabled="!ctrl.message" class="btn btn-default" type="button">Send!</button>
+      </span>
+        </div>
+        <div style="padding: 0; margin-top: 5px" class="col-md-12">
+            <textarea ng-model="ctrl.message" class="col-md-12" rows="4" cols="50" placeholder="Compose you message..."></textarea>
+        </div>
+    </div>
+    <div ng-if="!ctrl.profileUser.id">
+        <h2>User does not exist...</h2>
+    </div>
+</div>

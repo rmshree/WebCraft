@@ -5,3 +5,7 @@ VALUES
 ('3', 'Go', 'el', 'thrall', 'nguyenneric@yahoo.com', 20, 0, 'https://content.internetvideoarchive.com/content/photos/10353/137829_051.jpg', '12345', 2400),
 ('4', 'Medivh', 'Magus','medivh', 'dumdum@yahoo.com', 0, 5, 'https://content.internetvideoarchive.com/content/photos/10376/736396_094.jpg', '12345', 700),
 ('5', 'Eric', 'Nguyen','noob',  'dummy@yahoo.com', 0, 20, 'https://pp.vk.me/c418521/v418521230/2f7b/NNcmKw5XfJc.jpg', '12345',20);
+
+INSERT INTO webcraft.settings (`id`, `notifications`, `delay`, `delay_unit`, `user_id`)
+VALUES
+(1, 1, 3, 'Days', 1)

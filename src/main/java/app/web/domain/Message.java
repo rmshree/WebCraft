@@ -26,19 +26,17 @@ public class Message implements Serializable{
 
     @Column(name = "create_date", nullable = false)
     @JsonProperty
-    private Date create_date = new Date();
+    private Date createDate;
 
-    @Column(name = "sender", nullable = false)
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "sender_id", referencedColumnName = "id")
     @JsonProperty
     private User sender;
 
-    @Column(name = "receiver", nullable = false)
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "receiver_id", referencedColumnName = "id")
     @JsonProperty
     private User receiver;
-
-    @Column(name = "read")
-    @JsonProperty
-    private boolean read;
 
     public Integer getId() {
         return id;
@@ -64,12 +62,12 @@ public class Message implements Serializable{
         this.message_body = message_body;
     }
 
-    public Date getCreate_date() {
-        return create_date;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public User getSender() {
@@ -86,13 +84,5 @@ public class Message implements Serializable{
 
     public void setReceiver(User receiver) {
         this.receiver = receiver;
-    }
-
-    public boolean isRead() {
-        return read;
-    }
-
-    public void setRead(boolean read) {
-        this.read = read;
     }
 }
