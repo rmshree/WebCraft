@@ -5,6 +5,7 @@ import app.web.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.lang.Math.*;
 
 import java.util.ArrayList;
 
@@ -13,51 +14,52 @@ import java.util.ArrayList;
 public class MatchServiceImpl implements MatchService{
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
+    private final static Integer KFACTOR = 28;
+    private final static Double MINIMUMGAINLOSS = 1.0;
 
     //TODO: Add match history related code in this function. Potentially have separate functions.
     @Override
     public ResponseDTO updateMatch(ArrayList<User> winnersList, ArrayList<User> losersList){
         ResponseDTO responseDTO = new ResponseDTO();
-        Integer averageWinnerELO = 0;
-        Integer averageLoserELO = 0;
-        Integer eloGain = 0;
-        Integer eloLoss = 0;
+        Double averageWinnerELO = 0.0;
+        Double averageLoserELO = 0.0;
+        Double expectedGain;
+        Double expectedLoss;
 
         for (User winner: winnersList) {
             averageWinnerELO += winner.getElo();
         }
         averageWinnerELO = averageWinnerELO/winnersList.size();
+        averageWinnerELO = Math.pow(10, (averageWinnerELO/400));
 
         for (User loser: losersList) {
             averageLoserELO += loser.getElo();
         }
         averageLoserELO = averageLoserELO/losersList.size();
+        averageLoserELO = Math.pow(10, (averageLoserELO/400));
 
         for (User winner: winnersList) {
-            eloGain = 15 + ((averageLoserELO - winner.getElo())/5);
-            if (eloGain > 30) {
-                eloGain = 30;
-            } else if (eloGain < 1){
-                eloGain = 1;
+            expectedGain = winner.getElo()/(winner.getElo() + averageLoserELO);
+            expectedGain = KFACTOR *(1 - expectedGain);;
+            if (expectedGain < 1) {
+                expectedGain = MINIMUMGAINLOSS;
             }
-            winner.setElo(winner.getElo() + eloGain);
+
+            winner.setElo(winner.getElo() + expectedGain.intValue());
             winner.setWin(winner.getWin() + 1);
             userService.save(winner);
         }
 
         for (User loser: losersList) {
-            eloLoss = 15 - ((averageWinnerELO - loser.getElo())/5);
-            if (eloLoss > 30) {
-                eloLoss = 30;
-            } else if (eloLoss < 1) {
-                eloLoss = 1;
+            expectedLoss = loser.getElo()/(averageWinnerELO + loser.getElo());
+            expectedLoss = KFACTOR * (0 - expectedLoss);
+            if (expectedLoss > -1 ) {
+                expectedLoss = -1 * MINIMUMGAINLOSS;
             }
-            if (loser.getElo() - eloLoss >= 0) {
-                loser.setElo(loser.getElo() - eloLoss);
-            } else { //if < 0
-                loser.setElo(0);
-            }
+
+            loser.setElo(loser.getElo() + expectedLoss.intValue());
             loser.setLoss(loser.getLoss() + 1);
             userService.save(loser);
         }
