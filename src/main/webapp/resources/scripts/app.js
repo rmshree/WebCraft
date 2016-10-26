@@ -109,6 +109,26 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
+        .when('/conversation/:id', {
+            templateUrl: 'resources/scripts/controllers/messages/conversation.html',
+            controller: 'ConversationCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
+        .when('/messages', {
+            templateUrl: 'resources/scripts/controllers/messages/message.html',
+            controller: 'MessagesCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
 
         .when('/verify/:userKey', {
             templateUrl: 'resources/scripts/controllers/verify/verify.html',

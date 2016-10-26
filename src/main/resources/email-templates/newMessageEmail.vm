@@ -1,0 +1,9 @@
+<html>
+<body>
+<h4>${content}</h4>
+<p>
+    ${link}
+</p>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 
 main {
 
-    padding-top: 40px;
+    padding-top: 60px;
     font-family: 'Pontano Sans', sans-serif;
 
 }
@@ -36,6 +36,9 @@ nav {
     color: aquamarine;
 }
 
+.dropdown-menu li p{
+    padding: 0 20px;
+}
 .loginContainer {
 
     position: relative;
@@ -115,9 +118,22 @@ nav {
 }
 
 .profileContainer {
-    height: 75%;
-    width: 75%;
+
     background-color: lightslategray;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    top: 100px;
+}
+
+.inboxContainer {
+    background-color: lightslategrey;
+    border-radius: 10px;
+    position: relative;
+    left: 25%;
+    top: 100px;
+    padding: 30px;
+
 }
 
 
