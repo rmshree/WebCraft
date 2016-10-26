@@ -73,49 +73,49 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                         imageMap.src = 'resources/images/tiles/32/dirtTopMid.png';
                     }
                     //for top-right corner
-                    else if ((topMid !== charMap) && (topRight !== charMap)
+                    else if ((topMid !== charMap) && (topRight !== charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/dirtTopRight.png';
                     }
                     //for right-side border
-                    else if ((topLeft === charMap) && (topMid === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/dirtRightBorder.png';
                     }
                     //for middle
-                    else if ((topLeft === charMap) && (topRight === charMap)
+                    else if ((topLeft === charMap) && (topRight === charMap) &&
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomLeft === charMap) && (bottomRight === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/dirtMid.png';
                     }
                     //for left-side border
-                    else if ((topMid === charMap) && (topRight === charMap)
+                    else if ((topMid === charMap) && (topRight === charMap) &&
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomMid === charMap) && (bottomRight === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/dirtLeftBorder.png';
                     }
                     //for bottom-left corner
-                    else if ((topMid === charMap) && (topRight === charMap)
+                    else if ((topMid === charMap) && (topRight === charMap) &&
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomLeft !== charMap) && (bottomMid !== charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/dirtBottomLeft.png';
                     }
                     //for bottom-mid border
-                    else if ((topLeft === charMap) && (topMid === charMap) && (topRight === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) && (topRight === charMap) &&
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomMid !== charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/dirtBottomMid.png';
                     }
                     //for bottom-right corner
-                    else if ((topLeft === charMap) && (topMid === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomMid !== charMap) && (bottomRight !== charMap)
                     ) {
@@ -139,49 +139,49 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                         imageMap.src = 'resources/images/tiles/32/treeTopMid.png';
                     }
                     //for top-right corner
-                    else if ((topMid !== charMap) && (topRight !== charMap)
+                    else if ((topMid !== charMap) && (topRight !== charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/treeTopRight.png';
                     }
                     //for right-side border
-                    else if ((topLeft === charMap) && (topMid === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/treeRightBorder.png';
                     }
                     //for middle
-                    else if ((topLeft === charMap) && (topRight === charMap)
+                    else if ((topLeft === charMap) && (topRight === charMap) &&
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomLeft === charMap) && (bottomRight === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/treeMid.png';
                     }
                     //for left-side border
-                    else if ((topMid === charMap) && (topRight === charMap)
+                    else if ((topMid === charMap) && (topRight === charMap) &&
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomMid === charMap) && (bottomRight === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/treeLeftBorder.png';
                     }
                     //for bottom-left corner
-                    else if ((topMid === charMap) && (topRight === charMap)
+                    else if ((topMid === charMap) && (topRight === charMap) &&
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomLeft !== charMap) && (bottomMid !== charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/treeBottomLeft.png';
                     }
                     //for bottom-mid border
-                    else if ((topLeft === charMap) && (topMid === charMap) && (topRight === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) && (topRight === charMap) &&
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomMid !== charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/treeBottomMid.png';
                     }
                     //for bottom-right corner
-                    else if ((topLeft === charMap) && (topMid === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomMid !== charMap) && (bottomRight !== charMap)
                     ) {
@@ -205,49 +205,49 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                         imageMap.src = 'resources/images/tiles/32/rockTopMid.png';
                     }
                     //for top-right corner
-                    else if ((topMid !== charMap) && (topRight !== charMap)
+                    else if ((topMid !== charMap) && (topRight !== charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/rockTopRight.png';
                     }
                     //for right-side border
-                    else if ((topLeft === charMap) && (topMid === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/rockRightBorder.png';
                     }
                     //for middle
-                    else if ((topLeft === charMap) && (topRight === charMap)
+                    else if ((topLeft === charMap) && (topRight === charMap) &&
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomLeft === charMap) && (bottomRight === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/rockMid.png';
                     }
                     //for left-side border
-                    else if ((topMid === charMap) && (topRight === charMap)
+                    else if ((topMid === charMap) && (topRight === charMap) &&
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomMid === charMap) && (bottomRight === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/rockLeftBorder.png';
                     }
                     //for bottom-left corner
-                    else if ((topMid === charMap) && (topRight === charMap)
+                    else if ((topMid === charMap) && (topRight === charMap) &&
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomLeft !== charMap) && (bottomMid !== charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/rockBottomLeft.png';
                     }
                     //for bottom-mid border
-                    else if ((topLeft === charMap) && (topMid === charMap) && (topRight === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) && (topRight === charMap) &&
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomMid !== charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/rockBottomMid.png';
                     }
                     //for bottom-right corner
-                    else if ((topLeft === charMap) && (topMid === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomMid !== charMap) && (bottomRight !== charMap)
                     ) {
@@ -271,35 +271,35 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                         imageMap.src = 'resources/images/tiles/32/waterTopMid.png';
                     }
                     //for top-right corner
-                    else if ((topMid !== charMap) && (topRight !== charMap)
+                    else if ((topMid !== charMap) && (topRight !== charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/waterTopRight.png';
                     }
                     //for right-side border
-                    else if ((topLeft === charMap) && (topMid === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/waterRightBorder.png';
                     }
                     //for middle
-                    else if ((topLeft === charMap) && (topRight === charMap)
+                    else if ((topLeft === charMap) && (topRight === charMap) &&
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomLeft === charMap) && (bottomRight === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/waterMid.png';
                     }
                     //for left-side border
-                    else if ((topMid === charMap) && (topRight === charMap)
+                    else if ((topMid === charMap) && (topRight === charMap) &&
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomMid === charMap) && (bottomRight === charMap)
                     ) {
                         imageMap.src = 'resources/images/tiles/32/waterLeftBorder.png';
                     }
                     //for bottom-left corner
-                    else if ((topMid === charMap) && (topRight === charMap)
+                    else if ((topMid === charMap) && (topRight === charMap) &&
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomLeft !== charMap) && (bottomMid !== charMap)
                     ) {
@@ -313,7 +313,7 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                         imageMap.src = 'resources/images/tiles/32/waterBottomMid.png';
                     }
                     //for bottom-right corner
-                    else if ((topLeft === charMap) && (topMid === charMap)
+                    else if ((topLeft === charMap) && (topMid === charMap) &&
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomMid !== charMap) && (bottomRight !== charMap)
                     ) {
