@@ -24,7 +24,8 @@
                 </div>
             </div>
             <div class="col-xs-12">
-                <button class="btn btn-info pull-right" style="margin-left: 20px;" ng-click="ctrl.sendMessage(newMessage)"
+                <button class="btn btn-info pull-right" style="margin-left: 20px;"
+                        ng-click="ctrl.sendMessage(newMessage)"
                         ng-disabled="!newMessage.receiver || !newMessage.body">Send
                 </button>
                 <button class="btn btn-danger pull-right" ng-click="ctrl.isSendingMessage= false">Cancel</button>

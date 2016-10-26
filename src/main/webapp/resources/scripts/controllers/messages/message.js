@@ -39,5 +39,4 @@ angular.module('app').controller('MessagesCtrl', function (currentUser, $route, 
         });
     };
 
-
 });
