@@ -1,21 +1,25 @@
 'use strict';
 
-angular.module('app').controller('ConversationCtrl', function (UserService, currentUser, MessageService, $routeParams, $interval) {
+angular.module('app').controller('ConversationCtrl', function (currentUser, MessageService, $routeParams, $interval, $location) {
     var ctrl = this;
     ctrl.currentUser = currentUser;
     ctrl.messages = [];
     const ONE_SECOND = 1000;
+    var timer = null;
 
     ctrl.init = function () {
         getMessages();
-        $interval(getMessages, ONE_SECOND * 30);
+        timer = $interval(getMessages, ONE_SECOND * 30);
     };
 
     function getMessages() {
-        MessageService.getMessagesByConversationId({id: $routeParams.id}).$promise.then(function (response) {
-            ctrl.messages = response;
-            console.log(response);
-        });
+        if ($location.path().indexOf('conversation') < 0) {
+            $interval.cancel(timer);
+        } else {
+            MessageService.getMessagesByConversationId({id: $routeParams.id}).$promise.then(function (response) {
+                ctrl.messages = response;
+            });
+        }
     }
 
     ctrl.sendMessage = function (messageBody) {
@@ -31,7 +35,6 @@ angular.module('app').controller('ConversationCtrl', function (UserService, curr
         };
 
         MessageService.sendMessage(message).$promise.then(function (response) {
-            console.log(response);
             if (response.id) {
                 ctrl.messages.push(response);
                 ctrl.message = null;
