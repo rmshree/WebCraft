@@ -39,12 +39,12 @@ public class SettingsController {
     @RequestMapping(value = "update", method = RequestMethod.PUT)
     public ResponseDTO update(@RequestBody Settings settings) {
         ResponseDTO responseDTO = new ResponseDTO();
-        if(settingsService.findById(settings.getId()) != null){
+        if (settingsService.findById(settings.getId()) != null) {
             responseDTO.setData(settingsService.save(settings));
             responseDTO.setSuccess(true);
             responseDTO.setMessage("SUCCESS");
             return responseDTO;
-        }else {
+        } else {
             // settings don't exist...
             responseDTO.setData(null);
             responseDTO.setSuccess(false);

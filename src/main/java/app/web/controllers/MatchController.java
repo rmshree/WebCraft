@@ -25,7 +25,7 @@ public class MatchController {
 
     //TODO: Create match database.
     @RequestMapping(value = "complete", method = RequestMethod.PUT)
-    public ResponseDTO complete(@RequestBody MatchContainer matchContainer){
+    public ResponseDTO complete(@RequestBody MatchContainer matchContainer) {
 
         ResponseDTO responseDTO = new ResponseDTO();
         User user;
@@ -38,7 +38,7 @@ public class MatchController {
             return responseDTO;
         }
 
-        for (String winner: matchContainer.winners) {
+        for (String winner : matchContainer.winners) {
             if (winner.equals("")) break;
 
             user = userService.getUserByUsername(winner);
@@ -49,7 +49,7 @@ public class MatchController {
             }
             winnerUsers.add(user);
         }
-        for (String loser: matchContainer.losers) {
+        for (String loser : matchContainer.losers) {
             if (loser.equals("")) break;
 
             user = userService.getUserByUsername(loser);
