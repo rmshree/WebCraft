@@ -29,6 +29,8 @@ public class ForumsController {
     @Autowired
     private CommentService commentService;
 
+
+
     /** /api/forums/all
      *  \brief Get all posts in the forums/
      *  \return a list of Post.
@@ -37,6 +39,8 @@ public class ForumsController {
     public List<Post> all (){
         return postService.getAllPost();
     }
+
+
 
     /** /api/forums/get/{id}
      *  \brief get a Post by using its post id.
@@ -47,6 +51,8 @@ public class ForumsController {
     public Post get (@PathVariable Integer id) {
         return postService.getPostById(id);
     }
+
+
 
     /** /api/forums/add
      *  \brief saves a Post to the Post database.

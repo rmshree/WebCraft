@@ -7,6 +7,7 @@
 package app.web.controllers;
 
 import app.web.domain.DTOs.ResponseDTO;
+import app.web.domain.Post;
 import app.web.domain.User;
 import app.web.services.FileArchiveService;
 import app.web.services.UserService;
@@ -28,6 +29,8 @@ public class UserController {
     @Autowired
     private FileArchiveService fileArchiveService;
 
+
+
     /** /api/user/get/{username}
      *  \brief Get User associated with {username}
      *  \param username is a String.
@@ -43,6 +46,8 @@ public class UserController {
         }
     }
 
+
+
     /** /api/user/getByEmail/{email}
      *  \brief Get User associated with {email}
      *  \param email is a String.
@@ -57,6 +62,8 @@ public class UserController {
             return user;
         }
     }
+
+
 
     /** /api/user/{username}/upload/avatar
      *  \brief Gets an image file from the front-end and makes that User's avatar image
@@ -89,6 +96,8 @@ public class UserController {
         }
     }
 
+
+
     /** /api/user/getCurrentUser
      *  \brief Utilizes cookies to get the current user logged-in user
      *  \return the current User
@@ -97,6 +106,8 @@ public class UserController {
     public User getCurrentUser() {
         return userService.getCurrentUser();
     }
+
+
 
     /** /api/user/getOnsiteUsers
      *  \brief looks up users in the database who are currently on site using the isCurrentlyOnsite attribute on User table
@@ -112,6 +123,8 @@ public class UserController {
         }
     }
 
+
+
     /** /api/user/getOnlineUsers
      *  \brief looks up users in the database who are currently logged in thru a platform
      *  \return a list of Users
@@ -122,6 +135,20 @@ public class UserController {
         if (onlineUsers.size() != 0) {
             return onlineUsers;
         } else {
+            return null;
+        }
+    }
+
+
+    @RequestMapping(value = "getAllUsers", method = RequestMethod.GET)
+    public List<User> getAllUsers()
+    {
+        List<User> allUsers = userService.getAllUsers();
+        if (allUsers.size() != 0)
+        {
+            return allUsers;
+        } else {
+            //System.out.printf("NO Users");
             return null;
         }
     }
@@ -145,4 +172,28 @@ public class UserController {
         }
         return responseDTO;
     }
+
+
+
+//    /** /api/forums/all
+//     *  \brief Get all posts in the forums/
+//     *  \return a list of Post.
+//     */
+//    @RequestMapping(value = "all", method = RequestMethod.GET)
+//    public List<Post> all (){
+//        return postService.getAllPost();
+//    }
+//
+//
+//
+//    /** /api/forums/get/{id}
+//     *  \brief get a Post by using its post id.
+//     *  \param id is an Integer.
+//     *  \return a Post.
+//     */
+//    @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
+//    public Post get (@PathVariable Integer id) {
+//        return postService.getPostById(id);
+//    }
+//
 }

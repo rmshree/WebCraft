@@ -42,7 +42,7 @@ public class MatchServiceImpl implements MatchService{
 
         for (User winner: winnersList) {
             expectedGain = winner.getElo()/(winner.getElo() + averageLoserELO);
-            expectedGain = KFACTOR *(1 - expectedGain);;
+            expectedGain = KFACTOR *((1 - expectedGain) + 0.03 *(losersList.size() - winnersList.size()));
             if (expectedGain < 1) {
                 expectedGain = MINIMUMGAINLOSS;
             }
@@ -54,7 +54,7 @@ public class MatchServiceImpl implements MatchService{
 
         for (User loser: losersList) {
             expectedLoss = loser.getElo()/(averageWinnerELO + loser.getElo());
-            expectedLoss = KFACTOR * (0 - expectedLoss);
+            expectedLoss = KFACTOR * ((0 - expectedLoss) - 0.03 * (losersList.size() - winnersList.size()));
             if (expectedLoss > -1 ) {
                 expectedLoss = -1 * MINIMUMGAINLOSS;
             }
