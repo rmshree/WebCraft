@@ -20,14 +20,14 @@ angular.module('app').controller('MessagesCtrl', function (currentUser, MessageS
 
     ctrl.sendMessage = function(newMessage) {
 
-        UserService.getUserByUsername(newMessage.receiver).$promise.then(function (response) {
+        UserService.getUserByUsername({username: newMessage.receiver}).$promise.then(function (response) {
             if (response.id) {
                 ctrl.toUser = response;
                 var message = {
                     message_body: newMessage.body,
                     sender: ctrl.currentUser,
                     receiver: ctrl.toUser
-                }
+                };
 
                 console.log(message);
                 MessageService.sendMessage(message).$promise.then(function (response) {
