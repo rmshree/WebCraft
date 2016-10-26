@@ -115,8 +115,21 @@ nav {
 }
 
 .profileContainer {
-    height: 75%;
-    width: 75%;
+
     background-color: lightslategray;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    top: 100px;
+}
+
+.inboxContainer {
+    background-color: lightslategrey;
+    border-radius: 10px;
+    position: relative;
+    left: 25%;
+    top: 100px;
+    padding: 30px;
+
 }
 
