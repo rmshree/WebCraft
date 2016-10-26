@@ -8,8 +8,16 @@ angular.module('app').controller('ConversationCtrl', function (currentUser, Mess
     var timer = null;
 
     ctrl.init = function () {
+        MessageService.getConversationById({id: $routeParams.id}).$promise.then(function (response) {
+            if(response.id){
+                ctrl.conversation = response;
+            }else{
+                ctrl.conversationNotFound = true;
+            }
+        });
         getMessages();
         timer = $interval(getMessages, ONE_SECOND * 30);
+
     };
 
     function getMessages() {
