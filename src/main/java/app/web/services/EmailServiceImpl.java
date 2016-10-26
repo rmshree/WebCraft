@@ -100,10 +100,10 @@ public class EmailServiceImpl implements EmailService {
             velocityContext.put("content", content);
             String link = "";
             if (env.getActiveProfiles()[0].equals("local")) {
-                link = LOCALADDRESS;
+                link = LOCALADDRESS + "messages";
             }
             else {
-                link = PRODADDRESS;
+                link = PRODADDRESS + "messages";
             }
             velocityContext.put("link", link);
             template.merge(velocityContext, writer);
