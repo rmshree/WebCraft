@@ -26,6 +26,7 @@ angular.module('app').controller('ConversationCtrl', function (currentUser, Mess
         } else {
             MessageService.getMessagesByConversationId({id: $routeParams.id}).$promise.then(function (response) {
                 ctrl.messages = response;
+                console.log(response);
             });
         }
     }

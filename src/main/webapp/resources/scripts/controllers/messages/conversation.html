@@ -4,10 +4,12 @@
             Messages
         </div>
         <div class="panel-body" style="padding: 0">
-            <div ng-repeat="message in ctrl.messages| orderBy: {message: {createDate}} track by message.id ">
+            <div ng-repeat="message in ctrl.messages| orderBy: {message: {createDate}} track by message.id">
                 <div href class="col-xs-12 panel-body" style="border-bottom: 1px solid #e4e4e4">
                     <div class="col-md-1 text-center" style="padding: 0" ng-class="{'pull-right': ctrl.currentUser.id === message.sender.id}">
-                            <img height="75px" width="75px" style="margin-bottom: 10px" ng-src="{{message.sender.avatarUrl}}"><br>
+                            <img height="75px" width="75px" style="margin-bottom: 10px" ng-if="message.sender.avatarUrl" ng-src="{{message.sender.avatarUrl}}">
+                            <img height="75px" width="75px" style="margin-bottom: 10px" ng-if="!message.sender.avatarUrl" src="resources/images/noImage.jpg">
+                        <br>
                             {{message.sender.username}}
 
                     </div>

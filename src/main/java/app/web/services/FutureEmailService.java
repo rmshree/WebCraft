@@ -8,5 +8,7 @@ public interface FutureEmailService {
 
     FutureEmail save(FutureEmail futureEmail);
 
-   List<FutureEmail> getExpired();
+    List<FutureEmail> getExpired();
+
+    void sendEmails();
 }

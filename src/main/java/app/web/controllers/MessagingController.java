@@ -26,6 +26,8 @@ public class MessagingController {
     @Autowired
     private SettingsService settingsService;
 
+    @Autowired
+    private EmailService emailService;
 
     @RequestMapping(value = "get/conversation", method = RequestMethod.GET)
     public Conversation getConvoByUsers(@RequestBody User user1, @RequestBody User user2) {
@@ -94,30 +96,33 @@ public class MessagingController {
 
         Settings settings = settingsService.getByUser(message.getReceiver());
         Date now = new Date();
-
-        if(settings.getDelay() == 0){
-            // send an immediate
-        } else {
-            FutureEmail futureEmail = new FutureEmail();
-            futureEmail.setUser(message.getReceiver());
+        if (settings != null && settings.getNotifications()) {
             String content = "Dear " + message.getReceiver().getUsername() + ",\n This notification is to inform you that " + message.getSender().getUsername() + " has sent you a message on Nittacraft.\n";
-            futureEmail.setContent(content);
-            Date fututeTime = new Date();
-            switch (settings.getDelayUnit()) {
-                case "Minutes":
-                    fututeTime.setTime(fututeTime.getTime() + 60000 * settings.getDelay());
-                    break;
-                case "Hours":
-                    fututeTime.setTime(fututeTime.getTime() + 60 * 60000 * settings.getDelay());
-                    break;
-                case "Days":
-                    fututeTime.setTime(fututeTime.getTime() + 24 * 60 * 60000 * settings.getDelay());
-                    break;
-                default:
-                    break;
+            if (settings.getDelay() == 0) {
+                // send an immediate
+                emailService.sendNewMessageEmail(message.getReceiver(), content);
+
+            } else {
+                FutureEmail futureEmail = new FutureEmail();
+                futureEmail.setUser(message.getReceiver());
+                futureEmail.setContent(content);
+                Date futureTime = new Date();
+                switch (settings.getDelayUnit()) {
+                    case "Minutes":
+                        futureTime.setTime(futureTime.getTime() + 60000 * settings.getDelay());
+                        break;
+                    case "Hours":
+                        futureTime.setTime(futureTime.getTime() + 60 * 60000 * settings.getDelay());
+                        break;
+                    case "Days":
+                        futureTime.setTime(futureTime.getTime() + 24 * 60 * 60000 * settings.getDelay());
+                        break;
+                    default:
+                        break;
+                }
+                futureEmail.setDate(futureTime);
+                futureEmailService.save(futureEmail);
             }
-            futureEmail.setDate(fututeTime);
-            futureEmailService.save(futureEmail);
         }
         message.setCreateDate(now);
         return messageService.save(message);
