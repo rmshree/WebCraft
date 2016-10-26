@@ -37,4 +37,6 @@ public interface UserService{
 
     List<User> getOnlineUsers();
 
+    List<User> getAllUsers();
+
 }

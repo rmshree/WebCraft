@@ -60,12 +60,7 @@ public class MatchController {
             }
             loserUsers.add(user);
         }
-        // This assumes that there must be equal players on each team
-        if (winnerUsers.size() != loserUsers.size()) {
-            responseDTO.setSuccess(false);
-            responseDTO.setMessage("There is not an equal number of players on each team.");
-            return responseDTO;
-        }
+
         return matchService.updateMatch(winnerUsers, loserUsers);
     }
 }

@@ -4,6 +4,7 @@ import app.web.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, String> {
@@ -29,4 +30,11 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     @Query("select u from User u where u.isCurrentlyOnline = true")
     List<User> getOnlineUsers();
+
+    //u is User u main object. ie. user.isCurrentlyOnline
+    //where is additional conditions
+    @Query("select u from User u order by elo desc ")
+    List<User> getAllUsers();
 }
+
+
