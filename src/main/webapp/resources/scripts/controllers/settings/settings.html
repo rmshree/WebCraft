@@ -11,8 +11,8 @@
 
     <div class="col-xs-12" style="background-color: lightslategray" ng-if="ctrl.currentUser.id">
         <ul class="nav nav-tabs" style="font-size: x-large">
-            <li role="presentation" ng-class="{'active': ctrl.showUserTab}"><a ng-click="ctrl.showTab('user')" href>User Information</a></li>
-            <li role="presentation" ng-class="{'active': ctrl.showNotificationsTab}"><a ng-click="ctrl.showTab('notifications')" href>Notifications</a></li>
+            <li role="presentation" ng-class="{'active': ctrl.showUserTab}"><a ng-click="ctrl.showTab('user')" style="color: white" href>User Information</a></li>
+            <li role="presentation" ng-class="{'active': ctrl.showNotificationsTab}"><a ng-click="ctrl.showTab('notifications')" style="color: white" href>Notifications</a></li>
         </ul>
         <!-- User Info -->
         <div class="form-group col-md-12" ng-if="ctrl.showUserTab" ng-include="'resources/scripts/controllers/settings/user.settings.html'"></div>

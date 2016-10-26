@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('ConversationCtrl', function (currentUser, MessageService, $routeParams, $interval, $location) {
+angular.module('app').controller('ConversationCtrl', function (currentUser, MessageService, $routeParams, $interval, $route) {
     var ctrl = this;
     ctrl.currentUser = currentUser;
     ctrl.messages = [];
@@ -9,9 +9,9 @@ angular.module('app').controller('ConversationCtrl', function (currentUser, Mess
 
     ctrl.init = function () {
         MessageService.getConversationById({id: $routeParams.id}).$promise.then(function (response) {
-            if(response.id){
+            if (response.id) {
                 ctrl.conversation = response;
-            }else{
+            } else {
                 ctrl.conversationNotFound = true;
             }
         });
@@ -21,12 +21,11 @@ angular.module('app').controller('ConversationCtrl', function (currentUser, Mess
     };
 
     function getMessages() {
-        if ($location.path().indexOf('conversation') < 0) {
+        if ($route.current.$$route.controller !== 'ConversationCtrl') {
             $interval.cancel(timer);
         } else {
             MessageService.getMessagesByConversationId({id: $routeParams.id}).$promise.then(function (response) {
                 ctrl.messages = response;
-                console.log(response);
             });
         }
     }
