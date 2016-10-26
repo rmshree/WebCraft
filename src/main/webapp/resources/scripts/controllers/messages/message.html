@@ -30,7 +30,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Received Messages</div>
 
-                <table class="table">
+                <table class="table" hidden>
                     <thead>
                     <tr>
                         <th>Sender</th>
@@ -45,6 +45,28 @@
                         <td>{{message.receiver.username}}</td>
                         <td>{{message.createDate | date: 'medium'}}</td>
                         <td>{{message.message_body}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="conversation in ctrl.conversations">
+                    <tr>
+                        <td ng-if="ctrl.currentUser.username!=conversation.user1.username">
+                            <a href="#/conversation/{{conversation.id}}">
+                            {{conversation.user1.username}}
+                            </a>
+                        </td>
+                        <td ng-if="ctrl.currentUser.username!=conversation.user2.username">
+                            <a href="#/conversation/{{conversation.id}}">
+                            {{conversation.user2.username}}
+                            </a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

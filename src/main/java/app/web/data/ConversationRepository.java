@@ -6,13 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
-public interface ConversationRepository extends JpaRepository<Conversation, User>{
+public interface ConversationRepository extends JpaRepository<Conversation, Integer>{
 
     @Query("select c from Conversation c where c.user1 = ?1 and c.user2 = ?2 or c.user1 = ?2 and c.user2 = ?1 ")
     Conversation getConvobyUsers(User user1, User user2);
 
     @Query("select c from Conversation c where c.user1 = ?1 or c.user2 = ?1")
-    Conversation getConvobyUser(User user);
+    List<Conversation> getConvobyUser(User user);
 
     @Query("select c from Conversation c where c.id = ?1")
     Conversation getconvoByID(Integer id);

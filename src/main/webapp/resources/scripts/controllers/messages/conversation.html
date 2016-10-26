@@ -10,8 +10,26 @@
         <div style="padding: 0; margin-top: 5px" class="col-md-12">
             <textarea ng-model="ctrl.message" class="col-md-12" rows="4" cols="50" placeholder="Compose you message..."></textarea>
         </div>
+
     </div>
-    <div ng-if="!ctrl.profileUser.id">
-        <h2>User does not exist...</h2>
-    </div>
+
+    <table style="margin-top: 20px; color: white" class="table">
+        <thead>
+        <tr>
+            <th>Sender</th>
+            <th>Receiver</th>
+            <th>Date/Time</th>
+            <th>Message</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="message in ctrl.messages">
+        <tr>
+            <td>{{message.sender.username}}</td>
+            <td>{{message.receiver.username}}</td>
+            <td>{{message.createDate | date: 'medium'}}</td>
+            <td>{{message.message_body}}</td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>

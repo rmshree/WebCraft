@@ -109,9 +109,9 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
-        .when('/compose/:username', {
-            templateUrl: 'resources/scripts/controllers/messages/compose.html',
-            controller: 'ComposeCtrl',
+        .when('/conversation/:id', {
+            templateUrl: 'resources/scripts/controllers/messages/conversation.html',
+            controller: 'ConversationCtrl',
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {

@@ -49,6 +49,13 @@ public class MessagingController {
 
     }
 
+    @RequestMapping(value = "get/conversations/{username}", method = RequestMethod.GET)
+    public List<Conversation> getConvoByUser(@PathVariable String username) {
+        User user = userService.getUserByUsername(username);
+        return conversationService.getConvobyUser(user);
+
+    }
+
     @RequestMapping(value = "save/conversation", method = RequestMethod.POST)
     public Conversation saveConversation(@RequestBody Conversation conversation) {
         Conversation convo = conversationService.save(conversation);
@@ -112,7 +119,7 @@ public class MessagingController {
         return messageService.save(message);
     }
 
-    @RequestMapping(value = "get/messages/{conversation_id}", method = RequestMethod.GET)
+    @RequestMapping(value = "get/messages/{id}", method = RequestMethod.GET)
     public List<Message> getMessagesByConvoID(@PathVariable Integer id) {
         return messageService.getMessageByConversation(id);
     }

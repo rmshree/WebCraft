@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('MessagesCtrl', function (currentUser, MessageService, UserService) {
+angular.module('app').controller('MessagesCtrl', function (currentUser, $route, MessageService, UserService) {
     var ctrl = this;
     ctrl.currentUser = currentUser;
     ctrl.toUser = null;
@@ -9,6 +9,10 @@ angular.module('app').controller('MessagesCtrl', function (currentUser, MessageS
 
     ctrl.init = function () {
         ctrl.getMessages();
+        MessageService.getConversations({username: ctrl.currentUser.username}).$promise.then(function (response) {
+            console.log(response);
+            ctrl.conversations = response;
+        })
     };
 
     ctrl.getMessages = function () {
@@ -35,6 +39,7 @@ angular.module('app').controller('MessagesCtrl', function (currentUser, MessageS
                         ctrl.isSendingMessage = false;
                         ctrl.messages.push(response); //SHOULD REMOVE THIS LATER
                         console.log(response);
+                     $route.reload()
                     }
                 });
             }

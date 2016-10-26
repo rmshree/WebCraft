@@ -5,6 +5,8 @@ import app.web.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class ConversationServicelmpl implements ConversationService {
@@ -22,7 +24,7 @@ public class ConversationServicelmpl implements ConversationService {
     }
 
     @Override
-    public Conversation getConvobyUser(User user){
+    public List<Conversation> getConvobyUser(User user){
         return conversationRepository.getConvobyUser(user);
     }
 
