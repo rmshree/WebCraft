@@ -91,7 +91,7 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomLeft === charMap) && (bottomRight === charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/dirtMiddle.png';
+                        imageMap.src = 'resources/images/tiles/32/dirtMid.png';
                     }
                     //for left-side border
                     else if ((topMid === charMap) && (topRight === charMap)
@@ -157,7 +157,7 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomLeft === charMap) && (bottomRight === charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/treeMiddle.png';
+                        imageMap.src = 'resources/images/tiles/32/treeMid.png';
                     }
                     //for left-side border
                     else if ((topMid === charMap) && (topRight === charMap)
@@ -223,7 +223,7 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomLeft === charMap) && (bottomRight === charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/rockMiddle.png';
+                        imageMap.src = 'resources/images/tiles/32/rockMid.png';
                     }
                     //for left-side border
                     else if ((topMid === charMap) && (topRight === charMap)
@@ -261,63 +261,63 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomMid === charMap) && (bottomRight === charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/rockTopLeft.png';
+                        imageMap.src = 'resources/images/tiles/32/waterTopLeft.png';
                     }
                     //for top-mid border
                     else if ((topMid !== charMap) &&
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap) && (bottomRight === charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/rockTopMid.png';
+                        imageMap.src = 'resources/images/tiles/32/waterTopMid.png';
                     }
                     //for top-right corner
                     else if ((topMid !== charMap) && (topRight !== charMap)
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/rockTopRight.png';
+                        imageMap.src = 'resources/images/tiles/32/waterTopRight.png';
                     }
                     //for right-side border
                     else if ((topLeft === charMap) && (topMid === charMap)
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomLeft === charMap) && (bottomMid === charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/rockRightBorder.png';
+                        imageMap.src = 'resources/images/tiles/32/waterRightBorder.png';
                     }
                     //for middle
                     else if ((topLeft === charMap) && (topRight === charMap)
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomLeft === charMap) && (bottomRight === charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/rockMiddle.png';
+                        imageMap.src = 'resources/images/tiles/32/waterMid.png';
                     }
                     //for left-side border
                     else if ((topMid === charMap) && (topRight === charMap)
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomMid === charMap) && (bottomRight === charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/rockLeftBorder.png';
+                        imageMap.src = 'resources/images/tiles/32/waterLeftBorder.png';
                     }
                     //for bottom-left corner
                     else if ((topMid === charMap) && (topRight === charMap)
                         (midLeft !== charMap) && (midRight === charMap) &&
                         (bottomLeft !== charMap) && (bottomMid !== charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/rockBottomLeft.png';
+                        imageMap.src = 'resources/images/tiles/32/waterBottomLeft.png';
                     }
                     //for bottom-mid border
                     else if ((topLeft === charMap) && (topMid === charMap) && (topRight === charMap)
                         (midLeft === charMap) && (midRight === charMap) &&
                         (bottomMid !== charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/rockBottomMid.png';
+                        imageMap.src = 'resources/images/tiles/32/waterBottomMid.png';
                     }
                     //for bottom-right corner
                     else if ((topLeft === charMap) && (topMid === charMap)
                         (midLeft === charMap) && (midRight !== charMap) &&
                         (bottomMid !== charMap) && (bottomRight !== charMap)
                     ) {
-                        imageMap.src = 'resources/images/tiles/32/rockBottomRight.png';
+                        imageMap.src = 'resources/images/tiles/32/waterBottomRight.png';
                     }
                 }
 
