@@ -41,7 +41,7 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
         var divLocation = document.getElementById(divId);
         divLocation.style.width = dynamicDivWidth;
 
-        for (var i = 2; i < row; i++) {
+        for (var i = 2; i < row + 2; i++) {
             for (var j = 0; j < column; j++) {
                 //initialize the bitmap
                 topLeft = mapString[i-1][j-1];
