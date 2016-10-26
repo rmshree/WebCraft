@@ -9,4 +9,7 @@ VALUES
 INSERT INTO webcraft.settings (`id`, `notifications`, `delay`, `delay_unit`, `user_id`)
 VALUES
 (1, 1, 3, 'Days', 1),
-(2, 1, 3, 'Days', 5),
+(2, 1, 3, 'Days', 2),
+(3, 1, 3, 'Days', 3),
+(4, 1, 3, 'Days', 4),
+(5, 1, 3, 'Days', 5),

@@ -103,14 +103,18 @@ public class MessagingController {
             String content = "Dear " + message.getReceiver().getUsername() + ",\n This notification is to inform you that " + message.getSender().getUsername() + " has sent you a message on Nittacraft.\n";
             futureEmail.setContent(content);
             Date fututeTime = new Date();
-            if(settings.getDelayUnit().equals("Minutes")){
-                fututeTime.setTime(fututeTime.getTime() + 60000 * settings.getDelay());
-            }else if(settings.getDelayUnit().equals("Hours")){
-                fututeTime.setTime(fututeTime.getTime() + 60 * 60000 * settings.getDelay());
-            }else if(settings.getDelayUnit().equals("Days")){
-                fututeTime.setTime(fututeTime.getTime() + 24 * 60 * 60000 * settings.getDelay());
-            }else{
-
+            switch (settings.getDelayUnit()) {
+                case "Minutes":
+                    fututeTime.setTime(fututeTime.getTime() + 60000 * settings.getDelay());
+                    break;
+                case "Hours":
+                    fututeTime.setTime(fututeTime.getTime() + 60 * 60000 * settings.getDelay());
+                    break;
+                case "Days":
+                    fututeTime.setTime(fututeTime.getTime() + 24 * 60 * 60000 * settings.getDelay());
+                    break;
+                default:
+                    break;
             }
             futureEmail.setDate(fututeTime);
             futureEmailService.save(futureEmail);

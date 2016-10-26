@@ -13,23 +13,33 @@
 
     </div>
 
-    <table style="margin-top: 20px; color: white" class="table">
-        <thead>
-        <tr>
-            <th>Sender</th>
-            <th>Receiver</th>
-            <th>Date/Time</th>
-            <th>Message</th>
-        </tr>
-        </thead>
-        <tbody ng-repeat="message in ctrl.messages">
-        <tr>
-            <td>{{message.sender.username}}</td>
-            <td>{{message.receiver.username}}</td>
-            <td>{{message.createDate | date: 'medium'}}</td>
-            <td>{{message.message_body}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div style="margin: auto; width: 50%">
+        <div class="panel panel-info col-xs-12" style="padding: 0">
+            <div class="panel-heading">
+                Messages
+            </div>
+            <div class="panel-body" style="padding: 0">
+                <div ng-repeat="message in ctrl.messages| orderBy: {message: {createDate}} track by message.id ">
+                    <div href class="col-xs-12 panel-body" style="border-bottom: 1px solid #e4e4e4">
+                        <div class="col-md-1 text-center" style="padding: 0" ng-class="{'pull-right': ctrl.currentUser.id === message.sender.id}">
+                                <img height="75px" width="75px" style="margin-bottom: 10px" ng-src="{{message.sender.avatarUrl}}"><br>
+                                {{message.sender.username}}
 
+                        </div>
+                        <div class="col-md-11 text-center" style="display: inline-block">
+                            <h4>{{message.message_body}}</h4>
+                            <!--<h5>by: </h5>-->
+                            <h5>at: {{message.createDate | date: 'medium'}}</h5>
+                        </div>
+
+                        <!--<h2 class="col-md-6" style="margin-top: 0; font-family: monospace; font-size: xx-large"> <span ng-if="post.title.length > 40">...</span></h2>-->
+                        <!--<span class="col-md-2 pull-right"><small>Comments: </small><span class="badge"> {{post.comments_length}}</span></span>-->
+                        <!--<div class="col-xs-9">-->
+                        <!--<p>{{conversation.lastMessage | limitTo: 75}}<span ng-if="post.text.length > 75">...</span></p>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

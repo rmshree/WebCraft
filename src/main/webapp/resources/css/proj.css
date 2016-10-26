@@ -1,7 +1,7 @@
 
 main {
 
-    padding-top: 40px;
+    padding-top: 60px;
     font-family: 'Pontano Sans', sans-serif;
 
 }
@@ -36,6 +36,9 @@ nav {
     color: aquamarine;
 }
 
+.dropdown-menu li p{
+    padding: 0 20px;
+}
 .loginContainer {
 
     position: relative;
