@@ -121,7 +121,7 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                     ) {
                         imageMap.src = 'resources/images/tiles/32/dirtBottomRight.png';
                     } else{
-                        imageMap.src = 'resources/images/tiles/32/dirtBottomRight.png';
+                        imageMap.src = 'resources/images/tiles/32/dirt.png';
                     }
                 }
 
@@ -189,7 +189,7 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                     ) {
                         imageMap.src = 'resources/images/tiles/32/treeBottomRight.png';
                     }else{
-                        imageMap.src = 'resources/images/tiles/32/treeBottomRight.png';
+                        imageMap.src = 'resources/images/tiles/32/treeMid.png';
                     }
                 }
 
@@ -257,7 +257,7 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                     ) {
                         imageMap.src = 'resources/images/tiles/32/rockBottomRight.png';
                     }else{
-                        imageMap.src = 'resources/images/tiles/32/rockBottomRight.png';
+                        imageMap.src = 'resources/images/tiles/32/rock.png';
                     }
                 }
 
@@ -325,7 +325,7 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                     ) {
                         imageMap.src = 'resources/images/tiles/32/waterBottomRight.png';
                     }else{
-                        imageMap.src = 'resources/images/tiles/32/waterBottomRight.png';
+                        imageMap.src = 'resources/images/tiles/32/waterMid.png';
                     }
                 }
 
