@@ -4,11 +4,14 @@
         <h1 style="display: inline-block; color: white"><b> ELO Ratings </b></h1>
 
         <div class="col-xs-12 col-md-12">
-            <div class="panel panel-info" style="padding: 0">
+            <div class="panel panel-info col-xs-12" style="padding: 0">
                 <div class="panel-heading col-md-1">
                     Rank
                 </div>
-                <div class="panel-heading col-md-7">
+                <div class="panel-heading col-md-1">
+                    Elo
+                </div>
+                <div class="panel-heading col-md-6">
                     Username
                 </div>
                 <div class="panel-heading col-md-1">
@@ -26,15 +29,16 @@
 
                 <!-- NG Repeat for Forums Posted -->
                 <div class="panel-body" style="padding: 0">
-                    <div ng-repeat="user in ctrl.allUsers">
-                        <!--<a href ng-click="ctrl.goToUserProfile(user)" style="font-size: larger">{{user.username}}</a>-->
+                    <div ng-repeat="user in ctrl.allUsers track by user.id">
                         <div class="col-xs-12 col-md-12 clickable" ng-click="ctrl.goToUserProfile(user)">
                             <div class="panel panel-info" style="padding: 0">
-
+                                <div class="panel-body col-md-1">
+                                    {{$index + 1}}
+                                </div>
                                 <div class="panel-body col-md-1">
                                     {{user.elo}}
                                 </div>
-                                <div class="panel-body col-md-7">
+                                <div class="panel-body col-md-6">
                                     {{user.username}}
                                 </div>
                                 <div class="panel-body col-md-1">
