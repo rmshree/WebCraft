@@ -83,19 +83,24 @@ public class MessagingController {
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public Message saveMessage(@RequestBody Message message) {
+        Date now = new Date();
         Conversation conversation = conversationService.getConvobyUsers(message.getReceiver(), message.getSender());
         if (conversation == null) {
             Conversation newConversation = new Conversation();
             newConversation.setUser1(message.getReceiver());
             newConversation.setUser2(message.getSender());
+            newConversation.setLastMessageTime(now);
+            newConversation.setLastMessage(message.getMessage_body());
             newConversation = conversationService.save(newConversation);
             message.setConvo_id(newConversation.getId());
         } else {
             message.setConvo_id(conversation.getId());
+            conversation.setLastMessageTime(now);
+            conversation.setLastMessage(message.getMessage_body());
+            conversationService.save(conversation);
         }
 
         Settings settings = settingsService.getByUser(message.getReceiver());
-        Date now = new Date();
         if (settings != null && settings.getNotifications()) {
             String content = "Dear " + message.getReceiver().getUsername() + ",\n This notification is to inform you that " + message.getSender().getUsername() + " has sent you a message on Nittacraft.\n";
             if (settings.getDelay() == 0) {

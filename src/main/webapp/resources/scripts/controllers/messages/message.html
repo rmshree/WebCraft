@@ -65,6 +65,10 @@
                                     <h5>{{conversation.user2.username}}</h5>
                                 </div>
                             </div>
+                            <div class="col-md-9 text-center">
+                                <h4>{{conversation.lastMessage}}</h4>
+                                <h5>at: {{conversation.lastMessageTime | date: 'medium'}}</h5>
+                            </div>
 
                             <!--<h2 class="col-md-6" style="margin-top: 0; font-family: monospace; font-size: xx-large"> <span ng-if="post.title.length > 40">...</span></h2>-->
                             <!--<span class="col-md-2 pull-right"><small>Comments: </small><span class="badge"> {{post.comments_length}}</span></span>-->

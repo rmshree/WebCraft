@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "conversation")
@@ -23,6 +24,14 @@ public class Conversation implements Serializable{
     @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "user2_id", referencedColumnName = "id")
     @JsonProperty
     private User user2;
+
+    @Column(name = "last_message_time")
+    @JsonProperty
+    private Date lastMessageTime;
+
+    @Column(name = "last_message")
+    @JsonProperty
+    private String lastMessage;
 
     public Integer getId() {
         return id;
@@ -46,5 +55,21 @@ public class Conversation implements Serializable{
 
     public void setUser2(User user2) {
         this.user2 = user2;
+    }
+
+    public Date getLastMessageTime() {
+        return lastMessageTime;
+    }
+
+    public void setLastMessageTime(Date lastMessageTime) {
+        this.lastMessageTime = lastMessageTime;
+    }
+
+    public String getLastMessage() {
+        return lastMessage;
+    }
+
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
     }
 }
