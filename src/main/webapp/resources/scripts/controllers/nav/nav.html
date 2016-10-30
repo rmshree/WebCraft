@@ -1,9 +1,6 @@
 <div ng-controller="NavCtrl as ctrl" ng-init="ctrl.init()">
     <nav class="navbar navbar-fixed-top navbar-inverse">
         <div class="container-fluid">
-
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <!-- Section below only visible in mobile view -->
             <div class="navbar-header">
                 <a role="button" href class="navbar-toggle collapsed" ng-click="ctrl.navCollapsed = !ctrl.navCollapsed">
                     <i class="fa fa-bars" style="color: white"></i>
@@ -14,20 +11,16 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}">
                 <ul style="font-size: large" class="nav navbar-nav">
-
-
-                    <!--<li><a href="#/about">About</a></li>-->
                     <li><a href="#/maps">Maps</a></li>
                     <li><a href="#/rankings">Rankings</a></li>
                     <li><a href="#/forums">Forums</a></li>
                     <li><a href="#/download">Download Game</a></li>
-
                 </ul>
 
-                <!-- Current User is Logged in -->
+
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 10px" ng-if="ctrl.currentUser">
 
-                    <li><a href><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a></li>
+                    <li><a href ng-click="ctrl.goToMessages()"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a></li>
                     <li class="dropdown" ng-class="{'open': ctrl.toggleDropDown}">
                         <a href class="dropdown-toggle" ng-click="ctrl.toggleDropDown = !ctrl.toggleDropDown"
                            data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -43,13 +36,12 @@
                         </ul>
                     </li>
                 </ul>
-                <!--  No User logged in -->
+
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 3px" ng-if="!ctrl.currentUser">
 
                     <li><a href="#/login">Login or Signup</a></li>
                 </ul>
-
-            </div> <!--collapse-->
-        </div> <!--container fluid -->
+            </div>
+        </div>
     </nav>
 </div>

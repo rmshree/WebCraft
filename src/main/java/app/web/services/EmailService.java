@@ -13,4 +13,6 @@ public interface EmailService {
     Boolean sendVerificationEmail(TempUser tempUser);
 
     Boolean sendPasswordRecoveryEmail(User user);
+
+    Boolean sendNewMessageEmail(User user, String content);
 }

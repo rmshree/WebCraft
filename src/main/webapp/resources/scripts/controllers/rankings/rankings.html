@@ -3,35 +3,15 @@
     <div class="page-header col-xs-12 col-md-12">
         <h1 style="display: inline-block; color: white"><b> ELO Ratings </b></h1>
 
-        <!--<button class="btn btn-primary pull-right" style="margin-top: 25px" ng-click="ctrl.showForm = true" ng-if="!ctrl.showForm">New Post</button>-->
-        <!--<div ng-if="ctrl.showForm" class="col-xs-12 panel-body">-->
-        <!--<div class="col-xs-12">-->
-        <!--<div class="form-group">-->
-        <!--<label for="title">Title</label>-->
-        <!--<input id="title" class="form-control" type="text" ng-model="newPost.title">-->
-        <!--</div>-->
-
-        <!--<div class="form-group">-->
-        <!--<label for="text">Text</label>-->
-        <!--<textarea id="text" class="form-control" maxlength="1000" rows="3" ng-model="newPost.text"></textarea>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-xs-12">-->
-        <!--<button class="btn btn-success" ng-click="ctrl.post(newPost)" ng-disabled="!newPost.title || !newPost.text">Add post</button>-->
-        <!--<button class="btn btn-default" ng-click="ctrl.showForm = false">Cancel</button>-->
-        <!--</div>-->
-        <!--</div>-->
-
-        <!--</div>-->
-
-        <!-- Display Forums -->
-
         <div class="col-xs-12 col-md-12">
-            <div class="panel panel-info" style="padding: 0">
+            <div class="panel panel-info col-xs-12" style="padding: 0">
                 <div class="panel-heading col-md-1">
                     Rank
                 </div>
-                <div class="panel-heading col-md-7">
+                <div class="panel-heading col-md-1">
+                    Elo
+                </div>
+                <div class="panel-heading col-md-6">
                     Username
                 </div>
                 <div class="panel-heading col-md-1">
@@ -49,15 +29,16 @@
 
                 <!-- NG Repeat for Forums Posted -->
                 <div class="panel-body" style="padding: 0">
-                    <div ng-repeat="user in ctrl.allUsers">
-                        <!--<a href ng-click="ctrl.goToUserProfile(user)" style="font-size: larger">{{user.username}}</a>-->
-                        <div class="col-xs-12 col-md-12">
+                    <div ng-repeat="user in ctrl.allUsers track by user.id">
+                        <div class="col-xs-12 col-md-12 clickable" ng-click="ctrl.goToUserProfile(user)">
                             <div class="panel panel-info" style="padding: 0">
-
+                                <div class="panel-body col-md-1">
+                                    {{$index + 1}}
+                                </div>
                                 <div class="panel-body col-md-1">
                                     {{user.elo}}
                                 </div>
-                                <div class="panel-body col-md-7">
+                                <div class="panel-body col-md-6">
                                     {{user.username}}
                                 </div>
                                 <div class="panel-body col-md-1">
