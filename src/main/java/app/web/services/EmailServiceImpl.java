@@ -1,5 +1,6 @@
 package app.web.services;
 
+import app.web.domain.TempUser;
 import app.web.domain.User;
 
 import org.apache.velocity.Template;
@@ -30,9 +31,10 @@ public class EmailServiceImpl implements EmailService {
     private static final String VERIFICATIONSUBJECT = "NittaCraft Email Verification";
     private static final String PASSWORDSUBJECT = "NittaCraft Password Recovery";
     private static final String VERIFICATIONTEMPLATE = "email-templates/verificationEmail.vm";
+    private static final String MESSAGETEMPLATE = "email-templates/newMessageEmail.vm";
     private static final String PASSWORDTEMPLATE = "email-templates/passwordRecoveryEmail.vm";
-    private static final String LOCALADDRESS = "http://localhost:8080/webcraft/#/verify/";
-    private static final String PRODADDRESS = "http://52.35.50.19:8080/webcraft/#/verify/";
+    private static final String LOCALADDRESS = "http://localhost:8080/webcraft/#/";
+    private static final String PRODADDRESS = "http://52.35.50.19:8080/webcraft/#/";
 
     @Autowired
     private Environment env;
@@ -42,7 +44,7 @@ public class EmailServiceImpl implements EmailService {
     private Session session;
 
     @Override
-    public Boolean sendVerificationEmail(User user) {
+    public Boolean sendVerificationEmail(TempUser tempUser) {
         setProperties();
         try {
             String verifcationLink = "";
@@ -57,21 +59,59 @@ public class EmailServiceImpl implements EmailService {
 
 
             if (env.getActiveProfiles()[0].equals("local")) {
-                verifcationLink = LOCALADDRESS + user.getUserKey();
+                verifcationLink = LOCALADDRESS + "verify/" + tempUser.getVerificationKey();
             }
             else {
-                verifcationLink = PRODADDRESS + user.getUserKey();
+                verifcationLink = PRODADDRESS + "verify/" + tempUser.getVerificationKey();
             }
 
-            velocityContext.put("user", user);
+            velocityContext.put("user", tempUser);
             velocityContext.put("verificationLink", verifcationLink);
             velocityContext.put("cancelLink", "This link will delete the account");
             template.merge(velocityContext, writer);
 
             message.setFrom(new InternetAddress(EMAIL));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(user.getEmail()));
+                    InternetAddress.parse(tempUser.getEmail()));
             message.setSubject(VERIFICATIONSUBJECT);
+            message.setContent(writer.toString(),"text/html");
+
+            Transport.send(message);
+            return true;
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Boolean sendNewMessageEmail(User user, String content){
+        setProperties();
+        try {
+            Message message = new MimeMessage(session);
+            StringWriter writer = new StringWriter();
+            VelocityEngine velocityEngine = new VelocityEngine();
+            velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+            velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+            velocityEngine.init();
+            Template template = velocityEngine.getTemplate(MESSAGETEMPLATE);
+            VelocityContext velocityContext = new VelocityContext();
+
+            velocityContext.put("user", user);
+            velocityContext.put("content", content);
+            String link = "";
+            if (env.getActiveProfiles()[0].equals("local")) {
+                link = LOCALADDRESS + "messages";
+            }
+            else {
+                link = PRODADDRESS + "messages";
+            }
+            velocityContext.put("link", link);
+            template.merge(velocityContext, writer);
+
+            message.setFrom(new InternetAddress(EMAIL));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(user.getEmail()));
+            message.setSubject("New Message on NittaCraft");
             message.setContent(writer.toString(),"text/html");
 
             Transport.send(message);

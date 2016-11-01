@@ -31,12 +31,12 @@ public interface UserService{
 
     User getUserByEmail (String email);
 
-    User getUserByUserKey (String userKey);
-
     User getCurrentUser();
 
     List<User> getOnsiteUsers();
 
     List<User> getOnlineUsers();
+
+    List<User> getAllUsers();
 
 }

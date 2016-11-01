@@ -1,41 +1,33 @@
-<div class="signupBG" ng-init="ctrl.init()">
-    <div class="container">
+<div class="container-fluid" ng-init="ctrl.init()" xmlns="http://www.w3.org/1999/html">
 
-        <div class="row">
-            <br>
-            <h1 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 72px;" align="center">
-                <b>Welcome to NittaCraft</b>
-            </h1>
-            <h2 style="color: #2a3829; font-family: 'IM Fell Great Primer SC', serif; font-size: 48px;" align="center">
-                <b>a.out Edition</b>
-            </h2>
-            <br>
-        </div>
 
-        <div class="row">
+            <div class="col-lg-12 text-center recoverContainer">
 
-            <div class="col-md-12 text-center" align="center">
 
-                <br>
-                <h2 style="color: #2a3829;font-family: 'IM Fell Great Primer SC', serif; font-size: 48px;"><b>Forgot
-                    your password?</b>
-                </h2>
-                <div class="form-group" style="margin: auto; padding: 20px; width: 300px; background-color: #f7eac5">
+                <h2> Forgot your password?</h2>
+
                     <form class="form-register">
-                        <span class="pull-left" style="font-family: 'Open Sans', serif;color: #8d1d1c;">Enter your email address:</span>
-                        <input type="text" ng-model="user.email" class="form-control" maxlength="64">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label class="pull-left">Enter your email address:</label>
+                                <input type="text" ng-model="user.email" class="form-control" maxlength="64" />
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.email"
+                                        type="submit" ng-click="ctrl.submit(user)">
+                                    Submit
+                                </button>
+                            </div>
+                         </div>
                     </form>
 
-                    <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.email"
-                            type="submit" ng-click="ctrl.submit(user)"
-                            style="font-family: 'IM Fell Great Primer SC', serif;">
-                        Submit
-                    </button>
                     <div style="margin: auto; width: 80%; padding: 10px" ng-if="ctrl.message">
                         <div>{{ctrl.message}}</div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 </div>
+

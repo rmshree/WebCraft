@@ -12,9 +12,19 @@ angular.module('app').controller('NavCtrl', function (LoginService, UserService,
         });
     };
 
+
     ctrl.goToProfile = function () {
         $location.path('/profile/' + ctrl.currentUser.username);
     };
+
+    ctrl.goToSettings = function () {
+        $location.path('/settings/');
+    };
+
+    ctrl.goToMessages = function () {
+        $location.path('/messages/');
+    };
+
 
     ctrl.signOut = function () {
         LoginService.signOut(ctrl.currentUser.username).$promise.then(function () {

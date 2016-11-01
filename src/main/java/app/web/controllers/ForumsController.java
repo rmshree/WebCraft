@@ -1,4 +1,5 @@
-/** \file ForumsController.java
+/**
+ * \file ForumsController.java
  * Back-End Forums services that are used by Front-End.
  * Called by using /api/forums/
  */
@@ -34,7 +35,7 @@ public class ForumsController {
      *  \return a list of Post.
      */
     @RequestMapping(value = "all", method = RequestMethod.GET)
-    public List<Post> all (){
+    public List<Post> all() {
         return postService.getAllPost();
     }
 
@@ -44,7 +45,7 @@ public class ForumsController {
      *  \return a Post.
      */
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
-    public Post get (@PathVariable Integer id) {
+    public Post get(@PathVariable Integer id) {
         return postService.getPostById(id);
     }
 
@@ -54,7 +55,7 @@ public class ForumsController {
      *  \return a Post.
      */
     @RequestMapping(value = "add", method = RequestMethod.PUT)
-    public Post add(@RequestBody Post post){
+    public Post add(@RequestBody Post post) {
         User user = userService.getUserByUsername("root");
         post.setUser(user);
         return postService.save(post);
@@ -66,7 +67,7 @@ public class ForumsController {
      *  \return a List of Comments.
      */
     @RequestMapping(value = "{id}/comments", method = RequestMethod.GET)
-    public List<Comment> getComments(@PathVariable Integer id){
+    public List<Comment> getComments(@PathVariable Integer id) {
         return commentService.getCommentsByPost(id);
     }
 
@@ -77,7 +78,7 @@ public class ForumsController {
      *  \return a Comment.
      */
     @RequestMapping(value = "{id}/add/comment", method = RequestMethod.PUT)
-    public Comment addComment(@PathVariable Integer id, @RequestBody String text){
+    public Comment addComment(@PathVariable Integer id, @RequestBody String text) {
         Comment comment = new Comment();
         Post post = postService.getPostById(id);
         post.setComments_length(post.getComments_length() + 1);
@@ -96,7 +97,7 @@ public class ForumsController {
      */
     //TODO: Only give the user who created the comment the ability to edit the comment.
     @RequestMapping(value = "comment/edit/{id}", method = RequestMethod.POST)
-    public Comment editComment(@PathVariable Integer id, @RequestBody String text){
+    public Comment editComment(@PathVariable Integer id, @RequestBody String text) {
         Comment comment = commentService.getCommentByID(id);
         comment.setText(text);
         return commentService.save(comment);
@@ -111,12 +112,12 @@ public class ForumsController {
     @RequestMapping(value = "comment/delete/{id}", method = RequestMethod.DELETE)
     public Integer deleteComment(@PathVariable Integer id) {
         Comment comment = commentService.getCommentByID(id);
-        if (comment != null && comment.getUser().getUsername().equals("root")){
+        if (comment != null && comment.getUser().getUsername().equals("root")) {
             Post post = postService.getPostById(comment.getPost().getId());
-            if (post.getComments_length()> 0) {
-            post.setComments_length(post.getComments_length() -1);
-            postService.save(post);
-            return commentService.deleteCommentFromPost(id);
+            if (post.getComments_length() > 0) {
+                post.setComments_length(post.getComments_length() - 1);
+                postService.save(post);
+                return commentService.deleteCommentFromPost(id);
             }
         }
         return 0;

@@ -23,28 +23,22 @@ public class LoginServiceImpl implements LoginService {
         if (user != null) {
             String storedPassword = user.getPassword();
             if (inputPassword.equals(storedPassword)) {
-                if (user.getIsActive()) {
                     //Web or Platform?
-                    if (isWeb) {
-                        user.setCurrentlyOnsite(true);
-                        cookieService.setCurrentUser(user);
-                        responseDTO.setMessage("LOGIN SUCCESS");
-                        responseDTO.setSuccess(true);
-                        responseDTO.setData(userService.save(user));
-                        return responseDTO;
-                    } else { // is platform
-                        user.setCurrentlyOnline(true);
-                        responseDTO.setMessage("LOGIN SUCCESS");
-                        responseDTO.setSuccess(true);
-                        responseDTO.setData(userService.save(user));
-                        return responseDTO;
-                    }
-                } else {
-                    // user isn't active yet
-                    responseDTO.setMessage("Please activate your account first");
-                    responseDTO.setSuccess(false);
+                if (isWeb) {
+                    user.setCurrentlyOnsite(true);
+                    cookieService.setCurrentUser(user);
+                    responseDTO.setMessage("LOGIN SUCCESS");
+                    responseDTO.setSuccess(true);
+                    responseDTO.setData(userService.save(user));
+                    return responseDTO;
+                } else { // is platform
+                    user.setCurrentlyOnline(true);
+                    responseDTO.setMessage("LOGIN SUCCESS");
+                    responseDTO.setSuccess(true);
+                    responseDTO.setData(userService.save(user));
                     return responseDTO;
                 }
+
             } else {
                 // incorrect password
                 responseDTO.setMessage("Incorrect password");
@@ -52,7 +46,7 @@ public class LoginServiceImpl implements LoginService {
                 return responseDTO;
             }
         } else {
-            responseDTO.setMessage("No account found with " + username);
+            responseDTO.setMessage("No active account found with " + username);
             responseDTO.setSuccess(false);
             return responseDTO;
         }
@@ -79,7 +73,7 @@ public class LoginServiceImpl implements LoginService {
                 return responseDTO;
             }
         } else {
-            responseDTO.setMessage("No account found with " + username);
+            responseDTO.setMessage("No active account found with " + username);
             responseDTO.setSuccess(false);
             return responseDTO;
         }

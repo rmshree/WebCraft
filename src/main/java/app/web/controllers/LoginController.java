@@ -1,11 +1,10 @@
 package app.web.controllers;
 
 import app.web.domain.DTOs.ResponseDTO;
+import app.web.domain.Settings;
+import app.web.domain.TempUser;
 import app.web.domain.User;
-import app.web.services.CookieService;
-import app.web.services.EmailService;
-import app.web.services.LoginService;
-import app.web.services.UserService;
+import app.web.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +26,12 @@ public class LoginController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private SettingsService settingsService;
+
+    @Autowired
+    private TempUserService tempUserService;
+
     /**
      * /api/login/signUp/{username}
      * \brief Creates and saves a new User into the User database.
@@ -35,25 +40,27 @@ public class LoginController {
      * \return the saved User or null.
      */
     @RequestMapping(value = "signUp", method = RequestMethod.POST)
-    public ResponseDTO signUp(@RequestBody User userDetails) {
+    public ResponseDTO signUp(@RequestBody TempUser tempUser) {
         ResponseDTO responseDTO = new ResponseDTO();
-        if (userService.getUserByEmail(userDetails.getEmail()) != null) {
+        if (userService.getUserByEmail(tempUser.getEmail()) != null || tempUserService.getTempUserByEmail(tempUser.getEmail()) != null) {
             // email account already taken
-            responseDTO.setMessage("Email is already take. Please use forgot password to recover your password");
+            responseDTO.setMessage("Email is already taken.");
             responseDTO.setSuccess(false);
             return responseDTO;
         }
-        if (userService.getUserByUsername(userDetails.getUsername()) == null) {
-            User newUser = new User();
-            newUser.setUsername(userDetails.getUsername());
-            newUser.setPassword(userDetails.getPassword());
-            newUser.setFirstName(userDetails.getFirstName());
-            newUser.setLastName(userDetails.getLastName());
-            newUser.setEmail(userDetails.getEmail());
-            newUser.setIsActive(false);
+        if (userService.getUserByUsername(tempUser.getUsername()) == null && tempUserService.getTempUserByUsername(tempUser.getUsername()) == null) {
+            TempUser newUser = new TempUser();
+
+            newUser.setUsername(tempUser.getUsername());
+            newUser.setPassword(tempUser.getPassword());
+            newUser.setFirstName(tempUser.getFirstName());
+            newUser.setLastName(tempUser.getLastName());
+            newUser.setEmail(tempUser.getEmail());
+
             emailService.sendVerificationEmail(newUser);
             cookieService.setCurrentUser(null);
-            responseDTO.setData(userService.save(newUser));
+
+            responseDTO.setData(tempUserService.save(newUser));
             responseDTO.setMessage("SUCCESS");
             responseDTO.setSuccess(true);
             return responseDTO;
@@ -118,12 +125,25 @@ public class LoginController {
      */
     @RequestMapping(value = "activate/{userKey}", method = RequestMethod.GET)
     public ResponseDTO activateUserAccount(@PathVariable String userKey) {
-        User user = userService.getUserByUserKey(userKey);
+        TempUser tempUser = tempUserService.getTempUserByVerificationKey(userKey);
         ResponseDTO responseDTO = new ResponseDTO();
-        if (user != null && !user.getIsActive()) {
-            user.setIsActive(true);
+        if (tempUser != null) {
+            User user = new User();
+            user.setUsername(tempUser.getUsername());
+            user.setPassword(tempUser.getPassword());
+            user.setFirstName(tempUser.getFirstName());
+            user.setLastName(tempUser.getLastName());
+            user.setEmail(tempUser.getEmail());
+
+            userService.save(user);
+            tempUserService.deleteTempUser(tempUser);
             cookieService.setCurrentUser(user);
             user.setCurrentlyOnsite(true);
+
+            Settings settings = new Settings();
+            settings.setUser(user);
+            settingsService.save(settings);
+
             responseDTO.setSuccess(true);
             responseDTO.setMessage("SUCCESS");
             responseDTO.setData(userService.save(user));
@@ -147,23 +167,16 @@ public class LoginController {
         User user = userService.getUserByEmail(email);
         ResponseDTO responseDTO = new ResponseDTO();
         if (user == null) {
-            responseDTO.setMessage("No account created with " + email);
+            responseDTO.setMessage("No active account created with " + email);
             responseDTO.setSuccess(false);
             return responseDTO;
-        } else if (!user.getIsActive()) {
-            responseDTO.setMessage("Please activate your account");
-            responseDTO.setSuccess(false);
-            return responseDTO;
-        } else if (user.getIsActive()) {
+        } else {
             emailService.sendPasswordRecoveryEmail(user);
             responseDTO.setData(null);
             responseDTO.setMessage("Password Recovery email has been sent");
             responseDTO.setSuccess(true);
             return responseDTO;
         }
-        responseDTO.setSuccess(false);
-        responseDTO.setMessage("Unexpected error");
-        return responseDTO;
     }
 
 }

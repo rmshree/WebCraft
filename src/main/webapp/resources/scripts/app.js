@@ -44,12 +44,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
-        .when('/landing', {
-            templateUrl: 'resources/scripts/controllers/landing/landing.html',
-            controller: 'LandingCtrl',
-            controllerAs: 'ctrl',
-            resolve: {}
-        })
+
         .when('/about', {
             templateUrl: 'resources/scripts/controllers/about/about.html',
             controller: 'AboutCtrl',
@@ -114,9 +109,40 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
+        .when('/conversation/:id', {
+            templateUrl: 'resources/scripts/controllers/messages/conversation.html',
+            controller: 'ConversationCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
+        .when('/messages', {
+            templateUrl: 'resources/scripts/controllers/messages/message.html',
+            controller: 'MessagesCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
+
         .when('/verify/:userKey', {
             templateUrl: 'resources/scripts/controllers/verify/verify.html',
             controller: 'VerifyCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
+        .when('/map/:id', {
+            templateUrl: 'resources/scripts/controllers/maps/map.html',
+            controller: 'MapViewCtrl',
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
@@ -133,6 +159,12 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                     return UserService.getCurrentUser().$promise;
                 }
             }
+        })
+        .when('/match', {
+            templateUrl: 'resources/scripts/controllers/match/match.html',
+            controller: 'MatchCtrl',
+            controllerAs: 'ctrl',
+            resolve: {}
         })
         .when('/error', {
             templateUrl: 'resources/scripts/controllers/error/error.html'

@@ -59,14 +59,6 @@ public class User implements Serializable {
     @JsonIgnore
     private String s3key;
 
-    @Column(name = "isActive")
-    @JsonProperty
-    private Boolean isActive = false;
-
-    @Column(name = "userKey", unique = true)
-    @JsonProperty
-    private String userKey = UUID.randomUUID().toString();
-
     @Column(name = "isCurrentlyOnline") //For users logged in to the game
     @JsonProperty
     private Boolean isCurrentlyOnline = false;
@@ -74,6 +66,10 @@ public class User implements Serializable {
     @Column(name = "isCurrentlyOnsite") //For users logged in to the website
     @JsonProperty
     private Boolean isCurrentlyOnsite = false;
+
+    @Column(name = "ELO")
+    @JsonProperty
+    private Integer elo = 1000;
 
     public String getId() {
         return id;
@@ -147,22 +143,6 @@ public class User implements Serializable {
         this.avatarUrl = avatarUrl;
     }
 
-    public Boolean getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean active) {
-        isActive = active;
-    }
-
-    public String getUserKey() {
-        return userKey;
-    }
-
-    public void setUserKey(String userKey) {
-        this.userKey = userKey;
-    }
-
     public Boolean getCurrentlyOnline() {
         return isCurrentlyOnline;
     }
@@ -182,4 +162,12 @@ public class User implements Serializable {
     public void setS3key(String s3key) { this.s3key = s3key; }
 
     public String getS3key() {return s3key;}
+
+    public Integer getElo() {
+        return elo;
+    }
+
+    public void setElo(Integer elo) {
+        this.elo = elo;
+    }
 }

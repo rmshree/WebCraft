@@ -28,10 +28,12 @@ public class UserController {
     @Autowired
     private FileArchiveService fileArchiveService;
 
-    /** /api/user/get/{username}
-     *  \brief Get User associated with {username}
-     *  \param username is a String.
-     *  \return a user or NULL
+
+    /**
+     * /api/user/get/{username}
+     * \brief Get User associated with {username}
+     * \param username is a String.
+     * \return a user or NULL
      */
     @RequestMapping(value = "get/{username}", method = RequestMethod.GET)
     public User getUserByName(@PathVariable String username) {
@@ -43,10 +45,12 @@ public class UserController {
         }
     }
 
-    /** /api/user/getByEmail/{email}
-     *  \brief Get User associated with {email}
-     *  \param email is a String.
-     *  \return a user or NULL
+
+    /**
+     * /api/user/getByEmail/{email}
+     * \brief Get User associated with {email}
+     * \param email is a String.
+     * \return a user or NULL
      */
     @RequestMapping(value = "getByEmail/{email:.+}", method = RequestMethod.GET)
     public User getUserByEmail(@PathVariable String email) {
@@ -58,11 +62,13 @@ public class UserController {
         }
     }
 
-    /** /api/user/{username}/upload/avatar
-     *  \brief Gets an image file from the front-end and makes that User's avatar image
-     *  \param username is the associated username.
-     *  \param image file as multipart file. Max size in 20MB.
-     *  \return the saved User with avatar image url.
+
+    /**
+     * /api/user/{username}/upload/avatar
+     * \brief Gets an image file from the front-end and makes that User's avatar image
+     * \param username is the associated username.
+     * \param image file as multipart file. Max size in 20MB.
+     * \return the saved User with avatar image url.
      */
     @RequestMapping(value = "{username}/upload/avatar", method = RequestMethod.POST)
     public User uploadAvatar(@PathVariable String username, MultipartFile imageFile) {
@@ -89,18 +95,22 @@ public class UserController {
         }
     }
 
-    /** /api/user/getCurrentUser
-     *  \brief Utilizes cookies to get the current user logged-in user
-     *  \return the current User
+
+    /**
+     * /api/user/getCurrentUser
+     * \brief Utilizes cookies to get the current user logged-in user
+     * \return the current User
      */
     @RequestMapping(value = "getCurrentUser", method = RequestMethod.GET)
     public User getCurrentUser() {
         return userService.getCurrentUser();
     }
 
-    /** /api/user/getOnsiteUsers
-     *  \brief looks up users in the database who are currently on site using the isCurrentlyOnsite attribute on User table
-     *  \return a list of Users
+
+    /**
+     * /api/user/getOnsiteUsers
+     * \brief looks up users in the database who are currently on site using the isCurrentlyOnsite attribute on User table
+     * \return a list of Users
      */
     @RequestMapping(value = "getOnsiteUsers", method = RequestMethod.GET)
     public List<User> getOnsiteUsers() {
@@ -112,9 +122,11 @@ public class UserController {
         }
     }
 
-    /** /api/user/getOnlineUsers
-     *  \brief looks up users in the database who are currently logged in thru a platform
-     *  \return a list of Users
+
+    /**
+     * /api/user/getOnlineUsers
+     * \brief looks up users in the database who are currently logged in thru a platform
+     * \return a list of Users
      */
     @RequestMapping(value = "getOnlineUsers", method = RequestMethod.GET)
     public List<User> getOnlineUsers() {
@@ -126,9 +138,22 @@ public class UserController {
         }
     }
 
-    /** /api/user/update
-     *  \brief updates the user object with the new values
-     *  \return a User object
+
+    @RequestMapping(value = "getAllUsers", method = RequestMethod.GET)
+    public List<User> getAllUsers() {
+        List<User> allUsers = userService.getAllUsers();
+        if (allUsers.size() != 0) {
+            return allUsers;
+        } else {
+            //System.out.printf("NO Users");
+            return null;
+        }
+    }
+
+    /**
+     * /api/user/update
+     * \brief updates the user object with the new values
+     * \return a User object
      */
     @RequestMapping(value = "update", method = RequestMethod.PUT)
     public ResponseDTO update(@RequestBody User user) {
@@ -145,4 +170,27 @@ public class UserController {
         }
         return responseDTO;
     }
+
+
+//    /** /api/forums/all
+//     *  \brief Get all posts in the forums/
+//     *  \return a list of Post.
+//     */
+//    @RequestMapping(value = "all", method = RequestMethod.GET)
+//    public List<Post> all (){
+//        return postService.getAllPost();
+//    }
+//
+//
+//
+//    /** /api/forums/get/{id}
+//     *  \brief get a Post by using its post id.
+//     *  \param id is an Integer.
+//     *  \return a Post.
+//     */
+//    @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
+//    public Post get (@PathVariable Integer id) {
+//        return postService.getPostById(id);
+//    }
+//
 }

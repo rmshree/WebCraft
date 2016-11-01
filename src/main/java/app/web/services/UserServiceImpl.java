@@ -38,14 +38,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUserKey(String userkey) {
-        return userRepository.getUserByUserKey(userkey);
-    }
-
-    @Override
     public List<User> getOnsiteUsers() {return userRepository.getOnsiteUsers();}
 
     @Override
     public List<User> getOnlineUsers() {return userRepository.getOnlineUsers();}
 
+    @Override
+    public List<User> getAllUsers() {return userRepository.getAllUsers();}
 }
