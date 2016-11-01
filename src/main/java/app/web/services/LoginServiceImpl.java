@@ -1,6 +1,7 @@
 package app.web.services;
 
 import app.web.domain.DTOs.ResponseDTO;
+import app.web.domain.Password;
 import app.web.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,16 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private CookieService cookieService;
 
+    @Autowired
+    private PasswordService passwordService;
+
     @Override
     public ResponseDTO logInUser(String username, String inputPassword, Boolean isWeb) {
         User user = userService.getUserByUsername(username);
+        Password password = passwordService.getPasswordByUser(user);
         ResponseDTO responseDTO = new ResponseDTO();
         if (user != null) {
-            String storedPassword = user.getPassword();
+            String storedPassword = password.getPassword();
             if (inputPassword.equals(storedPassword)) {
                     //Web or Platform?
                 if (isWeb) {

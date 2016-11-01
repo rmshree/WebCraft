@@ -1,5 +1,6 @@
 package app.web.services;
 
+import app.web.domain.Password;
 import app.web.domain.TempUser;
 import app.web.domain.User;
 
@@ -10,6 +11,7 @@ import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +40,9 @@ public class EmailServiceImpl implements EmailService {
 
     @Autowired
     private Environment env;
+
+    @Autowired
+    private PasswordService passwordService;
 
     private Properties props;
 
@@ -125,6 +130,7 @@ public class EmailServiceImpl implements EmailService {
     public Boolean sendPasswordRecoveryEmail(User user) {
         setProperties();
         try {
+            Password password = passwordService.getPasswordByUser(user);
             Message message = new MimeMessage(session);
             StringWriter writer = new StringWriter();
             VelocityEngine velocityEngine = new VelocityEngine();
@@ -135,6 +141,7 @@ public class EmailServiceImpl implements EmailService {
             VelocityContext velocityContext = new VelocityContext();
 
             velocityContext.put("user", user);
+            velocityContext.put("password", password);
             template.merge(velocityContext, writer);
 
             message.setFrom(new InternetAddress(EMAIL));
