@@ -19,7 +19,7 @@ public class Password {
     @JsonProperty
     private User user;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     @JsonProperty
     private String password;
 

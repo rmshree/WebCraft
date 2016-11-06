@@ -43,10 +43,6 @@ public class User implements Serializable {
     @JsonProperty
     private String lastName;
 
-    @Column(name = "password", nullable = false)
-    @JsonProperty
-    private String password;
-
     @Column(name = "email", unique = true)
     @JsonProperty
     private String email;
@@ -117,14 +113,6 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getEmail() {

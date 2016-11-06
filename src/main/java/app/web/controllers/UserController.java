@@ -174,7 +174,6 @@ public class UserController {
                 user.setLastName(tempUser.getLastName());
                 user.setUsername(tempUser.getUsername());
                 user.setEmail(tempUser.getEmail());
-                user.setPassword(tempUser.getPassword()); //Remove when password is removed from User
                 user = userService.save(user);
 
                 responseDTO.setData(user);
