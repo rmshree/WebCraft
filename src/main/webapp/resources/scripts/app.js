@@ -55,6 +55,16 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
+        .when('/messages', {
+            templateUrl: 'resources/scripts/controllers/messages/message.html',
+            controller: 'MessagesCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
         .when('/maps', {
             templateUrl: 'resources/scripts/controllers/maps/maps.html',
             controller: 'MapsCtrl',
