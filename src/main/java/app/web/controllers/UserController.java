@@ -167,8 +167,10 @@ public class UserController {
         if (user != null && user.getId() != null) {
             Password password = passwordService.getPasswordByUser(user);
             if (password != null) {
-                password.setPassword(tempUser.getPassword());
-                passwordService.save(password);
+                if (tempUser.getPassword() != null || !tempUser.getPassword().equals("")) {
+                    password.setPassword(tempUser.getPassword());
+                    passwordService.save(password);
+                }
 
                 user.setFirstName(tempUser.getFirstName());
                 user.setLastName(tempUser.getLastName());
