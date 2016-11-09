@@ -1,15 +1,19 @@
 'use strict';
 
-angular.module('app').controller('ForumCtrl', function ($route, ForumsService) {
+angular.module('app').controller('ForumCtrl', function ($route, ForumsService, UserService) {
     var ctrl = this;
-    var forumsHref = "#/forums";
+    var forumsHref = "#/forums/";
 
     ctrl.init = function () {
+
         ForumsService.getPost({id: $route.current.params.id}).$promise.then(function (response) {
             if(response.id){
                 ctrl.post = response;
                 ctrl.getCommentsForPost(response);
                 ctrl.postFound = true;
+                UserService.getCurrentUser().$promise.then(function (response) {
+                    ctrl.currentUser = response;
+                });
             }else{
                 ctrl.postFound = false;
             }
@@ -24,10 +28,15 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService) {
     };
 
     ctrl.addComment = function (post, text) {
-        ForumsService.addComment({id: post.id}, text).$promise.then(function (response) {
-            if(response.id){
+        var newComment = {text: '', user:''};
+        newComment.text = text;
+        newComment.user = ctrl.currentUser;
+        console.log(newComment);
+        ForumsService.addComment({id: post.id}, newComment).$promise.then(function (response) {
+            console.log(response);
+            if(response.success){
                 post.showCommentForm = false;
-                post.comments.push(response);
+                post.comments.push(response.data);
             }
         })
     };
@@ -55,7 +64,8 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService) {
     ctrl.deletePost = function (post) {
         ForumsService.deletePost({id: post.id}).$promise.then(function (response) {
             if (response !== 0) {
-                window.location.href = forumsHref;
+                var category = location.href.split('forums/')[1];
+                window.location.href = forumsHref + category.split('/')[0];
             }
         })
     }

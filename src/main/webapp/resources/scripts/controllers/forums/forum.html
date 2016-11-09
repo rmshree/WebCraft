@@ -19,9 +19,8 @@
                     <span>{{ctrl.post.date | date: 'medium'}}</span>
                 </div>
             </div>
-
-            <div ng-if="!ctrl.post.showDeletePostForm">
-                <button class="btn btn-primary pull-left" style="margin-top: 10px" ng-click="ctrl.post.showDeletePostForm = true"> Delete Post </button>
+            <div ng-if="ctrl.currentUser.id == ctrl.post.user.id" >
+                <button ng-if="!ctrl.post.showDeletePostForm" class="btn btn-primary pull-left" style="margin-top: 10px" ng-click="ctrl.post.showDeletePostForm = true"> Delete Post </button>
             </div>
             <!-- Delete Post form -->
             <div ng-if="ctrl.post.showDeletePostForm" class="pull-left">
@@ -73,7 +72,7 @@
                     </div>
                 </div>
                 <span class="col-md-9 col-xs-12" style="margin-top: 10px; margin-bottom: 10px">{{comment.text}}</span>
-                <div class="col-xs-12" style="margin-bottom: 10px; margin-top: 10px;">
+                <div ng-if="ctrl.currentUser.id == comment.user.id" class="col-xs-12" style="margin-bottom: 10px; margin-top: 10px;">
                     <button class="btn btn-primary pull-right" style="margin: 5px" ng-click="comment.showEditCommentForm = true; comment.editText = comment.text;comment.showDeleteCommentForm = false">Edit Comment</button>
                     <button class="btn btn-primary pull-right" style="margin: 5px" ng-click="comment.showDeleteCommentForm = true;comment.showEditCommentForm = false">Delete Comment</button>
                 </div>

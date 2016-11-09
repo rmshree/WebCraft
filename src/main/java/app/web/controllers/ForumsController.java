@@ -7,6 +7,7 @@
 package app.web.controllers;
 
 import app.web.domain.Comment;
+import app.web.domain.DTOs.ResponseDTO;
 import app.web.domain.Post;
 import app.web.domain.User;
 import app.web.services.CommentService;
@@ -55,10 +56,20 @@ public class ForumsController {
      *  \return a Post.
      */
     @RequestMapping(value = "add", method = RequestMethod.PUT)
-    public Post add(@RequestBody Post post) {
-        User user = userService.getUserByUsername("root");
-        post.setUser(user);
-        return postService.save(post);
+    public ResponseDTO add(@RequestBody Post post) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        User user = userService.getUserByUsername(post.getUser().getUsername());
+        if (user != null)
+        {
+            Post newPost = postService.save(post);
+            responseDTO.setData(newPost);
+            responseDTO.setSuccess(true);
+        }
+        else {
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("Invalid user.");
+        }
+        return responseDTO;
     }
 
     /** /api/forums/{id}/comments
@@ -78,15 +89,24 @@ public class ForumsController {
      *  \return a Comment.
      */
     @RequestMapping(value = "{id}/add/comment", method = RequestMethod.PUT)
-    public Comment addComment(@PathVariable Integer id, @RequestBody String text) {
-        Comment comment = new Comment();
+    public ResponseDTO addComment(@PathVariable Integer id, @RequestBody Comment comment) {
+        ResponseDTO responseDTO = new ResponseDTO();
         Post post = postService.getPostById(id);
-        post.setComments_length(post.getComments_length() + 1);
-        comment.setPost(post);
-        User user = userService.getUserByUsername("root");
-        comment.setUser(user);
-        comment.setText(text);
-        return commentService.save(comment);
+        User user = userService.getUserByUsername(comment.getUser().getUsername());
+
+        if (post != null && user != null) {
+            comment.setPost(post);
+            post.setComments_length(post.getComments_length() + 1);
+            postService.save(post);
+            commentService.save(comment);
+            responseDTO.setData(comment);
+            responseDTO.setSuccess(true);
+        }
+        else {
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("Invalid request.");
+        }
+        return responseDTO;
     }
 
     /** /api/forums/comment/edit/{id}
@@ -112,7 +132,7 @@ public class ForumsController {
     @RequestMapping(value = "comment/delete/{id}", method = RequestMethod.DELETE)
     public Integer deleteComment(@PathVariable Integer id) {
         Comment comment = commentService.getCommentByID(id);
-        if (comment != null && comment.getUser().getUsername().equals("root")) {
+        if (comment != null) {
             Post post = postService.getPostById(comment.getPost().getId());
             if (post.getComments_length() > 0) {
                 post.setComments_length(post.getComments_length() - 1);
@@ -138,6 +158,11 @@ public class ForumsController {
             }
         }
         return 0;
+    }
+
+    @RequestMapping(value = "post/category/{category}", method = RequestMethod.GET)
+    public List<Post> getPostByCategory(@PathVariable Integer category) {
+        return postService.getPostByCategory(category);
     }
 
 }

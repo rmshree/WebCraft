@@ -1,0 +1,43 @@
+<div class="container-fluid category-page" ng-init="ctrl.init()">
+
+    <div class="page-header col-xs-12">
+        <h1 style="display: inline-block; font-family: initial">Forums
+            <small></small>
+        </h1>
+    </div>
+
+    <!-- Display All Forums -->
+    <div class="col-md-12">
+        <div class="panel panel-info col-xs-12" style="padding: 0">
+            <!-- General Discussion -->
+            <div class="panel-heading">
+                General Discussion
+            </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.GeneralDiscussion)">
+                Discuss things, generally.
+            </div>
+            <!-- User Guides -->
+            <div class="panel-heading">
+                User Guides
+            </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.UserGuides)">
+                Guides, made by fellow users.
+            </div>
+            <!-- Technical Support -->
+            <div class="panel-heading">
+                Technical Support
+            </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.TechnicalSupport)">
+                It is probably better to just google it.
+            </div>
+            <!-- Miscellaneous -->
+            <div class="panel-heading">
+                Miscellaneous
+            </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.Miscellaneous)">
+                Everything in this is irrelevant.
+            </div>
+        </div>
+    </div>
+    <!-- Display All Forums -->
+</div>

@@ -42,6 +42,10 @@ public class Post implements Serializable {
     @JsonProperty
     private Integer comments_length = 0;
 
+    @Column(name = "category")
+    @JsonProperty
+    private Integer category;
+
     public Integer getId() {
         return id;
     }
@@ -88,5 +92,13 @@ public class Post implements Serializable {
 
     public void setComments_length(Integer comments_length) {
         this.comments_length = comments_length;
+    }
+
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
     }
 }
