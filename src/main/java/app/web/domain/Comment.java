@@ -32,6 +32,14 @@ public class Comment implements Serializable{
     @JsonProperty
     private User user;
 
+    @Column(name = "s3key", unique = true)
+    @JsonIgnore
+    private String s3key;
+
+    @Column(name = "comment_image_url", unique = true)
+    @JsonProperty
+    private String comment_image_url;
+
     @Column(name = "date", nullable = false)
     @JsonProperty
     private Date date = new Date();
@@ -78,5 +86,21 @@ public class Comment implements Serializable{
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getS3key() {
+        return s3key;
+    }
+
+    public void setS3key(String s3key) {
+        this.s3key = s3key;
+    }
+
+    public String getComment_image_url() {
+        return comment_image_url;
+    }
+
+    public void setComment_image_url(String comment_image_url) {
+        this.comment_image_url = comment_image_url;
     }
 }

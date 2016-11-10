@@ -11,10 +11,14 @@ import app.web.domain.DTOs.ResponseDTO;
 import app.web.domain.Post;
 import app.web.domain.User;
 import app.web.services.CommentService;
+import app.web.services.FileArchiveService;
 import app.web.services.PostService;
 import app.web.services.UserService;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -30,6 +34,9 @@ public class ForumsController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private FileArchiveService fileArchiveService;
 
     /** /api/forums/all
      *  \brief Get all posts in the forums/
@@ -121,6 +128,39 @@ public class ForumsController {
         Comment comment = commentService.getCommentByID(id);
         comment.setText(text);
         return commentService.save(comment);
+    }
+
+
+    /**
+     * /api/forums/{username}/comment/uploadImage/{id}
+     * \brief Gets an image file from the front-end and adds to a given comment
+     * \param id is an Integer that represents a comment's ID
+     * \param image file as multipart file. Max size in 20MB.
+     * \return the saved Comment with image url.
+     */
+    @RequestMapping(value = "comment/uploadImage/{id}", method = RequestMethod.POST)
+    public Comment uploadCommentImage(@PathVariable Integer id, MultipartFile imageFile) {
+        Comment comment = commentService.getCommentByID(id);
+        if (comment != null) {
+            try {
+                if (comment.getS3key() != null) {
+                    fileArchiveService.delete(comment.getS3key());
+                }
+                ObjectMetadata objectMetadata = new ObjectMetadata();
+                objectMetadata.setContentType("image/jpeg");
+                DateTime now = new DateTime();
+                String key = "forums/" + comment.getUser().getUsername()+ now.toString();
+                comment.setComment_image_url(fileArchiveService.upload(imageFile, key, objectMetadata));
+                comment.setS3key(key);
+                commentService.save(comment);
+                return comment;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return comment;
+            }
+        } else {
+            return null;
+        }
     }
 
     /** /api/forums/comment/delete/{id}
