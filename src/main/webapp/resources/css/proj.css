@@ -1,25 +1,80 @@
 
 main {
-
-    padding-top: 60px;
+    padding-top: 40px;
     font-family: 'Pontano Sans', sans-serif;
-
 }
+
+.container-fluid{
+    padding-right: 0%;
+    padding-left: 0%;
+    padding-bottom: 0%;
+    display: inline;
+}
+
+.splash{
+    font-family: "Courier New";
+    height: 100%;
+    background: center url('../images/Background.jpg') !important;
+}
+
 nav {
-    font-family: 'Pontano Sans', sans-serif;
+    /*font-family: 'Pontano Sans', sans-serif;*/
+    font-family: "Courier New";
+    display: inline;
 }
 
-.warningBanner {
+.dropbtn a:hover, .dropbtn a:focus{
+    color: red;
+}
+
+.nav_ ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.dropbtn li a, .dropbtn {
+    display: inline;
+    color: white;
     text-align: center;
-    background-color: darkred;
-    font-size: 20px;
-    padding-top: 20px;
+    /*padding: 14px 16px;*/
+    text-decoration: none;
+}
+
+li #drop_down, li #drop_down2 {
+    display: inline-block;
+}
+
+#drop_content, #drop_content2{
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    background: #989da1;
+}
+
+#drop_content a, #drop_content2 a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    border-color: black;
+}
+
+
+#drop_down:hover #drop_content, #drop_down2:hover #drop_content2{
+    display: inline;
+}
+
+#drop_content:hover, #drop_content2:hover{
+    display: inline;
 }
 
 .userLists {
     background-color: lightslategray;
     width: 50%;
-
     position: relative;
     top: 100px;
     border-radius: 15px;

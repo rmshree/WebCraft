@@ -1,47 +1,56 @@
 <div ng-controller="NavCtrl as ctrl" ng-init="ctrl.init()">
     <nav class="navbar navbar-fixed-top navbar-inverse">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a role="button" href class="navbar-toggle collapsed" ng-click="ctrl.navCollapsed = !ctrl.navCollapsed">
-                    <i class="fa fa-bars" style="color: white"></i>
-                </a>
-                <a class="navbar-brand" href="#/">Home</a>
-            </div>
+                <div class="navbar-header">
+                    <a role="button" href class="navbar-toggle collapsed" ng-click="ctrl.navCollapsed = !ctrl.navCollapsed">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <a style="margin-left: 2px" class="navbar-brand" href="#/">Home</a>
+                </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}">
-                <ul style="font-size: large" class="nav navbar-nav">
-                    <li><a href="#/maps">Maps</a></li>
-                    <li><a href="#/rankings">Rankings</a></li>
-                    <li><a href="#/forums">Forums</a></li>
-                    <li><a href="#/download">Download Game</a></li>
-                </ul>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}">
+                    <ul style="font-size: large" class="nav navbar-nav">
+                        <li><a href="#/about">About</a></li>
+                        <li class="dropdown" id="drop_down">
+                            <a href="#" class="dropbtn">Download</a>
+                            <div class="dropdown-content" id="drop_content">
+                                <a href="#/maps">Maps</a>
+                                <a href="#/download">Game</a>
+                            </div>
+                        </li>
+                        <li class="dropdown" id="drop_down2">
+                            <a href="#" class="dropbtn">Community</a>
+                            <div class="dropdown-content" id="drop_content2">
+                                <a href="#/rankings">Rankings</a>
+                                <a href="#/forums">Forums</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 3px; display: inline" ng-if="!ctrl.currentUser">
+                        <li><a href="#/login">Login or Signup</a></li>
+                    </ul>
 
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 10px" ng-if="ctrl.currentUser">
 
-                <ul class="nav navbar-nav navbar-right" style="margin-right: 10px" ng-if="ctrl.currentUser">
+                        <li><a href ng-click="ctrl.goToMessages()"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a></li>
+                        <li class="dropdown" ng-class="{'open': ctrl.toggleDropDown}">
+                            <a href class="dropdown-toggle" ng-click="ctrl.toggleDropDown = !ctrl.toggleDropDown"
+                               data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user fa-2x" aria-hidden="true"></i><span class="caret"></span></a>
+                            <ul class="dropdown-menu" style="padding: 3px;">
+                                <li><p>Signed in as</p></li>
+                                <li><p><b>{{ctrl.currentUser.username}}</b></p></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href ng-click="ctrl.goToProfile()">Profile</a></li>
+                                <li><a href ng-click="ctrl.goToSettings()">Settings</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href ng-click="ctrl.signOut()">Sign Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-                    <li><a href ng-click="ctrl.goToMessages()"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a></li>
-                    <li class="dropdown" ng-class="{'open': ctrl.toggleDropDown}">
-                        <a href class="dropdown-toggle" ng-click="ctrl.toggleDropDown = !ctrl.toggleDropDown"
-                           data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user fa-2x" aria-hidden="true"></i><span class="caret"></span></a>
-                        <ul class="dropdown-menu" style="padding: 3px;">
-                            <li><p>Signed in as</p></li>
-                            <li><p><b>{{ctrl.currentUser.username}}</b></p></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href ng-click="ctrl.goToProfile()">Profile</a></li>
-                            <li><a href ng-click="ctrl.goToSettings()">Settings</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href ng-click="ctrl.signOut()">Sign Out</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right" style="margin-right: 3px" ng-if="!ctrl.currentUser">
-
-                    <li><a href="#/login">Login or Signup</a></li>
-                </ul>
-            </div>
         </div>
     </nav>
 </div>

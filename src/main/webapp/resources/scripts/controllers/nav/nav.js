@@ -1,5 +1,6 @@
 'use strict';
 
+
 angular.module('app').controller('NavCtrl', function (LoginService, UserService, $location) {
     var ctrl = this;
     ctrl.currentUser = null;
