@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="resources/css/proj.css">
     <title>NittaCraft a.out Edition</title>
 </head>
-<body ng-app="app" style="background-color: #0f253c;">
+<body ng-app="app" style="background-color: #4b0100;">
     <div ng-include="'resources/scripts/controllers/nav/nav.html'"></div>
     <main ng-view></main>
 </body>

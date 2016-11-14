@@ -1,8 +1,8 @@
 <form class="form-register col-md-8">
 
-    <h2 >
-        <b>User Information</b>
-    </h2>
+    <!--<h2 >-->
+        <!--<b>User Information</b>-->
+    <!--</h2>-->
 
     <div class="form-group col-md-11">
         <div class="col-md-8 pull-right">
@@ -48,13 +48,16 @@
         <label class="col-md-4"><span class="pull-right">Username</span></label>
         <div class="col-md-8 pull-right">
             <input type="text" class="form-control" ng-model="ctrl.currentUser.username" disabled>
+            <br>
         </div>
+
     </div>
+
 
     <button class="btn btn-lg btn-primary btn-block"
             ng-disabled="ctrl.currentUser.password !== ctrl.currentUser.pass2"
             type="submit" ng-click="ctrl.edit(ctrl.currentUser);"
-            style="margin-bottom: 5px">Save Settings</button>
-
+            style="margin-bottom: 5px">Save Settings
+    </button>
     <span ng-if="ctrl.showUserMessage">{{ctrl.message}}</span>
 </form>

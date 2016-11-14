@@ -1,7 +1,47 @@
-
 main {
     padding-top: 40px;
     font-family: 'Pontano Sans', sans-serif;
+}
+
+.grayBG
+{
+    background-color: #989da1;
+}
+
+.cnFont
+{
+    font-family: 'Courier New';
+}
+
+h1
+{
+    font-family: 'Courier New';
+}
+
+
+h2
+{
+    font-family: 'Courier New';
+}
+
+h3
+{
+    font-family: 'Courier New';
+}
+
+.redBG
+{
+    background-color: #4b0100;
+}
+
+.textWhite
+{
+    color: white;
+}
+
+.textBlack
+{
+    color: black;
 }
 
 .container-fluid{
@@ -98,11 +138,12 @@ li #drop_down, li #drop_down2 {
 }
 .loginContainer {
 
+
     position: relative;
     top: 100px;
     width: 75%;
     height: 75%;
-    background-color: lightslategray;
+    background-color: #989da1;
     border-radius: 10px;
 }
 
@@ -128,7 +169,7 @@ li #drop_down, li #drop_down2 {
     left: 30%;
     width: 30%;
     height: 30%;
-    background-color: lightslategray;
+    background-color: #989da1;
     border-radius: 10px;
 }
 
@@ -176,7 +217,7 @@ li #drop_down, li #drop_down2 {
 
 .profileContainer {
 
-    background-color: lightslategray;
+    background-color: #989da1;
     padding: 30px;
     border-radius: 10px;
     position: relative;
@@ -184,7 +225,7 @@ li #drop_down, li #drop_down2 {
 }
 
 .inboxContainer {
-    background-color: lightslategrey;
+    background-color: #989da1;
     border-radius: 10px;
     position: relative;
     left: 25%;
