@@ -14,13 +14,15 @@ main {
 .splash{
     font-family: "Courier New";
     height: 100%;
-    background: center url('../images/Background.jpg') !important;
+    background: url('../images/Background.jpg') no-repeat top left;
+    background-size:cover;  !important;
 }
 
 nav {
     /*font-family: 'Pontano Sans', sans-serif;*/
     font-family: "Courier New";
     display: inline;
+    background-color:black;
 }
 
 .dropbtn a:hover, .dropbtn a:focus{

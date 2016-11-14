@@ -5,31 +5,34 @@
                     <a role="button" href class="navbar-toggle collapsed" ng-click="ctrl.navCollapsed = !ctrl.navCollapsed">
                         <i class="fa fa-bars"></i>
                     </a>
-                    <a style="margin-left: 2px" class="navbar-brand" href="#/">Home</a>
+                    <a style="margin-left: 2px" class="navbar-brand" href="#/">HOME</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}">
+                <div class="collapse navbar-collapse" ng-class="{'in' : ctrl.navCollapsed}" >
                     <ul style="font-size: large" class="nav navbar-nav">
-                        <li><a href="#/about">About</a></li>
-                        <li class="dropdown" id="drop_down">
-                            <a href="#" class="dropbtn">Download</a>
-                            <div class="dropdown-content" id="drop_content">
-                                <a href="#/maps">Maps</a>
-                                <a href="#/download">Game</a>
-                            </div>
-                        </li>
+                        <li><a href="#/about">ABOUT</a></li>
+
                         <li class="dropdown" id="drop_down2">
-                            <a href="#" class="dropbtn">Community</a>
+                            <a class="dropbtn">COMMUNITY <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                             <div class="dropdown-content" id="drop_content2">
-                                <a href="#/rankings">Rankings</a>
-                                <a href="#/forums">Forums</a>
+                                <a href="#/rankings">RANKINGS</a>
+                                <a href="#/forums">FORUMS</a>
                             </div>
                         </li>
+
+                        <li class="dropdown" id="drop_down">
+                            <a class="dropbtn">DOWNLOADS <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            <div class="dropdown-content" id="drop_content">
+                                <a href="#/maps">MAPS</a>
+                                <a href="#/download">GAME</a>
+                            </div>
+                        </li>
+
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right" style="margin-right: 3px; display: inline" ng-if="!ctrl.currentUser">
-                        <li><a href="#/login">Login or Signup</a></li>
+                        <li><a href="#/login">LOG IN/SIGN UP</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right" style="margin-right: 10px" ng-if="ctrl.currentUser">
