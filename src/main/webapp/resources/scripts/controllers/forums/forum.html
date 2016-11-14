@@ -39,7 +39,7 @@
 
             <!-- Text from the forum post -->
             <div class="jumbotron" style="margin-bottom: 0; background-color: rgba(255,255,255,.1)">
-                <p style="padding: 10px; color: white">{{ctrl.post.text}}</p>
+                <pre style="font-family: 'Pontano Sans', sans-serif; padding: 10px; background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0); color: white;">{{ctrl.post.text}}</pre>
             </div>
 
             <div class="page-header col-xs-12" style="margin-top: 5px">
@@ -71,7 +71,7 @@
                         <span>{{comment.date | date: 'medium'}}</span>
                     </div>
                 </div>
-                <span class="col-md-9 col-xs-12" style="margin-top: 10px; margin-bottom: 10px">{{comment.text}}</span>
+                <pre class="col-md-9 col-xs-12" style="font-family: 'Pontano Sans', sans-serif; margin-top: 10px; margin-bottom: 10px; color: lightgray;background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0); display:inline-block">{{comment.text}}</pre>
                 <div ng-if="ctrl.currentUser.id == comment.user.id" class="col-xs-12" style="margin-bottom: 10px; margin-top: 10px;">
                     <button class="btn btn-primary pull-right" style="margin: 5px" ng-click="comment.showEditCommentForm = true; comment.editText = comment.text;comment.showDeleteCommentForm = false">Edit Comment</button>
                     <button class="btn btn-primary pull-right" style="margin: 5px" ng-click="comment.showDeleteCommentForm = true;comment.showEditCommentForm = false">Delete Comment</button>

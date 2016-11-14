@@ -59,7 +59,7 @@
                             {{post.title | limitTo: 40}} <span ng-if="post.title.length > 40">...</span></h2>
                         <span class="col-md-2 pull-right"><small>Comments: </small><span class="badge"> {{post.comments_length}}</span></span>
                         <div class="col-xs-9">
-                            <p>{{post.text | limitTo: 75}} <span ng-if="post.text.length > 75">...</span></p>
+                            <pre style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);">{{post.text | limitTo: 75}} <span ng-if="post.text.length > 75">...</span></pre>
                         </div>
                     </div>
                 </div>
