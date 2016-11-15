@@ -132,7 +132,7 @@ public class ForumsController {
 
 
     /**
-     * /api/forums/{username}/comment/uploadImage/{id}
+     * /api/forums/comment/uploadImage/{id}
      * \brief Gets an image file from the front-end and adds to a given comment
      * \param id is an Integer that represents a comment's ID
      * \param image file as multipart file. Max size in 20MB.
@@ -165,7 +165,7 @@ public class ForumsController {
 
 
     /**
-     * /api/forums/{username}/comment/uploadImage/{id}
+     * /api/forums/post/uploadImage/{id}
      * \brief Gets an image file from the front-end and adds to a given post
      * \param id is an Integer that represents a Post's ID
      * \param image file as multipart file. Max size in 20MB.

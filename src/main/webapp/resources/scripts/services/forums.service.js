@@ -10,6 +10,11 @@ angular.module('app').factory('ForumsService', function ($resource) {
         addComment: {method: 'PUT', url: 'api/forums/:id/add/comment'},
         editComment: {method: 'POST', url: 'api/forums/comment/edit/:id'},
         deleteComment: {method: 'DELETE', url: 'api/forums/comment/delete/:id'},
-        deletePost: {method: 'DELETE', url:'api/forums/post/delete/:id'}
+        deletePost: {method: 'DELETE', url:'api/forums/post/delete/:id'},
+
+        //Jessi: I added these! Not sure if they're correct formatting?
+        uploadCommentImage: {method: 'POST', url: 'api/forums/comment/uploadImage:id'},
+        uploadPostImage: {method: 'POST', url: 'api/forums/post/uploadImage:id'}
+
     });
 });
