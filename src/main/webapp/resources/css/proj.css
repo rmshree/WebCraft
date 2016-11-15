@@ -29,9 +29,19 @@ h3
     font-family: 'Courier New';
 }
 
+h4
+{
+    font-family: 'Courier New';
+}
+
 .redBG
 {
     background-color: #4b0100;
+}
+
+.about-page
+{
+    background-color: #ffffff;
 }
 
 .textWhite
