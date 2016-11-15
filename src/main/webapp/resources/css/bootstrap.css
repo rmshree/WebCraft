@@ -275,6 +275,7 @@ th {
   font-weight: normal;
   line-height: 1;
 
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -3517,6 +3518,8 @@ tbody.collapse.in {
 .dropdown-toggle:focus {
   outline: 0;
 }
+
+/*The User Dropdown Used this Class*/
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -3530,6 +3533,7 @@ tbody.collapse.in {
   font-size: 14px;
   text-align: left;
   list-style: none;
+  /*Color below is for settings navbar dropdown*/
   background-color: #fff;
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
@@ -4590,23 +4594,27 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: #222;
   border-color: #080808;
 }
+
+/*The main "Home" button*/
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+  color: white;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #fff;
+  color: #c60001;
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
-  color: #9d9d9d;
+  color: white;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: white;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
+
+  /*Changes the navbar hover*/
+  color: #c60001;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
