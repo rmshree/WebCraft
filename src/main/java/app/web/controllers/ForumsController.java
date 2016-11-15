@@ -117,7 +117,7 @@ public class ForumsController {
     }
 
     /** /api/forums/comment/edit/{id}
-     *  \brief edits the comment that corresponds with {id}
+     *  \brief edits the comment text that corresponds with {id}
      *  \param id is an Integer that represents a Post's ID
      *  \param text is a String that contains the contents of a comment.
      *  \return a Comment.
@@ -149,7 +149,7 @@ public class ForumsController {
                 ObjectMetadata objectMetadata = new ObjectMetadata();
                 objectMetadata.setContentType("image/jpeg");
                 DateTime now = new DateTime();
-                String key = "forums/" + comment.getUser().getUsername()+ now.toString();
+                String key = "comments/" + comment.getUser().getUsername()+ now.toString();
                 comment.setComment_image_url(fileArchiveService.upload(imageFile, key, objectMetadata));
                 comment.setS3key(key);
                 commentService.save(comment);
@@ -162,6 +162,40 @@ public class ForumsController {
             return null;
         }
     }
+
+
+    /**
+     * /api/forums/{username}/comment/uploadImage/{id}
+     * \brief Gets an image file from the front-end and adds to a given post
+     * \param id is an Integer that represents a Post's ID
+     * \param image file as multipart file. Max size in 20MB.
+     * \return the saved Comment with image url.
+     */
+    @RequestMapping(value = "Post/uploadImage/{id}", method = RequestMethod.POST)
+    public Post uploadPostImage(@PathVariable Integer id, MultipartFile imageFile) {
+        Post post = postService.getPostById(id);
+        if (post != null) {
+            try {
+                if (post.getS3key() != null) {
+                    fileArchiveService.delete(post.getS3key());
+                }
+                ObjectMetadata objectMetadata = new ObjectMetadata();
+                objectMetadata.setContentType("image/jpeg");
+                DateTime now = new DateTime();
+                String key = "posts/" + post.getUser().getUsername()+ now.toString();
+                post.setComment_image_url(fileArchiveService.upload(imageFile, key, objectMetadata));
+                post.setS3key(key);
+                postService.save(post);
+                return post;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return post;
+            }
+        } else {
+            return null;
+        }
+    }
+
 
     /** /api/forums/comment/delete/{id}
      *  \brief deletes the comment associated with {id}

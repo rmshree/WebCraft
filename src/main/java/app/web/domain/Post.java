@@ -6,6 +6,7 @@
 
 package app.web.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -45,6 +46,14 @@ public class Post implements Serializable {
     @Column(name = "category")
     @JsonProperty
     private Integer category;
+
+    @Column(name = "s3key", unique = true)
+    @JsonIgnore
+    private String s3key;
+
+    @Column(name = "post_image_url", unique = true)
+    @JsonProperty
+    private String post_image_url;
 
     public Integer getId() {
         return id;
@@ -100,5 +109,21 @@ public class Post implements Serializable {
 
     public void setCategory(Integer category) {
         this.category = category;
+    }
+
+    public String getS3key() {
+        return s3key;
+    }
+
+    public void setS3key(String s3key) {
+        this.s3key = s3key;
+    }
+
+    public String getComment_image_url() {
+        return post_image_url;
+    }
+
+    public void setComment_image_url(String comment_image_url) {
+        this.post_image_url = comment_image_url;
     }
 }

@@ -103,4 +103,5 @@ public class Comment implements Serializable{
     public void setComment_image_url(String comment_image_url) {
         this.comment_image_url = comment_image_url;
     }
+
 }
