@@ -1,57 +1,58 @@
-<div class="container" style="color:white">
+<div class="container" style="color:#7b0100">
+
+    <div class="container-fluid about-page" ng-init="ctrl.init()">
+        <div class="col-md-12 col-xs-12">
+            <br>
+            <div>
+                <h1 style="color:#7b0100; font-size: 450%;margin-left: 150px">
+                    <br>Downloads
+                </h1>
+
+                <h3 style="color: black; margin-top:-20px; margin-left:150px"><span
+                        style="color: #7b0100">&lt;/a.out&gt</span> bad game, worse name</h3>
+                <br><br>
+                <h4 style="color: black; margin-left:150px"><I>
+                    Thank you for your interest in playing our game. <br>
+
+                    <div ng-if="ctrl.data.os === 'mac'">
+                        For the <span style="text-transform: uppercase">{{ctrl.data.os}}</span> download,
+                        <a href="resources/images/osx.png" download>click here</a>
+                    </div>
+
+                    <div ng-if="ctrl.data.os === 'windows'">
+                        For the <span style="text-transform: uppercase">{{ctrl.data.os}}</span> download,
+                        <a href="resources/images/windows.png" download>link</a>
+                    </div>
+
+                    <div ng-if="ctrl.data.os === 'linux'">
+                        For the <span style="text-transform: uppercase">{{ctrl.data.os}}</span> download,
+                        <a href="resources/images/linux.png" download>link</a>
+                    </div>
+
+                    <div ng-if="ctrl.data.os === 'ios'">
+                        For the <span style="text-transform: uppercase">{{ctrl.data.os}}</span> download,
+                        <a href="resources/images/ios.png" download>link</a>
+                    </div>
+
+                    <div ng-if="ctrl.data.os === 'android'">
+                        For the <span style="text-transform: uppercase">{{ctrl.data.os}}</span> download,
+                        <a href="resources/images/android.png" download>link</a>
+                    </div>
+                </I></h4>
 
 
-    <br>
-    <br>
+                <br><br>
 
-    <h1 align="center">Welcome! You are currently using <span style="text-transform: uppercase">{{ctrl.data.os}}</span></h1>
-    <br>
+                <h4 style="color: black; margin-left:150px"><I>
+                    Our supported platforms: <br>
+                    <a href="resources/images/windows.png" download><i class="fa fa-windows" aria-hidden="true"></i></a>
+                    <a href="resources/images/osx.png" download><i class="fa fa-apple" aria-hidden="true"></i></a>
+                    <a href="resources/images/android.png" download><i class="fa fa-android" aria-hidden="true"></i></a>
+                    <a href="resources/images/linux.png" download><i class="fa fa-linux" aria-hidden="true"></i></a>
+                    <a href="resources/images/ios.png" download><i class="fa fa-mobile" aria-hidden="true"></i></a>
+                </I></h4>
 
-    <div style="font-size: larger; margin-bottom: 10px" align="center">
-        <div ng-if="ctrl.data.os === 'mac'">
-            <h3>
-                Download the game using this <a href="resources/images/osx.png" download>link</a>
-            </h3>
-        </div>
-
-        <div ng-if="ctrl.data.os === 'windows'">
-            <h3>
-                Download the game using this <a href="resources/images/windows.png" download>link</a>
-            </h3>
-        </div>
-
-        <div ng-if="ctrl.data.os === 'linux'">
-            <h3>
-                Download the game using this <a href="resources/images/linux.png" download>link</a>
-            </h3>
-        </div>
-
-        <div ng-if="ctrl.data.os === 'ios'">
-            <h3>
-                Download the game using this <a href="resources/images/ios.png" download>link</a>
-            </h3>
-        </div>
-
-        <div ng-if="ctrl.data.os === 'android'">
-            <h3>
-                Download the game using this <a href="resources/images/android.png" download>link</a>
-            </h3>
+            </div>
         </div>
     </div>
-
-    <h4 align="center">Check out our other supported platforms:
-        <div style="font-size: x-large">
-            <br>
-            <a href="resources/images/windows.png" download> Windows </a>
-            <br>
-            <a href="resources/images/osx.png" download> MAC OS </a>
-            <br>
-            <a href="resources/images/ios.png" download> iOS </a>
-            <br>
-            <a href="resources/images/android.png" download> Android </a>
-            <br>
-            <a href="resources/images/linux.png" download> Linux </a>
-        </div>
-    </h4>
-
 </div>
