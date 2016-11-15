@@ -41,6 +41,26 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService, U
         })
     };
 
+
+    //Jessi: Added image upload functions- is this right?
+    ctrl.uploadCommentImage = function(comment, file){
+        ForumsService.uploadCommentImage({id: comment.id}, file).$promise.then(function (response){
+            if(response !== 0){
+                ctrl.getCommentsForPost((comment.getPost).id); //update displayed comments?
+            }
+        })
+    };
+
+
+    ctrl.uploadPostImage = function(post, file){
+        ForumsService.uploadPostImage({id: post.id}, file).$promise.then(function (response){
+            if(response !== 0){
+                //should something go here?
+            }
+        })
+    };
+
+
     //TODO: Only give the user who created the comment the ability to edit the comment.
     ctrl.editComment = function (post, comment) {
         ForumsService.editComment({id: comment.id}, comment.editText).$promise.then(function (response) {
@@ -69,4 +89,6 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService, U
             }
         })
     }
+
+    //Jessi: added upload code..not sure if this is right
 });
