@@ -67,11 +67,11 @@ nav {
 }
 
 .navbar-collapse > li > a:hover{
-    color: red;!important;
+    /*color: red;!important;*/
 }
 
 .dropbtn a:hover, .dropbtn a:focus{
-    color: red;!important;
+    /*color: red;!important;*/
 }
 
 
@@ -84,11 +84,11 @@ nav {
 }*/
 
 .container-fluid:hover{
-    color: red;!important;
+    /*color: red;!important;*/
 }
 
 .navbar .nav > .active > a {
-    background: red;!important;
+    /*background: red;!important;*/
 }
 
 .dropbtn li a, .dropbtn {
@@ -126,7 +126,7 @@ li #drop_down, li #drop_down2 {
 
 #drop_content:hover, #drop_content2:hover{
     display: inline;
-    border-color: ;
+    /*border-color: ;*/
 }
 
 .userLists {

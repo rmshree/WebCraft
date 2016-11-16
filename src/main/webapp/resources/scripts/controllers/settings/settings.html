@@ -1,9 +1,13 @@
 <div class="container" ng-init="ctrl.init()">
-    <div class="col-md-12 col-xs-12" style="color: white">
+    <div class="col-md-12 col-xs-12" style="color: black">
         <br>
-        <h1>
-            Settings
-        </h1>
+        <br>
+        <br>
+
+        <!--<h1>-->
+            <!--Settings-->
+        <!--</h1>-->
+
         <div ng-if="ctrl.noUser">
             <span>Please <a ng-href="#/login">log in</a> to see your settings</span>
         </div>
@@ -20,3 +24,5 @@
         <div class="form-group col-md-12" ng-if="ctrl.showNotificationsTab" ng-include="'resources/scripts/controllers/settings/notifications.settings.html'"></div>
     </div>
 </div>
+<br>
+<br>
