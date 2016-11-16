@@ -5,8 +5,8 @@
     </div>
 
     <div ng-if="ctrl.postFound">
-        <div class="col-xs-12 panel-body">
-            <h1>{{ctrl.post.title}}</h1>
+        <div class=" page-header col-xs-12">
+            <h3><a href="#/forums/">Forums</a> >> {{ctrl.title}} >> {{ctrl.post.title}}</h3>
         </div>
 
         <div class="col-md-3 col-xs-12 panel-body">
@@ -40,7 +40,7 @@
 
             <!-- Text from the forum post -->
             <div class="jumbotron" style="margin-bottom: 0; background-color: rgba(255,255,255,.1)">
-                <pre style="font-family: 'Pontano Sans', sans-serif; padding: 10px; background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0); color: white;">{{ctrl.post.text}}</pre>
+                <pre>{{ctrl.post.text}}</pre>
                 <div ng-if="ctrl.post.filename && ctrl.post.fileURL">
                     <a href="{{ctrl.post.fileURL}}">{{ctrl.post.filename}}</a>
                 </div>
