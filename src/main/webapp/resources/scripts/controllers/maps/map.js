@@ -330,8 +330,12 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
                 }
 
                 //There is only one grass tile used in rendering
-                else {
+                else if (charMap == "G") {
                     imageMap.src = 'resources/images/tiles/32/grass.png';
+                }
+
+                else {
+                    imageMap.src = 'resources/images/tiles/32/empty.png';
                 }
                 divLocation.appendChild(imageMap);
             }

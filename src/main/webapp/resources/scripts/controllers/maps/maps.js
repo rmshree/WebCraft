@@ -5,15 +5,25 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
     ctrl.currentUser = currentUser;
     ctrl.newMap = {};
 
+    function hasExtension(inputID, exts) {
+        var fileName = document.getElementById(inputID).value;
+        return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
+    }
+
     $scope.$watchCollection('ctrl.newMap.file', function (file) {
         if (file !== undefined) {
-            var reader = new FileReader();
-            reader.onload = function () {
-                var dataURL = reader.result;
-                onMapRender(dataURL, 'image-canvas');
-            };
-            var blob = file.slice(0, file.size);
-            reader.readAsBinaryString(blob);
+            if (hasExtension(ctrl.newMap.file, ['.txt'])) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var dataURL = reader.result;
+                    onMapRender(dataURL, 'image-canvas');
+                };
+                var blob = file.slice(0, file.size);
+                reader.readAsBinaryString(blob);
+            }
+            else{
+                ctrl.statusMessage = 'Invalid file format for map. Must be .txt file.';
+            }
         }
     });
 
