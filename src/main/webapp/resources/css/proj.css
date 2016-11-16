@@ -61,8 +61,9 @@ h4 {
 .splash {
     font-family: "Courier New";
     height: 100%;
-    background: url('../images/Background.jpg') no-repeat bottom center fixed;
-    background-size:cover;  !important;
+    background: url('../images/Background.jpg') no-repeat top left;
+    background-size: cover;
+!important;
     min-height: 100%;
 }
 
@@ -75,11 +76,13 @@ nav {
 
 .dropbtn a:hover, .dropbtn a:focus {
     color: red;
-.navbar-collapse > li > a:hover{
+}
+
+.navbar-collapse > li > a:hover {
     /*color: red;!important;*/
 }
 
-.dropbtn a:hover, .dropbtn a:focus{
+.dropbtn a:hover, .dropbtn a:focus {
     /*color: red;!important;*/
 }
 
@@ -263,17 +266,19 @@ li #drop_down, li #drop_down2 {
 
 /*Responsive Styles*/
 
-@media screen and (max-width : 760px){
+@media screen and (max-width: 760px) {
     /*Make dropdown links appear inline*/
     .navbar-nav ul {
         position: static;
         display: none;
 
     }
+
     /*Create vertical spacing*/
     .navbar-nav li {
         margin-bottom: 1px;
     }
+
     /*Make all menu links full width*/
     .navbar-nav ul li, .nav li a {
         width: 100%;
@@ -281,7 +286,7 @@ li #drop_down, li #drop_down2 {
     }
 }
 
-@media all and (max-width : 330px) {
+@media all and (max-width: 330px) {
 
     nav ul li {
         display: block;
