@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -124,12 +125,27 @@ public class ForumsController {
      */
     //TODO: Only give the user who created the comment the ability to edit the comment.
     @RequestMapping(value = "comment/edit/{id}", method = RequestMethod.POST)
-    public Comment editComment(@PathVariable Integer id, @RequestBody String text) {
+    public Comment editComment(@PathVariable Integer id, @RequestBody Comment editComment) {
         Comment comment = commentService.getCommentByID(id);
-        comment.setText(text);
-        return commentService.save(comment);
+        if (comment != null) {
+            comment.setText(editComment.getText());
+            return commentService.save(comment);
+        }
+        else {
+            return null;
+        }
     }
 
+    @RequestMapping(value = "post/edit/{id}", method = RequestMethod.POST)
+    public Post editPost(@PathVariable Integer id, @RequestBody Post editPost) {
+        Post post = postService.getPostById(id);
+        if (post != null) {
+            return postService.save(editPost);
+        }
+        else {
+            return null;
+        }
+    }
 
     /**
      * /api/forums/comment/uploadImage/{id}
@@ -138,22 +154,19 @@ public class ForumsController {
      * \param image file as multipart file. Max size in 20MB.
      * \return the saved Comment with image url.
      */
-    @RequestMapping(value = "comment/uploadImage/{id}", method = RequestMethod.POST)
-    public Comment uploadCommentImage(@PathVariable Integer id, MultipartFile imageFile) {
+    @RequestMapping(value = "comment/uploadFile/{id}", method = RequestMethod.POST)
+    public Comment uploadCommentImage(@PathVariable Integer id, MultipartFile file) {
         Comment comment = commentService.getCommentByID(id);
         if (comment != null) {
             try {
-                if (comment.getS3key() != null) {
-                    fileArchiveService.delete(comment.getS3key());
-                }
                 ObjectMetadata objectMetadata = new ObjectMetadata();
-                objectMetadata.setContentType("image/jpeg");
-                DateTime now = new DateTime();
-                String key = "comments/" + comment.getUser().getUsername()+comment.getId().toString()+ now.toString();
-                comment.setComment_image_url(fileArchiveService.upload(imageFile, key, objectMetadata));
+                objectMetadata.setContentType(file.getContentType());
+                DateTime dateTime = new DateTime();
+                String key = "comments/" + comment.getId().toString()+ '/'+ comment.getUser().getUsername() + '/' + dateTime.toString() + '/' + file.getOriginalFilename();
+                comment.setFileURL(fileArchiveService.upload(file, key, objectMetadata));
                 comment.setS3key(key);
-                commentService.save(comment);
-                return comment;
+                comment.setFilename(file.getOriginalFilename());
+                return commentService.save(comment);
             } catch (Exception e) {
                 e.printStackTrace();
                 return comment;
@@ -162,7 +175,6 @@ public class ForumsController {
             return null;
         }
     }
-
 
     /**
      * /api/forums/post/uploadImage/{id}
@@ -171,22 +183,19 @@ public class ForumsController {
      * \param image file as multipart file. Max size in 20MB.
      * \return the saved Comment with image url.
      */
-    @RequestMapping(value = "Post/uploadImage/{id}", method = RequestMethod.POST)
-    public Post uploadPostImage(@PathVariable Integer id, MultipartFile imageFile) {
+    @RequestMapping(value = "post/uploadFile/{id}", method = RequestMethod.POST)
+    public Post uploadPostImage(@PathVariable Integer id, MultipartFile file) {
         Post post = postService.getPostById(id);
         if (post != null) {
             try {
-                if (post.getS3key() != null) {
-                    fileArchiveService.delete(post.getS3key());
-                }
                 ObjectMetadata objectMetadata = new ObjectMetadata();
                 objectMetadata.setContentType("image/jpeg");
-                DateTime now = new DateTime();
-                String key = "posts/" + post.getUser().getUsername()+ post.getId().toString() + now.toString();
-                post.setComment_image_url(fileArchiveService.upload(imageFile, key, objectMetadata));
+                DateTime dateTime = new DateTime();
+                String key = "post/" + post.getId().toString()+ '/'+ post.getUser().getUsername() + '/' + dateTime.toString() + '/' + file.getOriginalFilename();
+                post.setFileURL(fileArchiveService.upload(file, key, objectMetadata));
+                post.setFilename(file.getOriginalFilename());
                 post.setS3key(key);
-                postService.save(post);
-                return post;
+                return postService.save(post);
             } catch (Exception e) {
                 e.printStackTrace();
                 return post;
@@ -195,7 +204,6 @@ public class ForumsController {
             return null;
         }
     }
-
 
     /** /api/forums/comment/delete/{id}
      *  \brief deletes the comment associated with {id}

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('ForumCtrl', function ($route, ForumsService, UserService) {
+angular.module('app').controller('ForumCtrl', function ($route, ForumsService, UserService, Upload) {
     var ctrl = this;
     var forumsHref = "#/forums/";
 
@@ -27,48 +27,52 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService, U
         })
     };
 
-    ctrl.addComment = function (post, text) {
+    ctrl.addComment = function (post, comment) {
         var newComment = {text: '', user:''};
-        newComment.text = text;
+        newComment.text = comment.text;
         newComment.user = ctrl.currentUser;
         console.log(newComment);
         ForumsService.addComment({id: post.id}, newComment).$promise.then(function (response) {
             console.log(response);
-            if(response.success){
-                post.showCommentForm = false;
-                post.comments.push(response.data);
+            if(response.success && comment.file){
+                Upload.upload({
+                    method: 'POST',
+                    url: 'api/forums/comment/uploadFile/'+response.data.id,
+                    data: {
+                        file: comment.file
+                    }
+                }).success(function (response) {
+                    console.log(response);
+                });
             }
-        })
+        });
+        location.reload();
     };
-
-
-    //Jessi: Added image upload functions- is this right?
-    ctrl.uploadCommentImage = function(comment, file){
-        ForumsService.uploadCommentImage({id: comment.id}, file).$promise.then(function (response){
-            if(response !== 0){
-                ctrl.getCommentsForPost((comment.getPost).id); //update displayed comments?
-            }
-        })
-    };
-
-
-    ctrl.uploadPostImage = function(post, file){
-        ForumsService.uploadPostImage({id: post.id}, file).$promise.then(function (response){
-            if(response !== 0){
-                //should something go here?
-            }
-        })
-    };
-
 
     //TODO: Only give the user who created the comment the ability to edit the comment.
-    ctrl.editComment = function (post, comment) {
-        ForumsService.editComment({id: comment.id}, comment.editText).$promise.then(function (response) {
+    ctrl.editComment = function (comment) {
+        console.log(comment);
+        ForumsService.editComment({id: comment.id}, comment).$promise.then(function (response) {
             if (response.id){
-                comment.showEditCommentForm = false;
-                ctrl.getCommentsForPost(post); //Updates displayed comments.
+                console.log(response);
+
+                if (comment.file) {
+                    Upload.upload({
+                        method: 'POST',
+                        url: 'api/forums/comment/uploadFile/'+comment.id,
+                        data: {
+                            file: comment.file
+                        }
+                    }).success(function (response) {
+                        console.log(response);
+                        location.reload();
+                    })
+                }
+                else {
+                    comment.showEditCommentForm = false;
+                }
             }
-        })
+        });
     };
 
     //TODO: Only give the user who created the comment the ability to delete the comment.
@@ -78,7 +82,7 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService, U
                 ctrl.getCommentsForPost(post);
             }
         })
-    }
+    };
 
     //TODO: Only give the user who created the post the ability to delete the post.
     ctrl.deletePost = function (post) {
@@ -88,7 +92,32 @@ angular.module('app').controller('ForumCtrl', function ($route, ForumsService, U
                 window.location.href = forumsHref + category.split('/')[0];
             }
         })
-    }
+    };
 
+    ctrl.editPost = function (post) {
+        console.log(ctrl.edittingPost.title);
+        console.log(post);
+        ForumsService.editPost({id: post.id}, post).$promise.then(function (response) {
+            if (response.id){
+                console.log(response);
+
+                if (post.file) {
+                    Upload.upload({
+                        method: 'POST',
+                        url: 'api/forums/post/uploadFile/'+post.id,
+                        data: {
+                            file: post.file
+                        }
+                    }).success(function (response) {
+                        console.log(response);
+                        location.reload();
+                    })
+                }
+                else {
+                    ctrl.post.showEditPostForm = false;
+                }
+            }
+        });
+    };
     //Jessi: added upload code..not sure if this is right
 });

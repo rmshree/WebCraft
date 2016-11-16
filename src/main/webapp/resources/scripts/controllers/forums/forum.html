@@ -20,6 +20,7 @@
                 </div>
             </div>
             <div ng-if="ctrl.currentUser.id == ctrl.post.user.id" >
+                <button class="btn btn-primary pull-left" style="margin-top: 10px" ng-click="ctrl.post.showEditPostForm = true; ctrl.edittingPost = ctrl.post">Edit Post</button>
                 <button ng-if="!ctrl.post.showDeletePostForm" class="btn btn-primary pull-left" style="margin-top: 10px" ng-click="ctrl.post.showDeletePostForm = true"> Delete Post </button>
             </div>
             <!-- Delete Post form -->
@@ -40,6 +41,28 @@
             <!-- Text from the forum post -->
             <div class="jumbotron" style="margin-bottom: 0; background-color: rgba(255,255,255,.1)">
                 <pre style="font-family: 'Pontano Sans', sans-serif; padding: 10px; background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0); color: white;">{{ctrl.post.text}}</pre>
+                <div ng-if="ctrl.post.filename && ctrl.post.fileURL">
+                    <a href="{{ctrl.post.fileURL}}">{{ctrl.post.filename}}</a>
+                </div>
+            </div>
+
+            <div ng-if ="ctrl.post.showEditPostForm" style="margin-top: 10px;margin-bottom: 0; background-color: rgba(255,255,255,.1)">
+                <div class="form-group col-md-12">
+                    <textarea id="editPost" class="form-control" maxlength="1000" rows="3" ng-model="ctrl.edittingPost.text">{{ctrl.edittingPost.text}}</textarea>
+                </div>
+                <div class="col-xs-12">
+                    <button class="btn btn-primary" ng-click="ctrl.post.showMapForm = true">Upload File</button>
+                    <button class="btn btn-primary" ng-click="ctrl.editPost(ctrl.edittingPost)" ng-disabled="!ctrl.edittingPost.text">Submit</button>
+                    <button class="btn btn-primary" ng-click="ctrl.post.showEditPostForm = false; ctrl.uploading = false; ctrl.post.showMapForm = false; ctrl.edittingPost.file ='';">Cancel</button>
+                </div>
+                <div ng-if="ctrl.post.showMapForm" class="col-xs-12 col-md-6 panel-body">
+                    <div class="col-xs-12 col-md-3">
+                        <div class="form-group">
+                            <label>File</label>
+                            <input type="file" ngf-select ng-model="ctrl.edittingPost.file">
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="page-header col-xs-12" style="margin-top: 5px">
@@ -53,9 +76,18 @@
                         <label for="comment">Text</label>
                         <textarea id="comment" class="form-control" maxlength="1000" rows="3" ng-model="newComment.text"></textarea>
                     </div>
+                    <div ng-if="newComment.showUploadFile" class="col-xs-12 col-md-6 panel-body">
+                        <div class="col-xs-12 col-md-3">
+                            <div class="form-group">
+                                <label>File</label>
+                                <input type="file" ngf-select ng-model="newComment.file">
+                            </div>
+                        </div>
+                    </div>
                     <!-- Buttons for the add comment form -->
                     <div class="col-xs-12">
-                        <button class="btn btn-primary" ng-click="ctrl.addComment(ctrl.post, newComment.text)" ng-disabled="!newComment.text">Add</button>
+                        <button class="btn btn-primary" ng-click="newComment.showUploadFile = true">Upload File</button>
+                        <button class="btn btn-primary" ng-click="ctrl.addComment(ctrl.post, newComment)" ng-disabled="!newComment.text">Add</button>
                         <button class="btn btn-primary" ng-click="ctrl.post.showCommentForm = false">Cancel</button>
                     </div>
                 </div>
@@ -72,6 +104,9 @@
                     </div>
                 </div>
                 <pre class="col-md-9 col-xs-12" style="font-family: 'Pontano Sans', sans-serif; margin-top: 10px; margin-bottom: 10px; color: lightgray;background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0); display:inline-block">{{comment.text}}</pre>
+                <div ng-if="comment.filename && comment.fileURL">
+                    <a href="{{comment.fileURL}}">{{comment.filename}}</a>
+                </div>
                 <div ng-if="ctrl.currentUser.id == comment.user.id" class="col-xs-12" style="margin-bottom: 10px; margin-top: 10px;">
                     <button class="btn btn-primary pull-right" style="margin: 5px" ng-click="comment.showEditCommentForm = true; comment.editText = comment.text;comment.showDeleteCommentForm = false">Edit Comment</button>
                     <button class="btn btn-primary pull-right" style="margin: 5px" ng-click="comment.showDeleteCommentForm = true;comment.showEditCommentForm = false">Delete Comment</button>
@@ -84,10 +119,19 @@
                         <textarea id="editComment" class="form-control" maxlength="1000" rows="3" ng-model="comment.editText"></textarea>
                     </div>
                     <div class="col-xs-12">
-                        <button class="btn btn-primary" ng-click="ctrl.editComment(ctrl.post, comment)" ng-disabled="!comment.editText">Submit</button>
-                        <button class="btn btn-primary" ng-click="comment.showEditCommentForm = false">Cancel</button>
+                        <button class="btn btn-primary" ng-click="comment.showMapForm = true">Upload File</button>
+                        <button class="btn btn-primary" ng-click="ctrl.editComment(comment)" ng-disabled="!comment.editText">Submit</button>
+                        <button class="btn btn-primary" ng-click="comment.showEditCommentForm = false; ctrl.uploading = false; comment.file = '';">Cancel</button>
                     </div>
-                </div>
+                    <div ng-if="comment.showMapForm" class="col-xs-12 col-md-6 panel-body">
+                        <div class="col-xs-12 col-md-3">
+                            <div class="form-group">
+                                <label>File</label>
+                                <input type="file" ngf-select ng-model="comment.file">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
 
                 <!-- Delete comment -->
                 <div ng-if="comment.showDeleteCommentForm" class="col-xs-12 panel-body" style="padding: 0">

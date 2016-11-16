@@ -51,9 +51,13 @@ public class Post implements Serializable {
     @JsonIgnore
     private String s3key;
 
-    @Column(name = "post_image_url", unique = true)
+    @Column(name = "fileURL", unique = true)
     @JsonProperty
-    private String post_image_url;
+    private String fileURL;
+
+    @Column(name = "filename")
+    @JsonProperty
+    private String filename;
 
     public Integer getId() {
         return id;
@@ -119,11 +123,19 @@ public class Post implements Serializable {
         this.s3key = s3key;
     }
 
-    public String getComment_image_url() {
-        return post_image_url;
+    public String getFileURL() {
+        return fileURL;
     }
 
-    public void setComment_image_url(String comment_image_url) {
-        this.post_image_url = comment_image_url;
+    public void setFileURL(String fileURL) {
+        this.fileURL = fileURL;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('ForumsCtrl', function ($location, ForumsService, UserService) {
+angular.module('app').controller('ForumsCtrl', function ($location, ForumsService, UserService, Upload) {
     var ctrl = this;
 
     ctrl.init = function () {
@@ -31,6 +31,18 @@ angular.module('app').controller('ForumsCtrl', function ($location, ForumsServic
             ForumsService.add(newPost).$promise.then(function (response) {
                 console.log(response);
                 if (response.success) {
+                    if (newPost.file) {
+                        ctrl.uploading = true;
+                        Upload.upload({
+                            method: 'POST',
+                            url: 'api/forums/post/uploadFile/'+response.data.id,
+                            data: {
+                                file: newPost.file
+                            }
+                        }).success(function (response) {
+                            console.log(response);
+                        })
+                    }
                     ctrl.showForm = false;
                     ctrl.posts.unshift(response.data);
                 }

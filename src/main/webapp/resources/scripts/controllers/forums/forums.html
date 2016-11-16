@@ -23,7 +23,16 @@
                               ng-model="newPost.text"></textarea>
                 </div>
             </div>
+            <div ng-if="newPost.showUploadFile" class="col-xs-12 col-md-6 panel-body">
+                <div class="col-xs-12 col-md-3">
+                    <div class="form-group">
+                        <label>File</label>
+                        <input type="file" ngf-select ng-model="newPost.file">
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-12">
+                <button class="btn btn-primary" ng-click="newPost.showUploadFile = true">Upload File</button>
                 <button class="btn btn-success" ng-click="ctrl.post(newPost)"
                         ng-disabled="!newPost.title || !newPost.text">Add post
                 </button>
