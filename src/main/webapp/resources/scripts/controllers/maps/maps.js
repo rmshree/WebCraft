@@ -12,18 +12,13 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
 
     $scope.$watchCollection('ctrl.newMap.file', function (file) {
         if (file !== undefined) {
-            if (hasExtension(ctrl.newMap.file, ['.txt'])) {
-                var reader = new FileReader();
-                reader.onload = function () {
-                    var dataURL = reader.result;
-                    onMapRender(dataURL, 'image-canvas');
-                };
-                var blob = file.slice(0, file.size);
-                reader.readAsBinaryString(blob);
-            }
-            else{
-                ctrl.statusMessage = 'Invalid file format for map. Must be .txt file.';
-            }
+            var reader = new FileReader();
+            reader.onload = function () {
+                var dataURL = reader.result;
+                onMapRender(dataURL, 'image-canvas');
+            };
+            var blob = file.slice(0, file.size);
+            reader.readAsBinaryString(blob);
         }
     });
 
