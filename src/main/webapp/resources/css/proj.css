@@ -15,7 +15,6 @@ h1 {
     font-family: 'Courier New';
 }
 
-
 h2 {
     font-family: 'Courier New';
 }
@@ -34,6 +33,14 @@ h4 {
 
 .about-page {
     background-color: #ffffff;
+}
+
+.download-page a:link {
+    color: black;
+}
+
+.download-page a:hover {
+    color: #c60001;
 }
 
 .textWhite {
@@ -63,9 +70,11 @@ nav {
     /*font-family: 'Pontano Sans', sans-serif;*/
     font-family: "Courier New";
     display: inline;
-    background-color:black;
+    background-color: black;
 }
 
+.dropbtn a:hover, .dropbtn a:focus {
+    color: red;
 .navbar-collapse > li > a:hover{
     /*color: red;!important;*/
 }
@@ -74,21 +83,12 @@ nav {
     /*color: red;!important;*/
 }
 
-
-/*.navbar-nav > li > a:hover, .navbar-nav > li > a:focus{
-    color: red;!important;
-}
-
-.navbar > li > a:hover, .navbar > li > a:focus{
-    background: red;!important;
-}*/
-
-.container-fluid:hover{
-    /*color: red;!important;*/
-}
-
-.navbar .nav > .active > a {
-    /*background: red;!important;*/
+.nav_ ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
 }
 
 .dropbtn li a, .dropbtn {
@@ -103,30 +103,30 @@ li #drop_down, li #drop_down2 {
     display: inline-block;
 }
 
-#drop_content, #drop_content2{
+#drop_content, #drop_content2 {
     display: none;
     position: absolute;
     min-width: 160px;
-    background: #989da1;
+    background: #bfbfbf;
+    border: 1px solid black;
 }
 
-#drop_content a, #drop_content2 a{
+#drop_content a, #drop_content2 a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
-    border-color: black;!important;
+    border-bottom: 1px solid black;
+
 }
 
-
-#drop_down:hover #drop_content, #drop_down2:hover #drop_content2{
+#drop_down:hover #drop_content, #drop_down2:hover #drop_content2 {
     display: inline;
 }
 
-#drop_content:hover, #drop_content2:hover{
+#drop_content:hover, #drop_content2:hover {
     display: inline;
-    /*border-color: ;*/
 }
 
 .userLists {
@@ -148,7 +148,7 @@ li #drop_down, li #drop_down2 {
     color: #c60001;
 }
 
-.dropdown-menu li p{
+.dropdown-menu li p {
     padding: 0 20px;
 }
 
@@ -184,14 +184,12 @@ li #drop_down, li #drop_down2 {
     border-radius: 10px;
 }
 
-
-
 .forum-page {
     overflow: auto;
     min-height: 100%;
     background: #00d2ff; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #00d2ff , #3a7bd5); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #00d2ff , #3a7bd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to left, #00d2ff, #3a7bd5); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #00d2ff, #3a7bd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .forums-page {
@@ -201,7 +199,6 @@ li #drop_down, li #drop_down2 {
     /*background: -webkit-linear-gradient(to left, #00d2ff , #3a7bd5); !* Chrome 10-25, Safari 5.1-6 *!*/
     /*background: linear-gradient(to left, #00d2ff , #3a7bd5); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
 }
-
 
 .clickable {
     -ms-touch-action: manipulation;
@@ -217,7 +214,6 @@ li #drop_down, li #drop_down2 {
     background-color: whitesmoke;
 }
 
-
 .maps-page {
     overflow: auto;
     min-height: 100%;
@@ -225,7 +221,27 @@ li #drop_down, li #drop_down2 {
 }
 
 .profileContainer {
-    background-color: #989da1;
+
+    background-color: #4b0100;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    top: 100px;
+}
+
+.aboutContainer {
+
+    background-color: transparent;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    top: 100px;
+}
+
+.downloadContainer {
+
+    background-color: transparent;
     padding: 30px;
     border-radius: 10px;
     position: relative;
@@ -233,7 +249,7 @@ li #drop_down, li #drop_down2 {
 }
 
 .inboxContainer {
-    background-color: #989da1;
+    background-color: white;
     border-radius: 10px;
     position: relative;
     left: 25%;
