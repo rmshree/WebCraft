@@ -136,8 +136,10 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
                     imageMap.src = 'resources/images/tiles/15/forest.png';
                 } else if (charMap === "R") {
                     imageMap.src = 'resources/images/tiles/15/rock.png';
-                } else {
+                } else if (charMap === "G") {
                     imageMap.src = 'resources/images/tiles/15/dirt.png';
+                } else {
+                    imageMap.src = 'resources/images/tiles/15/empty.png';
                 }
                 divLocation.appendChild(imageMap);
             }
