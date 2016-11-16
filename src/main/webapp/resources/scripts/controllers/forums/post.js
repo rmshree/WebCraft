@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('ForumCtrl', function ($route, ForumsService, UserService, Upload) {
+angular.module('app').controller('postCtrl', function ($route, ForumsService, UserService, Upload) {
     var ctrl = this;
     var forumsHref = "#/forums/";
 

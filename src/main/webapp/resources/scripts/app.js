@@ -76,14 +76,20 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             }
         })
         .when('/forums/', {
-            templateUrl: 'resources/scripts/controllers/forums/category.html',
-            controller: 'CategoryCtrl',
+            templateUrl: 'resources/scripts/controllers/forums/forums.html',
+            controller: 'forumsCtrl',
             controllerAs: 'ctrl',
             resolve: {}
         })
         .when('/forums/:category', {
-            templateUrl: 'resources/scripts/controllers/forums/forums.html',
-            controller: 'ForumsCtrl',
+            templateUrl: 'resources/scripts/controllers/forums/category.html',
+            controller: 'categoryCtrl',
+            controllerAs: 'ctrl',
+            resolve: {}
+        })
+        .when('/forums/:id/:id', {
+            templateUrl: 'resources/scripts/controllers/forums/post.html',
+            controller: 'postCtrl',
             controllerAs: 'ctrl',
             resolve: {}
         })
@@ -99,12 +105,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {}
         })
-        .when('/forums/:id/:id', {
-            templateUrl: 'resources/scripts/controllers/forums/forum.html',
-            controller: 'ForumCtrl',
-            controllerAs: 'ctrl',
-            resolve: {}
-        })
+
         .when('/settings', {
             templateUrl: 'resources/scripts/controllers/settings/settings.html',
             controller: 'SettingsCtrl',

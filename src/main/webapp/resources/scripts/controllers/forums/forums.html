@@ -1,79 +1,61 @@
-<div class="container-fluid forums-page" ng-init="ctrl.init()">
+<div class="container-fluid categories-page" ng-init="ctrl.init()">
 
     <div class="page-header col-xs-12">
-        <h1 style="display: inline-block; font-family: initial">{{ctrl.title}}
-            <small></small>
-        </h1>
-
-        <button class="btn btn-primary pull-right" style="margin-top: 25px" ng-click="ctrl.showForm = true"
-                ng-if="!ctrl.showForm">New Post
-        </button>
-
-        <!-- New Post UI -->
-        <div ng-if="ctrl.showForm" class="col-xs-12 panel-body">
-            <div class="col-xs-12">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input id="title" class="form-control" type="text" ng-model="newPost.title">
-                </div>
-
-                <div class="form-group">
-                    <label for="text">Text</label>
-                    <textarea id="text" class="form-control" maxlength="1000" rows="3"
-                              ng-model="newPost.text"></textarea>
-                </div>
-            </div>
-            <div ng-if="newPost.showUploadFile" class="col-xs-12 col-md-6 panel-body">
-                <div class="col-xs-12 col-md-3">
-                    <div class="form-group">
-                        <label>File</label>
-                        <input type="file" ngf-select ng-model="newPost.file">
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12">
-                <button class="btn btn-primary" ng-click="newPost.showUploadFile = true">Upload File</button>
-                <button class="btn btn-success" ng-click="ctrl.post(newPost)"
-                        ng-disabled="!newPost.title || !newPost.text">Add post
-                </button>
-                <button class="btn btn-default" ng-click="ctrl.showForm = false">Cancel</button>
-            </div>
-        </div>
+        <h3>Forums</h3>
     </div>
 
     <!-- Display All Forums -->
+
     <div class="col-md-12">
-        <div class="panel panel-info col-xs-12" style="padding: 0">
-            <!-- Header of Panel -->
-            <div class="panel-heading">
-                Sample Category
+        <div class="panel panel-info col-xs-12" >
+            <!-- General Discussion -->
+            <div class="panel-heading panel-heading-custom">
+                General Discussion    <i class="fa fa-commenting-o" aria-hidden="true"></i>
             </div>
 
-            <!-- Body of Panel -->
-            <div class="panel-body" style="padding: 0">
-                <div ng-repeat="post in ctrl.posts track by post.id">
-                    <div href class="clickable col-xs-12 panel-body forum-list-item"
-                         style="border-bottom: 1px solid #e4e4e4" ng-click="ctrl.goToPost(post)">
-                        <div class="col-md-3" style="display: inline-block">
-                            <!--<img ng-if="post.user.artwork_url !== null" height="50px" width="50px" ng-src="{{post.user.artwork_url}}">-->
-                            <img height="75px" width="75px" class="pull-left" style="margin-right: 10px"
-                                 src="resources/images/noImage.jpg">
-                            <div class="col-md-8 col-xs-6" style="padding: 0">
-                                <h5>{{post.user.username}}</h5>
-                                <span>{{post.date | date: 'medium'}}</span>
-                            </div>
-                        </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.GeneralDiscussion)">
+                Discuss things, generally.
+            </div>
 
-                        <h2 class="col-md-6" style="margin-top: 0; font-family: monospace; font-size: xx-large">
-                            {{post.title | limitTo: 40}} <span ng-if="post.title.length > 40">...</span></h2>
-                        <span class="col-md-2 pull-right"><small>Comments: </small><span class="badge"> {{post.comments_length}}</span></span>
-                        <div class="col-xs-9">
-                            <pre style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);">{{post.text | limitTo: 75}} <span ng-if="post.text.length > 75">...</span></pre>
-                        </div>
-                    </div>
-                </div>
+            </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <div class="panel panel-info col-xs-12">
+            <!-- User Guides -->
+            <div class="panel-heading panel-heading-custom">
+                User Guides  <i class="fa fa-map-o" aria-hidden="true"></i>
+            </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.UserGuides)">
+                Guides, made by fellow users.
             </div>
         </div>
     </div>
-    <!-- Display All Forums -->
+
+    <div class="col-md-12">
+        <div class="panel panel-info col-xs-12">
+            <!-- Technical Support -->
+            <div class="panel-heading panel-heading-custom">
+                Technical Support   <i class="fa fa-users" aria-hidden="true"></i>
+            </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.TechnicalSupport)">
+                It is probably better to just google it.
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-info col-xs-12">
+            <!-- Miscellaneous -->
+            <div class="panel-heading panel-heading-custom">
+                Miscellaneous <i class="fa fa-paw" aria-hidden="true"></i>
+            </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.Miscellaneous)">
+                Everything here is irrelevant.
+            </div>
+        </div>
+    </div>
+
+
 </div>

@@ -1,21 +1,21 @@
-<div ng-init="ctrl.init()" class="forum-page" style="color: gainsboro">
+<div ng-init="ctrl.init()" class="post-page">
 
     <div ng-if="!ctrl.postFound" class="col-xs-12 panel-body">
-        <h3>Post not found</h3>
+        <h3>This post does not exist anymore.</h3>
     </div>
 
     <div ng-if="ctrl.postFound">
         <div class="col-xs-12 panel-body">
-            <h1 style="font-family: monospace; color: white;">{{ctrl.post.title}}</h1>
+            <h1>{{ctrl.post.title}}</h1>
         </div>
 
         <div class="col-md-3 col-xs-12 panel-body">
             <!-- User info -->
             <div class="col-xs-12" style="display: inline-block; padding-bottom: 10px; background-color: rgba(255,255,255,.1)">
                 <!--<img ng-if="ctrl.post.user.artwork_url !== null" height="50px" width="50px" ng-src="{{ctrl.post.user.artwork_url}}">-->
-                <img height="100px" width="100px" class="pull-left" style="margin-top: 10px; margin-right: 10px" src="resources/images/noImage.jpg">
+                <img height="100px" width="100px" class="pull-left" style="margin-top: 10px; margin-right: 10px" src="resources/images/default_avatar.png">
                 <div class="col-md-8" style="margin-top: 10px; padding: 0">
-                    <h4 style="color: white">{{ctrl.post.user.username}}</h4>
+                    <h3>{{ctrl.post.user.username}}</h3>
                     <span>{{ctrl.post.date | date: 'medium'}}</span>
                 </div>
             </div>
