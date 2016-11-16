@@ -75,6 +75,16 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
                 }
             }
         })
+        .when('/online', {
+            templateUrl: 'resources/scripts/controllers/online/online.html',
+            controller: 'OnlineCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
+        })
         .when('/rankings', {
             templateUrl: 'resources/scripts/controllers/rankings/rankings.html',
             controller: 'RankingsCtrl',

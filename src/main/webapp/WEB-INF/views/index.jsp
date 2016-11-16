@@ -46,6 +46,8 @@
 <script src="resources/scripts/controllers/maps/map.js"></script>
 <script src="resources/scripts/controllers/messages/message.js"></script>
 <script src="resources/scripts/controllers/messages/conversation.js"></script>
+<script src="resources/scripts/controllers/online/online.js"></script>
+
 
 
 

@@ -1,9 +1,9 @@
 <div class="container-fluid maps-page textWhite" ng-init="ctrl.init()">
 
     <div class="col-xs-12 panel-body">
-        <h2 class="text-center ">Maps</h2>
-        <h4 class="text-center">From sticks and stones to bricks and bones each map offers a different gameplay experience for the game</h4>
-        <h4 class="text-center" ng-if="!ctrl.currentUser.id">Want to upload a map? Please <a href="#/login">sign in</a></h4>
+        <h2 style="color:#7b0100" class="text-center"><b>Maps</b></h2>
+        <h4 style="color:black" class="text-center">From sticks and stones to bricks and bones each map offers a different gameplay experience for the game</h4>
+        <h4 style="color:black" class="text-center" ng-if="!ctrl.currentUser.id">Want to upload a map? Please <a href="#/login">sign in</a></h4>
 
         <button class="btn btn-primary center-block" ng-click="ctrl.showMapForm = true" ng-if="!ctrl.showMapForm && ctrl.currentUser.id">Add a map</button>
     </div>
@@ -45,7 +45,7 @@
     </div>
 
     <div ng-if="ctrl.maps.length === 0" class="col-xs-12">
-        <p>There are currently no maps</p><br>
+        <p style="color:#7b0100">There are currently no maps</p><br>
     </div>
 
     <div class="col-xs-12" style="padding: 0" ng-if="!ctrl.showMapForm">

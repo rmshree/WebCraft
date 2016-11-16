@@ -1,0 +1,20 @@
+<div class="container" ng-init="ctrl.init()">
+    <div class="container-fluid userLists">
+        <div class="row-fluid">
+            <div class="col-md-6 col-xs-12" >
+                <h3 style="color: #7b0100;"><b><u>Currently on website:</u></b></h3>
+                <div ng-repeat="user in ctrl.onsiteUsers">
+                    <a href ng-click="ctrl.goToUserProfile(user)" style="font-size: larger">{{user.username}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-md-6 col-xs-12" >
+                <h3 style="color: #7b0100;"><b><u>Currently on platform:</u></b></h3>
+                <div ng-repeat="user in ctrl.onlineUsers">
+                    <a href ng-click="ctrl.goToUserProfile(user)" style="font-size: larger">{{user.username}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
