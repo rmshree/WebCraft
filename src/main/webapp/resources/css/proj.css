@@ -219,8 +219,17 @@ li #drop_down, li #drop_down2 {
 
 .profileContainer {
 
-    background-color: #4b0100;
-    color: white;
+     background-color: #4b0100;
+     color: white;
+     padding: 30px;
+     border-radius: 10px;
+     position: relative;
+     top: 100px;
+ }
+
+.testContainer {
+
+    background-color: transparent;
     padding: 30px;
     border-radius: 10px;
     position: relative;
