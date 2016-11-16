@@ -149,7 +149,7 @@ public class ForumsController {
                 ObjectMetadata objectMetadata = new ObjectMetadata();
                 objectMetadata.setContentType("image/jpeg");
                 DateTime now = new DateTime();
-                String key = "comments/" + comment.getUser().getUsername()+ now.toString();
+                String key = "comments/" + comment.getUser().getUsername()+comment.getId().toString()+ now.toString();
                 comment.setComment_image_url(fileArchiveService.upload(imageFile, key, objectMetadata));
                 comment.setS3key(key);
                 commentService.save(comment);
@@ -182,7 +182,7 @@ public class ForumsController {
                 ObjectMetadata objectMetadata = new ObjectMetadata();
                 objectMetadata.setContentType("image/jpeg");
                 DateTime now = new DateTime();
-                String key = "posts/" + post.getUser().getUsername()+ now.toString();
+                String key = "posts/" + post.getUser().getUsername()+ post.getId().toString() + now.toString();
                 post.setComment_image_url(fileArchiveService.upload(imageFile, key, objectMetadata));
                 post.setS3key(key);
                 postService.save(post);

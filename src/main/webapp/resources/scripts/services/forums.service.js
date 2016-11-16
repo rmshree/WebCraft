@@ -13,8 +13,8 @@ angular.module('app').factory('ForumsService', function ($resource) {
         deletePost: {method: 'DELETE', url:'api/forums/post/delete/:id'},
 
         //Jessi: I added these! Not sure if they're correct formatting?
-        uploadCommentImage: {method: 'POST', url: 'api/forums/comment/uploadImage:id'},
-        uploadPostImage: {method: 'POST', url: 'api/forums/post/uploadImage:id'}
+        uploadCommentImage: {method: 'POST', url: 'api/forums/comment/uploadImage/:id'},
+        uploadPostImage: {method: 'POST', url: 'api/forums/post/uploadImage/:id'}
 
     });
 });
