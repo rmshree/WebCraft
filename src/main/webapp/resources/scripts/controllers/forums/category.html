@@ -1,0 +1,80 @@
+<div class="container-fluid topic-page" ng-init="ctrl.init()">
+
+    <div class="page-header col-xs-12">
+        <h3><a href="#/forums/">Forums</a> >> {{ctrl.title}}</h3>
+
+        <button class="btn btn-primary pull-right" style="margin-top: 25px" ng-click="ctrl.showForm = true"
+                ng-if="!ctrl.showForm">New Post
+        </button>
+
+        <!-- New Post UI -->
+        <div ng-if="ctrl.showForm" class="col-xs-12 panel-body">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input id="title" class="form-control" type="text" ng-model="newPost.title">
+                </div>
+
+                <div class="form-group">
+                    <label for="text">Text</label>
+                    <textarea id="text" class="form-control" maxlength="1000" rows="3"
+                              ng-model="newPost.text"></textarea>
+                </div>
+            </div>
+            <div ng-if="newPost.showUploadFile" class="col-xs-12 col-md-6 panel-body">
+                <div class="col-xs-12 col-md-3">
+                    <div class="form-group">
+                        <label>File</label>
+                        <input type="file" ngf-select ng-model="newPost.file">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <button class="btn btn-primary" ng-click="newPost.showUploadFile = true">Upload File</button>
+                <button class="btn btn-success" ng-click="ctrl.post(newPost)"
+                        ng-disabled="!newPost.title || !newPost.text">Add post
+                </button>
+                <button class="btn btn-default" ng-click="ctrl.showForm = false">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Display all Posts -->
+    <div class="col-md-12">
+        <div class="panel panel-info col-xs-12" style="padding: 0">
+            <!-- Header of Panel -->
+            <div class="panel-heading panel-heading-custom">
+                {{ctrl.title}}
+            </div>
+
+            <!-- Body of Panel -->
+            <div class="panel-body" style="padding: 0">
+
+                <div ng-if="ctrl.noPosts">{{ctrl.message}}</div>
+
+                <div ng-repeat="post in ctrl.posts track by post.id">
+                    <div href class="clickable col-xs-12 panel-body forum-list-item"
+                         style="border-bottom: 1px solid #e4e4e4" ng-click="ctrl.goToPost(post)">
+                        <div class="col-md-3" style="display: inline-block">
+                            <!--<img ng-if="post.user.artwork_url !== null" height="50px" width="50px" ng-src="{{post.user.artwork_url}}">-->
+                            <img height="75px" width="75px" class="pull-left" style="margin-right: 10px"
+                                 src="resources/images/default_avatar.png">
+                            <div class="col-md-8 col-xs-6" style="padding: 0">
+                                <h5>{{post.user.username}}</h5>
+                                <span>{{post.date | date: 'medium'}}</span>
+                            </div>
+                        </div>
+
+                        <h2 class="col-md-6" style="margin-top: 0; font-family: monospace; font-size: xx-large">
+                            {{post.title | limitTo: 40}} <span ng-if="post.title.length > 40">...</span></h2>
+                        <span class="col-md-2 pull-right"><small>Comments: </small><span class="badge"> {{post.comments_length}}</span></span>
+                        <div class="col-xs-9">
+                            <pre style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);">{{post.text | limitTo: 75}} <span ng-if="post.text.length > 75">...</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Display All Forums -->
+</div>

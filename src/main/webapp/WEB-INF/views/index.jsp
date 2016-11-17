@@ -33,8 +33,9 @@
 <script src="resources/scripts/controllers/about/about.js"></script>
 <script src="resources/scripts/controllers/maps/maps.js"></script>
 <script src="resources/scripts/controllers/rankings/rankings.js"></script>
+<script src="resources/scripts/controllers/forums/category.js"></script>
 <script src="resources/scripts/controllers/forums/forums.js"></script>
-<script src="resources/scripts/controllers/forums/forum.js"></script>
+<script src="resources/scripts/controllers/forums/post.js"></script>
 <script src="resources/scripts/controllers/profile/profile.js"></script>
 <script src="resources/scripts/controllers/signup/signup.js"></script>
 <script src="resources/scripts/controllers/settings/settings.js"></script>

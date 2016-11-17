@@ -7,8 +7,11 @@
 package app.web.controllers;
 
 import app.web.domain.DTOs.ResponseDTO;
+import app.web.domain.Password;
+import app.web.domain.TempUser;
 import app.web.domain.User;
 import app.web.services.FileArchiveService;
+import app.web.services.PasswordService;
 import app.web.services.UserService;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import org.joda.time.DateTime;
@@ -28,6 +31,8 @@ public class UserController {
     @Autowired
     private FileArchiveService fileArchiveService;
 
+    @Autowired
+    private PasswordService passwordService;
 
     /**
      * /api/user/get/{username}
@@ -156,22 +161,36 @@ public class UserController {
      * \return a User object
      */
     @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public ResponseDTO update(@RequestBody User user) {
+    public ResponseDTO update(@RequestBody TempUser tempUser) {
         ResponseDTO responseDTO = new ResponseDTO();
+        User user = userService.getUserByUsername(tempUser.getUsername());
         if (user != null && user.getId() != null) {
-            responseDTO.setSuccess(true);
-            responseDTO.setMessage("SUCCESS");
-            user = userService.save(user);
-            responseDTO.setData(user);
-        } else {
-            responseDTO.setData(null);
-            responseDTO.setSuccess(false);
-            responseDTO.setMessage("User does not exist.");
+            Password password = passwordService.getPasswordByUser(user);
+            if (password != null) {
+                if (tempUser.getPassword() != null || !tempUser.getPassword().equals("")) {
+                    password.setPassword(tempUser.getPassword());
+                    passwordService.save(password);
+                }
+
+                user.setFirstName(tempUser.getFirstName());
+                user.setLastName(tempUser.getLastName());
+                user.setUsername(tempUser.getUsername());
+                user.setEmail(tempUser.getEmail());
+                user = userService.save(user);
+
+                responseDTO.setData(user);
+                responseDTO.setMessage("SUCCESS");
+                responseDTO.setSuccess(true);
+                return responseDTO;
+            }
         }
+
+        responseDTO.setData(null);
+        responseDTO.setSuccess(false);
+        responseDTO.setMessage("User does not exist.");
         return responseDTO;
     }
-
-
+    
 //    /** /api/forums/all
 //     *  \brief Get all posts in the forums/
 //     *  \return a list of Post.

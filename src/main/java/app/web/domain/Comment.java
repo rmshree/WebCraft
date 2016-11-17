@@ -15,22 +15,34 @@ import java.util.Date;
 
 @Entity
 @Table(name = "comment")
-public class Comment implements Serializable{
+public class Comment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty
     private Integer id;
 
-    @JoinColumn(foreignKey = @ForeignKey(name ="FK_Post"), name = "post_id", referencedColumnName = "id")
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_Post"), name = "post_id", referencedColumnName = "id")
     @JsonIgnore
     @ManyToOne
     private Post post;
 
     @OneToOne
-    @JoinColumn(foreignKey = @ForeignKey(name ="FK_User"), name = "user_id", referencedColumnName = "id")
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_User"), name = "user_id", referencedColumnName = "id")
     @JsonProperty
     private User user;
+
+    @Column(name = "s3key", unique = true)
+    @JsonIgnore
+    private String s3key;
+
+    @Column(name = "fileURL", unique = true)
+    @JsonProperty
+    private String fileURL;
+
+    @Column(name = "filename")
+    @JsonProperty
+    private String filename;
 
     @Column(name = "date", nullable = false)
     @JsonProperty
@@ -78,5 +90,29 @@ public class Comment implements Serializable{
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getS3key() {
+        return s3key;
+    }
+
+    public void setS3key(String s3key) {
+        this.s3key = s3key;
+    }
+
+    public String getFileURL() {
+        return fileURL;
+    }
+
+    public void setFileURL(String fileURL) {
+        this.fileURL = fileURL;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }

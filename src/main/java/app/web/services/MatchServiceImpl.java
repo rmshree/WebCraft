@@ -58,8 +58,13 @@ public class MatchServiceImpl implements MatchService{
             if (expectedLoss > -1 ) {
                 expectedLoss = -1 * MINIMUMGAINLOSS;
             }
-
-            loser.setElo(loser.getElo() + expectedLoss.intValue());
+            if (loser.getElo() + expectedLoss.intValue() > 1)
+            {
+                loser.setElo(loser.getElo() + expectedLoss.intValue());
+            }
+            else {
+                loser.setElo(1);
+            }
             loser.setLoss(loser.getLoss() + 1);
             userService.save(loser);
         }

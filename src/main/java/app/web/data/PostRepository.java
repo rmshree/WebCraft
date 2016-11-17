@@ -18,6 +18,9 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
     @Query("select p from Post p")
     List <Post> getAllPost();
 
+    @Query("select p from Post p where p.category =?1 order by date desc ")
+    List <Post> getPostByCategory(Integer category);
+
     /** Integer deletePost(Integer id);
      *  \brief deletes a post by its Post ID.
      *  \return a Integer, 1 or 0.

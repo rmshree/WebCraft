@@ -1,6 +1,7 @@
 package app.web.controllers;
 
 import app.web.domain.DTOs.ResponseDTO;
+import app.web.domain.Password;
 import app.web.domain.Settings;
 import app.web.domain.TempUser;
 import app.web.domain.User;
@@ -31,6 +32,9 @@ public class LoginController {
 
     @Autowired
     private TempUserService tempUserService;
+
+    @Autowired
+    private PasswordService passwordService;
 
     /**
      * /api/login/signUp/{username}
@@ -129,13 +133,17 @@ public class LoginController {
         ResponseDTO responseDTO = new ResponseDTO();
         if (tempUser != null) {
             User user = new User();
+            Password password = new Password();
+
             user.setUsername(tempUser.getUsername());
-            user.setPassword(tempUser.getPassword());
             user.setFirstName(tempUser.getFirstName());
             user.setLastName(tempUser.getLastName());
             user.setEmail(tempUser.getEmail());
 
-            userService.save(user);
+            password.setPassword(tempUser.getPassword());
+            password.setUser(userService.save(user));
+            passwordService.save(password);
+
             tempUserService.deleteTempUser(tempUser);
             cookieService.setCurrentUser(user);
             user.setCurrentlyOnsite(true);
