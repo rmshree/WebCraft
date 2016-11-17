@@ -1,0 +1,61 @@
+<div class="container-fluid categories-page" ng-init="ctrl.init()">
+
+    <div class="page-header col-xs-12">
+        <h3>Forums</h3>
+    </div>
+
+    <!-- Display All Forums -->
+
+    <div class="col-md-12">
+        <div class="panel panel-info col-xs-12" >
+            <!-- General Discussion -->
+            <div class="panel-heading panel-heading-custom">
+                General Discussion    <i class="fa fa-commenting-o" aria-hidden="true"></i>
+            </div>
+
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.GeneralDiscussion)">
+                Discuss things, generally.
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <div class="panel panel-info col-xs-12">
+            <!-- User Guides -->
+            <div class="panel-heading panel-heading-custom">
+                User Guides  <i class="fa fa-map-o" aria-hidden="true"></i>
+            </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.UserGuides)">
+                Guides, made by fellow users.
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-info col-xs-12">
+            <!-- Technical Support -->
+            <div class="panel-heading panel-heading-custom">
+                Technical Support   <i class="fa fa-users" aria-hidden="true"></i>
+            </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.TechnicalSupport)">
+                It is probably better to just google it.
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-info col-xs-12">
+            <!-- Miscellaneous -->
+            <div class="panel-heading panel-heading-custom">
+                Miscellaneous <i class="fa fa-paw" aria-hidden="true"></i>
+            </div>
+            <div class="clickable panel-body forum-list-item" ng-click="ctrl.goToForum(ctrl.Miscellaneous)">
+                Everything here is irrelevant.
+            </div>
+        </div>
+    </div>
+
+
+</div>
