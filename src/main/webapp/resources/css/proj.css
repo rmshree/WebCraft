@@ -11,21 +11,10 @@ main {
     font-family: 'Courier New';
 }
 
-h1 {
+h1, h2, h3, h4{
     font-family: 'Courier New';
 }
 
-h2 {
-    font-family: 'Courier New';
-}
-
-h3 {
-    font-family: 'Courier New';
-}
-
-h4 {
-    font-family: 'Courier New';
-}
 
 .redBG {
     background-color: #4b0100;
