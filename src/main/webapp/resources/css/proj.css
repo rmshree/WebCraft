@@ -51,8 +51,7 @@ h1, h2, h3, h4{
     font-family: "Courier New";
     height: 100%;
     background: url('../images/Background.jpg') no-repeat top left;
-    background-size: cover;
-    !important;
+    background-size: cover;  !important;
     min-height: 100%;
 }
 
@@ -86,7 +85,7 @@ nav {
 .dropbtn li a, .dropbtn {
     display: inline;
     color: white;
-    text-align: center;
+    text-align: left;
     /*padding: 14px 16px;*/
     text-decoration: none;
 }
@@ -95,13 +94,16 @@ li #drop_down, li #drop_down2 {
     display: inline-block;
 }
 
-#drop_content, #drop_content2 {
+#drop_content, #drop_content2
+{
     display: none;
     position: absolute;
     min-width: 160px;
     background: #bfbfbf;
     border: 1px solid black;
+    text-align: right;
 }
+
 
 #drop_content a, #drop_content2 a {
     color: black;
@@ -146,16 +148,16 @@ li #drop_down, li #drop_down2 {
 
 .loginContainer {
     position: relative;
-    top: 100px;
+    top: 35px;
     width: 75%;
-    height: 75%;
+    /*height: 75%;*/
     background-color: #989da1;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
 }
 
 .loginBox {
     height: 100%;
-    border-right: 5px solid black;
+    /*border-right: 5px solid black;*/
 }
 
 .loginBox form {
@@ -240,7 +242,7 @@ li #drop_down, li #drop_down2 {
 
 .profileContainer {
 
-    background-color: #4b0100;
+    background-color: #989da1;
     color: white;
     padding: 30px;
     border-radius: 10px;
