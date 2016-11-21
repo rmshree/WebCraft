@@ -177,7 +177,6 @@ li #drop_down, li #drop_down2 {
 }
 
 .categories-page, .topic-page, .post-page  {
-    background-color: blue;
     min-height: 100%;
     overflow: auto;
 }
@@ -214,6 +213,9 @@ li #drop_down, li #drop_down2 {
     user-select: none;
 }
 
+.forum-list-item {
+    background-color: whitesmoke;
+}
 .forum-list-item:hover{
     background-color: lightgrey;
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('postCtrl', function ($route, ForumsService, UserService, Upload) {
+angular.module('app').controller('postCtrl', function ($route, ForumsService, UserService, Upload, currentUser) {
     var ctrl = this;
     var forumsHref = "#/forums/";
 
@@ -11,9 +11,20 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
                 ctrl.post = response;
                 ctrl.getCommentsForPost(response);
                 ctrl.postFound = true;
-                UserService.getCurrentUser().$promise.then(function (response) {
-                    ctrl.currentUser = response;
-                });
+                ctrl.currentUser = currentUser;
+                ctrl.categoryNum = response.category;
+                switch (ctrl.categoryNum){
+                    case '1': ctrl.postCategory = 'General Discussion';
+                        break;
+                    case '2': ctrl.postCategory = 'User Guides';
+                        break;
+                    case '3': ctrl.postCategory = 'Technical Support';
+                        break;
+                    case '4': ctrl.postCategory = 'Miscellaneous';
+                        break;
+                    default: ctrl.postCategory = 'General Discussion';
+                }
+
             }else{
                 ctrl.postFound = false;
             }
