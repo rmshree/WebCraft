@@ -52,7 +52,7 @@ h1, h2, h3, h4{
     height: 100%;
     background: url('../images/Background.jpg') no-repeat top left;
     background-size: cover;
-!important;
+    !important;
     min-height: 100%;
 }
 
@@ -177,7 +177,7 @@ li #drop_down, li #drop_down2 {
 }
 
 .categories-page, .topic-page, .post-page  {
-    background: white;
+    background-color: blue;
     min-height: 100%;
     overflow: auto;
 }
@@ -227,6 +227,9 @@ li #drop_down, li #drop_down2 {
     background-color: firebrick !important;
 }
 
+.fa-times {
+    color: red;
+}
 .maps-page {
     overflow: auto;
     min-height: 100%;

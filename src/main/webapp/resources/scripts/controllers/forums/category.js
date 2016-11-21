@@ -41,6 +41,8 @@ angular.module('app').controller('categoryCtrl', function ($location, ForumsServ
 
     };
 
+
+
     ctrl.post = function (newPost) {
         if (newPost.title && newPost.text) {
             newPost.category = location.href.split('forums/')[1];
