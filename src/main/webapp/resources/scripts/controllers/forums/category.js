@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('categoryCtrl', function ($location, ForumsService, UserService, Upload) {
+angular.module('app').controller('categoryCtrl', function ($location, ForumsService, UserService, currentUser, Upload) {
     var ctrl = this;
 
     ctrl.init = function () {
@@ -25,9 +25,20 @@ angular.module('app').controller('categoryCtrl', function ($location, ForumsServ
                 ctrl.message = "There are currently no posts.";
         });
 
-        UserService.getCurrentUser().$promise.then(function (response) {
+       /* UserService.getCurrentUser().$promise.then(function (response) {
             ctrl.currentUser = response;
-        });
+            if (ctrl.cu) {
+                console.log("Someone is logged in!");
+            }
+        });*/
+       ctrl.currentUser = currentUser;
+
+        ctrl.canPost = false;
+        if (typeof(currentUser.id) != "undefined") {
+            ctrl.canPost = true;
+            /*console.log(currentUser.username + " is logged in.");*/
+        }
+
     };
 
     ctrl.post = function (newPost) {

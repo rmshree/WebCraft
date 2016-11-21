@@ -105,13 +105,21 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             templateUrl: 'resources/scripts/controllers/forums/category.html',
             controller: 'categoryCtrl',
             controllerAs: 'ctrl',
-            resolve: {}
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
         })
         .when('/forums/:id/:id', {
             templateUrl: 'resources/scripts/controllers/forums/post.html',
             controller: 'postCtrl',
             controllerAs: 'ctrl',
-            resolve: {}
+            resolve: {
+                currentUser: function (UserService) {
+                    return UserService.getCurrentUser().$promise;
+                }
+            }
         })
         .when('/download', {
             templateUrl: 'resources/scripts/controllers/download/download.html',

@@ -3,9 +3,15 @@
     <div class="page-header col-xs-12">
         <h3><a href="#/forums/">Forums</a> >> {{ctrl.title}}</h3>
 
-        <button class="btn btn-primary pull-right" style="margin-top: 25px" ng-click="ctrl.showForm = true"
-                ng-if="!ctrl.showForm">New Post
+        <div ng-if="ctrl.canPost">
+        <button ng-if="!ctrl.showForm" class="btn btn-primary pull-left" style="margin-top: 25px" ng-click="ctrl.showForm = true">
+            <i class="fa fa-plus" aria-hidden="true"></i></i> New Post
         </button>
+        </div>
+
+        <div ng-if="!ctrl.canPost">
+            <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Please log in to post.</span>
+        </div>
 
         <!-- New Post UI -->
         <div ng-if="ctrl.showForm" class="col-xs-12 panel-body">

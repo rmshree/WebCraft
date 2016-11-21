@@ -218,6 +218,14 @@ li #drop_down, li #drop_down2 {
     background-color: lightgrey;
 }
 
+.btn-primary,  .btn-primary:active, .btn-primary:visited {
+    background-color: #7b0100 !important;
+    border-color: #4b0100 !important;
+}
+
+.btn-primary:hover {
+    background-color: firebrick !important;
+}
 
 .maps-page {
     overflow: auto;
