@@ -131,5 +131,5 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
             }
         });
     };
-    //Jessi: added upload code..not sure if this is right
+
 });

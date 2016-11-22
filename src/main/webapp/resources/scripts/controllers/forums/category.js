@@ -21,16 +21,11 @@ angular.module('app').controller('categoryCtrl', function ($location, ForumsServ
 
         ForumsService.getCategory({category: category}).$promise.then(function (response) {
             ctrl.posts = response;
+            console.log(response);
             if (ctrl.posts.length == 0)
                 ctrl.message = "There are currently no posts.";
         });
 
-       /* UserService.getCurrentUser().$promise.then(function (response) {
-            ctrl.currentUser = response;
-            if (ctrl.cu) {
-                console.log("Someone is logged in!");
-            }
-        });*/
        ctrl.currentUser = currentUser;
 
         ctrl.canPost = false;
