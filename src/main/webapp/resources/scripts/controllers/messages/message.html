@@ -1,6 +1,8 @@
 <div class="container-fluid" ng-init="ctrl.init()">
+    <div class="col-sm-3 col-md-3" >
 
-    <div class="col-md-5 inboxContainer ">
+    </div>
+    <div class="col-md-6 col-sm-6 inboxContainer " style="color:black">
 
         <h3 style="display:inline-block">Messages</h3>
 
@@ -9,19 +11,20 @@
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> New Message
         </button>
 
-        <div ng-if="ctrl.isSendingMessage" class="col-xs-12">
-            <div class="col-xs-12">
+        <div ng-if="ctrl.isSendingMessage" class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="form-group">
                     <label for="title">To:</label>
-                    <input id="title" class="form-control" type="text" ng-model="newMessage.receiver" placeholder="username">
+                    <input id="title" class="form-control" type="text" ng-model="newMessage.receiver"
+                           placeholder="username">
                 </div>
-
                 <div class="form-group">
                     <label for="text">Message:</label>
-                    <textarea id="text" class="form-control" maxlength="1000" rows="3" ng-model="newMessage.body"></textarea>
+                    <textarea id="text" class="form-control" maxlength="1000" rows="3"
+                              ng-model="newMessage.body"></textarea>
                 </div>
             </div>
-            <div class="col-xs-12">
+            <div class="col-xs-6">
                 <button class="btn btn-info pull-right" style="margin-left: 20px;"
                         ng-click="ctrl.sendMessage(newMessage)"
                         ng-disabled="!newMessage.receiver || !newMessage.body">Send
@@ -30,14 +33,17 @@
                 <span>{{ctrl.statusMessage}}</span>
             </div>
         </div>
+        <br>
+        <br>
+        <br>
 
-        <div class="col-md-12" style="padding-top: 10px">
+        <div class="col-md-12" style="padding-top: 0px">
             <div class="panel panel-info col-xs-12" style="padding: 0">
                 <div class="panel-heading">
                     Conversations
                 </div>
                 <div class="panel-body" style="padding: 0">
-                    <div ng-repeat="conversation in ctrl.conversations track by conversation.id">
+                    <div ng-repeat="conversation in ctrl.conversations track by conversation.id" style="color:black">
                         <div href class="clickable col-xs-12 panel-body forum-list-item"
                              style="border-bottom: 1px solid #e4e4e4" ng-click="ctrl.goToConversation(conversation.id)">
                             <div class="col-md-3" style="display: inline-block"
@@ -54,10 +60,12 @@
                                  ng-if="ctrl.currentUser.username != conversation.user2.username">
 
                                 <!--<img height="75px" width="75px" class="pull-left"-->
-                                     <!--style="margin-right: 10px" ng-src="{{conversation.user2.avatarUrl}}">-->
+                                <!--style="margin-right: 10px" ng-src="{{conversation.user2.avatarUrl}}">-->
 
-                                <img height="75px" width="75px" class="pull-left" style="margin-bottom: 10px" ng-if="conversation.user2.avatarUrl" ng-src="{{conversation.user2.avatarUrl}}">
-                                <img height="75px" width="75px" class="pull-left" style="margin-bottom: 10px" ng-if="!conversation.user2.avatarUrl" src="resources/images/noImage.jpg">
+                                <img height="75px" width="75px" class="pull-left" style="margin-bottom: 10px"
+                                     ng-if="conversation.user2.avatarUrl" ng-src="{{conversation.user2.avatarUrl}}">
+                                <img height="75px" width="75px" class="pull-left" style="margin-bottom: 10px"
+                                     ng-if="!conversation.user2.avatarUrl" src="resources/images/noImage.jpg">
 
                                 <div class="col-md-8 col-xs-6" style="padding: 0">
                                     <h5>{{conversation.user2.username}}</h5>

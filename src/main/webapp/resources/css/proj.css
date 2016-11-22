@@ -272,8 +272,8 @@ li #drop_down, li #drop_down2 {
     background-color: white;
     border-radius: 10px;
     position: relative;
-    left: 25%;
-    top: 100px;
+    /*left: 25%;*/
+    /*top: 100px;*/
     padding: 30px;
 }
 
