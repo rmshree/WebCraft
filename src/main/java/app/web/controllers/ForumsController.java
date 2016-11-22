@@ -125,26 +125,46 @@ public class ForumsController {
      */
     //TODO: Only give the user who created the comment the ability to edit the comment.
     @RequestMapping(value = "comment/edit/{id}", method = RequestMethod.POST)
-    public Comment editComment(@PathVariable Integer id, @RequestBody Comment editComment) {
+    public ResponseDTO editComment(@PathVariable Integer id, @RequestBody Comment editComment) {
+        ResponseDTO responseDTO = new ResponseDTO();
         Comment comment = commentService.getCommentByID(id);
         if (comment != null) {
-            comment.setText(editComment.getText());
-            return commentService.save(comment);
+            if (comment.getUser().getId().equals(editComment.getUser().getId())) {
+                comment.setText(editComment.getText());
+                responseDTO.setData(commentService.save(comment));
+                responseDTO.setSuccess(true);
+            }
+            else {
+                responseDTO.setSuccess(false);
+                responseDTO.setMessage("Editing user and original user are not the same.");
+            }
         }
         else {
-            return null;
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("Editing comment that does not exist.");
         }
+        return responseDTO;
     }
 
     @RequestMapping(value = "post/edit/{id}", method = RequestMethod.POST)
-    public Post editPost(@PathVariable Integer id, @RequestBody Post editPost) {
+    public ResponseDTO editPost(@PathVariable Integer id, @RequestBody Post editPost) {
+        ResponseDTO responseDTO = new ResponseDTO();
         Post post = postService.getPostById(id);
         if (post != null) {
-            return postService.save(editPost);
+            if (post.getUser().getId().equals(editPost.getUser().getId())) {
+                responseDTO.setSuccess(true);
+                responseDTO.setData(postService.save(editPost));
+            }
+            else {
+                responseDTO.setSuccess(false);
+                responseDTO.setMessage("Editing user is not original user.");
+            }
         }
         else {
-            return null;
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("Editing post that does not exist.");
         }
+        return responseDTO;
     }
 
     /**
@@ -155,7 +175,8 @@ public class ForumsController {
      * \return the saved Comment with image url.
      */
     @RequestMapping(value = "comment/uploadFile/{id}", method = RequestMethod.POST)
-    public Comment uploadCommentImage(@PathVariable Integer id, MultipartFile file) {
+    public ResponseDTO uploadCommentFile(@PathVariable Integer id, MultipartFile file) {
+        ResponseDTO responseDTO = new ResponseDTO();
         Comment comment = commentService.getCommentByID(id);
         if (comment != null) {
             try {
@@ -166,13 +187,19 @@ public class ForumsController {
                 comment.setFileURL(fileArchiveService.upload(file, key, objectMetadata));
                 comment.setS3key(key);
                 comment.setFilename(file.getOriginalFilename());
-                return commentService.save(comment);
+                responseDTO.setSuccess(true);
+                responseDTO.setData(commentService.save(comment));
             } catch (Exception e) {
                 e.printStackTrace();
-                return comment;
+                responseDTO.setSuccess(false);
+                responseDTO.setMessage("Unable to upload file. Check file size or internet connection.");
+            } finally {
+                return responseDTO;
             }
         } else {
-            return null;
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("Comment does not exist. ");
+            return responseDTO;
         }
     }
 
@@ -184,7 +211,8 @@ public class ForumsController {
      * \return the saved Comment with image url.
      */
     @RequestMapping(value = "post/uploadFile/{id}", method = RequestMethod.POST)
-    public Post uploadPostImage(@PathVariable Integer id, MultipartFile file) {
+    public ResponseDTO uploadPostFile(@PathVariable Integer id, MultipartFile file) {
+        ResponseDTO responseDTO = new ResponseDTO();
         Post post = postService.getPostById(id);
         if (post != null) {
             try {
@@ -195,13 +223,19 @@ public class ForumsController {
                 post.setFileURL(fileArchiveService.upload(file, key, objectMetadata));
                 post.setFilename(file.getOriginalFilename());
                 post.setS3key(key);
-                return postService.save(post);
+                responseDTO.setSuccess(true);
+                responseDTO.setData(postService.save(post));
             } catch (Exception e) {
                 e.printStackTrace();
-                return post;
+                responseDTO.setSuccess(false);
+                responseDTO.setMessage("Unable to upload file. Check file size or internet connection.");
+            } finally {
+                return responseDTO;
             }
         } else {
-            return null;
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("Post does not exist. ");
+            return responseDTO;
         }
     }
 

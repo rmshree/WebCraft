@@ -51,11 +51,6 @@
                 <div class="form-group col-md-12">
                     <textarea id="editPost" class="form-control" maxlength="1000" rows="3" ng-model="ctrl.edittingPost.text">{{ctrl.edittingPost.text}}</textarea>
                 </div>
-                <div class="col-xs-12">
-                    <button class="btn btn-primary" ng-click="ctrl.post.showMapForm = true">Upload File</button>
-                    <button class="btn btn-primary" ng-click="ctrl.editPost(ctrl.edittingPost)" ng-disabled="!ctrl.edittingPost.text">Submit</button>
-                    <button class="btn btn-primary" ng-click="ctrl.post.showEditPostForm = false; ctrl.uploading = false; ctrl.post.showMapForm = false; ctrl.edittingPost.file ='';">Cancel</button>
-                </div>
                 <div ng-if="ctrl.post.showMapForm" class="col-xs-12 col-md-6 panel-body">
                     <div class="col-xs-12 col-md-3">
                         <div class="form-group">
@@ -64,12 +59,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-12">
+                    <button class="btn btn-primary" ng-click="ctrl.post.showMapForm = true">Upload File</button>
+                    <button class="btn btn-primary" ng-click="ctrl.editPost(ctrl.edittingPost)" ng-disabled="!ctrl.edittingPost.text">Submit</button>
+                    <button class="btn btn-primary" ng-click="ctrl.post.showEditPostForm = false; ctrl.uploading = false; ctrl.post.showMapForm = false; ctrl.edittingPost.file ='';">Cancel</button>
+                </div>
             </div>
 
             <div class="page-header col-xs-12" style="margin-top: 5px">
                 <h3 style="display: inline-block">Comments <small class="badge" style="background-color: black">{{ctrl.post.comments.length}}</small></h3>
-                <button class="btn btn-primary pull-right" style="margin-top: 20px" ng-if="!ctrl.post.showCommentForm" ng-click="ctrl.post.showCommentForm = true">Add Comment</button>
+                <button class="btn btn-primary pull-right" style="margin-top: 20px" ng-if="!ctrl.post.showCommentForm && ctrl.currentUser.id" ng-click="ctrl.post.showCommentForm = true">Add Comment</button>
 
+                <div ng-if="!ctrl.currentUser.id">
+                    <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Please log in to comment.</span>
+                </div>
                 <!-- Add comment form -->
                 <div ng-if="ctrl.post.showCommentForm" class="col-xs-12 panel-body" style="padding: 0">
                     <!-- Text area for add comment form-->
@@ -109,7 +112,7 @@
                     <a href="{{comment.fileURL}}">{{comment.filename}}</a>
                 </div>
                 <div ng-if="ctrl.currentUser.id == comment.user.id" class="col-xs-12" style="margin-bottom: 10px; margin-top: 10px;">
-                    <button class="btn btn-primary pull-right" style="margin: 5px" ng-click="comment.showEditCommentForm = true; comment.editText = comment.text;comment.showDeleteCommentForm = false">Edit Comment</button>
+                    <button class="btn btn-primary pull-right" style="margin: 5px" ng-click="comment.showEditCommentForm = true; ctrl.editingComment = comment;comment.showDeleteCommentForm = false">Edit Comment</button>
                     <button class="btn btn-primary pull-right" style="margin: 5px" ng-click="comment.showDeleteCommentForm = true;comment.showEditCommentForm = false">Delete Comment</button>
                 </div>
 
@@ -117,20 +120,20 @@
                 <div ng-if="comment.showEditCommentForm" class="col-xs-12 panel-body" style="padding: 0">
                     <div class="form-group col-md-12">
                         <label for="editComment">Text</label>
-                        <textarea id="editComment" class="form-control" maxlength="1000" rows="3" ng-model="comment.editText"></textarea>
-                    </div>
-                    <div class="col-xs-12">
-                        <button class="btn btn-primary" ng-click="comment.showMapForm = true">Upload File</button>
-                        <button class="btn btn-primary" ng-click="ctrl.editComment(comment)" ng-disabled="!comment.editText">Submit</button>
-                        <button class="btn btn-primary" ng-click="comment.showEditCommentForm = false; ctrl.uploading = false; comment.file = '';">Cancel</button>
+                        <textarea id="editComment" class="form-control" maxlength="1000" rows="3" ng-model="ctrl.editingComment.text"></textarea>
                     </div>
                     <div ng-if="comment.showMapForm" class="col-xs-12 col-md-6 panel-body">
                         <div class="col-xs-12 col-md-3">
                             <div class="form-group">
                                 <label>File</label>
-                                <input type="file" ngf-select ng-model="comment.file">
+                                <input type="file" ngf-select ng-model="ctrl.editingComment.file">
                             </div>
                         </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <button class="btn btn-primary" ng-click="comment.showMapForm = true">Upload File</button>
+                        <button class="btn btn-primary" ng-click="ctrl.editComment(ctrl.editingComment)" ng-disabled="!ctrl.editingComment.text">Submit</button>
+                        <button class="btn btn-primary" ng-click="comment.showEditCommentForm = false; ctrl.uploading = false; comment.file = '';">Cancel</button>
                     </div>
                 </div>
 

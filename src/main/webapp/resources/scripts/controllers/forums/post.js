@@ -32,9 +32,9 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
     };
 
     ctrl.getCommentsForPost = function (post) {
-        post.comments = [];
+        ctrl.post.comments = [];
         ForumsService.getCommentsForPost({id: post.id}).$promise.then(function (response) {
-            post.comments = response;
+            ctrl.post.comments = response;
         })
     };
 
@@ -54,19 +54,23 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
                     }
                 }).success(function (response) {
                     console.log(response);
+                    ctrl.post.comments.push(response.data);
                 });
             }
+            else {
+                ctrl.post.comments.push(response.data);
+            }
+            ctrl.post.showCommentForm = false;
+            window.scrollTo(0, document.documentElement.scrollHeight);
         });
-        location.reload();
     };
 
     //TODO: Only give the user who created the comment the ability to edit the comment.
     ctrl.editComment = function (comment) {
         console.log(comment);
         ForumsService.editComment({id: comment.id}, comment).$promise.then(function (response) {
-            if (response.id){
+            if (response.success){
                 console.log(response);
-
                 if (comment.file) {
                     Upload.upload({
                         method: 'POST',
@@ -79,10 +83,9 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
                         location.reload();
                     })
                 }
-                else {
-                    comment.showEditCommentForm = false;
-                }
+                comment.showEditCommentForm = false;
             }
+
         });
     };
 
@@ -109,7 +112,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
         console.log(ctrl.edittingPost.title);
         console.log(post);
         ForumsService.editPost({id: post.id}, post).$promise.then(function (response) {
-            if (response.id){
+            if (response.success){
                 console.log(response);
 
                 if (post.file) {
@@ -124,9 +127,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
                         location.reload();
                     })
                 }
-                else {
-                    ctrl.post.showEditPostForm = false;
-                }
+                ctrl.post.showEditPostForm = false;
             }
         });
     };
