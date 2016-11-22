@@ -1,17 +1,22 @@
 <div class="container-fluid" ng-init="ctrl.init()">
+    <div class="container-fluid loginContainer" style="color: black">
+        <div class="row">
 
-        <div class="container-fluid loginContainer" style="color: black">
-            <div class=" loginBox col-md-6">
+            <div class=" loginBox col-md-6 col-sm-6">
                 <h3 style="padding-left: 25px">Log in</h3>
                 <form>
 
-                    <div class="form-group col-lg-6">
-                        <label class="pull-left">Username</label>
-                        <input type="text" class="form-control" ng-model="loginUser.username"/>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="pull-left">Username</label>
+                            <input type="text" class="form-control" ng-model="loginUser.username"/>
+                        </div>
                     </div>
-                    <div class="form-group col-lg-6">
-                        <label class="pull-left">Password</label>
-                        <input type="password" class="form-control" ng-model="loginUser.password"/>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="pull-left">Password</label>
+                            <input type="password" class="form-control" ng-model="loginUser.password"/>
+                        </div>
                     </div>
 
                     <a href="#/recover" style="color: black">Forgot your password?</a>
@@ -25,58 +30,59 @@
                         </div>
                     </div>
                 </form>
-                <span>{{ctrl.message}}</span>
+                <div style="text-align: center">
+                    <span>{{ctrl.message}}</span>
+                </div>
             </div>
 
+            <div class="signupBox col-md-6 col-sm-6">
 
-            <div class="signupBox col-md-6">
                 <h3 style="padding-left: 25px"> Sign up</h3>
-
                 <form class="form-register">
                     <div class="row">
-                        <div class="form-group col-lg-6">
+                        <div class="form-group col-md-6 col-sm-6">
                             <label class="pull-left">First Name</label>
                             <input type="text" class="form-control" ng-model="signupUser.firstName" placeholder="John"
                                    maxlength="20"/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-lg-6">
+                        <div class="form-group col-md-6 col-sm-6">
                             <label class="pull-left">Last Name</label>
                             <input type="text" class="form-control" ng-model="signupUser.lastName" placeholder="Smith"
                                    maxlength="20"/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-lg-6">
+                        <div class="form-group col-md-6 col-sm-6">
                             <label class="pull-left">Email</label>
                             <input type="text" class="form-control" ng-model="signupUser.email"
                                    placeholder="Johnsmith@gmail.com" maxlength="64"/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-lg-6">
+                        <div class="form-group col-md-6 col-sm-6">
                             <label class="pull-left">Username</label>
                             <input type="text" ng-model="signupUser.username" class="form-control"
                                    placeholder="Minimum 3 characters" maxlength="15" minlength="3"/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-lg-6">
+                        <div class="form-group col-md-6 col-sm-6">
                             <label class="pull-left">Password</label>
                             <input type="password" ng-model="signupUser.password" class="form-control"
                                    placeholder="Minimum 5 characters" maxlength="15" minlength="5"/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-lg-6">
+                        <div class="form-group col-md-6 col-sm-6">
                             <label class="pull-left">Confirm Password</label>
                             <input type="password" ng-model="signupUser.Cpassword" class="form-control"
                                    placeholder="Retype password" maxlength="15" minlength="5"/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-md-3 col-sm-3">
                             <button class="btn btn-lg btn-primary btn-block"
                                     ng-disabled="!signupUser.username || !signupUser.password || !signupUser.email || !signupUser.firstName || !signupUser.lastName || (signupUser.password !== signupUser.Cpassword)"
                                     type="submit" ng-click="ctrl.signUp(signupUser)">Submit
@@ -87,6 +93,8 @@
 
                 <span>{{ctrl.statusMessage}}</span>
             </div>
+
         </div>
 
+    </div>
 </div>

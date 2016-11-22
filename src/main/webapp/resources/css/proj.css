@@ -147,8 +147,8 @@ li #drop_down, li #drop_down2 {
 }
 
 .loginContainer {
-    position: relative;
-    top: 35px;
+    /*position: relative;*/
+    top: 350px;
     width: 75%;
     /*height: 75%;*/
     background-color: #989da1;
@@ -310,4 +310,14 @@ li #drop_down, li #drop_down2 {
         width: 94%;
     }
 
+}
+
+@media screen and (min-width: 400px)
+{
+    #rank-hide { display: block; }  /* show it on small screens */
+}
+
+@media screen and (min-width: 0px) and (max-width: 399px)
+{
+    #rank-hide { display: none; }   /* hide it elsewhere */
 }
