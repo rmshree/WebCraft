@@ -10,11 +10,15 @@
                 <i>{{ctrl.post.title}}</i></h3>
         </div>
 
-        <div class="col-md-3 col-xs-12 panel-body">
-            <!-- User info -->
-            <div class="col-xs-12" style="display: inline-block; padding-bottom: 10px; background-color: rgba(255,255,255,.1)">
-                <!--<img ng-if="ctrl.post.user.artwork_url !== null" height="50px" width="50px" ng-src="{{ctrl.post.user.artwork_url}}">-->
-                <img height="100px" width="100px" class="pull-left" style="margin-top: 10px; margin-right: 10px" src="resources/images/default_avatar.png">
+
+        <div class="row row-centered"> <!-- User info -->
+
+
+        <div class="col-md-3 col-xs-12  col-centered panel-body">
+
+            <div class="col-xs-12" style="display: inline-block; padding-bottom: 10px; border: 2px solid black">
+
+                <img class=" avatar-image pull-left" src={{ctrl.post.user.avatarUrl}}>
                 <div class="col-md-8" style="margin-top: 10px; padding: 0">
                     <h3>{{ctrl.post.user.username}}</h3>
                     <span>{{ctrl.post.date | date: 'medium'}}</span>
@@ -36,12 +40,16 @@
                 </div>
             </div>
         </div>
+        </div> <!-- end user info -->
+
+        <div class="row row-centered"> <!--Post contents -->
 
         <div class="col-md-9 col-xs-12 panel-body">
 
             <!-- Text from the forum post -->
-            <div class="jumbotron" style="margin-bottom: 0; background-color: rgba(255,255,255,.1)">
-                <pre>{{ctrl.post.text}}</pre>
+            <div style="margin-bottom: 0;">
+                <h2>{{ctrl.post.title}}</h2>
+                <p>{{ctrl.post.text}}</p>
                 <div ng-if="ctrl.post.filename && ctrl.post.fileURL">
                     <a href="{{ctrl.post.fileURL}}">{{ctrl.post.filename}}</a>
                 </div>
@@ -147,9 +155,12 @@
                         <button class="btn btn-primary" ng-click="comment.showDeleteCommentForm = false">Cancel</button>
                     </div>
                 </div>
+            </div> <!--end comments -->
 
-            </div>
         </div>
-    </div>
+        </div> <!--end post-->
+
+
+
 
 </div>

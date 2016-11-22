@@ -231,6 +231,26 @@ li #drop_down, li #drop_down2 {
     background-color: firebrick !important;
 }
 
+.row-centered {
+    text-align: center;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.avatar-image {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+    border-radius: 100px;
+
+}
 .fa-times {
     color: red;
 }

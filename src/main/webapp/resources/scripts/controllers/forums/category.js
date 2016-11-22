@@ -6,22 +6,21 @@ angular.module('app').controller('categoryCtrl', function ($location, ForumsServ
     ctrl.init = function () {
         var category = location.href.split('forums/')[1];
         switch (category){
-            case '1': ctrl.title = 'General Discussion';
+            case '1': ctrl.category = 'General Discussion';
                 break;
-            case '2': ctrl.title = 'User Guides';
+            case '2': ctrl.category = 'User Guides';
                 break;
-            case '3': ctrl.title = 'Technical Support';
+            case '3': ctrl.category = 'Technical Support';
                 break;
-            case '4': ctrl.title = 'Miscellaneous';
+            case '4': ctrl.category = 'Miscellaneous';
                 break;
-            default: ctrl.title = 'Forum Category'
+            default: ctrl.category = 'Forum Category'
         }
 
         ctrl.noPosts = true;
 
         ForumsService.getCategory({category: category}).$promise.then(function (response) {
             ctrl.posts = response;
-            console.log(response);
             if (ctrl.posts.length == 0)
                 ctrl.message = "There are currently no posts.";
         });
