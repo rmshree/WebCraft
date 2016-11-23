@@ -68,17 +68,7 @@
 
 
 
-            <div ng-if="ctrl.post.showMapForm" class="col-xs-12 col-md-6 panel-body">
-                <div class="col-xs-12 col-md-3">
-                    <div class="form-group">
-                        <label>File</label>
-                        <input type="file" ngf-select ng-model="ctrl.ePost.file">
-                    </div>
-                </div>
-            </div>
-
-
-
+        <!-- Upload File form
             <div ng-if="ctrl.post.showMapForm">
                 <div class="row row-centered">
                     <div class="col-xs-12 col-md-3 col-centered">
@@ -88,13 +78,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="row row-centered">
                 <div class="col-xs-12 col-md-6 col-centered">
-                    <button class="btn btn-default" ng-click="ctrl.post.showMapForm = true">
+                    <!--<button class="btn btn-default" ng-click="ctrl.post.showMapForm = true">
                         Upload File <i class="fa fa-file-image-o" aria-hidden="true"></i>
-                    </button>
+                    </button>-->
                     <button class="btn btn-default pull-right" ng-click="ctrl.post.showEditPostForm = false; ctrl.uploading = false; ctrl.post.showMapForm = false; ctrl.ePost.file ='';">
                         Cancel <i class="fa fa-times" aria-hidden="true"></i>
                     </button>
@@ -192,7 +182,7 @@
 
                 <!-- Show comments -->
 
-            <div ng-repeat="comment in ctrl.post.comments">
+            <div ng-repeat="comment in ctrl.post.comments | orderBy:'-' ">
 
                 <div class="row row-centered">
 
