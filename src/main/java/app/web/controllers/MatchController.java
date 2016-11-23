@@ -2,14 +2,15 @@ package app.web.controllers;
 
 import app.web.domain.Containers.MatchContainer;
 import app.web.domain.DTOs.ResponseDTO;
+import app.web.domain.MatchPlayer;
+import app.web.domain.MatchResult;
 import app.web.domain.User;
+import app.web.services.MatchPlayerService;
+import app.web.services.MatchResultService;
 import app.web.services.MatchService;
 import app.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -23,12 +24,19 @@ public class MatchController {
     @Autowired
     private MatchService matchService;
 
+    @Autowired
+    private MatchPlayerService matchPlayerService;
+
+    @Autowired
+    private MatchResultService matchResultService;
+
     //TODO: Create match database.
     @RequestMapping(value = "complete", method = RequestMethod.PUT)
     public ResponseDTO complete(@RequestBody MatchContainer matchContainer) {
 
         ResponseDTO responseDTO = new ResponseDTO();
         User user;
+        MatchResult matchResult = new MatchResult();
         ArrayList<User> winnerUsers = new ArrayList<>(0);
         ArrayList<User> loserUsers = new ArrayList<>(0);
 
@@ -60,7 +68,29 @@ public class MatchController {
             }
             loserUsers.add(user);
         }
+        matchResult.setLosers(loserUsers);
+        matchResult.setWinners(winnerUsers);
+        if (matchContainer.mapname != null) {
+            matchResult.setMapname(matchContainer.mapname);
+        }
+        matchResultService.save(matchResult);
 
-        return matchService.updateMatch(winnerUsers, loserUsers);
+        return matchService.updateMatch(matchResult, winnerUsers, loserUsers);
+    }
+
+    @RequestMapping(value = "matchhistory/{username}", method = RequestMethod.GET)
+    public ResponseDTO getMatchHistory(@PathVariable String username) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        User requestUser = userService.getUserByUsername(username);
+        if (requestUser != null) {
+            List<MatchPlayer> matchPlayerList =  matchPlayerService.matchResultReturnContainerList(requestUser);
+            responseDTO.setSuccess(true);
+            responseDTO.setData(matchPlayerList);
+        }
+        else {
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("User does not exist.");
+        }
+        return responseDTO;
     }
 }

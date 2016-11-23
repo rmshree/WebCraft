@@ -14,10 +14,12 @@ public class PasswordServiceImpl implements PasswordService{
     @Autowired
     private PasswordRepository passwordRepository;
 
+    @Override
     public Password save(Password password) {
         return passwordRepository.save(password);
     }
 
+    @Override
     public Password  getPasswordByUser(User user) {
         return passwordRepository.getPasswordByUser(user);
     }

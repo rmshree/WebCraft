@@ -8,7 +8,7 @@ angular.module('app').controller('forumsCtrl', function ($location, ForumsServic
         ctrl.UserGuides = 2;
         ctrl.TechnicalSupport = 3;
         ctrl.Miscellaneous = 4;
-    }
+    };
 
     ctrl.goToForum = function (category) {
         window.location.href = "#/forums/" + category;

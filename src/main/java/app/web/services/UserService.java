@@ -31,6 +31,8 @@ public interface UserService{
 
     User getUserByEmail (String email);
 
+    User getUserByID(String id);
+
     User getCurrentUser();
 
     List<User> getOnsiteUsers();

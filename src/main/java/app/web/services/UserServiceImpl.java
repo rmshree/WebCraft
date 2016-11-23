@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByID(String id){
+        return userRepository.findOne(id);
+    }
+
+    @Override
     public User getCurrentUser() {
         return getUserByUsername(cookieService.getValueFromCookie());
     }
