@@ -7,7 +7,7 @@ angular.module('app').controller('MessagesCtrl', function (currentUser, $route, 
     ctrl.statusMessage = '';
 
     ctrl.init = function () {
-        MessageService.getConversations({username: ctrl.currentUser.username}).$promise.then(function (response) {
+        MessageService.getConversations({username: ctrl.currentUser.username, apiKey: "Nitta160"}).$promise.then(function (response) {
             ctrl.conversations = response;
         })
     };
@@ -18,7 +18,7 @@ angular.module('app').controller('MessagesCtrl', function (currentUser, $route, 
 
     ctrl.sendMessage = function (newMessage) {
 
-        UserService.getUserByUsername({username: newMessage.receiver}).$promise.then(function (response) {
+        UserService.getUserByUsername({username: newMessage.receiver, apiKey: "Nitta160"}).$promise.then(function (response) {
             if (response.id) {
                 var message = {
                     message_body: newMessage.body,
@@ -26,7 +26,7 @@ angular.module('app').controller('MessagesCtrl', function (currentUser, $route, 
                     receiver: response
                 };
 
-                MessageService.sendMessage(message).$promise.then(function (response) {
+                MessageService.sendMessage({ apiKey: "Nitta160"},message).$promise.then(function (response) {
                     if (response.id) {
                         ctrl.isSendingMessage = false;
                         $route.reload();

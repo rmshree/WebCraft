@@ -6,7 +6,7 @@ angular.module('app').controller('NavCtrl', function (LoginService, UserService,
     ctrl.currentUser = null;
 
     ctrl.init = function () {
-        UserService.getCurrentUser().$promise.then(function (response) {
+        UserService.getCurrentUser({apiKey: "Nitta160"}).$promise.then(function (response) {
             if(response.id){
                 ctrl.currentUser = response;
             }
@@ -28,7 +28,7 @@ angular.module('app').controller('NavCtrl', function (LoginService, UserService,
 
 
     ctrl.signOut = function () {
-        LoginService.signOut(ctrl.currentUser.username).$promise.then(function () {
+        LoginService.signOut({ apiKey: "Nitta160"},ctrl.currentUser.username).$promise.then(function () {
             window.location.reload();
             $location.path('/');
         });

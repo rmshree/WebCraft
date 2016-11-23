@@ -4,7 +4,7 @@ angular.module('app').controller('VerifyCtrl', function ($routeParams, LoginServ
     var ctrl = this;
 
     ctrl.init = function () {
-        LoginService.activate({userKey: $routeParams.userKey}).$promise.then(function (response) {
+        LoginService.activate({userKey: $routeParams.userKey,  apiKey: "Nitta160"}).$promise.then(function (response) {
             if(response.success){
                 $location.path('/login');
             } else{

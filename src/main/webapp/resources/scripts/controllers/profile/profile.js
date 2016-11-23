@@ -5,14 +5,14 @@ angular.module('app').controller('ProfileCtrl', function (UserService, MatchServ
     ctrl.currentUser = currentUser;
 
     ctrl.init = function () {
-        UserService.getUserByUsername({username: $routeParams.username}).$promise.then(function (user) {
+        UserService.getUserByUsername({username: $routeParams.username,  apiKey: "Nitta160"}).$promise.then(function (user) {
             if(user.id){
                 ctrl.profileUser = user;
             } else{
                 //User not found.
             }
         });
-        MatchService.getMatchHistory({username: $routeParams.username}).$promise.then(function (response) {
+        MatchService.getMatchHistory({username: $routeParams.username,  apiKey: "Nitta160"}).$promise.then(function (response) {
             console.log(response);
             if (!response.success) {
                 ctrl.matchHistoryFound = false;

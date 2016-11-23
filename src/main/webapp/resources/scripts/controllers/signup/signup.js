@@ -8,7 +8,7 @@ angular.module('app').controller('SignUpCtrl', function (LoginService) {
     ctrl.signUp = function (user) {
         ctrl.statusMessage = '';
         if(testEmail(user.email)){
-            LoginService.signUp(user).$promise.then(function (response) {
+            LoginService.signUp({ apiKey: "Nitta160"}, user).$promise.then(function (response) {
                 if(response.success){
                     ctrl.statusMessage = 'Sign-up successful!  Please check your email for your verification link';
                 }else {

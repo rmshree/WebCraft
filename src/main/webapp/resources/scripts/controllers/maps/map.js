@@ -4,7 +4,7 @@ angular.module('app').controller('MapViewCtrl', function ($routeParams, MapServi
     var ctrl = this;
 
     ctrl.init = function () {
-        MapService.getById({id: $routeParams.id}).$promise.then(function (res) {
+        MapService.getById({id: $routeParams.id, apiKey: "Nitta160"}).$promise.then(function (res) {
             if (res.success) {
                 ctrl.map = res.data;
                 $http.get(ctrl.map.downloadUrl).then(function (res) {

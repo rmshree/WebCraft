@@ -4,7 +4,7 @@ angular.module('app').controller('RankingsCtrl', function (UserService, $locatio
     var ctrl = this;
 
     ctrl.init = function () {
-        UserService.getAllUsers().$promise.then(function (response) {
+        UserService.getAllUsers({ apiKey: "Nitta160"}).$promise.then(function (response) {
             ctrl.allUsers = response;
         });
     };

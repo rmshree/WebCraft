@@ -31,14 +31,20 @@ public class MatchController {
     private MatchResultService matchResultService;
 
     //TODO: Create match database.
-    @RequestMapping(value = "complete", method = RequestMethod.PUT)
-    public ResponseDTO complete(@RequestBody MatchContainer matchContainer) {
+    @RequestMapping(value = "complete/{apiKey}", method = RequestMethod.PUT)
+    public ResponseDTO complete(@PathVariable String apiKey, @RequestBody MatchContainer matchContainer) {
 
         ResponseDTO responseDTO = new ResponseDTO();
         User user;
         MatchResult matchResult = new MatchResult();
         ArrayList<User> winnerUsers = new ArrayList<>(0);
         ArrayList<User> loserUsers = new ArrayList<>(0);
+
+        if (!(apiKey.equals("Nitta160"))) {
+            responseDTO.setMessage("Access denied");
+            responseDTO.setSuccess(false);
+            return responseDTO;
+        }
 
         if (matchContainer.losers.length == 0 || matchContainer.winners.length == 0) {
             responseDTO.setSuccess(false);
@@ -78,18 +84,24 @@ public class MatchController {
         return matchService.updateMatch(matchResult, winnerUsers, loserUsers);
     }
 
-    @RequestMapping(value = "matchhistory/{username}", method = RequestMethod.GET)
-    public ResponseDTO getMatchHistory(@PathVariable String username) {
+    @RequestMapping(value = "matchhistory/{username}/{apiKey}", method = RequestMethod.GET)
+    public ResponseDTO getMatchHistory(@PathVariable String username, @PathVariable String apiKey) {
         ResponseDTO responseDTO = new ResponseDTO();
-        User requestUser = userService.getUserByUsername(username);
-        if (requestUser != null) {
-            List<MatchPlayer> matchPlayerList =  matchPlayerService.matchResultReturnContainerList(requestUser);
-            responseDTO.setSuccess(true);
-            responseDTO.setData(matchPlayerList);
+        if (apiKey.equals("Nitta160")) {
+            User requestUser = userService.getUserByUsername(username);
+            if (requestUser != null) {
+                List<MatchPlayer> matchPlayerList =  matchPlayerService.matchResultReturnContainerList(requestUser);
+                responseDTO.setSuccess(true);
+                responseDTO.setData(matchPlayerList);
+            }
+            else {
+                responseDTO.setSuccess(false);
+                responseDTO.setMessage("User does not exist.");
+            }
         }
         else {
             responseDTO.setSuccess(false);
-            responseDTO.setMessage("User does not exist.");
+            responseDTO.setMessage("Access denied.");
         }
         return responseDTO;
     }

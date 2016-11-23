@@ -40,10 +40,10 @@ public class UserController {
      * \param username is a String.
      * \return a user or NULL
      */
-    @RequestMapping(value = "get/{username}", method = RequestMethod.GET)
-    public User getUserByName(@PathVariable String username) {
+    @RequestMapping(value = "get/{username}/{apiKey}", method = RequestMethod.GET)
+    public User getUserByName(@PathVariable String username, @PathVariable String apiKey) {
         User user = userService.getUserByUsername(username);
-        if (user == null) {
+        if (user == null || !apiKey.equals("Nitta160")) {
             return null;
         } else {
             return user;
@@ -57,10 +57,10 @@ public class UserController {
      * \param email is a String.
      * \return a user or NULL
      */
-    @RequestMapping(value = "getByEmail/{email:.+}", method = RequestMethod.GET)
-    public User getUserByEmail(@PathVariable String email) {
+    @RequestMapping(value = "getByEmail/{email:.+}/{apiKey}", method = RequestMethod.GET)
+    public User getUserByEmail(@PathVariable String email, @PathVariable String apiKey) {
         User user = userService.getUserByEmail(email);
-        if (user == null) {
+        if (user == null || !apiKey.equals("Nitta160")) {
             return null;
         } else {
             return user;
@@ -75,10 +75,10 @@ public class UserController {
      * \param image file as multipart file. Max size in 20MB.
      * \return the saved User with avatar image url.
      */
-    @RequestMapping(value = "{username}/upload/avatar", method = RequestMethod.POST)
-    public User uploadAvatar(@PathVariable String username, MultipartFile imageFile) {
+    @RequestMapping(value = "{username}/upload/avatar/{apiKey}", method = RequestMethod.POST)
+    public User uploadAvatar(@PathVariable String username, @PathVariable String apiKey, MultipartFile imageFile) {
         User user = userService.getUserByUsername(username);
-        if (user != null) {
+        if (user != null && apiKey.equals("Nitta160")) {
             try {
                 if (user.getS3key() != null) {
                     fileArchiveService.delete(user.getS3key());
@@ -106,21 +106,23 @@ public class UserController {
      * \brief Utilizes cookies to get the current user logged-in user
      * \return the current User
      */
-    @RequestMapping(value = "getCurrentUser", method = RequestMethod.GET)
-    public User getCurrentUser() {
+    @RequestMapping(value = "getCurrentUser/{apiKey}", method = RequestMethod.GET)
+    public User getCurrentUser(@PathVariable String apiKey) {
+        if (apiKey.equals("Nitta160")) {
         return userService.getCurrentUser();
+        }
+        return null;
     }
-
 
     /**
      * /api/user/getOnsiteUsers
      * \brief looks up users in the database who are currently on site using the isCurrentlyOnsite attribute on User table
      * \return a list of Users
      */
-    @RequestMapping(value = "getOnsiteUsers", method = RequestMethod.GET)
-    public List<User> getOnsiteUsers() {
+    @RequestMapping(value = "getOnsiteUsers/{apiKey}", method = RequestMethod.GET)
+    public List<User> getOnsiteUsers(@PathVariable String apiKey) {
         List<User> onsiteUsers = userService.getOnsiteUsers();
-        if (onsiteUsers.size() != 0) {
+        if (onsiteUsers.size() != 0 && apiKey.equals("Nitta160")) {
             return onsiteUsers;
         } else {
             return null;
@@ -133,10 +135,10 @@ public class UserController {
      * \brief looks up users in the database who are currently logged in thru a platform
      * \return a list of Users
      */
-    @RequestMapping(value = "getOnlineUsers", method = RequestMethod.GET)
-    public List<User> getOnlineUsers() {
+    @RequestMapping(value = "getOnlineUsers/{apiKey}", method = RequestMethod.GET)
+    public List<User> getOnlineUsers(@PathVariable String apiKey) {
         List<User> onlineUsers = userService.getOnlineUsers();
-        if (onlineUsers.size() != 0) {
+        if (onlineUsers.size() != 0 && apiKey.equals("Nitta160")) {
             return onlineUsers;
         } else {
             return null;
@@ -144,10 +146,10 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "getAllUsers", method = RequestMethod.GET)
-    public List<User> getAllUsers() {
+    @RequestMapping(value = "getAllUsers/{apiKey}", method = RequestMethod.GET)
+    public List<User> getAllUsers(@PathVariable String apiKey) {
         List<User> allUsers = userService.getAllUsers();
-        if (allUsers.size() != 0) {
+        if (allUsers.size() != 0 && apiKey.equals("Nitta160")) {
             return allUsers;
         } else {
             //System.out.printf("NO Users");
@@ -160,34 +162,40 @@ public class UserController {
      * \brief updates the user object with the new values
      * \return a User object
      */
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public ResponseDTO update(@RequestBody TempUser tempUser) {
+    @RequestMapping(value = "update/{apiKey}", method = RequestMethod.PUT)
+    public ResponseDTO update(@PathVariable String apiKey, @RequestBody TempUser tempUser) {
         ResponseDTO responseDTO = new ResponseDTO();
         User user = userService.getUserByUsername(tempUser.getUsername());
-        if (user != null && user.getId() != null) {
-            Password password = passwordService.getPasswordByUser(user);
-            if (password != null) {
-                if (tempUser.getPassword() != null || !tempUser.getPassword().equals("")) {
-                    password.setPassword(tempUser.getPassword());
-                    passwordService.save(password);
+            if (apiKey.equals("Nitta160")) {
+            if (user != null && user.getId() != null) {
+                Password password = passwordService.getPasswordByUser(user);
+                if (password != null) {
+                    if (tempUser.getPassword() != null || !tempUser.getPassword().equals("")) {
+                        password.setPassword(tempUser.getPassword());
+                        passwordService.save(password);
+                    }
+
+                    user.setFirstName(tempUser.getFirstName());
+                    user.setLastName(tempUser.getLastName());
+                    user.setUsername(tempUser.getUsername());
+                    user.setEmail(tempUser.getEmail());
+                    user = userService.save(user);
+
+                    responseDTO.setData(user);
+                    responseDTO.setMessage("SUCCESS");
+                    responseDTO.setSuccess(true);
+                    return responseDTO;
                 }
-
-                user.setFirstName(tempUser.getFirstName());
-                user.setLastName(tempUser.getLastName());
-                user.setUsername(tempUser.getUsername());
-                user.setEmail(tempUser.getEmail());
-                user = userService.save(user);
-
-                responseDTO.setData(user);
-                responseDTO.setMessage("SUCCESS");
-                responseDTO.setSuccess(true);
-                return responseDTO;
             }
-        }
 
-        responseDTO.setData(null);
-        responseDTO.setSuccess(false);
-        responseDTO.setMessage("User does not exist.");
+            responseDTO.setData(null);
+            responseDTO.setSuccess(false);
+            responseDTO.setMessage("User does not exist.");
+            }
+            else {
+                responseDTO.setSuccess(false);
+                responseDTO.setMessage("Access denied.");
+            }
         return responseDTO;
     }
     

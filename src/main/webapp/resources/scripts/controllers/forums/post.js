@@ -6,7 +6,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
 
     ctrl.init = function () {
 
-        ForumsService.getPost({id: $route.current.params.id}).$promise.then(function (response) {
+        ForumsService.getPost({id: $route.current.params.id, apiKey: "Nitta160"}).$promise.then(function (response) {
             if(response.id){
                 ctrl.post = response;
                 ctrl.getCommentsForPost(response);
@@ -34,7 +34,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
 
 
     ctrl.deletePost = function (post) {
-        ForumsService.deletePost({id: post.id}).$promise.then(function (response) {
+        ForumsService.deletePost({id: post.id,  apiKey: "Nitta160"}).$promise.then(function (response) {
             if (response !== 0) {
                 var category = location.href.split('forums/')[1];
                 window.location.href = forumsHref + category.split('/')[0];
@@ -45,7 +45,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
 
     ctrl.editPost = function (post) {
 
-        ForumsService.editPost({id: post.id}, post).$promise.then(function (response) {
+        ForumsService.editPost({id: post.id, apiKey: "Nitta160"}, post).$promise.then(function (response) {
             if (response.success){
                 console.log(response);
 
@@ -68,7 +68,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
 
     ctrl.getCommentsForPost = function (post) {
         ctrl.post.comments = [];
-        ForumsService.getCommentsForPost({id: post.id}).$promise.then(function (response) {
+        ForumsService.getCommentsForPost({id: post.id, apiKey: "Nitta160"}).$promise.then(function (response) {
             ctrl.post.comments = response;
         })
     };
@@ -78,14 +78,15 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
         newComment.text = comment.text;
         newComment.user = ctrl.currentUser;
         console.log(newComment);
-        ForumsService.addComment({id: post.id}, newComment).$promise.then(function (response) {
+        ForumsService.addComment({id: post.id,  apiKey: "Nitta160"}, newComment).$promise.then(function (response) {
             console.log(response);
             if(response.success && comment.file){
                 Upload.upload({
                     method: 'POST',
-                    url: 'api/forums/comment/uploadFile/'+response.data.id,
+                    url: 'api/forums/comment/uploadFile/'+response.data.id + '/' + "Nitta160",
                     data: {
                         file: comment.file
+
                     }
                 }).success(function (response) {
                     console.log(response);
@@ -109,7 +110,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
                 if (comment.file) {
                     Upload.upload({
                         method: 'POST',
-                        url: 'api/forums/comment/uploadFile/'+comment.id,
+                        url: 'api/forums/comment/uploadFile/'+comment.id + '/' + "Nitta160",
                         data: {
                             file: comment.file
                         }
@@ -126,7 +127,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
 
 
     ctrl.deleteComment = function(post, comment) {
-        ForumsService.deleteComment({id: comment.id}).$promise.then(function (response) {
+        ForumsService.deleteComment({id: comment.id, apiKey: "Nitta160"}).$promise.then(function (response) {
             if (response !== 0) {
                 ctrl.getCommentsForPost(post);
             }

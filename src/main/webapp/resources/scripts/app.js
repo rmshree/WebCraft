@@ -8,7 +8,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -18,7 +18,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -29,7 +29,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -40,7 +40,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -51,7 +51,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -61,7 +61,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -71,7 +71,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -81,7 +81,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -91,7 +91,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -107,7 +107,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -117,7 +117,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -140,7 +140,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -150,7 +150,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -160,7 +160,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -171,7 +171,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -181,7 +181,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })
@@ -191,7 +191,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngFileUpload', 'ng.deviceDetect
             controllerAs: 'ctrl',
             resolve: {
                 currentUser: function (UserService) {
-                    return UserService.getCurrentUser().$promise;
+                    return UserService.getCurrentUser({ apiKey: "Nitta160"}).$promise;
                 }
             }
         })

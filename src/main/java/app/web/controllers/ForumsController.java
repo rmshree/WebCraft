@@ -43,9 +43,12 @@ public class ForumsController {
      *  \brief Get all posts in the forums/
      *  \return a list of Post.
      */
-    @RequestMapping(value = "all", method = RequestMethod.GET)
-    public List<Post> all() {
-        return postService.getAllPost();
+    @RequestMapping(value = "all/{apiKey}", method = RequestMethod.GET)
+    public List<Post> all(@PathVariable String apiKey) {
+        if (apiKey.equals("Nitta160")) {
+            return postService.getAllPost();
+        }
+        return null;
     }
 
     /** /api/forums/get/{id}
@@ -53,9 +56,12 @@ public class ForumsController {
      *  \param id is an Integer.
      *  \return a Post.
      */
-    @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
-    public Post get(@PathVariable Integer id) {
-        return postService.getPostById(id);
+    @RequestMapping(value = "get/{id}/{apiKey}", method = RequestMethod.GET)
+    public Post get(@PathVariable Integer id, @PathVariable String apiKey) {
+        if (apiKey.equals("Nitta160")) {
+            return postService.getPostById(id);
+        }
+        return null;
     }
 
     /** /api/forums/add
@@ -63,19 +69,25 @@ public class ForumsController {
      *  \param post is a Post.
      *  \return a Post.
      */
-    @RequestMapping(value = "add", method = RequestMethod.PUT)
-    public ResponseDTO add(@RequestBody Post post) {
+    @RequestMapping(value = "add/{apiKey}", method = RequestMethod.PUT)
+    public ResponseDTO add(@PathVariable String apiKey, @RequestBody Post post) {
         ResponseDTO responseDTO = new ResponseDTO();
         User user = userService.getUserByUsername(post.getUser().getUsername());
-        if (user != null)
-        {
-            Post newPost = postService.save(post);
-            responseDTO.setData(newPost);
-            responseDTO.setSuccess(true);
+        if (apiKey.equals("Nitta160")) {
+            if (user != null)
+            {
+                Post newPost = postService.save(post);
+                responseDTO.setData(newPost);
+                responseDTO.setSuccess(true);
+            }
+            else {
+                responseDTO.setSuccess(false);
+                responseDTO.setMessage("Invalid user.");
+            }
         }
         else {
+            responseDTO.setMessage("Access denied.");
             responseDTO.setSuccess(false);
-            responseDTO.setMessage("Invalid user.");
         }
         return responseDTO;
     }
@@ -85,9 +97,12 @@ public class ForumsController {
      *  \param id is an Integer that represents a Post's ID
      *  \return a List of Comments.
      */
-    @RequestMapping(value = "{id}/comments", method = RequestMethod.GET)
-    public List<Comment> getComments(@PathVariable Integer id) {
-        return commentService.getCommentsByPost(id);
+    @RequestMapping(value = "{id}/comments/{apiKey}", method = RequestMethod.GET)
+    public List<Comment> getComments(@PathVariable Integer id, @PathVariable String apiKey) {
+        if (apiKey.equals("Nitta160")) {
+            return commentService.getCommentsByPost(id);
+        }
+        return null;
     }
 
     /** /api/forums/{id}/add/comment
@@ -96,23 +111,28 @@ public class ForumsController {
      *  \param text is a String that contains the contents of a comment.
      *  \return a Comment.
      */
-    @RequestMapping(value = "{id}/add/comment", method = RequestMethod.PUT)
-    public ResponseDTO addComment(@PathVariable Integer id, @RequestBody Comment comment) {
+    @RequestMapping(value = "{id}/add/comment/{apiKey}", method = RequestMethod.PUT)
+    public ResponseDTO addComment(@PathVariable Integer id, @PathVariable String apiKey, @RequestBody Comment comment) {
         ResponseDTO responseDTO = new ResponseDTO();
-        Post post = postService.getPostById(id);
-        User user = userService.getUserByUsername(comment.getUser().getUsername());
+        if (apiKey.equals("Nitta160")) {
+            Post post = postService.getPostById(id);
+            User user = userService.getUserByUsername(comment.getUser().getUsername());
 
-        if (post != null && user != null) {
-            comment.setPost(post);
-            post.setComments_length(post.getComments_length() + 1);
-            postService.save(post);
-            commentService.save(comment);
-            responseDTO.setData(comment);
-            responseDTO.setSuccess(true);
+            if (post != null && user != null) {
+                comment.setPost(post);
+                post.setComments_length(post.getComments_length() + 1);
+                postService.save(post);
+                commentService.save(comment);
+                responseDTO.setData(comment);
+                responseDTO.setSuccess(true);
+            } else {
+                responseDTO.setSuccess(false);
+                responseDTO.setMessage("Invalid request.");
+            }
         }
         else {
+            responseDTO.setMessage("Access denied.");
             responseDTO.setSuccess(false);
-            responseDTO.setMessage("Invalid request.");
         }
         return responseDTO;
     }
@@ -124,45 +144,53 @@ public class ForumsController {
      *  \return a Comment.
      */
     //TODO: Only give the user who created the comment the ability to edit the comment.
-    @RequestMapping(value = "comment/edit/{id}", method = RequestMethod.POST)
-    public ResponseDTO editComment(@PathVariable Integer id, @RequestBody Comment editComment) {
+    @RequestMapping(value = "comment/edit/{id}/{apiKey}", method = RequestMethod.POST)
+    public ResponseDTO editComment(@PathVariable Integer id, @PathVariable String apiKey, @RequestBody Comment editComment) {
         ResponseDTO responseDTO = new ResponseDTO();
-        Comment comment = commentService.getCommentByID(id);
-        if (comment != null) {
-            if (comment.getUser().getId().equals(editComment.getUser().getId())) {
-                comment.setText(editComment.getText());
-                responseDTO.setData(commentService.save(comment));
-                responseDTO.setSuccess(true);
-            }
-            else {
+        if (apiKey.equals("Nitta160")) {
+            Comment comment = commentService.getCommentByID(id);
+            if (comment != null) {
+                if (comment.getUser().getId().equals(editComment.getUser().getId())) {
+                    comment.setText(editComment.getText());
+                    responseDTO.setData(commentService.save(comment));
+                    responseDTO.setSuccess(true);
+                } else {
+                    responseDTO.setSuccess(false);
+                    responseDTO.setMessage("Editing user and original user are not the same.");
+                }
+            } else {
                 responseDTO.setSuccess(false);
-                responseDTO.setMessage("Editing user and original user are not the same.");
+                responseDTO.setMessage("Editing comment that does not exist.");
             }
         }
         else {
             responseDTO.setSuccess(false);
-            responseDTO.setMessage("Editing comment that does not exist.");
+            responseDTO.setMessage("Access denied.");
         }
         return responseDTO;
     }
 
-    @RequestMapping(value = "post/edit/{id}", method = RequestMethod.POST)
-    public ResponseDTO editPost(@PathVariable Integer id, @RequestBody Post editPost) {
+    @RequestMapping(value = "post/edit/{id}/{apiKey}", method = RequestMethod.POST)
+    public ResponseDTO editPost(@PathVariable Integer id, @PathVariable String apiKey, @RequestBody Post editPost) {
         ResponseDTO responseDTO = new ResponseDTO();
-        Post post = postService.getPostById(id);
-        if (post != null) {
-            if (post.getUser().getId().equals(editPost.getUser().getId())) {
-                responseDTO.setSuccess(true);
-                responseDTO.setData(postService.save(editPost));
-            }
-            else {
+        if (apiKey.equals("Nitta160")) {
+            Post post = postService.getPostById(id);
+            if (post != null) {
+                if (post.getUser().getId().equals(editPost.getUser().getId())) {
+                    responseDTO.setSuccess(true);
+                    responseDTO.setData(postService.save(editPost));
+                } else {
+                    responseDTO.setSuccess(false);
+                    responseDTO.setMessage("Editing user is not original user.");
+                }
+            } else {
                 responseDTO.setSuccess(false);
-                responseDTO.setMessage("Editing user is not original user.");
+                responseDTO.setMessage("Editing post that does not exist.");
             }
         }
         else {
+            responseDTO.setMessage("Access denied.");
             responseDTO.setSuccess(false);
-            responseDTO.setMessage("Editing post that does not exist.");
         }
         return responseDTO;
     }
@@ -174,31 +202,38 @@ public class ForumsController {
      * \param image file as multipart file. Max size in 20MB.
      * \return the saved Comment with image url.
      */
-    @RequestMapping(value = "comment/uploadFile/{id}", method = RequestMethod.POST)
-    public ResponseDTO uploadCommentFile(@PathVariable Integer id, MultipartFile file) {
+    @RequestMapping(value = "comment/uploadFile/{id}/{apiKey}", method = RequestMethod.POST)
+    public ResponseDTO uploadCommentFile(@PathVariable Integer id, @PathVariable String apiKey, MultipartFile file) {
         ResponseDTO responseDTO = new ResponseDTO();
         Comment comment = commentService.getCommentByID(id);
-        if (comment != null) {
-            try {
-                ObjectMetadata objectMetadata = new ObjectMetadata();
-                objectMetadata.setContentType(file.getContentType());
-                DateTime dateTime = new DateTime();
-                String key = "comments/" + comment.getId().toString()+ '/'+ comment.getUser().getUsername() + '/' + dateTime.toString() + '/' + file.getOriginalFilename();
-                comment.setFileURL(fileArchiveService.upload(file, key, objectMetadata));
-                comment.setS3key(key);
-                comment.setFilename(file.getOriginalFilename());
-                responseDTO.setSuccess(true);
-                responseDTO.setData(commentService.save(comment));
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (apiKey.equals("Nitta160")) {
+            if (comment != null) {
+                try {
+                    ObjectMetadata objectMetadata = new ObjectMetadata();
+                    objectMetadata.setContentType(file.getContentType());
+                    DateTime dateTime = new DateTime();
+                    String key = "comments/" + comment.getId().toString() + '/' + comment.getUser().getUsername() + '/' + dateTime.toString() + '/' + file.getOriginalFilename();
+                    comment.setFileURL(fileArchiveService.upload(file, key, objectMetadata));
+                    comment.setS3key(key);
+                    comment.setFilename(file.getOriginalFilename());
+                    responseDTO.setSuccess(true);
+                    responseDTO.setData(commentService.save(comment));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    responseDTO.setSuccess(false);
+                    responseDTO.setMessage("Unable to upload file. Check file size or internet connection.");
+                } finally {
+                    return responseDTO;
+                }
+            } else {
                 responseDTO.setSuccess(false);
-                responseDTO.setMessage("Unable to upload file. Check file size or internet connection.");
-            } finally {
+                responseDTO.setMessage("Comment does not exist. ");
                 return responseDTO;
             }
-        } else {
+        }
+        else {
+            responseDTO.setMessage("Access denied.");
             responseDTO.setSuccess(false);
-            responseDTO.setMessage("Comment does not exist. ");
             return responseDTO;
         }
     }
@@ -210,31 +245,38 @@ public class ForumsController {
      * \param image file as multipart file. Max size in 20MB.
      * \return the saved Comment with image url.
      */
-    @RequestMapping(value = "post/uploadFile/{id}", method = RequestMethod.POST)
-    public ResponseDTO uploadPostFile(@PathVariable Integer id, MultipartFile file) {
+    @RequestMapping(value = "post/uploadFile/{id}/{apiKey}", method = RequestMethod.POST)
+    public ResponseDTO uploadPostFile(@PathVariable Integer id, @PathVariable String apiKey, MultipartFile file) {
         ResponseDTO responseDTO = new ResponseDTO();
-        Post post = postService.getPostById(id);
-        if (post != null) {
-            try {
-                ObjectMetadata objectMetadata = new ObjectMetadata();
-                objectMetadata.setContentType("image/jpeg");
-                DateTime dateTime = new DateTime();
-                String key = "post/" + post.getId().toString()+ '/'+ post.getUser().getUsername() + '/' + dateTime.toString() + '/' + file.getOriginalFilename();
-                post.setFileURL(fileArchiveService.upload(file, key, objectMetadata));
-                post.setFilename(file.getOriginalFilename());
-                post.setS3key(key);
-                responseDTO.setSuccess(true);
-                responseDTO.setData(postService.save(post));
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (apiKey.equals("Nitta160")) {
+            Post post = postService.getPostById(id);
+            if (post != null) {
+                try {
+                    ObjectMetadata objectMetadata = new ObjectMetadata();
+                    objectMetadata.setContentType("image/jpeg");
+                    DateTime dateTime = new DateTime();
+                    String key = "post/" + post.getId().toString() + '/' + post.getUser().getUsername() + '/' + dateTime.toString() + '/' + file.getOriginalFilename();
+                    post.setFileURL(fileArchiveService.upload(file, key, objectMetadata));
+                    post.setFilename(file.getOriginalFilename());
+                    post.setS3key(key);
+                    responseDTO.setSuccess(true);
+                    responseDTO.setData(postService.save(post));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    responseDTO.setSuccess(false);
+                    responseDTO.setMessage("Unable to upload file. Check file size or internet connection.");
+                } finally {
+                    return responseDTO;
+                }
+            } else {
                 responseDTO.setSuccess(false);
-                responseDTO.setMessage("Unable to upload file. Check file size or internet connection.");
-            } finally {
+                responseDTO.setMessage("Post does not exist. ");
                 return responseDTO;
             }
-        } else {
+        }
+        else {
+            responseDTO.setMessage("Access denied.");
             responseDTO.setSuccess(false);
-            responseDTO.setMessage("Post does not exist. ");
             return responseDTO;
         }
     }
@@ -245,10 +287,10 @@ public class ForumsController {
      *  \return number of entries deleted in Integer. Expected 1 or 0.
      */
     //TODO: Have requestBody take in user instead of hardcoding for root.
-    @RequestMapping(value = "comment/delete/{id}", method = RequestMethod.DELETE)
-    public Integer deleteComment(@PathVariable Integer id) {
+    @RequestMapping(value = "comment/delete/{id}/{apiKey}", method = RequestMethod.DELETE)
+    public Integer deleteComment(@PathVariable Integer id, @PathVariable String apiKey) {
         Comment comment = commentService.getCommentByID(id);
-        if (comment != null) {
+        if (comment != null && (apiKey.equals("Nitta160"))) {
             Post post = postService.getPostById(comment.getPost().getId());
             if (post.getComments_length() > 0) {
                 post.setComments_length(post.getComments_length() - 1);
@@ -265,10 +307,10 @@ public class ForumsController {
      *  \return number of entries deleted in Integer. Expected 1 or 0.
      */
     //TODO: Have request body take in user to check if the deleting user is the post creator.
-    @RequestMapping(value = "post/delete/{id}", method = RequestMethod.DELETE)
-    public Integer deletePost(@PathVariable Integer id) {
+    @RequestMapping(value = "post/delete/{id}/{apiKey}", method = RequestMethod.DELETE)
+    public Integer deletePost(@PathVariable Integer id, @PathVariable String apiKey) {
         Post post = postService.getPostById(id);
-        if (post != null) {
+        if (post != null && (apiKey.equals("Nitta160"))) {
             if (commentService.deleteAllCommentsFromPost(id) >= 0) {
                 return postService.deletePost(id);
             }
@@ -276,9 +318,12 @@ public class ForumsController {
         return 0;
     }
 
-    @RequestMapping(value = "post/category/{category}", method = RequestMethod.GET)
-    public List<Post> getPostByCategory(@PathVariable Integer category) {
-        return postService.getPostByCategory(category);
+    @RequestMapping(value = "post/category/{category}/{apiKey}", method = RequestMethod.GET)
+    public List<Post> getPostByCategory(@PathVariable Integer category, @PathVariable String apiKey) {
+        if (apiKey.equals("Nitta160")) {
+            return postService.getPostByCategory(category);
+        }
+        return null;
     }
 
 }

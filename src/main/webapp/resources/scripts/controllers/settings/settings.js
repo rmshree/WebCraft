@@ -21,7 +21,7 @@ angular.module('app').controller('SettingsCtrl', function (currentUser, UserServ
     ];
 
     function getSettings() {
-        SettingsService.getSettingsByUser({username: ctrl.currentUser.username}).$promise.then(function (response) {
+        SettingsService.getSettingsByUser({username: ctrl.currentUser.username,  apiKey: "Nitta160"}).$promise.then(function (response) {
             if (response.success) {
                 ctrl.settings = response.data;
             }
@@ -30,7 +30,7 @@ angular.module('app').controller('SettingsCtrl', function (currentUser, UserServ
 
     ctrl.submitSettings = function () {
         ctrl.showNotificationsMessage = false;
-        SettingsService.update(ctrl.settings).$promise.then(function (response) {
+        SettingsService.update({ apiKey: "Nitta160"}, ctrl.settings).$promise.then(function (response) {
             if (response.success) {
                 ctrl.settings = response.data;
                 ctrl.message = 'Success!';
@@ -44,7 +44,7 @@ angular.module('app').controller('SettingsCtrl', function (currentUser, UserServ
     // User information tab
     ctrl.edit = function (user) {
         ctrl.showMessage = false;
-        UserService.update(user).$promise.then(function (response) {
+        UserService.update({ apiKey: "Nitta160"}, user).$promise.then(function (response) {
             if (response.success) {
                 ctrl.currentUser = response.data;
                 ctrl.message = 'Success!';
@@ -60,7 +60,7 @@ angular.module('app').controller('SettingsCtrl', function (currentUser, UserServ
         ctrl.uploading = true;
         Upload.upload({
             method: 'POST',
-            url: 'api/user/' + ctrl.currentUser.username + '/upload/avatar',
+            url: 'api/user/' + ctrl.currentUser.username + '/upload/avatar/Nitta160',
             data: {
                 imageFile: file
             }

@@ -8,7 +8,7 @@ angular.module('app').controller('ConversationCtrl', function (currentUser, Mess
     var timer = null;
 
     ctrl.init = function () {
-        MessageService.getConversationById({id: $routeParams.id}).$promise.then(function (response) {
+        MessageService.getConversationById({id: $routeParams.id,  apiKey: "Nitta160"}).$promise.then(function (response) {
             if (response.id) {
                 ctrl.conversation = response;
             } else {
@@ -24,7 +24,7 @@ angular.module('app').controller('ConversationCtrl', function (currentUser, Mess
         if ($route.current.$$route.controller !== 'ConversationCtrl') {
             $interval.cancel(timer);
         } else {
-            MessageService.getMessagesByConversationId({id: $routeParams.id}).$promise.then(function (response) {
+            MessageService.getMessagesByConversationId({id: $routeParams.id, apiKey: "Nitta160"}).$promise.then(function (response) {
                 ctrl.messages = response;
             });
         }
@@ -42,7 +42,7 @@ angular.module('app').controller('ConversationCtrl', function (currentUser, Mess
             receiver: ctrl.messageTo
         };
 
-        MessageService.sendMessage(message).$promise.then(function (response) {
+        MessageService.sendMessage({apiKey: "Nitta160"},message).$promise.then(function (response) {
             if (response.id) {
                 ctrl.messages.push(response);
                 ctrl.message = null;

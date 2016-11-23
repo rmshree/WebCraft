@@ -9,7 +9,7 @@ angular.module('app').controller('MatchCtrl', function (MatchService) {
 
     ctrl.saveMatch = function (matchContainer) {
         console.log(matchContainer);
-        MatchService.completeMatch(matchContainer).$promise.then(function (response) {
+        MatchService.completeMatch({apiKey: "aaaaa"}, matchContainer).$promise.then(function (response) {
             console.log(response);
         });
     };

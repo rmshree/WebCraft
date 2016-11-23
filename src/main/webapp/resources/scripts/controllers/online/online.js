@@ -13,10 +13,10 @@ angular.module('app').controller('OnlineCtrl', function ($interval, UserService,
         if ($route.current.$$route.controller !== 'OnlineCtrl') {
             $interval.cancel(onlineInterval);
         } else {
-            UserService.getOnlineUsers().$promise.then(function (res) {
+            UserService.getOnlineUsers({ apiKey: "Nitta160"}).$promise.then(function (res) {
                 ctrl.onlineUsers = res;
             });
-            UserService.getOnsiteUsers().$promise.then(function (res) {
+            UserService.getOnsiteUsers({ apiKey: "Nitta160"}).$promise.then(function (res) {
                 ctrl.onsiteUsers = res;
             });
         }

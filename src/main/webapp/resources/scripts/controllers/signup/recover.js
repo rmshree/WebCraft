@@ -8,7 +8,7 @@ angular.module('app').controller('RecoverCtrl', function (LoginService) {
     ctrl.submit = function (user) {
         ctrl.buttonDisabled = true;
         if(testEmail(user.email)){
-            LoginService.recovery(user.email).$promise.then(function (response) {
+            LoginService.recovery({ apiKey: "Nitta160"}, user.email).$promise.then(function (response) {
                 console.log(response);
                 ctrl.message = response.message;
             });

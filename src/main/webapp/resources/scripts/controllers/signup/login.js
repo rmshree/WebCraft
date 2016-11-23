@@ -8,7 +8,7 @@ angular.module('app').controller('LoginCtrl', function (UserService, LoginServic
 
     ctrl.login = function (loginUser) {
         ctrl.message = '';
-        LoginService.logInUser({username: loginUser.username}, loginUser.password).$promise.then(function (response) {
+        LoginService.logInUser({username: loginUser.username, apiKey: "Nitta160"}, loginUser.password).$promise.then(function (response) {
             if(response.success){
                 window.location.reload();
                 $location.path('/');
@@ -25,7 +25,7 @@ angular.module('app').controller('LoginCtrl', function (UserService, LoginServic
         ctrl.statusMessage = '';
         ctrl.buttonDisabled = true;
         if(testEmail(user.email)){
-            LoginService.signUp(user).$promise.then(function (response) {
+            LoginService.signUp({ apiKey: "Nitta160"}, user).$promise.then(function (response) {
                 if(response.success){
                     ctrl.statusMessage = 'Sign-up successful!  Please check your email for your verification link';
                 }else {

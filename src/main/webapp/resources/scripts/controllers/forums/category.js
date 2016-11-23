@@ -19,7 +19,7 @@ angular.module('app').controller('categoryCtrl', function ($location, ForumsServ
 
         ctrl.noPosts = true;
 
-        ForumsService.getCategory({category: category}).$promise.then(function (response) {
+        ForumsService.getCategory({category: category, apiKey: "Nitta160"}).$promise.then(function (response) {
             ctrl.posts = response;
             if (ctrl.posts.length == 0)
                 ctrl.message = "There are currently no posts.";
@@ -41,7 +41,7 @@ angular.module('app').controller('categoryCtrl', function ($location, ForumsServ
         if (newPost.title && newPost.text) {
             newPost.category = location.href.split('forums/')[1];
             newPost.user = ctrl.currentUser;
-            ForumsService.add(newPost).$promise.then(function (response) {
+            ForumsService.add({apiKey: "Nitta160"},newPost).$promise.then(function (response) {
                 console.log(response);
                 if (response.success) {
                     if (newPost.file) {

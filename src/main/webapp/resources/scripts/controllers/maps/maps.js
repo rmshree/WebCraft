@@ -27,7 +27,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
     };
 
     ctrl.init = function () {
-        MapService.getAll().$promise.then(function (response) {
+        MapService.getAll({ apiKey: "Nitta160"}).$promise.then(function (response) {
             ctrl.maps = response;
         })
     };
@@ -39,7 +39,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
                 numberOfPlayers: map.numberOfPlayers,
                 user: ctrl.currentUser
             };
-            MapService.save(gameMap).$promise.then(function (response) {
+            MapService.save({apiKey: "Nitta160"},gameMap).$promise.then(function (response) {
                 console.log(response);
                 if (response.success) {
                     uploadFile(response.data, map);
@@ -51,7 +51,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
     };
 
     ctrl.download = function (map) {
-        MapService.download({id: map.id}).$promise.then(function (response) {
+        MapService.download({id: map.id, apiKey: "Nitta160"}).$promise.then(function (response) {
             if (response.success) {
                 var index = ctrl.maps.indexOf(map);
                 ctrl.maps[index] = response.data;
@@ -65,7 +65,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
     function uploadFile(res, map) {
         Upload.upload({
             method: 'POST',
-            url: 'api/map/' + res.id + '/upload/file',
+            url: 'api/map/' + res.id + '/upload/file' + '/' +  "Nitta160",
             data: {
                 file: map.file
             }
@@ -89,7 +89,7 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
     function uploadImage(id, img) {
         Upload.upload({
             method: 'POST',
-            url: 'api/map/' + id + '/upload/primary',
+            url: 'api/map/' + id + '/upload/primary/Nitta160' ,
             data: {
                 file: img
             }
