@@ -5,6 +5,11 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
     ctrl.currentUser = currentUser;
     ctrl.newMap = {};
 
+    function hasExtension(inputID, exts) {
+        var fileName = document.getElementById(inputID).value;
+        return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
+    }
+
     $scope.$watchCollection('ctrl.newMap.file', function (file) {
         if (file !== undefined) {
             var reader = new FileReader();
@@ -131,8 +136,10 @@ angular.module('app').controller('MapsCtrl', function (currentUser, MapService, 
                     imageMap.src = 'resources/images/tiles/15/forest.png';
                 } else if (charMap === "R") {
                     imageMap.src = 'resources/images/tiles/15/rock.png';
-                } else {
+                } else if (charMap === "G") {
                     imageMap.src = 'resources/images/tiles/15/dirt.png';
+                } else {
+                    imageMap.src = 'resources/images/tiles/15/empty.png';
                 }
                 divLocation.appendChild(imageMap);
             }

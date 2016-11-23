@@ -4,6 +4,8 @@ angular.module('app').controller('LoginCtrl', function (UserService, LoginServic
     var ctrl = this;
     ctrl.loginUser = {};
     ctrl.signupUser = {};
+    ctrl.buttonDisabled = false;
+
     ctrl.login = function (loginUser) {
         ctrl.message = '';
         LoginService.logInUser({username: loginUser.username}, loginUser.password).$promise.then(function (response) {
@@ -21,18 +23,20 @@ angular.module('app').controller('LoginCtrl', function (UserService, LoginServic
 
     ctrl.signUp = function (user) {
         ctrl.statusMessage = '';
+        ctrl.buttonDisabled = true;
         if(testEmail(user.email)){
             LoginService.signUp(user).$promise.then(function (response) {
                 if(response.success){
                     ctrl.statusMessage = 'Sign-up successful!  Please check your email for your verification link';
                 }else {
                     ctrl.statusMessage = response.message;
+                    ctrl.buttonDisabled = false;
                 }
             });
         }else{
             ctrl.statusMessage = 'Invalid email address. Please enter a valid email address';
+            ctrl.buttonDisabled = false;
         }
-
     };
 
     function testEmail (email) {

@@ -17,7 +17,7 @@
 
                         <div class="row">
                             <div class="col-lg-3">
-                                <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.email"
+                                <button class="btn btn-lg btn-primary btn-block" ng-disabled="!user.email || ctrl.buttonDisabled == true"
                                         type="submit" ng-click="ctrl.submit(user)">
                                     Submit
                                 </button>

@@ -2,10 +2,11 @@
 
 angular.module('app').controller('RecoverCtrl', function (LoginService) {
     var ctrl = this;
-
+    ctrl.buttonDisabled = false;
     var EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     ctrl.submit = function (user) {
+        ctrl.buttonDisabled = true;
         if(testEmail(user.email)){
             LoginService.recovery(user.email).$promise.then(function (response) {
                 console.log(response);
@@ -13,6 +14,7 @@ angular.module('app').controller('RecoverCtrl', function (LoginService) {
             });
         }else{
             ctrl.message = 'Please enter a valid email address';
+            ctrl.buttonDisabled = false;
         }
     };
 
