@@ -28,6 +28,41 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
             }else{
                 ctrl.postFound = false;
             }
+                ctrl.ePost = angular.copy(ctrl.post);
+        });
+    };
+
+
+    ctrl.deletePost = function (post) {
+        ForumsService.deletePost({id: post.id}).$promise.then(function (response) {
+            if (response !== 0) {
+                var category = location.href.split('forums/')[1];
+                window.location.href = forumsHref + category.split('/')[0];
+            }
+        })
+    };
+
+
+    ctrl.editPost = function (post) {
+
+        ForumsService.editPost({id: post.id}, post).$promise.then(function (response) {
+            if (response.success){
+                console.log(response);
+
+                if (post.file) {
+                    Upload.upload({
+                        method: 'POST',
+                        url: 'api/forums/post/uploadFile/'+post.id,
+                        data: {
+                            file: post.file
+                        }
+                    }).success(function (response) {
+                        console.log(response);
+                        location.reload();
+                    })
+                }
+                ctrl.post.showEditPostForm = false;
+            }
         });
     };
 
@@ -98,37 +133,6 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
         })
     };
 
-    //TODO: Only give the user who created the post the ability to delete the post.
-    ctrl.deletePost = function (post) {
-        ForumsService.deletePost({id: post.id}).$promise.then(function (response) {
-            if (response !== 0) {
-                var category = location.href.split('forums/')[1];
-                window.location.href = forumsHref + category.split('/')[0];
-            }
-        })
-    };
 
-    ctrl.editPost = function (post) {
-
-        ForumsService.editPost({id: post.id}, post).$promise.then(function (response) {
-            if (response.success){
-                console.log(response);
-
-                if (post.file) {
-                    Upload.upload({
-                        method: 'POST',
-                        url: 'api/forums/post/uploadFile/'+post.id,
-                        data: {
-                            file: post.file
-                        }
-                    }).success(function (response) {
-                        console.log(response);
-                        location.reload();
-                    })
-                }
-                ctrl.post.showEditPostForm = false;
-            }
-        });
-    };
 
 });

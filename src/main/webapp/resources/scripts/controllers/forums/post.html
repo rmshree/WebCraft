@@ -12,7 +12,7 @@
 
 
         <div class="row row-centered"> <!-- User info -->
-            <div class="col-md-6 col-xs-12 col-centered" style="border-bottom: 1px solid gray;">
+            <div class="col-md-6 col-xs-12 col-centered">
 
 
                     <!--Avatar, username, date-->
@@ -56,13 +56,13 @@
 
             <div class="row row-centered">
                 <div class="form-group col-md-6 col-centered">
-                    <input name="editPost" class="form-control" maxlength="50" value={{ctrl.post.title}}>
+                    <input name="editPost" class="form-control" maxlength="50" value={{ctrl.post.title}} ng-model="ctrl.ePost.title">
                 </div>
             </div>
 
             <div class="row row-centered">
                     <div class="form-group col-md-6 col-centered">
-                    <textarea name="editPost" class="form-control" maxlength="1000" rows="6">{{ctrl.post.text}}</textarea>
+                    <textarea name="editPost" class="form-control" maxlength="1000" rows="6" ng-model="ctrl.ePost.text">{{ctrl.post.text}}</textarea>
                     </div>
             </div>
 
@@ -72,41 +72,82 @@
                 <div class="col-xs-12 col-md-3">
                     <div class="form-group">
                         <label>File</label>
-                        <input type="file" ngf-select ng-model="ctrl.editPost.file">
+                        <input type="file" ngf-select ng-model="ctrl.ePost.file">
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12">
-                <button class="btn btn-primary" ng-click="ctrl.post.showMapForm = true">Upload File</button>
-                <button class="btn btn-primary" ng-click="ctrl.ePost(ctrl.ePost)" ng-disabled="!ctrl.ePost.text">Submit</button>
-                <button class="btn btn-primary" ng-click="ctrl.post.showEditPostForm = false; ctrl.uploading = false; ctrl.post.showMapForm = false; ctrl.ePost.file ='';">Cancel</button>
+
+
+
+            <div ng-if="ctrl.post.showMapForm">
+                <div class="row row-centered">
+                    <div class="col-xs-12 col-md-3 col-centered">
+                        <div class="form-group">
+                            <label>File</label>
+                            <input type="file" ngf-select ng-model="ePost.file">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-centered">
+                <div class="col-xs-12 col-md-6 col-centered">
+                    <button class="btn btn-default" ng-click="ctrl.post.showMapForm = true">
+                        Upload File <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-default pull-right" ng-click="ctrl.post.showEditPostForm = false; ctrl.uploading = false; ctrl.post.showMapForm = false; ctrl.ePost.file ='';">
+                        Cancel <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-default pull-right" ng-click="ctrl.editPost(ctrl.ePost)" ng-disabled="!ctrl.ePost.text || !ctrl.ePost.title">
+                        Submit <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+
+
+
+                </div>
             </div>
         </div> <!-- End Editing -->
 
 
-        <div class="row row-centered"> <!--Post contents -->
+        <div> <!--Post contents -->
 
-        <div class="col-md-9 col-xs-12 panel-body">
-
-            <!-- Text from the forum post -->
-            <div style="margin-bottom: 0;">
-                <h2>{{ctrl.post.title}}</h2>
-                <p>{{ctrl.post.text}}</p>
-                <div ng-if="ctrl.post.filename && ctrl.post.fileURL">
-                    <a href="{{ctrl.post.fileURL}}">{{ctrl.post.filename}}</a>
-                </div>
+            <div class="row row-centered">
+                <div class="col-md-6 col-xs-12 col-centered">
+                    <h2>{{ctrl.post.title}}</h2>
+                    <hr>
+                    </div>
             </div>
 
 
-
-            <div class="page-header col-xs-12" style="margin-top: 5px">
-                <h3 style="display: inline-block">Comments <small class="badge" style="background-color: black">{{ctrl.post.comments.length}}</small></h3>
-                <button class="btn btn-primary pull-right" style="margin-top: 20px" ng-if="!ctrl.post.showCommentForm && ctrl.currentUser.id" ng-click="ctrl.post.showCommentForm = true">Add Comment</button>
-
-                <div ng-if="!ctrl.currentUser.id">
-                    <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Please log in to comment.</span>
-                    <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Please log in to comment.</span>
+            <div class="row row-centered">
+                <div class="col-md-6 col-xs-12 col-centered">
+                    <p>{{ctrl.post.text}}</p>
+                    <div ng-if="ctrl.post.filename && ctrl.post.fileURL">
+                        <a href="{{ctrl.post.fileURL}}">{{ctrl.post.filename}}</a>
+                     </div>
                 </div>
+            </div>
+
+        </div> <!-- End Post contents -->
+
+
+        <!--Comments-->
+
+            <div class="row row-centered">
+                <hr>
+                <div class="col-md-3 col-xs-6 col-centered">
+                    <h3 style="display:inline;"><i class="fa fa-comment-o fa-1x" aria-hidden="true"></i> Comments ({{ctrl.post.comments.length}})</h3>
+                </div>
+                <div class="col-md-3 col-xs-6 col-centered">
+                <button class="btn btn-primary pull-right" style="margin-top: 20px" ng-if="!ctrl.post.showCommentForm && ctrl.currentUser.id" ng-click="ctrl.post.showCommentForm = true">
+                        Add Comment
+                    </button>
+
+
+                    <span ng-if="!ctrl.currentUser.id"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Please log in to comment.</span>
+                </div>
+            </div>
+
                 <!-- Add comment form -->
                 <div ng-if="ctrl.post.showCommentForm" class="col-xs-12 panel-body" style="padding: 0">
                     <!-- Text area for add comment form-->
