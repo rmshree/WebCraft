@@ -1,14 +1,13 @@
-<form class="form-register col-md-8">
+<form class="form-register col-md-12 col-sm-12">
 
     <!--<div style="font-size: x-large">-->
         <!--<b>-->
             <!--Notification Settings-->
         <!--</b>-->
     <!--</div>-->
-
     <br>
 
-    <div class="form-group col-md-11">
+    <div class="form-group col-md-11 col-sm-11">
         <label class="col-md-4"><span class="pull-right">Message notifications</span></label>
         <div class="col-md-8 pull-right">
             <label><input type="radio" ng-model="ctrl.settings.notifications" ng-value="true"> Enable </label>
@@ -16,6 +15,9 @@
             <label><input type="radio" ng-model="ctrl.settings.notifications" ng-value="false"> Disable </label>
         </div>
     </div>
+    <br>
+    <br>
+
     <div class="form-group col-md-11" ng-if="ctrl.settings.notifications">
         <label class="col-md-4"><span class="pull-right">Delay</span></label>
         <div class="col-md-8 pull-right">
@@ -23,6 +25,8 @@
             <p class="small">Note: Any value of 0 indicates immediate notification</p>
         </div>
     </div>
+
+
     <div class="form-group col-md-11" ng-if="ctrl.settings.notifications">
         <label class="col-md-4"><span class="pull-right">Delay unit</span></label>
         <div class="col-md-8 pull-right">

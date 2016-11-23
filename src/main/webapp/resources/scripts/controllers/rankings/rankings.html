@@ -1,7 +1,7 @@
 <div class="container-fluid rankings-page" ng-init="ctrl.init()">
 
     <div class="page-header col-xs-12 col-md-12">
-        <h1 style="display: inline-block; color: black">
+        <h1 style="display: inline-block; color: black; padding-left: 25px">
             ELO Ratings
         </h1>
 
@@ -33,27 +33,28 @@
                 <div class="panel-body" style="padding: 0">
                     <div ng-repeat="user in ctrl.allUsers track by user.id">
                         <div class="col-xs-12 col-md-12 clickable" ng-click="ctrl.goToUserProfile(user)">
+
                             <div class="panel panel-info" style="padding: 0">
                                 <div class="panel-body col-md-1">
                                     {{$index + 1}}
                                 </div>
-                                <div class="panel-body col-md-1">
+                                <div id="rank-hide" class="panel-body col-md-1">
                                     {{user.elo}}
                                 </div>
                                 <div class="panel-body col-md-6">
                                     {{user.username}}
                                 </div>
-                                <div class="panel-body col-md-1">
+                                <div id="rank-hide" class="panel-body col-md-1">
                                     {{user.win + user.loss}}
                                 </div>
-                                <div class="panel-body col-md-1">
+                                <div id="rank-hide" class="panel-body col-md-1">
                                     {{user.win}}
                                 </div>
-                                <div class="panel-body col-md-1">
+                                <div id="rank-hide" class="panel-body col-md-1">
                                     {{user.loss}}
                                 </div>
 
-                                <div class="panel-body col-md-1">
+                                <div id="rank-hide" class="panel-body col-md-1">
                                     <div ng-if="user.win + user.loss != 0">
                                         {{ctrl.winPercentage(user)}}
                                     </div>

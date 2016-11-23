@@ -1,7 +1,8 @@
 <div class="container-fluid" ng-init="ctrl.init()">
     <div class="container-fluid loginContainer" style="color: black">
         <div class="row">
-
+            <br>
+            <br>
             <div class=" loginBox col-md-6 col-sm-6">
                 <h3 style="padding-left: 25px">Log in</h3>
                 <form>
@@ -18,7 +19,6 @@
                             <input type="password" class="form-control" ng-model="loginUser.password"/>
                         </div>
                     </div>
-
                     <a href="#/recover" style="color: black">Forgot your password?</a>
                     <div class="row" style="margin-top: 10px">
                         <div class="col-md-3">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </form>
-                <div style="text-align: center">
+                <div style="padding-left: 25px">
                     <span>{{ctrl.message}}</span>
                 </div>
             </div>
@@ -91,7 +91,9 @@
                     </div>
                 </form>
 
-                <span>{{ctrl.statusMessage}}</span>
+                <div style="padding-left: 25px">
+                    <span>{{ctrl.statusMessage}}</span>
+                </div>
             </div>
 
         </div>

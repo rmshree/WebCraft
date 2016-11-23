@@ -332,12 +332,12 @@ li #drop_down, li #drop_down2 {
 
 }
 
-@media screen and (min-width: 400px)
+@media screen and (min-width: 775px)
 {
     #rank-hide { display: block; }  /* show it on small screens */
 }
 
-@media screen and (min-width: 0px) and (max-width: 399px)
+@media screen and (min-width: 0px) and (max-width: 774px)
 {
     #rank-hide { display: none; }   /* hide it elsewhere */
 }

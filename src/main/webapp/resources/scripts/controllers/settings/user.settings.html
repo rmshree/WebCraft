@@ -4,16 +4,20 @@
     <!--<b>User Information</b>-->
     <!--</h2>-->
 
-    <div class="form-group col-md-12 col-sm-12">
-        <div class="col-md-4 pull-left">
-            <img ng-if="ctrl.currentUser.avatarUrl" ng-src="{{ctrl.currentUser.avatarUrl}}" height="200" width="200">
-            <img ng-if="!ctrl.currentUser.avatarUrl" src="resources/images/noImage.jpg" height="200" width="200">
-            <input style="margin-top: 10px" type="file" ngf-select ng-model="ctrl.imageFile"><br>
-            <button class="btn btn-default" ng-if="ctrl.imageFile" ng-click="ctrl.upload(ctrl.imageFile)">Upload
-            </button>
-            <span ng-if="ctrl.uploading">uploading...</span>
-        </div>
+    <div class="form-group col-md-11 col-sm-11">
+        <div class="form-group col-md-12 col-sm-12">
+            <div class="col-md-8 col-sm-8">
+                <img ng-if="ctrl.currentUser.avatarUrl" ng-src="{{ctrl.currentUser.avatarUrl}}" height="150" width="150">
+                <img ng-if="!ctrl.currentUser.avatarUrl" src="resources/images/noImage.jpg" height="150" width="150">
 
+                <div style="font-size: x-small">
+                    <input style="margin-top: 10px" type="file" ngf-select ng-model="ctrl.imageFile">
+                </div>
+                <br>
+                <button class="btn btn-default" ng-if="ctrl.imageFile" ng-click="ctrl.upload(ctrl.imageFile)">Upload</button>
+                <span ng-if="ctrl.uploading">uploading...</span>
+            </div>
+        </div>
 
         <div class="form-group col-md-8 col-sm-8">
             <label class="col-md-4"><span class="pull-right">First</span></label>
@@ -56,7 +60,6 @@
                 <input type="text" class="form-control" ng-model="ctrl.currentUser.username" disabled>
                 <br>
             </div>
-
         </div>
 
 
@@ -65,7 +68,8 @@
                 type="submit" ng-click="ctrl.edit(ctrl.currentUser);"
                 style="margin-bottom: 5px">Save Settings
         </button>
-        <span ng-if="ctrl.showUserMessage">{{ctrl.message}}</span>
-    </div>
 
+        <span ng-if="ctrl.showUserMessage">{{ctrl.message}}</span>
+
+    </div>
 </form>
