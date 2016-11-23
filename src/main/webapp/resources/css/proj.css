@@ -175,9 +175,9 @@ li #drop_down, li #drop_down2 {
 .recoverContainer {
     position: relative;
     top: 100px;
-    left: 30%;
-    width: 30%;
-    height: 30%;
+    /*left: 30%;*/
+    /*width: 40%;*/
+    /*height: 40%;*/
     background-color: #989da1;
     border-radius: 10px;
 }
