@@ -109,8 +109,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
     };
 
     ctrl.editPost = function (post) {
-        console.log(ctrl.edittingPost.title);
-        console.log(post);
+
         ForumsService.editPost({id: post.id}, post).$promise.then(function (response) {
             if (response.success){
                 console.log(response);

@@ -69,7 +69,7 @@
                 <div ng-if="ctrl.noPosts">{{ctrl.message}}</div>
 
                 <div class="row" ng-repeat="post in ctrl.posts track by post.id">
-                    <div href class="clickable col-xs-12 col-md-12 panel-body forum-list-item" style="border-bottom: 1px solid #e4e4e4" ng-click="ctrl.goToPost(post)">
+                    <div href class="clickable col-xs-12 col-md-12 panel-body forum-post-item" style="border-bottom: 1px solid #e4e4e4" ng-click="ctrl.goToPost(post)">
                         <div class="col-md-4 col-xs-12" style="display: inline-block">
 
                             <img class="avatar-image pull-left" src={{post.user.avatarUrl}}>
@@ -80,8 +80,8 @@
                         </div>
 
                         <div class="col-md-6">
-                        <h2 style="margin-top: 10px;">
-                            {{post.title | limitTo: 30}}<span ng-if="post.title.length > 30">...</span></h2>
+                        <h3 style="margin-top: 10px; vertical-align: bottom;">
+                            {{post.title | limitTo: 30}}<span ng-if="post.title.length > 30">...</span></h3>
                         </div>
 
                         <div class="col-md-2">

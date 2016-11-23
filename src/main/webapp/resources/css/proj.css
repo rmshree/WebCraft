@@ -189,6 +189,7 @@ li #drop_down, li #drop_down2 {
     backround-image: none;
     background-color: #7b0100 ;
     color: #fff;
+    font-size: 20px;
 }
 
 .panel {
@@ -215,10 +216,23 @@ li #drop_down, li #drop_down2 {
     user-select: none;
 }
 
-.forum-list-item {
+.forum-category-item {
     background-color: whitesmoke;
+    font-size: 18px;
 }
-.forum-list-item:hover{
+
+
+.forum-category-item:hover{
+    background-color: lightgrey;
+}
+
+.forum-post-item {
+    background-color: whitesmoke;
+    font-size: 12px;
+}
+
+
+.forum-post-item:hover{
     background-color: lightgrey;
 }
 
@@ -254,6 +268,11 @@ li #drop_down, li #drop_down2 {
 .fa-times {
     color: red;
 }
+
+.fa-check {
+    color: green;
+}
+
 .maps-page {
     overflow: auto;
     min-height: 100%;
