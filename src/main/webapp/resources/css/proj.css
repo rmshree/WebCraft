@@ -100,8 +100,8 @@ li #drop_down, li #drop_down2 {
     position: absolute;
     min-width: 160px;
     background: #bfbfbf;
-    border: 1px solid black;
     text-align: right;
+    border-bottom: 1px solid black;
 }
 
 #drop_content a, #drop_content2 a {
@@ -111,6 +111,8 @@ li #drop_down, li #drop_down2 {
     display: block;
     text-align: left;
     border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
 
 #drop_down:hover #drop_content, #drop_down2:hover #drop_content2 {
@@ -119,6 +121,10 @@ li #drop_down, li #drop_down2 {
 
 #drop_content:hover, #drop_content2:hover {
     display: inline;
+}
+
+#drop_content a:hover, #drop_content2 a:hover {
+    background-color: white;
 }
 
 .userLists {
