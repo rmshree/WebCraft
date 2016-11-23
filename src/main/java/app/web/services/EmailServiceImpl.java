@@ -1,6 +1,7 @@
 package app.web.services;
 
 import app.web.domain.Password;
+import app.web.domain.Settings;
 import app.web.domain.TempUser;
 import app.web.domain.User;
 
@@ -36,13 +37,16 @@ public class EmailServiceImpl implements EmailService {
     private static final String MESSAGETEMPLATE = "email-templates/newMessageEmail.vm";
     private static final String PASSWORDTEMPLATE = "email-templates/passwordRecoveryEmail.vm";
     private static final String LOCALADDRESS = "http://localhost:8080/webcraft/#/";
-    private static final String PRODADDRESS = "http://52.35.50.19:8080/webcraft/#/";
+    private static final String PRODADDRESS = "http://a-out.me/webcraft/#/";
 
     @Autowired
     private Environment env;
 
     @Autowired
     private PasswordService passwordService;
+
+    @Autowired
+    private SettingsService settingsService;
 
     private Properties props;
 
@@ -72,7 +76,6 @@ public class EmailServiceImpl implements EmailService {
 
             velocityContext.put("user", tempUser);
             velocityContext.put("verificationLink", verifcationLink);
-            velocityContext.put("cancelLink", "This link will delete the account");
             template.merge(velocityContext, writer);
 
             message.setFrom(new InternetAddress(EMAIL));
@@ -92,6 +95,7 @@ public class EmailServiceImpl implements EmailService {
     public Boolean sendNewMessageEmail(User user, String content){
         setProperties();
         try {
+            Settings settings = settingsService.getByUser(user);
             Message message = new MimeMessage(session);
             StringWriter writer = new StringWriter();
             VelocityEngine velocityEngine = new VelocityEngine();
@@ -101,16 +105,33 @@ public class EmailServiceImpl implements EmailService {
             Template template = velocityEngine.getTemplate(MESSAGETEMPLATE);
             VelocityContext velocityContext = new VelocityContext();
 
-            velocityContext.put("user", user);
-            velocityContext.put("content", content);
             String link = "";
+            String settingsLink = "";
+            String settingsContent = "";
             if (env.getActiveProfiles()[0].equals("local")) {
                 link = LOCALADDRESS + "messages";
+                settingsLink = LOCALADDRESS + "settings";
             }
             else {
                 link = PRODADDRESS + "messages";
+                settingsLink = PRODADDRESS + "settings";
             }
+            if (settings.getDelay() == 0) {
+                settingsContent = "Your settings are currently set to send a notification email immediately after you receive a private message.\n" +
+                        "If you wish to change or remove this setting, please visit your settings at:";
+            }
+            else {
+                settingsContent = "Your settings are currently set to send a notification email "+ settings.getDelay() + " " + settings.getDelayUnit() +" after you receive a private message.\n" +
+                        "If you wish to change or remove this setting, please visit your settings at:";
+            }
+
+            velocityContext.put("user", user);
+            velocityContext.put("content", content);
+            velocityContext.put("settings", settings);
             velocityContext.put("link", link);
+            velocityContext.put("settingsLink", settingsLink);
+            velocityContext.put("settingsContent", settingsContent);
+
             template.merge(velocityContext, writer);
 
             message.setFrom(new InternetAddress(EMAIL));
@@ -140,8 +161,17 @@ public class EmailServiceImpl implements EmailService {
             Template template = velocityEngine.getTemplate(PASSWORDTEMPLATE);
             VelocityContext velocityContext = new VelocityContext();
 
+            String settingsLink = "";
+            if (env.getActiveProfiles()[0].equals("local")) {
+                settingsLink = LOCALADDRESS + "settings";
+            }
+            else {
+                settingsLink = PRODADDRESS + "settings";
+            }
+
             velocityContext.put("user", user);
             velocityContext.put("password", password);
+            velocityContext.put("settingsLink", settingsLink);
             template.merge(velocityContext, writer);
 
             message.setFrom(new InternetAddress(EMAIL));

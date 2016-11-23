@@ -2,8 +2,18 @@
 <body>
 <h4>${content}</h4>
 <p>
+    You can view your messages at:
+</p>
+<p>
     ${link}
 </p>
+<h4>
+    ${settingsContent}
+</h4>
+<p>
+    ${settingsLink}
+</p>
+
 </body>
 
 </html>
