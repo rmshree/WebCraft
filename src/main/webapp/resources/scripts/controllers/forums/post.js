@@ -28,7 +28,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
             }else{
                 ctrl.postFound = false;
             }
-                ctrl.ePost = angular.copy(ctrl.post);
+                ctrl.ePost = angular.copy(ctrl.post); //For editing the post
         });
     };
 
@@ -100,7 +100,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
         });
     };
 
-    //TODO: Only give the user who created the comment the ability to edit the comment.
+
     ctrl.editComment = function (comment) {
         console.log(comment);
         ForumsService.editComment({id: comment.id}, comment).$promise.then(function (response) {
@@ -124,7 +124,7 @@ angular.module('app').controller('postCtrl', function ($route, ForumsService, Us
         });
     };
 
-    //TODO: Only give the user who created the comment the ability to delete the comment.
+
     ctrl.deleteComment = function(post, comment) {
         ForumsService.deleteComment({id: comment.id}).$promise.then(function (response) {
             if (response !== 0) {

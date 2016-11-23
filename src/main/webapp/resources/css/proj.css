@@ -269,6 +269,14 @@ li #drop_down, li #drop_down2 {
     border-radius: 100px;
 
 }
+
+.avatar-image-small {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    border-radius: 100px;
+}
+
 .fa-times {
     color: red;
 }
