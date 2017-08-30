@@ -1,0 +1,99 @@
+<div class="container-fluid rankings-page" ng-init="ctrl.init()">
+
+    <div class="page-header col-xs-12 col-md-12">
+        <h1 style="display: inline-block; color: black; padding-left: 25px">
+            ELO Ratings
+        </h1>
+
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-info col-xs-12" style="padding: 0">
+                <div class="panel-heading col-md-1">
+                    Rank
+                </div>
+                <div id="rank-hide" class="panel-heading col-md-1">
+                    Elo
+                </div>
+                <div class="panel-heading col-md-6">
+                    Username
+                </div>
+                <div id="rank-hide" class="panel-heading col-md-1">
+                    Matches
+                </div>
+                <div id="rank-hide" class="panel-heading col-md-1">
+                    Wins
+                </div>
+                <div id="rank-hide" class="panel-heading col-md-1">
+                    Losses
+                </div>
+                <div id="rank-hide" class="panel-heading col-md-1">
+                    Win %
+                </div>
+
+                <!-- NG Repeat for Forums Posted -->
+                <div class="panel-body" style="padding: 0">
+                    <div ng-repeat="user in ctrl.allUsers track by user.id">
+                        <div class="col-xs-12 col-md-12 clickable" ng-click="ctrl.goToUserProfile(user)">
+
+                            <div class="panel panel-info" style="padding: 0">
+                                <div class="panel-body col-md-1">
+                                    {{$index + 1}}
+                                </div>
+                                <div id="rank-hide" class="panel-body col-md-1">
+                                    {{user.elo}}
+                                </div>
+                                <div class="panel-body col-md-6">
+                                    {{user.username}}
+                                </div>
+                                <div id="rank-hide" class="panel-body col-md-1">
+                                    {{user.win + user.loss}}
+                                </div>
+                                <div id="rank-hide" class="panel-body col-md-1">
+                                    {{user.win}}
+                                </div>
+                                <div id="rank-hide" class="panel-body col-md-1">
+                                    {{user.loss}}
+                                </div>
+
+                                <div id="rank-hide" class="panel-body col-md-1">
+                                    <div ng-if="user.win + user.loss != 0">
+                                        {{ctrl.winPercentage(user)}}
+                                    </div>
+                                    <div ng-if="user.win + user.loss == 0">
+                                        --
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div id="my-content"></div>-->
+<!--...and:-->
+
+<!--@media screen and (min-width: 0px) and (max-width: 400px) {-->
+<!--#my-content { display: block; }  /* show it on small screens */-->
+<!--}-->
+
+<!--@media screen and (min-width: 401px) and (max-width: 1024px) {-->
+<!--#my-content { display: none; }   /* hide it elsewhere */-->
+<!--}-->
+
+
+<!--<div id="rank-hide">-->
+
+<!--</div>-->
+
+<!--@media screen and (min-width: 400px)-->
+<!--{-->
+    <!--#rank-hide { display: block; }  /* show it on small screens */-->
+<!--}-->
+
+<!--@media screen and (min-width: 0px) and (max-width: 399px)-->
+<!--{-->
+    <!--#rank-hide { display: none; }   /* hide it elsewhere */-->
+<!--}-->

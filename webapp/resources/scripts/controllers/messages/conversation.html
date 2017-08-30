@@ -1,0 +1,43 @@
+<div ng-init="ctrl.init()" >
+    <br>
+    <br>
+    <br>
+    <div class="col-xs-1">
+
+    </div>
+    <div class="panel panel-info col-xs-10 grayBG" style="padding: 0" ng-if="!ctrl.conversationNotFound">
+
+        <div class="panel-heading">
+            Messages
+        </div>
+        <div class="panel-body" style="padding: 0">
+            <div ng-repeat="message in ctrl.messages| orderBy: {message: {createDate}} track by message.id">
+                <div href class="col-xs-12 panel-body" style="border-bottom: 1px solid #e4e4e4">
+                    <div class="col-md-2 text-center" style="padding: 0" ng-class="{'pull-right': ctrl.currentUser.id === message.sender.id}">
+                            <img height="75px" width="75px" style="margin-bottom: 10px" ng-if="message.sender.avatarUrl" ng-src="{{message.sender.avatarUrl}}">
+                            <img height="75px" width="75px" style="margin-bottom: 10px" ng-if="!message.sender.avatarUrl" src="resources/images/noImage.jpg">
+                        <br>
+                            {{message.sender.username}}
+
+                    </div>
+                    <div class="col-md-10 text-left" style="display: inline-block">
+                        <pre style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);"> <h4>{{message.message_body}}</h4></pre>
+                        <h5>at: {{message.createDate | date: 'medium'}}</h5>
+                    </div>
+
+                    <!--<h2 class="col-md-6" style="margin-top: 0; font-family: monospace; font-size: xx-large"> <span ng-if="post.title.length > 40">...</span></h2>-->
+                    <!--<span class="col-md-2 pull-right"><small>Comments: </small><span class="badge"> {{post.comments_length}}</span></span>-->
+                    <!--<div class="col-xs-9">-->
+                    <!--<p>{{conversation.lastMessage | limitTo: 75}}<span ng-if="post.text.length > 75">...</span></p>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="input-group">
+                <textarea style="resize: vertical" ng-model="ctrl.message" class="col-md-12 form-control" rows="3" cols="50" placeholder="Compose you message..."></textarea>
+                <span class="input-group-btn">
+                    <button style="padding: 26px 12px !important" class="btn btn-success" type="button" ng-click="ctrl.sendMessage(ctrl.message)" ng-disabled="!ctrl.message.length > 0">Send!</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

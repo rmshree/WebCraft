@@ -1,0 +1,266 @@
+<div ng-init="ctrl.init()" class="post-page">
+
+    <div ng-if="!ctrl.postFound" class="col-xs-12 panel-body">
+        <h3>This post does not exist anymore.</h3>
+    </div>
+
+    <div ng-if="ctrl.postFound">
+        <div class=" page-header col-xs-12">
+            <h3><a href="#/forums/">Forums</a> >> <a href="#/forums/{{ctrl.categoryNum}}">{{ctrl.postCategory}}</a> >>
+                <i>{{ctrl.post.title}}</i></h3>
+        </div>
+
+
+        <div class="row row-centered"> <!-- User info -->
+            <div class="col-md-6 col-xs-12 col-centered">
+
+
+                    <!--Avatar, username, date-->
+                    <img class=" avatar-image pull-left" src={{ctrl.post.user.avatarUrl}}>
+                    <div class="col-md-8" style="margin-top: 10px; padding: 0">
+                        <h3>{{ctrl.post.user.username}}</h3>
+                        <span>{{ctrl.post.date | date: 'medium'}}</span>
+                    </div>
+
+                    <!--Edit, Delete buttons-->
+                    <div ng-if="ctrl.currentUser.id == ctrl.post.user.id">
+                        <button class="btn btn-default pull-left" style="margin: 10px;" ng-click="ctrl.post.showEditPostForm = true; ctrl.edittingPost = ctrl.post">
+                            Edit Post <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>
+                        <button ng-if="!ctrl.post.showDeletePostForm" class="btn btn-default pull-left" style="margin: 10px" ng-click="ctrl.post.showDeletePostForm = true">
+                            Delete Post <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <!-- Confirm Delete -->
+                    <div ng-if="ctrl.post.showDeletePostForm" class="pull-right">
+                        <div class="form-group pull-right">
+                            <span>Are you sure you want to delete this post?</span>
+                        </div>
+                        <!-- Buttons to Confirm Delete-->
+                        <div>
+                            <button class="btn btn-default pull-right" style="margin: 10px" ng-click="ctrl.deletePost(ctrl.post)" >
+                                Confirm <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-default pull-right" style="margin: 10px" ng-click="ctrl.post.showDeletePostForm = false">
+                                Cancel <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
+            </div>
+        </div> <!-- end user info -->
+
+        <!-- Editing Post  -->
+        <div ng-if ="ctrl.post.showEditPostForm" style="margin: 10px">
+
+            <div class="row row-centered">
+                <div class="form-group col-md-6 col-centered">
+                    <input name="editPost" class="form-control" maxlength="50" value={{ctrl.post.title}} ng-model="ctrl.ePost.title">
+                </div>
+            </div>
+
+            <div class="row row-centered">
+                    <div class="form-group col-md-6 col-centered">
+                    <textarea name="editPost" class="form-control" maxlength="1000" rows="6" ng-model="ctrl.ePost.text">{{ctrl.post.text}}</textarea>
+                    </div>
+            </div>
+
+
+
+        <!-- Upload File form
+            <div ng-if="ctrl.post.showMapForm">
+                <div class="row row-centered">
+                    <div class="col-xs-12 col-md-3 col-centered">
+                        <div class="form-group">
+                            <label>File</label>
+                            <input type="file" ngf-select ng-model="ePost.file">
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="row row-centered">
+                <div class="col-xs-12 col-md-6 col-centered">
+                    <!--<button class="btn btn-default" ng-click="ctrl.post.showMapForm = true">
+                        Upload File <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                    </button>-->
+                    <button class="btn btn-default pull-right" ng-click="ctrl.post.showEditPostForm = false; ctrl.uploading = false; ctrl.post.showMapForm = false; ctrl.ePost.file ='';">
+                        Cancel <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-default pull-right" ng-click="ctrl.editPost(ctrl.ePost)" ng-disabled="!ctrl.ePost.text || !ctrl.ePost.title">
+                        Submit <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+
+
+
+                </div>
+            </div>
+        </div> <!-- End Editing -->
+
+
+        <div> <!--Post contents -->
+
+            <div class="row row-centered">
+                <div class="col-md-6 col-xs-12 col-centered">
+                    <h2>{{ctrl.post.title}}</h2>
+                    <hr>
+                    </div>
+            </div>
+
+
+            <div class="row row-centered">
+                <div class="col-md-6 col-xs-12 col-centered">
+                    <p>{{ctrl.post.text}}</p>
+                    <div ng-if="ctrl.post.filename && ctrl.post.fileURL">
+                        <a href="{{ctrl.post.fileURL}}">{{ctrl.post.filename}}</a>
+                     </div>
+                </div>
+            </div>
+
+        </div> <!-- End Post contents -->
+
+
+        <!--Comments-->
+
+            <!-- Comments Header-->
+            <div class="row row-centered">
+                <br>
+                <div class="col-md-3 col-xs-6 col-centered">
+                    <h3 style="display:inline;"><i class="fa fa-comment-o fa-1x" aria-hidden="true"></i> Comments ({{ctrl.post.comments.length}})</h3>
+                </div>
+                <div class="col-md-3 col-xs-6 col-centered" style="margin-top: 40px;">
+                <button class="btn btn-primary pull-right" ng-if="!ctrl.post.showCommentForm && ctrl.currentUser.id" ng-click="ctrl.post.showCommentForm = true">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add Comment
+                    </button>
+
+
+                    <span ng-if="!ctrl.currentUser.id"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Please log in to comment.</span>
+                </div>
+            </div>
+            <hr>
+                <!-- Add comment form -->
+                <div ng-if="ctrl.post.showCommentForm">
+                     <div class="row row-centered" style="margin-top: 10px;">
+                        <div class="col-xs-12 col-md-6 col-centered form-group">
+                            <!-- Text area for add comment form-->
+                            <textarea id="comment" class="form-control" maxlength="1000" rows="4" ng-model="newComment.text"></textarea>
+                        </div>
+                     </div>
+                    <!-- Comment File Upload
+                    <div ng-if="newComment.showUploadFile" class="col-xs-12 col-md-6 panel-body">
+                        <div class="col-xs-12 col-md-3">
+                            <div class="form-group">
+                                <label>File</label>
+                                <input type="file" ngf-select ng-model="newComment.file">
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Buttons for the add comment form -->
+                         <div class="row row-centered">
+                             <div class="col-xs-12 col-md-6 col-centered">
+                                 <!--<button class="btn btn-default" ng-click="newComment.showUploadFile = true">
+                                     Upload File <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                                 </button>-->
+                                 <button class="btn btn-default pull-right" ng-click="ctrl.post.showCommentForm = false">
+                                     Cancel <i class="fa fa-times" aria-hidden="true"></i>
+                                 </button>
+                                 <button class="btn btn-default pull-right" ng-click="ctrl.addComment(ctrl.post, newComment)" ng-disabled="!newComment.text">
+                                     Submit <i class="fa fa-check" aria-hidden="true"></i>
+                                 </button>
+                             </div>
+                         </div>
+
+                  <!--  <div class="col-xs-12">
+                        <button class="btn btn-primary" ng-click="newComment.showUploadFile = true">Upload File</button>
+                        <button class="btn btn-primary" ng-click="ctrl.addComment(ctrl.post, newComment)" ng-disabled="!newComment.text">Add</button>
+                        <button class="btn btn-primary" ng-click="ctrl.post.showCommentForm = false">Cancel</button>
+                    </div>
+                </div>-->
+
+                </div> <!--End new comment form-->
+
+                <!-- Show comments -->
+
+            <div ng-repeat="comment in ctrl.post.comments | orderBy:'-' ">
+
+                <div class="row row-centered">
+
+                    <!--commenter info-->
+                    <div class="col-md-2 col-xs-12 col-centered" style="vertical-align: top">
+
+                        <img class="avatar-image-small" src={{comment.user.avatarUrl}}>
+                        <span><b>{{comment.user.username}}</b></span>
+                        <span>{{comment.date | date: 'medium'}}</span>
+
+                        <!--Edit comment btn -->
+                        <button ng-if="ctrl.currentUser.id == comment.user.id" class="btn btn-default btn-sm pull-right" style="margin: 5px" ng-click="comment.showEditCommentForm = true; ctrl.editingComment = comment;comment.showDeleteCommentForm = false">
+                            Edit Comment
+                        </button>
+                        <!-- Delete comment btn -->
+                        <button ng-if="ctrl.currentUser.id == comment.user.id" class="btn btn-default btn-sm pull-right" style="margin: 5px" ng-click="comment.showDeleteCommentForm = true;comment.showEditCommentForm = false">
+                            Delete Comment
+                        </button>
+
+                    </div>
+
+                    <!--comment text -->
+                    <div class="col-md-4 col-xs-12 col-centered">
+                        <p style="text-align: justify; padding: 5px; vertical-align: bottom;">{{comment.text}}</p>
+                    </div>
+
+                                <!--<div ng-if="comment.filename && comment.fileURL">
+                                    <a href="{{comment.fileURL}}">{{comment.filename}}</a>
+                                </div>-->
+
+                    <!-- Delete comment -->
+                    <div class="row row-centered" ng-if="comment.showDeleteCommentForm">
+                        <div class="col-md-6 col-centered">
+                            <div>
+                                <span style="color:red">Are you sure you want to delete this comment?</span>
+
+                            <!-- Buttons to Confirm Delete-->
+
+                                <button class="btn btn-default btn-sm" style="margin: 5px"  ng-click="ctrl.deleteComment(ctrl.post, comment)" >
+                                    Confirm <i class="fa fa-check" aria-hidden="true"></i>
+                                </button>
+                                <button class="btn btn-default btn-sm " style="margin: 5px" ng-click="comment.showDeleteCommentForm = false">
+                                    Cancel <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                         </div>
+                    </div>
+
+                <!-- Edit comment -->
+                <div ng-if="comment.showEditCommentForm" class="col-xs-12 panel-body" style="padding: 0">
+                    <div class="form-group col-md-12">
+                        <label for="editComment">Text</label>
+                        <textarea id="editComment" class="form-control" maxlength="1000" rows="3" ng-model="ctrl.editingComment.text"></textarea>
+                    </div>
+                    <div ng-if="comment.showMapForm" class="col-xs-12 col-md-6 panel-body">
+                        <div class="col-xs-12 col-md-3">
+                            <div class="form-group">
+                                <label>File</label>
+                                <input type="file" ngf-select ng-model="ctrl.editingComment.file">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <button class="btn btn-primary" ng-click="comment.showMapForm = true">Upload File</button>
+                        <button class="btn btn-primary" ng-click="ctrl.editComment(ctrl.editingComment)" ng-disabled="!ctrl.editingComment.text">Submit</button>
+                        <button class="btn btn-primary" ng-click="comment.showEditCommentForm = false; ctrl.uploading = false; comment.file = '';">Cancel</button>
+                    </div>
+                </div>
+
+
+
+                    <hr>
+            </div> <!--end comments -->
+
+        </div>
+    </div> <!--end post-->
+
+
+
+
+</div>
